@@ -1,4 +1,4 @@
-package model;
+package src.OLD_Version_A_Supp.model;
 
 public class Membre extends Client {
     private String membershipType;
