@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Film;
-import util.DBConnection;
+import src.OLD_Version_A_Supp.util.DBConnection;
 
 public class FilmDAO {
     private Connection connection;
