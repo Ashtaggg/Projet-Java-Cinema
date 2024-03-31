@@ -1,4 +1,4 @@
-package src.M.JAVA_MODEL.Global_CLASS;
+package M.JAVA_MODEL.Global_CLASS;
 
 //Imports
 

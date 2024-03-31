@@ -1,4 +1,4 @@
-package src.M.JAVA_MODEL.Global_CLASS;
+package M.JAVA_MODEL.Global_CLASS;
 
 public class Actual_Reservation extends Reservation {
     private Seance Actual_Reservation_Seance;

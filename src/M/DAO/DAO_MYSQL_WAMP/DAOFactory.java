@@ -1,4 +1,4 @@
-package src.M.DAO.DAO_MYSQL_WAMP;
+package M.DAO.DAO_MYSQL_WAMP;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

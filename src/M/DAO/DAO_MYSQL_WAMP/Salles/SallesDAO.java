@@ -1,7 +1,7 @@
-package src.M.DAO.DAO_MYSQL_WAMP.Salles;
+package M.DAO.DAO_MYSQL_WAMP.Salles;
 
 //Imports Fichiers
-import src.M.JAVA_MODEL.Global_CLASS.Salle;
+import M.JAVA_MODEL.Global_CLASS.Salle;
 //Imports Java
 import java.util.List;
 

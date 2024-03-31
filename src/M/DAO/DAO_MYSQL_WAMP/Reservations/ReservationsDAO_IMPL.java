@@ -1,8 +1,8 @@
-package src.M.DAO.DAO_MYSQL_WAMP.Reservations;
+package M.DAO.DAO_MYSQL_WAMP.Reservations;
 
 //Imports Fichies
-import src.M.JAVA_MODEL.Global_CLASS.Reservation;
-import src.M.DAO.DAO_MYSQL_WAMP.DAOFactory;
+import M.JAVA_MODEL.Global_CLASS.Reservation;
+import M.DAO.DAO_MYSQL_WAMP.DAOFactory;
 //Imports Java
 import java.util.List;
 

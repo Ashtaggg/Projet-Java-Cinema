@@ -1,7 +1,7 @@
-package src.M.DAO.DAO_MYSQL_WAMP.Seances;
+package M.DAO.DAO_MYSQL_WAMP.Seances;
 
 //Imports Fichiers
-import src.M.JAVA_MODEL.Global_CLASS.Seance;
+import M.JAVA_MODEL.Global_CLASS.Seance;
 //Imports Java
 import java.util.List;
 

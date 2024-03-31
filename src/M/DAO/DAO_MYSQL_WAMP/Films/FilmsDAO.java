@@ -1,7 +1,7 @@
-package src.M.DAO.DAO_MYSQL_WAMP.Films;
+package M.DAO.DAO_MYSQL_WAMP.Films;
 
 //Imports Fichiers
-import src.M.JAVA_MODEL.Global_CLASS.Film;
+import M.JAVA_MODEL.Global_CLASS.Film;
 //Imports Java
 import java.util.List;
 
