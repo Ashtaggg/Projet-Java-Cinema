@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Reservation;
-import src.OLD_Version_A_Supp.util.DBConnection;
+import util.DBConnection;
 
 public class ReservationDAO {
     private Connection connection;
