@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DAOFactory {
-    private String url;
-    private String username;
-    private String password;
+    public static String url;
+    public static String username;
+    public static String password;
 
     DAOFactory(String url, String username, String password) {
         this.url = "jdbc:mysql://localhost:3306/projet-java-cinema";
@@ -27,7 +27,7 @@ public class DAOFactory {
         return instance;
     }
 
-    public Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);
     }
 

@@ -6,8 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import OLD_Version_A_Supp.util.DBConnection;
 import model.Reservation;
-import util.DBConnection;
 
 public class ReservationDAO {
     private Connection connection;
