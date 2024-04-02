@@ -9,10 +9,10 @@ import java.text.ParseException;
 import C.MainAlexis;
 import M.JAVA_MODEL.Global_CLASS.Film;
 
-public class testAffichage {
+public class testAffichageAlexis {
     JFrame test;
 
-    public testAffichage(){
+    public testAffichageAlexis(){
         this.test = new JFrame("test");
     }
 
