@@ -19,8 +19,13 @@ public class testAffichageAlexis {
     public void affichage(){
         MainAlexis main = new MainAlexis();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateSortie = sdf.parse("2002-02-02");
-        Film film = new Film(112, "test", 2, dateSortie, "", "1:00:00", "edhgdh", 4.2, 0, "jvjb", "khgu", "uygsvi");
+        Date dateSortie = null;
+        try {
+            dateSortie = sdf.parse("2002-02-02");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Film film = new Film(112, "test", 2, dateSortie, "", "1:00:00", "edhgdh", 4, 0, "jvjb", "khgu", "uygsvi");
         
         test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test.setLayout(new GridLayout(20, 10));

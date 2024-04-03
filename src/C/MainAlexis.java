@@ -1,11 +1,11 @@
 package C;
 
-import V.testAffichage;
+import V.testAffichageAlexis;
 
 public class MainAlexis {
     public static void main(String[] ags)
     {
-        testAffichage test = new testAffichage();
+        testAffichageAlexis test = new testAffichageAlexis();
         test.affichage();
     }
 
