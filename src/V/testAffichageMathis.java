@@ -18,14 +18,20 @@ public class testAffichageMathis {
         this.test = new JFrame("test");
     }
 
-    public void affichage() {
+    public void affichage(Color MainCouleur, Color SecondeCouleur, Color TroisCouleur){
         // Configuration de la fenêtre principale
         test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test.setLayout(new BorderLayout());
+        test.setResizable(false);
+        //test.setExtendedState(JFrame.MAXIMIZED_BOTH); //Maximise taille de la fenetre mais prte contraoignant pour l'instant
+        test.getContentPane().setBackground(MainCouleur);
+        //Changer Logo de la Page
+        ImageIcon Logo_ECE = new ImageIcon("C:\\Users\\Mathis\\OneDrive\\Bureau\\ECE\\ING3\\S2 ECE\\Info\\Projet Java\\Projet_Git_V2\\Projet-Java-Cinema\\images\\Logo_ECE_Frame/ECE_Logo.jpg");
+        test.setIconImage(Logo_ECE.getImage());
 
         // Création du bandeau bleu en haut de la page
         JPanel bandeau = new JPanel();
-        bandeau.setBackground(Color.BLUE);
+        bandeau.setBackground(SecondeCouleur);
         bandeau.setPreferredSize(new Dimension(1920, 100));
         test.add(bandeau, BorderLayout.NORTH);
 
