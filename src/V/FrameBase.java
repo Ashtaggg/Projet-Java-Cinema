@@ -21,7 +21,7 @@ public class FrameBase extends JFrame{
         ImageIcon Logo_ECE = new ImageIcon("C:\\Users\\Mathis\\OneDrive\\Bureau\\ECE\\ING3\\S2 ECE\\Info\\Projet Java\\Projet_Git_V2\\Projet-Java-Cinema\\images\\Logo_ECE_Frame/ECE_Logo.jpg");
         this.setIconImage(Logo_ECE.getImage());
 
-        
+
         //Création du bandeau bleu en haut de la page
 
     }
