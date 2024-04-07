@@ -39,7 +39,7 @@ public class testAffichageMathis {
         bandeau.setBounds(0, 0, 1920, 100);
 
         // Ajout de l'image (logo) à gauche du bandeau bleu
-        ImageIcon logoIcon = new ImageIcon("C:\\Users\\Mathis\\OneDrive\\Bureau\\ECE\\ING3\\S2 ECE\\Info\\Projet Java\\Projet_Git_V2\\Projet-Java-Cinema\\images/Logo.jpeg"); // Remplacez "chemin/vers/votre/logo.png" par le chemin de votre logo
+        ImageIcon logoIcon = new ImageIcon("images/Logo_ECE_Frame/ECE_Logo.jpg"); // Remplacez "chemin/vers/votre/logo.png" par le chemin de votre logo
         JLabel logoLabel = new JLabel();
         logoLabel.setIcon(new ImageIcon(logoIcon.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT))); // Redimensionner l'image à 100x100 pixels
         bandeau.setLayout(new FlowLayout(FlowLayout.LEFT)); // Aligner l'image à gauche
