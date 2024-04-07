@@ -1,6 +1,7 @@
 package V;
 
 //Importation des fichiers
+import C.Listeners.ChangementPageActionListeners;
 
 //Importation des librairies
 import javax.swing.JFrame;
@@ -28,6 +29,10 @@ public class FrameBase extends JFrame{
         this.setSize(1920, 1080);
         this.setVisible(true);
         this.getContentPane().setBackground(MainCouleur);
+
+        //Class de Listener pour les boutons
+        ChangementPageActionListeners changementPageActionListeners = new ChangementPageActionListeners();
+
         //Changer Logo de la Page
         ImageIcon Logo_ECE = new ImageIcon("images/Logo_ECE_Frame/ECE_Logo.jpg");
         this.setIconImage(Logo_ECE.getImage());
@@ -48,9 +53,8 @@ public class FrameBase extends JFrame{
         BoutonLogo_Accueil.setBorderPainted(false);
         BoutonLogo_Accueil.setBackground(SecondeCouleur);
         //Action du bouton
-        BoutonLogo_Accueil.addActionListener(e -> {
-            System.out.println("Retour à l'accueil");
-        });
+        BoutonLogo_Accueil.setName("accueil");
+        BoutonLogo_Accueil.addActionListener(changementPageActionListeners);
 
         BandeauSup.add(BoutonLogo_Accueil);
         BoutonLogo_Accueil.setBounds(35, 15, 90, 90);
@@ -70,9 +74,8 @@ public class FrameBase extends JFrame{
         BoutonCompte.setBorderPainted(false);
         BoutonCompte.setBackground(SecondeCouleur);
         //Action du bouton
-        BoutonCompte.addActionListener(e -> {
-            System.out.println("Mon Compte");
-        });
+        BoutonCompte.setName("compte");
+        BoutonCompte.addActionListener(changementPageActionListeners);
 
         BandeauSup.add(BoutonCompte);
         BoutonCompte.setBounds(1750, 20, 120, 80);
@@ -114,9 +117,8 @@ public class FrameBase extends JFrame{
         BoutonPanier.setBorderPainted(false);
         BoutonPanier.setBackground(SecondeCouleur);
         //Action du bouton
-        BoutonPanier.addActionListener(e -> {
-            System.out.println("Panier");
-        });
+        BoutonPanier.setName("panier");
+        BoutonPanier.addActionListener(changementPageActionListeners);
 
         BandeauSup.add(BoutonPanier);
         BoutonPanier.setBounds(1510, 20, 120, 80);
@@ -132,12 +134,10 @@ public class FrameBase extends JFrame{
         //Ajout des éléments à la Frame Base
         this.add(BandeauSup);
         this.add(PanelBase);
-
     }
 
     public JPanel getPanelBase(){
         return PanelBase;
     }
 
-  
 }

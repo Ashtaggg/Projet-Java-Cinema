@@ -28,9 +28,14 @@ public class TestEnfFrameBase {
         frame.getPanelBase().removeAll();
 
         // Créer les nouveaux composants à ajouter au PanelBase
+
         JLabel label = new JLabel("Nouveau contenu du PanelBase");
         label.setForeground(Color.BLACK);
+        label.setBounds(100, 100, 200, 50); // Spécifier la position (x, y) et la taille (largeur, hauteur)
+
         JButton button = new JButton("Nouveau bouton");
+        button.setBounds(100, 200, 150, 30); // Spécifier la position (x, y) et la taille (largeur, hauteur)
+
 
         // Ajoutez les nouveaux composants au PanelBase
         frame.getPanelBase().add(label);
