@@ -23,6 +23,9 @@ public class testAffichageMathis {
         test.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         test.setLayout(new BorderLayout());
         test.setResizable(false);
+        test.setSize(1920, 1080);
+        
+
         //test.setExtendedState(JFrame.MAXIMIZED_BOTH); //Maximise taille de la fenetre mais prte contraoignant pour l'instant
         test.getContentPane().setBackground(MainCouleur);
         //Changer Logo de la Page
@@ -32,8 +35,8 @@ public class testAffichageMathis {
         // Création du bandeau bleu en haut de la page
         JPanel bandeau = new JPanel();
         bandeau.setBackground(SecondeCouleur);
-        bandeau.setPreferredSize(new Dimension(1920, 100));
-        test.add(bandeau, BorderLayout.NORTH);
+        //bandeau.setPreferredSize(new Dimension(1920, 100));
+        bandeau.setBounds(0, 0, 1920, 100);
 
         // Ajout de l'image (logo) à gauche du bandeau bleu
         ImageIcon logoIcon = new ImageIcon("C:\\Users\\Mathis\\OneDrive\\Bureau\\ECE\\ING3\\S2 ECE\\Info\\Projet Java\\Projet_Git_V2\\Projet-Java-Cinema\\images/Logo.jpeg"); // Remplacez "chemin/vers/votre/logo.png" par le chemin de votre logo
@@ -57,8 +60,9 @@ public class testAffichageMathis {
         panelBouton.setOpaque(false); // Permet au bouton de se fondre dans le fond bleu
         bandeau.add(panelBouton, BorderLayout.CENTER);
 
-        // Affichage de la fenêtre
-        test.setSize(1920, 1080);
+        // Affichage de la fenêtre à  faire à la fin
+        test.setLayout(null);
         test.setVisible(true);
+        test.add(bandeau);//A ne pas oublier
     }
 }
