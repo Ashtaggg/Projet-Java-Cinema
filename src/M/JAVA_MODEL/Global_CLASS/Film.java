@@ -11,7 +11,7 @@ public class Film {
     private String photo;
     private String duree;
     private String description;
-    private float note;
+    private double note;
     private int quatreDX;
     private String realisateur;
     private String acteur;
@@ -19,7 +19,7 @@ public class Film {
 
     // Constructeur
     public Film(int idFilm, String nom, float prix, Date dateSortie, String photo, String duree, String description,
-                float note, int quatreDX, String realisateur, String acteur, String synopsis) {
+                double note, int quatreDX, String realisateur, String acteur, String synopsis) {
         this.idFilm = idFilm;
         this.nom = nom;
         this.prix = prix;
@@ -91,7 +91,7 @@ public class Film {
         this.description = description;
     }
 
-    public float getNote() {
+    public double getNote() {
         return note;
     }
 

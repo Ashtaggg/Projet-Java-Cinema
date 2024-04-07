@@ -14,8 +14,8 @@ public class FilmsDAO_IMPL implements FilmsDAO{
         PreparedStatement preparedStatement = null;
 
         try {
-            connexion = DAOFactory.getConnection();//J'ai un doute sur ca 
-            preparedStatement = connexion.prepareStatement("INSERT INTO film (Nom, Prix, DateSortie, Photo, Durée, Description, Note, 4DX, Realisateur, Acteur, Synopsis) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("INSERT INTO film (Nom, Prix, DateSortie, Photo, Duree, Description, Note, 4DX, Realisateur, Acteur, Synopsis) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setString(1, film.getNom());
             preparedStatement.setDouble(2, film.getPrix());
             java.sql.Date dateSql = new java.sql.Date(film.getDateSortie().getTime());
