@@ -139,5 +139,4 @@ public class FrameBase extends JFrame{
     public JPanel getPanelBase(){
         return PanelBase;
     }
-
 }
