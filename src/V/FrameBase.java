@@ -11,7 +11,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Image;
-
+import java.awt.List;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import java.awt.Font;
 
@@ -20,8 +21,10 @@ public class FrameBase extends JFrame{
     //Variables
     private JPanel PanelBase;
     public String PageActuelle = "accueil_films";
-
+    public ArrayList<String> PagePrecedente = new ArrayList<>();
+    
     public Utilisateur userActuel = null;
+
 
     //Couelurs :
     boolean DarkMode = false;
@@ -49,6 +52,7 @@ public class FrameBase extends JFrame{
         this.setResizable(false);
         this.setSize(1920, 1080);
         this.setVisible(true);
+        PagePrecedente.add("accueil_films");
         if(DarkMode){
             MainCouleur = MainCouleur_Dark;
             SecondeCouleur = SecondeCouleur_Dark;
@@ -83,48 +87,65 @@ public class FrameBase extends JFrame{
         //Action du bouton
         BoutonLogo_Accueil.setName("accueil_films");
         BoutonLogo_Accueil.addActionListener(e -> {
-            changementPageListeners.ChanhementPage(BoutonLogo_Accueil.getName(), this);
+            changementPageListeners.ChangementPage(BoutonLogo_Accueil.getName(), this);
         });
 
         BandeauSup.add(BoutonLogo_Accueil);
         BoutonLogo_Accueil.setBounds(100, 15, 90, 90);
 
-                //Ajout de l'icon pour le Dark Mode
-                ImageIcon IconeDarkMode = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/Mode_Blanc.png");
-                JButton BoutonDarkMode = new JButton();
-                BoutonDarkMode.setIcon(new ImageIcon(IconeDarkMode.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
-                BoutonDarkMode.setOpaque(true);
-                BoutonDarkMode.setFocusable(false);
-                BoutonDarkMode.setBorderPainted(false);
-                BoutonDarkMode.setBackground(SecondeCouleur);
-                //Action du bouton
-                BoutonDarkMode.setName("dark_mode");
-                BoutonDarkMode.addActionListener(e -> {
-                    if(DarkMode){
-                        MainCouleur = MainCouleur_Light;
-                        SecondeCouleur = SecondeCouleur_Light;
-                        TroisCouleur = TroisCouleur_Light;
-                        QuatreCouleur = QuatreCouleur_Light;
-                        this.getContentPane().setBackground(MainCouleur);
-                        BandeauSup.setBackground(SecondeCouleur);
-                        PanelBase.setBackground(MainCouleur);
-                        DarkMode = false;
-                    }else{
-                        MainCouleur = MainCouleur_Dark;
-                        SecondeCouleur = SecondeCouleur_Dark;
-                        TroisCouleur = TroisCouleur_Dark;
-                        QuatreCouleur = QuatreCouleur_Dark;
-                        this.getContentPane().setBackground(MainCouleur);
-                        BandeauSup.setBackground(SecondeCouleur);
-                        PanelBase.setBackground(MainCouleur);
-                        DarkMode = true;
-                    }
-                    this.RefreshPage();
-                    changementPageListeners.ChanhementPage(PageActuelle, this);
-                });
-        
-                BandeauSup.add(BoutonDarkMode);
-                BoutonDarkMode.setBounds(1830, 40, 40, 40);
+        //Bouton Retour à la page précédente
+        JButton BoutonRetour = new JButton();
+        ImageIcon IconeRetour = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/Retour_Left_Blanc.png");
+        BoutonRetour.setIcon(new ImageIcon(IconeRetour.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT)));
+        BoutonRetour.setOpaque(true);
+        BoutonRetour.setFocusable(false);
+        BoutonRetour.setBorderPainted(false);
+        BoutonRetour.setBackground(SecondeCouleur);
+        //Action du bouton
+        BoutonRetour.addActionListener(e -> {
+            String Pagetampon = PagePrecedente.get(PagePrecedente.size() - 1);
+            changementPageListeners.ChangementPage(Pagetampon, this);
+        });
+
+        BandeauSup.add(BoutonRetour);
+        BoutonRetour.setBounds(30, 43, 35, 35);
+
+        //Ajout de l'icon pour le Dark Mode
+        ImageIcon IconeDarkMode = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/Mode_Blanc.png");
+        JButton BoutonDarkMode = new JButton();
+        BoutonDarkMode.setIcon(new ImageIcon(IconeDarkMode.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        BoutonDarkMode.setOpaque(true);
+        BoutonDarkMode.setFocusable(false);
+        BoutonDarkMode.setBorderPainted(false);
+        BoutonDarkMode.setBackground(SecondeCouleur);
+        //Action du bouton
+        BoutonDarkMode.setName("dark_mode");
+        BoutonDarkMode.addActionListener(e -> {
+            if(DarkMode){
+                MainCouleur = MainCouleur_Light;
+                SecondeCouleur = SecondeCouleur_Light;
+                TroisCouleur = TroisCouleur_Light;
+                QuatreCouleur = QuatreCouleur_Light;
+                this.getContentPane().setBackground(MainCouleur);
+                BandeauSup.setBackground(SecondeCouleur);
+                PanelBase.setBackground(MainCouleur);
+                DarkMode = false;
+            }else{
+                MainCouleur = MainCouleur_Dark;
+                SecondeCouleur = SecondeCouleur_Dark;
+                TroisCouleur = TroisCouleur_Dark;
+                QuatreCouleur = QuatreCouleur_Dark;
+                this.getContentPane().setBackground(MainCouleur);
+                BandeauSup.setBackground(SecondeCouleur);
+                PanelBase.setBackground(MainCouleur);
+                DarkMode = true;
+            }
+            this.RefreshPage();
+            changementPageListeners.ChangementPage(PageActuelle, this);
+        });
+
+        BandeauSup.add(BoutonDarkMode);
+        BoutonDarkMode.setBounds(1830, 40, 40, 40);
 
         // Bouton de Compte Utilisateur en haut à droite
         JButton BoutonCompte = new JButton();
@@ -143,7 +164,7 @@ public class FrameBase extends JFrame{
         //Action du bouton
         BoutonCompte.setName("compte");
         BoutonCompte.addActionListener(e -> {
-            changementPageListeners.ChanhementPage(BoutonCompte.getName(), this);
+            changementPageListeners.ChangementPage(BoutonCompte.getName(), this);
         });
 
         BandeauSup.add(BoutonCompte);
@@ -189,7 +210,7 @@ public class FrameBase extends JFrame{
         //Action du bouton
         BoutonPanier.setName("panier");
         BoutonPanier.addActionListener(e -> {
-            changementPageListeners.ChanhementPage(BoutonPanier.getName(), this);
+            changementPageListeners.ChangementPage(BoutonPanier.getName(), this);
         });
 
         BandeauSup.add(BoutonPanier);

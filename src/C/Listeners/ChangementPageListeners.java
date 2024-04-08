@@ -5,6 +5,7 @@ import V.TestEnfFrameBase;
 import V.FrameBase;
 import V.PageConnexion;
 import V.PageInscription;
+import V.Reservation.Reservation_Seance;
 
 // Importation des librairies
 
@@ -12,32 +13,44 @@ import V.PageInscription;
 
 public class ChangementPageListeners{
 
-    public void ChanhementPage(String boutonName, FrameBase frame) {
+    public void ChangementPage(String boutonName, FrameBase frame) {
 
 
         // Effectuer une action en fonction du nom du bouton
         switch (boutonName) {
             case "compte":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "compte";
                 System.out.println("Compte et" + frame.PageActuelle);
                 break;
             case "panier":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                frame.PageActuelle = "panier";
                 System.out.println("Panier");
                 break;
             case "accueil_films":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "accueil_films";
                 TestEnfFrameBase.affichertestEnfFrameBase(frame);
                 System.out.println("Accueil");
                 break;
             case "connexion":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "connexion";
                 PageConnexion.affichagePageConnexion(frame);
                 System.out.println("Connexion");
                 break;
             case "inscription":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "inscription";
                 PageInscription.affichagePageInscription(frame);
                 System.out.println("Inscription");
+                break;
+            case "reservation_seance":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                frame.PageActuelle = "reservation_seance";
+                Reservation_Seance.affichageReservation_Seance(frame);
+                System.out.println("Reservation Seance");
                 break;
             default:
                 System.out.println("Action non reconnue");
