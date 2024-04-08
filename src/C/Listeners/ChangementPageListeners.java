@@ -1,32 +1,31 @@
 package C.Listeners;
 
 // Importation des fichiers
-
+import C.MainMathis;
+import V.TestEnfFrameBase;
+import jdk.incubator.vector.VectorOperators.Test;
+import V.FrameBase;
 
 // Importation des librairies
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
-public class ChangementPageActionListeners implements ActionListener{
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // Récupérer la source de l'événement
-        JButton button = (JButton) e.getSource();
 
-        // Obtenir le nom du bouton
-        String buttonName = button.getName();
+public class ChangementPageListeners{
+
+    public void ChanhementPage(String boutonName, FrameBase frame) {
+
 
         // Effectuer une action en fonction du nom du bouton
-        switch (buttonName) {
+        switch (boutonName) {
             case "compte":
-                System.out.println("Compte");
+                frame.PageActuelle = "compte";
+                System.out.println("Compte et" + frame.PageActuelle);
                 break;
             case "panier":
                 System.out.println("Panier");
                 break;
             case "accueil_films":
+                TestEnfFrameBase.affichertestEnfFrameBase(frame);
                 System.out.println("Accueil");
                 break;
             default:

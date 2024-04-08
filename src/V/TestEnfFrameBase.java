@@ -20,11 +20,7 @@ import java.awt.Dimension;
 
 public class TestEnfFrameBase {
 
-    //Constructeur
-    public TestEnfFrameBase(){
-    }
-
-    public void affichertestEnfFrameBase(FrameBase frame) {
+    public static void affichertestEnfFrameBase(FrameBase frame) {
 
         // Retirez les composants actuels du PanelBase
         frame.getPanelBase().removeAll();
