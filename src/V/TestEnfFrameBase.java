@@ -54,13 +54,7 @@ public class TestEnfFrameBase {
         //frame.getPanelBase().setBackground(Color.BLACK);
 
         // Rafraîchir l'interface utilisateur
-        frame.getPanelBase().revalidate();
-        frame.getPanelBase().repaint();
-        frame.getPanelBase().setVisible(true);
-
-        frame.setVisible(true);
-        frame.revalidate();
-        frame.repaint();
+        frame.RefreshPage();
 
     System.out.println("testEnfFrameBase");
     }

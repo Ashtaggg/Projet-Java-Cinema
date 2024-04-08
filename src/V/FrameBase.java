@@ -100,8 +100,7 @@ public class FrameBase extends JFrame{
                 PanelBase.setBackground(MainCouleur);
                 DarkMode = true;
             }
-            this.revalidate();
-            this.repaint();
+            this.RefreshPage();
         });
 
         BandeauSup.add(BoutonDarkMode);
@@ -216,5 +215,16 @@ public class FrameBase extends JFrame{
 
     public Color getQuatreCouleur(){
         return QuatreCouleur;
+    }
+
+    public void RefreshPage(){
+        // Rafraîchir l'interface utilisateur
+        this.getPanelBase().revalidate();
+        this.getPanelBase().repaint();
+        this.getPanelBase().setVisible(true);
+
+        this.setVisible(true);
+        this.revalidate();
+        this.repaint();
     }
 }
