@@ -1,12 +1,7 @@
 package V;
 
 import javax.swing.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.text.ParseException;
 
-import M.JAVA_MODEL.Global_CLASS.Film;
-import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
 
 
 public class testAffichageAlexis {
