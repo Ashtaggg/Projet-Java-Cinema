@@ -117,8 +117,6 @@ public class PageInscription {
         suivant.setFont(font2);
         inscription.add(suivant);
 
-
-
         frame.getPanelBase().setVisible(true);
         frame.getPanelBase().add(inscription);
 
