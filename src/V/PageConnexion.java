@@ -4,10 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 import C.Listeners.PageConnexion.ConnexionListeners;
-import C.Listeners.PageConnexion.InscriptionListeners;
+import C.Listeners.PageConnexion.PageInscriptionListeners;
 
 public class PageConnexion {
     public static void affichagePageConnexion(FrameBase frame){
+        frame.PageActuelle = "connexion";
+        frame.getPanelBase().removeAll();
+        frame.RefreshPage();
 
         JPanel connexion = new JPanel();
         connexion.setBounds(585, 290, 750, 500);
@@ -63,8 +66,7 @@ public class PageConnexion {
 
         JButton inscription = new JButton("Inscription");
         inscription.addActionListener(e -> {
-            System.out.println("Inscription...");
-            InscriptionListeners.boutonInscription(frame);
+            PageInscriptionListeners.boutonInscription(frame);
         });
         inscription.setBounds(429, 300, 75, 24);
         inscription.setBorder(BorderFactory.createEmptyBorder());
