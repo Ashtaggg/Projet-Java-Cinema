@@ -1,7 +1,7 @@
 package C;
 
-import V.PageConnexion;
 import V.FrameBase;
+import V.EspaceUtilisateur.PageConnexion;
 
 public class MainAlexis {
     public static void main(String[] ags)

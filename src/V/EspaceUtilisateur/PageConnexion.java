@@ -1,10 +1,11 @@
-package V;
+package V.EspaceUtilisateur;
 
 import javax.swing.*;
 import java.awt.*;
 
 import C.Listeners.PageConnexion.ConnexionListeners;
 import C.Listeners.PageConnexion.PageInscriptionListeners;
+import V.FrameBase;
 
 public class PageConnexion {
     public static void affichagePageConnexion(FrameBase frame){
@@ -22,18 +23,18 @@ public class PageConnexion {
         Font font3 = new Font("Arial", Font.BOLD, 15);
 
 
-        JLabel idLabel = new JLabel("Adresse Mail");
-        idLabel.setBounds(150, 20, 185, 24);
-        idLabel.setForeground(frame.getSecondeCouleur());
-        idLabel.setFont(font1);
-        connexion.add(idLabel);
+        JLabel mailLabel = new JLabel("Adresse Mail");
+        mailLabel.setBounds(150, 20, 185, 24);
+        mailLabel.setForeground(frame.getSecondeCouleur());
+        mailLabel.setFont(font1);
+        connexion.add(mailLabel);
 
-        JTextField id = new JTextField(20);
-        id.setBounds(150, 60, 450, 40);
-        id.setOpaque(false);
-        id.setForeground(frame.getSecondeCouleur());
-        id.setFont(font2);
-        connexion.add(id);
+        JTextField mail = new JTextField(20);
+        mail.setBounds(150, 60, 450, 40);
+        mail.setOpaque(false);
+        mail.setForeground(frame.getSecondeCouleur());
+        mail.setFont(font2);
+        connexion.add(mail);
 
 
         JLabel mdpLabel = new JLabel("Mot de passe");
@@ -59,7 +60,7 @@ public class PageConnexion {
 
 
         JLabel inscriptionLabel = new JLabel("Pas encore de compte ?");
-        inscriptionLabel.setBounds(246, 300, 171, 24);
+        inscriptionLabel.setBounds(246, 280, 171, 24);
         inscriptionLabel.setForeground(frame.getSecondeCouleur());
         inscriptionLabel.setFont(font3);
         connexion.add(inscriptionLabel);
@@ -68,7 +69,7 @@ public class PageConnexion {
         inscription.addActionListener(e -> {
             PageInscriptionListeners.boutonInscription(frame);
         });
-        inscription.setBounds(429, 300, 75, 24);
+        inscription.setBounds(429, 280, 75, 24);
         inscription.setBorder(BorderFactory.createEmptyBorder());
         inscription.setForeground(frame.getSecondeCouleur());
         inscription.setBackground(frame.getMainCouleur());
@@ -77,12 +78,12 @@ public class PageConnexion {
 
         JButton boutonConnect = new JButton("Connexion");
         boutonConnect.addActionListener(e -> {
-            String mail = id.getText();
-            String password = mdp.getText();
+            String Mail = mail.getText();
+            String Password = mdp.getText();
             
-            ConnexionListeners.boutonConnexion(frame, problemConnexionLabel, mail, password);
+            ConnexionListeners.boutonConnexion(frame, problemConnexionLabel, Mail, Password);
         });
-        boutonConnect.setBounds(290, 400, 170, 40);
+        boutonConnect.setBounds(290, 370, 170, 40);
         boutonConnect.setForeground(frame.getSecondeCouleur());
         boutonConnect.setBackground(frame.getMainCouleur());
         boutonConnect.setFont(font2);

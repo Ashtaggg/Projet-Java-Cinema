@@ -1,7 +1,7 @@
 package C.Listeners.PageConnexion;
 
 import V.FrameBase;
-import V.PageConnexion;
+import V.EspaceUtilisateur.PageConnexion;
 
 public class PageConnexionListeners {
     public static void boutonConnexion(FrameBase frame){

@@ -2,9 +2,9 @@ package C.Listeners;
 
 // Importation des fichiers
 import V.TestEnfFrameBase;
+import V.EspaceUtilisateur.PageConnexion;
+import V.EspaceUtilisateur.PageInscription;
 import V.FrameBase;
-import V.PageConnexion;
-import V.PageInscription;
 import V.Reservation.Reservation_Seance;
 
 // Importation des librairies
