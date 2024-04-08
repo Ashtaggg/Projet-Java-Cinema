@@ -11,7 +11,7 @@ public class MainMathis {
     {
         //testAffichageMathis test = new testAffichageMathis();
         //test.affichage((new Color(250, 250, 250)), (new Color(0, 19, 77)), (new Color(0, 0, 0)));
-        FrameBase frame = new FrameBase("test", (new Color(250, 250, 250)), (new Color(0, 19, 77)), (new Color(0, 0, 0)));
+        FrameBase frame = new FrameBase();
         TestEnfFrameBase testEnf = new TestEnfFrameBase();
         testEnf.affichertestEnfFrameBase(frame);
     }

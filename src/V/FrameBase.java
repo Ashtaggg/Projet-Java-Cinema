@@ -2,6 +2,7 @@ package V;
 
 //Importation des fichiers
 import C.Listeners.ChangementPageActionListeners;
+import C.Listeners.RechercheActionListeners;
 
 //Importation des librairies
 import javax.swing.JFrame;
@@ -20,18 +21,43 @@ public class FrameBase extends JFrame{
     //Variables
     private JPanel PanelBase;
 
+    //Couelurs :
+    boolean DarkMode = false;
+    //Light Mode
+    Color MainCouleur_Light = new Color(235, 235, 235);
+    Color SecondeCouleur_Light = new Color(0, 19, 77);
+    Color TroisCouleur_Light = new Color(62, 96, 193);
+    Color QuatreCouleur_Light = new Color(90, 130, 252);
+    //Dark Mode
+    Color MainCouleur_Dark = new Color(33, 34, 38);
+    Color SecondeCouleur_Dark = new Color(0, 19, 77);
+    Color TroisCouleur_Dark = new Color(62, 96, 193);
+    Color QuatreCouleur_Dark = new Color(90, 130, 252);
+    //Couleur actuelle
+    Color MainCouleur = MainCouleur_Light;
+    Color SecondeCouleur = SecondeCouleur_Light;
+    Color TroisCouleur = TroisCouleur_Light;
+    Color QuatreCouleur = QuatreCouleur_Light;
+
     //Constructeur
-    public FrameBase(String titre, Color MainCouleur, Color SecondeCouleur, Color TroisCouleur){
+    public FrameBase(){
         //Setting basique de la fenêtre
-        super(titre);
+        super("Projet Java Cinéma");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1920, 1080);
         this.setVisible(true);
+        if(DarkMode){
+            MainCouleur = MainCouleur_Dark;
+            SecondeCouleur = SecondeCouleur_Dark;
+            TroisCouleur = TroisCouleur_Dark;
+            QuatreCouleur = QuatreCouleur_Dark;
+        }
         this.getContentPane().setBackground(MainCouleur);
 
         //Class de Listener pour les boutons
         ChangementPageActionListeners changementPageActionListeners = new ChangementPageActionListeners();
+        RechercheActionListeners rechercheActionListeners = new RechercheActionListeners();
 
         //Changer Logo de la Page
         ImageIcon Logo_ECE = new ImageIcon("images/Logo_ECE_Frame/ECE_Logo.jpg");
@@ -44,6 +70,43 @@ public class FrameBase extends JFrame{
         BandeauSup.setBackground(SecondeCouleur);
         BandeauSup.setBounds(0, 0, 1920, 120);
 
+        //Ajout de l'icon pour le Dark Mode
+        ImageIcon IconeDarkMode = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/Mode_Blanc.png");
+        JButton BoutonDarkMode = new JButton();
+        BoutonDarkMode.setIcon(new ImageIcon(IconeDarkMode.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT)));
+        BoutonDarkMode.setOpaque(true);
+        BoutonDarkMode.setFocusable(false);
+        BoutonDarkMode.setBorderPainted(false);
+        BoutonDarkMode.setBackground(SecondeCouleur);
+        //Action du bouton
+        BoutonDarkMode.setName("dark_mode");
+        BoutonDarkMode.addActionListener(e -> {
+            if(DarkMode){
+                MainCouleur = MainCouleur_Light;
+                SecondeCouleur = SecondeCouleur_Light;
+                TroisCouleur = TroisCouleur_Light;
+                QuatreCouleur = QuatreCouleur_Light;
+                this.getContentPane().setBackground(MainCouleur);
+                BandeauSup.setBackground(SecondeCouleur);
+                PanelBase.setBackground(MainCouleur);
+                DarkMode = false;
+            }else{
+                MainCouleur = MainCouleur_Dark;
+                SecondeCouleur = SecondeCouleur_Dark;
+                TroisCouleur = TroisCouleur_Dark;
+                QuatreCouleur = QuatreCouleur_Dark;
+                this.getContentPane().setBackground(MainCouleur);
+                BandeauSup.setBackground(SecondeCouleur);
+                PanelBase.setBackground(MainCouleur);
+                DarkMode = true;
+            }
+            this.revalidate();
+            this.repaint();
+        });
+
+        BandeauSup.add(BoutonDarkMode);
+        BoutonDarkMode.setBounds(1830, 40, 40, 40);
+
         //Ajout de notre Logo en haut à gauche du bandeau = Bouton caché pour retourner à l'accueil
         ImageIcon LogoProjet = new ImageIcon("images/Logo.jpeg");
         JButton BoutonLogo_Accueil = new JButton();
@@ -53,11 +116,11 @@ public class FrameBase extends JFrame{
         BoutonLogo_Accueil.setBorderPainted(false);
         BoutonLogo_Accueil.setBackground(SecondeCouleur);
         //Action du bouton
-        BoutonLogo_Accueil.setName("accueil");
+        BoutonLogo_Accueil.setName("accueil_films");
         BoutonLogo_Accueil.addActionListener(changementPageActionListeners);
 
         BandeauSup.add(BoutonLogo_Accueil);
-        BoutonLogo_Accueil.setBounds(35, 15, 90, 90);
+        BoutonLogo_Accueil.setBounds(100, 15, 90, 90);
 
         // Bouton de Compte Utilisateur en haut à droite
         JButton BoutonCompte = new JButton();
@@ -78,7 +141,7 @@ public class FrameBase extends JFrame{
         BoutonCompte.addActionListener(changementPageActionListeners);
 
         BandeauSup.add(BoutonCompte);
-        BoutonCompte.setBounds(1750, 20, 120, 80);
+        BoutonCompte.setBounds(1700, 20, 120, 80);
 
         //Bouton de recherche en haut à droite
         JButton BoutonSearch = new JButton();
@@ -95,12 +158,11 @@ public class FrameBase extends JFrame{
         BoutonSearch.setBorderPainted(false);
         BoutonSearch.setBackground(SecondeCouleur);
         //Action du bouton
-        BoutonSearch.addActionListener(e -> {
-            System.out.println("Rechercher");
-        });
+        BoutonSearch.setName("search_globale");
+        BoutonSearch.addActionListener(rechercheActionListeners);
 
         BandeauSup.add(BoutonSearch);
-        BoutonSearch.setBounds(1630, 20, 120, 80);
+        BoutonSearch.setBounds(1580, 20, 120, 80);
 
         //Bouton de Panier en haut à droite
         JButton BoutonPanier = new JButton();
@@ -121,7 +183,7 @@ public class FrameBase extends JFrame{
         BoutonPanier.addActionListener(changementPageActionListeners);
 
         BandeauSup.add(BoutonPanier);
-        BoutonPanier.setBounds(1510, 20, 120, 80);
+        BoutonPanier.setBounds(1460, 20, 120, 80);
 
         //Panel pour le reste de la page à actualiser en focntion de la page
         PanelBase = new JPanel();
@@ -138,5 +200,21 @@ public class FrameBase extends JFrame{
 
     public JPanel getPanelBase(){
         return PanelBase;
+    }
+
+    public Color getMainCouleur(){
+        return MainCouleur;
+    }
+
+    public Color getSecondeCouleur(){
+        return SecondeCouleur;
+    }
+
+    public Color getTroisCouleur(){
+        return TroisCouleur;
+    }
+
+    public Color getQuatreCouleur(){
+        return QuatreCouleur;
     }
 }

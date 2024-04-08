@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
@@ -15,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import java.awt.Dimension;
+
 
 public class TestEnfFrameBase {
 
@@ -26,6 +28,14 @@ public class TestEnfFrameBase {
 
         // Retirez les composants actuels du PanelBase
         frame.getPanelBase().removeAll();
+
+        // ajouter une scroll bar à Panelbase
+        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
+        scrollBar.setPreferredSize(new Dimension(30, 0));
+        scrollBar.setBackground(frame.getMainCouleur());
+        scrollBar.setBounds(1890, 123, 13, 913);
+
+        frame.getPanelBase().add(scrollBar);
 
         // Créer les nouveaux composants à ajouter au PanelBase
 
@@ -41,7 +51,7 @@ public class TestEnfFrameBase {
         frame.getPanelBase().add(label);
         frame.getPanelBase().add(button);
 
-        frame.getPanelBase().setBackground(Color.BLACK);
+        //frame.getPanelBase().setBackground(Color.BLACK);
 
         // Rafraîchir l'interface utilisateur
         frame.getPanelBase().revalidate();

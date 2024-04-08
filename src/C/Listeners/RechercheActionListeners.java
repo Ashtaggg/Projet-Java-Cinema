@@ -2,14 +2,12 @@ package C.Listeners;
 
 // Importation des fichiers
 
-
 // Importation des librairies
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-public class ChangementPageActionListeners implements ActionListener{
+public class RechercheActionListeners implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // Récupérer la source de l'événement
@@ -20,14 +18,8 @@ public class ChangementPageActionListeners implements ActionListener{
 
         // Effectuer une action en fonction du nom du bouton
         switch (buttonName) {
-            case "compte":
-                System.out.println("Compte");
-                break;
-            case "panier":
-                System.out.println("Panier");
-                break;
-            case "accueil_films":
-                System.out.println("Accueil");
+            case "search_globale":
+                System.out.println("Recherche Globale");
                 break;
             default:
                 System.out.println("Action non reconnue");
