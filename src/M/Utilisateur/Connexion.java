@@ -56,6 +56,7 @@ public class Connexion {
         else{
             System.out.println("Le mot de passe est bon !");
             problemConnexionLabel.setVisible(false);
+            frame.userActuel = user;
             // Se redirigier vers la page du compte
         }
     }

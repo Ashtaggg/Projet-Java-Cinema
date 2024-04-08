@@ -3,15 +3,14 @@ package V;
 //Importation des fichiers
 import C.Listeners.ChangementPageListeners;
 import C.Listeners.RechercheListeners;
+import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 
 //Importation des librairies
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import java.awt.Image;
-import java.awt.Panel;
 
 import javax.swing.JButton;
 import java.awt.Font;
@@ -21,6 +20,8 @@ public class FrameBase extends JFrame{
     //Variables
     private JPanel PanelBase;
     public String PageActuelle = "accueil_films";
+
+    public Utilisateur userActuel = null;
 
     //Couelurs :
     boolean DarkMode = false;
