@@ -1,10 +1,15 @@
 package M.Utilisateur;
 
+import javax.swing.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import M.DAO.DAO_MYSQL_WAMP.Utilisateur.UtilisateursDAO_IMPL;
+import M.JAVA_MODEL.Global_CLASS.Utilisateur;
+import V.FrameBase;
+
 public class Connexion {
-    public void connexionToUser(String mail, String password){
+    public static void connexionToUser(FrameBase frame, JLabel problemConnexionLabel, String mail, String password){
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
@@ -21,13 +26,37 @@ public class Connexion {
             System.out.println(error);
         }
 
-        System.out.println("Mail : " + mail);
-        System.out.println("MdP : " + password);
-        System.out.println("Connexion...");
+        UtilisateursDAO_IMPL utilisateurDAO = new UtilisateursDAO_IMPL();
+        Utilisateur user = utilisateurDAO.recupererUtilisateurByEmail(mail);
+
+        /*System.out.println("idCompte : " + user.getIdCompte());
+        System.out.println("admin : " + user.getAdmin());
+        System.out.println("prenom : " + user.getPrenom());
+        System.out.println("nom : " + user.getNom());
+        System.out.println("motDePasse : " + user.getMotDePasse());
+        System.out.println("dateNaissance : " + user.getDateNaissance());
+        System.out.println("photoProfil : " + user.getPhotoProfil());
+        System.out.println("mail : " + user.getMail());
+        System.out.println("telephone : " + user.getTelephone());
+        System.out.println("adresse : " + user.getAdresse());
+        System.out.println("genre : " + user.getGenre());
+        System.out.println("carteNum : " + user.getCarteNum());
+        System.out.println("carteDate : " + user.getCarteDate());
+        System.out.println("carteCCV : " + user.getCarteCCV());
+        System.out.println("carteNom : " + user.getCarteNom());*/
 
 
-        //Vérifier si un compte existe avec l'email             --> Créer toutes les méthodes dans le DAO.DAO_MYSQL_WAMP.Utilisateur
-        //Si oui alors voir si le sha256 du mdp correspond
-        //Sinon retourner dans le MainAlexis puis dans le testAffichageAlexis pour afficher une erreur (peut-être avec return 0)
+        if(user == null){
+            problemConnexionLabel.setVisible(true);
+        }
+        if(!password.equals(user.getMotDePasse())){
+            System.out.println("LE MOT DE PASSE EST FAUX");
+            problemConnexionLabel.setVisible(true);
+        }
+        else{
+            System.out.println("Le mot de passe est bon !");
+            problemConnexionLabel.setVisible(false);
+            // Se redirigier vers la page du compte
+        }
     }
 }

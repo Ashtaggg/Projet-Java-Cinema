@@ -5,6 +5,7 @@ import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import M.DAO.DAO_MYSQL_WAMP.DAOFactory;
 //Imports Java
 import java.util.List;
+import java.sql.*;
 
 public class UtilisateursDAO_IMPL implements UtilisateursDAO{
 
@@ -34,7 +35,42 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
     }
 
     public Utilisateur recupererUtilisateurByEmail(String email) {
-        // A faire
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("SELECT * FROM compte WHERE Mail = ?");
+            preparedStatement.setString(1, email);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            if(result.next()) {
+                int idCompte = result.getInt("ID_Compte");
+                int admin = result.getInt("Admin");
+                String prenom = result.getString("Prenom");
+                String nom = result.getString("Nom");
+                String motDePasse = result.getString("MotDePasse");
+                Date dateNaissance = result.getDate("DateNaissance");
+                String photoProfil = result.getString("PhotoProfil");
+                String mail = result.getString("Mail");
+                String telephone = result.getString("Telephone");
+                String adresse = result.getString("Adresse");
+                int genre = result.getInt("Genre");
+                String carteNum = result.getString("CarteNum");
+                String carteDate = result.getString("CarteDate");
+                int carteCCV = result.getInt("CarteCCV");
+                String carteNom = result.getString("CarteNom");
+
+                Utilisateur user = new Utilisateur(idCompte, admin, prenom, nom, motDePasse, dateNaissance, photoProfil, mail, telephone, adresse, genre, carteNum, carteDate, carteCCV, carteNom);
+
+                return user;
+            }
+
+        } catch (SQLException error) {
+            System.out.println(error);
+        }
+
         return null;
     }
 
