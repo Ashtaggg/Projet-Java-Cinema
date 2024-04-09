@@ -1,12 +1,13 @@
 package M.Utilisateur;
 
-import javax.swing.*;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import M.DAO.DAO_MYSQL_WAMP.Utilisateur.UtilisateursDAO_IMPL;
 import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import V.FrameBase;
+
+
+import javax.swing.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Connexion {
     public static void connexionToUser(FrameBase frame, JLabel problemConnexionLabel, String mail, String password){
