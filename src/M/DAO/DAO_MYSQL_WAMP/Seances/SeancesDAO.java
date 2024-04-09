@@ -13,8 +13,6 @@ public interface SeancesDAO {
     void ajouterSeance(Seance seance);
     //Modifier une seance
     void modifierSeance(Seance seance);
-    //Modifier une seance par ID
-    void modifierSeanceByID(int ID);
     //Supprimer une seance
     void supprimerSeance(Seance seance);
     //Supprimer une seance par ID

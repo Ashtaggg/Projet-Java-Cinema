@@ -9,7 +9,11 @@ public class Reservation {
     private int nombrePlace;
     private int prixTotal;
 
-    // Constructeur
+    // Constructeurs
+    Reservation() {
+        
+    }
+
     public Reservation(int idReservation, int idCompte, int idSeance, int nombrePlace, int prixTotal) {
         this.idReservation = idReservation;
         this.idCompte = idCompte;

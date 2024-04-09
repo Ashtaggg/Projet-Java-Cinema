@@ -13,8 +13,6 @@ public interface SallesDAO {
     void ajouterSalle(Salle salle);
     //Modifier une salle
     void modifierSalle(Salle salle);
-    //Modifier une salle par ID
-    void modifierSalleByID(int ID);
     //Supprimer une salle
     void supprimerSalle(Salle salle);
     //Supprimer une salle par ID

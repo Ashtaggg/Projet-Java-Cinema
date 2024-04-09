@@ -14,8 +14,6 @@ public interface ReservationsDAO {
     void ajouterReservation(Reservation reservation);
     //Modifier une reservation
     void modifierReservation(Reservation reservation);
-    //Modifier une reservation par ID
-    void modifierReservationByID(int ID);
     //Supprimer une reservation
     void supprimerReservation(Reservation reservation);
     //Supprimer une reservation par ID

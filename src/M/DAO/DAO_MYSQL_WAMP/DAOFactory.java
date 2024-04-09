@@ -26,6 +26,17 @@ public class DAOFactory {
         return DriverManager.getConnection(instance.url, instance.username, instance.password);
     }
 
+    // Méthode pour fermer une connexion
+    public static void close(Connection connexion) {
+        try {
+            if (connexion != null) {
+                connexion.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Récupération du Dao
     
 }

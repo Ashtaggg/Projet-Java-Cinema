@@ -4,10 +4,10 @@ public class Salle {
     private int idSalle;
     private int nombrePlace;
     private int etage;
-    private int quatreDX;
+    private boolean quatreDX;
 
     // Constructeur
-    public Salle(int idSalle, int nombrePlace, int etage, int quatreDX) {
+    public Salle(int idSalle, int nombrePlace, int etage, boolean quatreDX) {
         this.idSalle = idSalle;
         this.nombrePlace = nombrePlace;
         this.etage = etage;
@@ -39,11 +39,11 @@ public class Salle {
         this.etage = etage;
     }
 
-    public int getQuatreDX() {
+    public boolean getQuatreDX() {
         return quatreDX;
     }
 
-    public void setQuatreDX(int quatreDX) {
+    public void setQuatreDX(boolean quatreDX) {
         this.quatreDX = quatreDX;
     }
 }
