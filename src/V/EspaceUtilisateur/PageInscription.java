@@ -83,6 +83,14 @@ public class PageInscription {
         inscription.add(date);
 
 
+        JLabel problemConnexionLabel = new JLabel("L'adresse mail est déjà utilisé");
+        problemConnexionLabel.setBounds(271, 490, 209, 24);
+        problemConnexionLabel.setForeground(frame.getSecondeCouleur());
+        problemConnexionLabel.setFont(font3);
+        problemConnexionLabel.setVisible(false);
+        inscription.add(problemConnexionLabel);
+
+
 
         JLabel connexionLabel = new JLabel("Pas encore de compte ?");
         connexionLabel.setBounds(246, 540, 171, 24);
@@ -109,9 +117,9 @@ public class PageInscription {
             String Mail = mail.getText();
             Date Date = date.getDate();
             
-            PageInscription2Listeners.boutonSuivant(frame, Prenom, Nom, Mail, Date);
+            PageInscription2Listeners.boutonSuivant(frame, problemConnexionLabel, Prenom, Nom, Mail, Date);
         });
-        suivant.setBounds(290, 630, 170, 40);
+        suivant.setBounds(430, 630, 170, 40);
         suivant.setForeground(frame.getSecondeCouleur());
         suivant.setBackground(frame.getMainCouleur());
         suivant.setFont(font2);
