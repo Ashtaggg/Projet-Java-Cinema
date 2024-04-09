@@ -8,9 +8,35 @@ import java.util.List;
 import java.sql.*;
 
 public class UtilisateursDAO_IMPL implements UtilisateursDAO{
-
+    
     public void ajouterUtilisateur(Utilisateur utilisateur) {
-        // A faire
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("INSERT INTO compte (admin, prenom, nom, motDePasse, dateNaissance, photoProfil, mail, telephone, adresse, genre, carteNum, carteDate, carteCCV, carteNom) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            preparedStatement.setInt(1, utilisateur.getAdmin());
+            preparedStatement.setString(2, utilisateur.getPrenom());
+            preparedStatement.setString(3, utilisateur.getNom());
+            preparedStatement.setString(4, utilisateur.getMotDePasse());
+            java.sql.Date dateSql = new java.sql.Date(utilisateur.getDateNaissance().getTime());
+            preparedStatement.setDate(5, dateSql);
+            preparedStatement.setString(6, utilisateur.getPhotoProfil());
+            preparedStatement.setString(7, utilisateur.getMail());
+            preparedStatement.setString(8, utilisateur.getTelephone());
+            preparedStatement.setString(9, utilisateur.getAdresse());
+            preparedStatement.setInt(10, utilisateur.getGenre());
+            preparedStatement.setString(11, utilisateur.getCarteNum());
+            preparedStatement.setString(12, utilisateur.getCarteDate());
+            preparedStatement.setInt(13, utilisateur.getCarteCCV());
+            preparedStatement.setString(14, utilisateur.getCarteNom());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException error) {
+            System.out.println(error);
+        }
     }
 
     public void modifierUtilisateur(Utilisateur utilisateur) {

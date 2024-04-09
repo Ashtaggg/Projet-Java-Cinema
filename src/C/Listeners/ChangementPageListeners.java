@@ -4,6 +4,7 @@ package C.Listeners;
 import V.TestEnfFrameBase;
 import V.EspaceUtilisateur.PageConnexion;
 import V.EspaceUtilisateur.PageInscription;
+import V.EspaceUtilisateur.PageCompte;
 import V.FrameBase;
 import V.Reservation.Reservation_Seance;
 
@@ -21,7 +22,8 @@ public class ChangementPageListeners{
             case "compte":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "compte";
-                System.out.println("Compte et" + frame.PageActuelle);
+                PageCompte.affichagePageCompte(frame);
+                System.out.println("Compte");
                 break;
             case "panier":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
