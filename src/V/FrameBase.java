@@ -40,7 +40,7 @@ public class FrameBase extends JFrame{
     //Font
     Font font = new Font("Arial", Font.BOLD, 12);
     //Couelurs :
-    boolean DarkMode = false;
+    public boolean DarkMode = false;
     //Light Mode
     Color MainCouleur_Light = new Color(235, 235, 235);
     Color SecondeCouleur_Light = new Color(0, 19, 77);
@@ -48,7 +48,7 @@ public class FrameBase extends JFrame{
     Color QuatreCouleur_Light = new Color(90, 130, 252);
     //Dark Mode
     Color MainCouleur_Dark = new Color(33, 34, 38);
-    Color SecondeCouleur_Dark = new Color(0, 19, 77);
+    Color SecondeCouleur_Dark = new Color(210, 235, 255);
     Color TroisCouleur_Dark = new Color(62, 96, 193);
     Color QuatreCouleur_Dark = new Color(90, 130, 252);
     //Couleur actuelle
@@ -56,6 +56,7 @@ public class FrameBase extends JFrame{
     Color SecondeCouleur = SecondeCouleur_Light;
     Color TroisCouleur = TroisCouleur_Light;
     Color QuatreCouleur = QuatreCouleur_Light;
+    Color CinqCouleur = new Color(244, 255, 1);
 
     //Constructeur
     public FrameBase(){
@@ -86,7 +87,7 @@ public class FrameBase extends JFrame{
         //Création du bandeau bleu en haut de la page
         JPanel BandeauSup = new JPanel();
         BandeauSup.setLayout(null);
-        BandeauSup.setBackground(SecondeCouleur);
+        BandeauSup.setBackground(SecondeCouleur_Light);
         BandeauSup.setBounds(0, 0, 1920, 120);
 
         //Ajout de notre Logo en haut à gauche du bandeau = Bouton caché pour retourner à l'accueil
@@ -96,7 +97,7 @@ public class FrameBase extends JFrame{
         BoutonLogo_Accueil.setOpaque(true);
         BoutonLogo_Accueil.setFocusable(false);
         BoutonLogo_Accueil.setBorderPainted(false);
-        BoutonLogo_Accueil.setBackground(SecondeCouleur);
+        BoutonLogo_Accueil.setBackground(SecondeCouleur_Light);
         //Action du bouton
         BoutonLogo_Accueil.setName("accueil_films");
         BoutonLogo_Accueil.addActionListener(e -> {
@@ -113,7 +114,7 @@ public class FrameBase extends JFrame{
         BoutonRetour.setOpaque(true);
         BoutonRetour.setFocusable(false);
         BoutonRetour.setBorderPainted(false);
-        BoutonRetour.setBackground(SecondeCouleur);
+        BoutonRetour.setBackground(SecondeCouleur_Light);
         //Action du bouton
         BoutonRetour.addActionListener(e -> {
             String Pagetampon = PagePrecedente.get(PagePrecedente.size() - 1);
@@ -130,7 +131,7 @@ public class FrameBase extends JFrame{
         BoutonDarkMode.setOpaque(true);
         BoutonDarkMode.setFocusable(false);
         BoutonDarkMode.setBorderPainted(false);
-        BoutonDarkMode.setBackground(SecondeCouleur);
+        BoutonDarkMode.setBackground(SecondeCouleur_Light);
         //Action du bouton
         BoutonDarkMode.setName("dark_mode");
         BoutonDarkMode.addActionListener(e -> {
@@ -140,7 +141,6 @@ public class FrameBase extends JFrame{
                 TroisCouleur = TroisCouleur_Light;
                 QuatreCouleur = QuatreCouleur_Light;
                 this.getContentPane().setBackground(MainCouleur);
-                BandeauSup.setBackground(SecondeCouleur);
                 PanelBase.setBackground(MainCouleur);
                 DarkMode = false;
             }else{
@@ -149,7 +149,6 @@ public class FrameBase extends JFrame{
                 TroisCouleur = TroisCouleur_Dark;
                 QuatreCouleur = QuatreCouleur_Dark;
                 this.getContentPane().setBackground(MainCouleur);
-                BandeauSup.setBackground(SecondeCouleur);
                 PanelBase.setBackground(MainCouleur);
                 DarkMode = true;
             }
@@ -173,7 +172,7 @@ public class FrameBase extends JFrame{
         BoutonCompte.setOpaque(true);
         BoutonCompte.setFocusable(false);
         BoutonCompte.setBorderPainted(false);
-        BoutonCompte.setBackground(SecondeCouleur);
+        BoutonCompte.setBackground(SecondeCouleur_Light);
         //Action du bouton
         BoutonCompte.setName("compte");
         BoutonCompte.addActionListener(e -> {
@@ -196,7 +195,7 @@ public class FrameBase extends JFrame{
         BoutonSearch.setOpaque(true);
         BoutonSearch.setFocusable(false);
         BoutonSearch.setBorderPainted(false);
-        BoutonSearch.setBackground(SecondeCouleur);
+        BoutonSearch.setBackground(SecondeCouleur_Light);
         //Action du bouton
         BoutonSearch.setName("search_globale");
         BoutonSearch.addActionListener(e -> {
@@ -219,7 +218,7 @@ public class FrameBase extends JFrame{
         BoutonPanier.setOpaque(true);
         BoutonPanier.setFocusable(false);
         BoutonPanier.setBorderPainted(false);
-        BoutonPanier.setBackground(SecondeCouleur);
+        BoutonPanier.setBackground(SecondeCouleur_Light);
         //Action du bouton
         BoutonPanier.setName("panier");
         BoutonPanier.addActionListener(e -> {
@@ -260,6 +259,10 @@ public class FrameBase extends JFrame{
 
     public Color getQuatreCouleur(){
         return QuatreCouleur;
+    }
+
+    public Color getCinqCouleur(){
+        return CinqCouleur;
     }
 
     public Font getFont(){

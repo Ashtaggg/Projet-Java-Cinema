@@ -1,206 +1,5 @@
 package V.Reservation;
 
-/*import javax.swing.JPanel;
-
-// Importation des librairies
-import V.FrameBase;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JScrollBar;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.AdjustmentListener;
-import java.awt.event.AdjustmentEvent;
-
-
-import javax.swing.JScrollPane;
-
-// Importation des fichiers
-
-
-public class Reservation_Seance implements AdjustmentListener{
-
-    static double scrollValue = 0;
-    static JPanel contentPanel;
-
-    public static void affichageReservation_Seance(FrameBase frame) {
-
-        frame.PageActuelle = "reservation_seance";
-        frame.getPanelBase().removeAll();
-
-        frame.getPanelBase().setBackground(Color.RED);
-
-        // ajouter une scroll bar à Panelbase
-        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL);
-        scrollBar.setPreferredSize(new Dimension(30, 0));
-        scrollBar.setBackground(frame.getMainCouleur());
-        scrollBar.setBounds(1890, 120, 13, 915);
-        scrollBar.addAdjustmentListener(new Reservation_Seance());
-
-        frame.getPanelBase().add(scrollBar);
-
-        // Créer un nouveau JPanel pour contenir tous les composants
-        contentPanel = new JPanel();
-        contentPanel.setLayout(null); // Assurez-vous de définir le layout selon vos besoins
-        contentPanel.setVisible(true);
-        contentPanel.setSize(1890, 2036); // Ajustez la taille selon vos besoins
-        contentPanel.setBackground(Color.GREEN);
-        contentPanel.setBounds(0, 0, 1890, 1036);
-
-        // Créer les nouveaux composants à ajouter au contentPanel
-        JPanel ResumeSeance = new JPanel();
-        ResumeSeance.setBounds(585, 290, 750, 800);
-        ResumeSeance.setBackground(frame.getMainCouleur());
-        ResumeSeance.setVisible(true);
-        ResumeSeance.setOpaque(true);
-        ResumeSeance.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
-
-        contentPanel.add(ResumeSeance);
-
-        frame.getPanelBase().add(contentPanel);
-
-        frame.RefreshPage();
-        //
-    }
-
-    @Override
-    public void adjustmentValueChanged(AdjustmentEvent e) {
-        System.out.println("Scrolling : " + e.getValue()); //De 0 à 90
-        scrollValue = (e.getValue()/90)*2036;
-        System.out.println("Scrolling Value: " + scrollValue); //De 0 à 2036
-        contentPanel.setBounds(0, 0-(int)scrollValue, 1890, 2072);
-
-    }
-}*/
-
-// Importation des librairies
-/*import V.FrameBase;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-
-public class Reservation_Seance {
-
-    public static void affichageReservation_Seance(FrameBase frame) {
-
-        frame.PageActuelle = "reservation_seance";
-        frame.getPanelBase().removeAll();
-
-        // Créer un nouveau JPanel pour contenir tous les composants avec FlowLayout
-        JPanel contentPanel = new JPanel(new FlowLayout());
-        contentPanel.setBackground(frame.getMainCouleur());
-        contentPanel.setPreferredSize(new Dimension(1705, 921)); // Taille du JScrollPane
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(120, 100, 0, 0)); // Ajuster l'espacement
-       
-        //Résumé Film Reservé
-        JPanel ResumeSeance = new JPanel();
-        ResumeSeance.setPreferredSize(new Dimension(750, 800)); // Taille spécifique pour ResumeSeance
-        ResumeSeance.setBackground(frame.getMainCouleur());
-        ResumeSeance.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
-
-        contentPanel.add(new JLabel("Label 1")); // Ajouter d'autres composants si nécessaire
-        contentPanel.add(ResumeSeance);
-
-        // Créer un JScrollPane et y ajouter le contentPanel
-        JScrollPane scrollPane = new JScrollPane(contentPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.getVerticalScrollBar().setBackground(frame.getMainCouleur());
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.getVerticalScrollBar().setBlockIncrement(16);
-        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(20, 0));
-        scrollPane.setBorder(null);
-        scrollPane.setBounds(100, 120, 1705, 921); // Ajustez la taille selon vos besoins
-
-
-        frame.getPanelBase().add(scrollPane);
-
-        frame.RefreshPage();
-    }
-}*/
-
-// Importation des librairies
-/*import V.FrameBase;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-
-public class Reservation_Seance {
-
-    public static void affichageReservation_Seance(FrameBase frame) {
-
-        frame.PageActuelle = "reservation_seance";
-        frame.getPanelBase().removeAll();
-
-        // Créer un nouveau JPanel pour contenir tous les composants
-        JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS)); // Assurez-vous de définir le layout selon vos besoins
-        contentPanel.setVisible(true);
-        contentPanel.setSize(90, 72); // Ajustez la taille selon vos besoins
-        contentPanel.setBackground(frame.getMainCouleur());
-        contentPanel.setBounds(0, 0, 500, 800);
-
-        JLabel label1 = new JLabel("Label 1");
-        contentPanel.add(label1);
-
-        //Résumé Film Reservé
-        JPanel ResumeSeance = new JPanel();
-        ResumeSeance.setSize(750, 800);
-        ResumeSeance.setBounds(585, 290, 750, 8000);
-        ResumeSeance.setBackground(frame.getMainCouleur());
-        ResumeSeance.setVisible(true);
-        ResumeSeance.setOpaque(true);
-        //ResumeSeance.setLayout(null);
-        ResumeSeance.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
-
-
-        // Ajout de labels
-        /*for (int i = 1; i <= 10; i++) {
-            JLabel label2 = new JLabel("Label2 " + i);
-            label2.setBounds(10, 10 + (i * 50), 100, 50);
-            ResumeSeance.add(label2);
-        }
-
-        contentPanel.add(ResumeSeance);
-
-        // Ajout de labels
-        for (int i = 1; i <= 90; i++) {
-            JLabel label = new JLabel("Label " + i);
-            contentPanel.add(label);
-        }
-        // Créer un JScrollPane et y ajouter le contentPanel
-        JScrollPane scrollPane = new JScrollPane(contentPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.getVerticalScrollBar().setBackground(frame.getMainCouleur());
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.getVerticalScrollBar().setBlockIncrement(16);
-        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(20, 0));
-        scrollPane.setBorder(null);
-        scrollPane.setBounds(100, 120, 1705, 921); // Ajustez la taille selon vos besoins
-
-
-        frame.getPanelBase().add(scrollPane);
-
-        frame.RefreshPage();
-    }
-}*/
-
 // Importation des fichiers
 import V.FrameBase;
 import M.JAVA_MODEL.Global_CLASS.Film;
@@ -213,20 +12,27 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import org.w3c.dom.Text;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.sql.Date;
+import java.util.random.RandomGenerator.ArbitrarilyJumpableGenerator;
 import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 
 
 public class Reservation_Seance {
 
-    public static void affichageReservation_Seance(FrameBase frame, Film film, Seance seance) {
+    public static void affichageReservation_Seance(FrameBase frame) {
 
         frame.PageActuelle = "reservation_seance";
         frame.getPanelBase().removeAll();
@@ -243,7 +49,7 @@ public class Reservation_Seance {
         gbc.gridy = 0;
         gbc.ipady = 0; // Hauteur spécifique
         gbc.insets = new Insets(5, 5, 5, 5); // Espacement entre les composants
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i <= 30; i++) {
             JLabel label = new JLabel(" ");
             contentPanel.add(label, gbc);
             gbc.gridy++; // Passer à la prochaine ligne
@@ -255,11 +61,58 @@ public class Reservation_Seance {
         ResumeSeance.setLayout(null);
         ResumeSeance.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
         //Labels de Résumé
-        JLabel TitreFilm = new JLabel("Titre du Film");
-        TitreFilm.setFont(new Font ("Arial", Font.BOLD, 25));
+        JLabel TitreFilm = new JLabel(frame.filmActuel.getNom());
+        TitreFilm.setFont(new Font ("Arial", Font.BOLD, 37));
         TitreFilm.setForeground(frame.getSecondeCouleur());
-        TitreFilm.setBounds(350, 20, 300, 50);
+        TitreFilm.setBounds(350, 30, 300, 50);
         ResumeSeance.add(TitreFilm);
+        //Icon New
+        ImageIcon New = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/New.png");
+        New = new ImageIcon(New.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
+        JLabel NewLabel = new JLabel(New);
+        NewLabel.setBounds(1070, 0, 80, 80);
+        ResumeSeance.add(NewLabel);
+        /*if(frame.filmActuel.getDateSortie().equals(Date.valueOf("2021-07-14"))){//A corriger ca marche pas
+            NewLabel.setVisible(true);
+        }else{NewLabel.setVisible(false);}*/
+        //Nom de notre cinnéma
+        JLabel NomCinema = new JLabel("ECE Ciné");
+        NomCinema.setFont(new Font ("Arial", Font.PLAIN, 23));
+        NomCinema.setForeground(frame.getSecondeCouleur());
+        NomCinema.setBounds(350, 90, 300, 50);
+        ResumeSeance.add(NomCinema);
+        //Salle de projection
+        JLabel Salle = new JLabel("Salle " + frame.seanceActuelle.getIdSalle());
+        Salle.setFont(new Font ("Arial", Font.PLAIN, 23));
+        Salle.setForeground(frame.getSecondeCouleur());
+        Salle.setBounds(350, 140, 300, 50);
+        ResumeSeance.add(Salle);
+        //Heure de la séance
+        JLabel HeureSeance = new JLabel(frame.seanceActuelle.getHeure());
+        HeureSeance.setFont(new Font ("Arial", Font.BOLD, 37));
+        HeureSeance.setForeground(frame.getQuatreCouleur());
+        HeureSeance.setBounds(750, 30, 400, 50);
+        ResumeSeance.add(HeureSeance);
+        //Heure de fin de la séance
+        JLabel HeureFinSeance = new JLabel(frame.filmActuel.getDuree());
+        HeureFinSeance.setFont(new Font ("Arial", Font.PLAIN, 23));
+        HeureFinSeance.setForeground(frame.getSecondeCouleur());
+        HeureFinSeance.setBounds(750, 90, 300, 50);
+        ResumeSeance.add(HeureFinSeance);
+        //VOST ou VF
+        JLabel Version = new JLabel("Version"); //A remplir on l'a pas mdr
+        Version.setFont(new Font ("Arial", Font.PLAIN, 23));
+        Version.setForeground(frame.getSecondeCouleur());
+        Version.setBounds(750, 140, 300, 50);
+        ResumeSeance.add(Version);
+        //Logo handicapé
+        ImageIcon Handicape = null;
+        if(frame.DarkMode){Handicape = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Disabled_Blanc.png");}
+        else{Handicape = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Disabled_Dark.png");}
+        Handicape = new ImageIcon(Handicape.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        JLabel HandicapeLabel = new JLabel(Handicape);
+        HandicapeLabel.setBounds(750, 200, 50, 50);
+        ResumeSeance.add(HandicapeLabel);
 
 
         // Ajouter ResumeSeance avec GridBagLayout
@@ -270,6 +123,29 @@ public class Reservation_Seance {
         gbc.ipady = 300; // Hauteur spécifique
         contentPanel.add(ResumeSeance, gbc);
 
+        //Panel sans bordure pour contenir texte tarifs
+        JPanel TarifPanel = new JPanel();
+        TarifPanel.setBackground(frame.getMainCouleur());
+        TarifPanel.setLayout(null);
+        TarifPanel.setBorder(null);
+        gbc.gridx = 1;
+        gbc.gridy = 6;
+        gbc.ipady = 50; // Hauteur spécifique
+        contentPanel.add(TarifPanel, gbc);
+
+        //texte "Tarifs" au dessus de la barre de séparation
+        ImageIcon Billet = null;
+        if(frame.DarkMode){Billet = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Ticket_Blanc.png");}
+        else{Billet = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Ticket_Dark.png");}
+        JLabel Tarifs = new JLabel("Tarifs  ");
+        Tarifs.setFont(new Font ("Arial", Font.BOLD, 40));
+        Tarifs.setForeground(frame.getSecondeCouleur());
+        Tarifs.setIcon(new ImageIcon(Billet.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+        Tarifs.setHorizontalTextPosition(JLabel.LEFT);
+        Tarifs.setVerticalTextPosition(JLabel.CENTER);
+        Tarifs.setBounds(500, 0, 200, 50);
+        TarifPanel.add(Tarifs);
+
         gbc.gridy = 7; // Revenir à la ligne suivante
         gbc.ipadx = 950; // Largeur spécifique
         gbc.ipady = 50; // Hauteur spécifique
@@ -279,14 +155,171 @@ public class Reservation_Seance {
         contentPanel.add(separator, gbc);
 
         //Nouveau panel pour les tarifs
-        JPanel Tarifs = new JPanel();
-        Tarifs.setBackground(frame.getMainCouleur());
-        Tarifs.setLayout(null);
-        Tarifs.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
-        //Labels de Tarifs
+        JPanel PanelTarifs = new JPanel();
+        PanelTarifs.setBackground(frame.getMainCouleur());
+        PanelTarifs.setLayout(null);
+        PanelTarifs.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        //TextField pour le code promo
+        JTextField CodePromoTXT = new JTextField();
+        CodePromoTXT.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        CodePromoTXT.setBounds(310, 40, 250, 50);
+        CodePromoTXT.setOpaque(false);
+        CodePromoTXT.setForeground(frame.getSecondeCouleur());
+        CodePromoTXT.setText("Code Promo");
+        CodePromoTXT.setForeground(frame.getSecondeCouleur());
+        CodePromoTXT.setFont(new Font ("Arial", Font.PLAIN, 23));
+        PanelTarifs.add(CodePromoTXT);
+        //Bouton d'ajou du code promo
+        ImageIcon AjoutPromo = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Promo_Dark.png");
+        AjoutPromo = new ImageIcon(AjoutPromo.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        JButton AjoutPromoButton = new JButton("Ajouter  ", AjoutPromo);
+        AjoutPromoButton.setHorizontalTextPosition(JButton.LEFT);
+        AjoutPromoButton.setVerticalTextPosition(JButton.CENTER);
+        AjoutPromoButton.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        AjoutPromoButton.setForeground(frame.getSecondeCouleur());
+        AjoutPromoButton.setBackground(frame.getCinqCouleur());
+        AjoutPromoButton.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        AjoutPromoButton.setFont(new Font ("Arial", Font.PLAIN, 23));
+        AjoutPromoButton.setBounds(590, 40, 250, 50);
+        PanelTarifs.add(AjoutPromoButton);
+
+        //Label pour le tarif normal
         JLabel TarifNormal = new JLabel("Tarif Normal");
-        TarifNormal.setBounds(10, 10, 100, 50);
-        Tarifs.add(TarifNormal);
+        TarifNormal.setFont(new Font ("Arial", Font.PLAIN, 23));
+        TarifNormal.setForeground(frame.getSecondeCouleur());
+        TarifNormal.setBounds(110, 160, 250, 50);
+        PanelTarifs.add(TarifNormal);
+        //Prix du tarif normal
+        JLabel PrixNormal = new JLabel("15.50€");
+        PrixNormal.setFont(new Font ("Arial", Font.BOLD, 27));
+        PrixNormal.setForeground(frame.getSecondeCouleur());
+        PrixNormal.setBounds(110, 200, 250, 50);
+        PanelTarifs.add(PrixNormal);
+        //Label pour le tarif -26 ans
+        JLabel TarifJeune = new JLabel("Tarif -26 ans");
+        TarifJeune.setFont(new Font ("Arial", Font.PLAIN, 23));
+        TarifJeune.setForeground(frame.getSecondeCouleur());
+        TarifJeune.setBounds(110, 330, 250, 50);
+        PanelTarifs.add(TarifJeune);
+        //Prix du tarif -26 ans
+        JLabel PrixJeune = new JLabel("9.90€");
+        PrixJeune.setFont(new Font ("Arial", Font.BOLD, 27));
+        PrixJeune.setForeground(frame.getSecondeCouleur());
+        PrixJeune.setBounds(110, 370, 250, 50);
+        PanelTarifs.add(PrixJeune);
+        //Label pour le tarif -14 ans
+        JLabel TarifSenior = new JLabel("Tarif -14 ans");
+        TarifSenior.setFont(new Font ("Arial", Font.PLAIN, 23));
+        TarifSenior.setForeground(frame.getSecondeCouleur());
+        TarifSenior.setBounds(110, 500, 250, 50);
+        PanelTarifs.add(TarifSenior);
+        //Prix du tarif -14 ans
+        JLabel PrixSenior = new JLabel("7.50€");
+        PrixSenior.setFont(new Font ("Arial", Font.BOLD, 27));
+        PrixSenior.setForeground(frame.getSecondeCouleur());
+        PrixSenior.setBounds(110, 540, 250, 50);
+        PanelTarifs.add(PrixSenior);
+
+        //Panel pour bouton nombre de ticket normal
+        JPanel PanelNormal = new JPanel();
+        PanelNormal.setBackground(frame.getCinqCouleur());
+        PanelNormal.setLayout(null);
+        PanelNormal.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        PanelNormal.setBounds(750, 180, 250, 50);
+        //Label pour le nombre de ticket normal
+        JLabel NombreNormal = new JLabel("Nombre de ticket normal");
+        NombreNormal.setFont(new Font ("Arial", Font.PLAIN, 23));
+        NombreNormal.setForeground(frame.getSecondeCouleur());
+        NombreNormal.setBounds(75, 0, 100, 50);
+        PanelNormal.add(NombreNormal);
+        //Bouton pour ajouter un ticket normal
+        JButton AjoutNormal = new JButton("+");
+        AjoutNormal.setFont(new Font ("Arial", Font.PLAIN, 23));
+        AjoutNormal.setForeground(frame.getSecondeCouleur());
+        AjoutNormal.setBackground(frame.getCinqCouleur());
+        AjoutNormal.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        AjoutNormal.setBounds(0, 0, 50, 50);
+        PanelNormal.add(AjoutNormal);
+        //Bouton pour enlever un ticket normal
+        JButton RetraitNormal = new JButton("-");
+        RetraitNormal.setFont(new Font ("Arial", Font.PLAIN, 23));
+        RetraitNormal.setForeground(frame.getSecondeCouleur());
+        RetraitNormal.setBackground(frame.getCinqCouleur());
+        RetraitNormal.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        RetraitNormal.setBounds(200, 0, 50, 50);
+        PanelNormal.add(RetraitNormal);
+        PanelTarifs.add(PanelNormal);
+
+        //Panel pour bouton nombre de ticket normal
+        JPanel PanelJeune = new JPanel();
+        PanelJeune.setBackground(frame.getCinqCouleur());
+        PanelJeune.setLayout(null);
+        PanelJeune.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        PanelJeune.setBounds(750, 350, 250, 50);
+        //Label pour le nombre de ticket normal
+        JLabel NombreJeune = new JLabel("Nombre de ticket Jeune");
+        NombreJeune.setFont(new Font ("Arial", Font.PLAIN, 23));
+        NombreJeune.setForeground(frame.getSecondeCouleur());
+        NombreJeune.setBounds(75, 0, 100, 50);
+        PanelJeune.add(NombreJeune);
+        //Bouton pour ajouter un ticket Jeune
+        JButton AjoutJeune = new JButton("+");
+        AjoutJeune.setFont(new Font ("Arial", Font.PLAIN, 23));
+        AjoutJeune.setForeground(frame.getSecondeCouleur());
+        AjoutJeune.setBackground(frame.getCinqCouleur());
+        AjoutJeune.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        AjoutJeune.setBounds(0, 0, 50, 50);
+        PanelJeune.add(AjoutJeune);
+        //Bouton pour enlever un ticket Jeune
+        JButton RetraitJeune = new JButton("-");
+        RetraitJeune.setFont(new Font ("Arial", Font.PLAIN, 23));
+        RetraitJeune.setForeground(frame.getSecondeCouleur());
+        RetraitJeune.setBackground(frame.getCinqCouleur());
+        RetraitJeune.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        RetraitJeune.setBounds(200, 0, 50, 50);
+        PanelJeune.add(RetraitJeune);
+        PanelTarifs.add(PanelJeune);
+
+        //Panel pour bouton nombre de ticket normal
+        JPanel PanelAdo = new JPanel();
+        PanelAdo.setBackground(frame.getCinqCouleur());
+        PanelAdo.setLayout(null);
+        PanelAdo.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        PanelAdo.setBounds(750, 520, 250, 50);
+        //Label pour le nombre de ticket Ado
+        JLabel NombreAdo = new JLabel("Nombre de ticket Ado");
+        NombreAdo.setFont(new Font ("Arial", Font.PLAIN, 23));
+        NombreAdo.setForeground(frame.getSecondeCouleur());
+        NombreAdo.setBounds(75, 0, 100, 50);
+        PanelAdo.add(NombreAdo);
+        //Bouton pour ajouter un ticket Ado
+        JButton AjoutAdo = new JButton("+");
+        AjoutAdo.setFont(new Font ("Arial", Font.PLAIN, 23));
+        AjoutAdo.setForeground(frame.getSecondeCouleur());
+        AjoutAdo.setBackground(frame.getCinqCouleur());
+        AjoutAdo.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        AjoutAdo.setBounds(0, 0, 50, 50);
+        PanelAdo.add(AjoutAdo);
+        //Bouton pour enlever un ticket Ado
+        JButton RetraitAdo = new JButton("-");
+        RetraitAdo.setFont(new Font ("Arial", Font.PLAIN, 23));
+        RetraitAdo.setForeground(frame.getSecondeCouleur());
+        RetraitAdo.setBackground(frame.getCinqCouleur());
+        RetraitAdo.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        RetraitAdo.setBounds(200, 0, 50, 50);
+        PanelAdo.add(RetraitAdo);
+        PanelTarifs.add(PanelAdo);
+
+
+        //Bouton de validation de la réservation
+        JButton Valider = new JButton("Valider la réservation");
+        Valider.setFont(new Font ("Arial", Font.PLAIN, 23));
+        Valider.setForeground(frame.getSecondeCouleur());
+        Valider.setEnabled(false);
+        Valider.setBackground(frame.getCinqCouleur());
+        Valider.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        Valider.setBounds(450, 700, 250, 50);
+        PanelTarifs.add(Valider);
 
         // Ajouter Tarifs avec GridBagLayout
         gbc.gridx = 1;
@@ -294,7 +327,7 @@ public class Reservation_Seance {
         //gbc.gridheight = 50; // Étendre sur 50 lignes
         gbc.ipadx = 1150; // Largeur spécifique
         gbc.ipady = 800; // Hauteur spécifique
-        contentPanel.add(Tarifs, gbc);
+        contentPanel.add(PanelTarifs, gbc);
 
         // Créer un JScrollPane et y ajouter le contentPanel
         JScrollPane scrollPane = new JScrollPane(contentPanel);
@@ -313,89 +346,3 @@ public class Reservation_Seance {
         frame.RefreshPage();
     }
 }
-
-// Importation des librairies
-/*import V.FrameBase;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.FlowLayout;
-
-
-public class Reservation_Seance {
-
-    public static void affichageReservation_Seance(FrameBase frame) {
-
-        frame.PageActuelle = "reservation_seance";
-        frame.getPanelBase().removeAll();
-
-        // Créer un nouveau JPanel pour contenir tous les composants
-        JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridBagLayout()); // Utiliser GridBagLayout pour une disposition plus flexible
-        contentPanel.setBackground(frame.getMainCouleur());
-
-        // Créer un GridBagConstraints pour le placement des composants
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(5, 5, 5, 5); // Espacement entre les composants
-
-        // Ajouter des panneaux pour contrôler les colonnes spécifiques avec FlowLayout
-        JPanel leftColumnPanel = new JPanel();
-        leftColumnPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        leftColumnPanel.setBackground(Color.RED); // Couleur de fond pour la colonne gauche
-        contentPanel.add(leftColumnPanel, gbc);
-
-        JPanel rightColumnPanel = new JPanel();
-        rightColumnPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        rightColumnPanel.setBackground(Color.BLUE); // Couleur de fond pour la colonne droite
-        gbc.gridx = 1; // Placer le panneau de droite sur la colonne suivante
-        contentPanel.add(rightColumnPanel, gbc);
-
-        // Ajout de labels à la colonne de gauche
-        for (int i = 1; i <= 30; i++) {
-            JLabel label = new JLabel("Label " + i);
-            gbc.gridy++; // Passer à la prochaine ligne
-            leftColumnPanel.add(label);
-        }
-
-        //Résumé Film Reservé dans la colonne de droite
-        JPanel ResumeSeance = new JPanel();
-        ResumeSeance.setPreferredSize(new Dimension(200, 800)); // Taille spécifique pour le panneau de résumé
-        ResumeSeance.setBackground(frame.getMainCouleur());
-        ResumeSeance.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
-        rightColumnPanel.add(ResumeSeance);
-
-        // Ajout de labels à la colonne de droite
-        for (int i = 31; i <= 60; i++) {
-            JLabel label = new JLabel("Label " + i);
-            rightColumnPanel.add(label);
-        }
-
-        // Créer un JScrollPane et y ajouter le contentPanel
-        JScrollPane scrollPane = new JScrollPane(contentPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.getVerticalScrollBar().setBackground(frame.getMainCouleur());
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.getVerticalScrollBar().setBlockIncrement(16);
-        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(20, 0));
-        scrollPane.setBorder(null);
-        scrollPane.setBounds(100, 120, 1705, 921); // Ajustez la taille selon vos besoins
-
-        frame.getPanelBase().add(scrollPane);
-
-        frame.RefreshPage();
-    }
-}*/
-
