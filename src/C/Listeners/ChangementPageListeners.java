@@ -49,7 +49,7 @@ public class ChangementPageListeners{
             case "reservation_seance":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "reservation_seance";
-                Reservation_Seance.affichageReservation_Seance(frame);
+                Reservation_Seance.affichageReservation_Seance(frame, frame.filmActuel, frame.seanceActuelle);
                 System.out.println("Reservation Seance");
                 break;
             default:

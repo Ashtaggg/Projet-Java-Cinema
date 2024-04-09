@@ -3,6 +3,9 @@ package V;
 //Importation des fichiers
 import C.Listeners.ChangementPageListeners;
 import C.Listeners.RechercheListeners;
+import M.JAVA_MODEL.Global_CLASS.Film;
+import M.JAVA_MODEL.Global_CLASS.Reservation;
+import M.JAVA_MODEL.Global_CLASS.Seance;
 import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 
 //Importation des librairies
@@ -15,6 +18,7 @@ import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.sql.Date;
 
 public class FrameBase extends JFrame{
 
@@ -24,8 +28,17 @@ public class FrameBase extends JFrame{
     public ArrayList<String> PagePrecedente = new ArrayList<>();
     
     public Utilisateur userActuel = null;
+    public Reservation reservationActuelle = null;
+    public Seance seanceActuelle = new Seance(1513, 654, 65, null, "11:20", 200);
+    public Film filmActuel = new Film(13, "Oppenheimer", 10.99f, Date.valueOf("2023-07-19"), "",
+                                    "03:01:00", "Biopic, Historique, Thriller", 3.8, 0,
+                                    "Christopher Nolan", "Cillian Murphy, Emily Blunt, Matt Damon",
+                                    "En 1942, convaincus que l’Allemagne nazie est en train de développer une arme nucléaire, les États-Unis initient, dans le plus grand secret, le \"Projet Manhattan\" destiné à mettre au point la première bombe atomique de l’histoire. Pour piloter ce dispositif, le gouvernement engage J. Robert Oppenheimer, brillant physicien, qui sera bientôt surnommé \"le père de la bombe atomique\". C’est dans le laboratoire ultra-secret de Los Alamos, au cœur du désert du Nouveau-Mexique, que le scientifique et son équipe mettent au point une arme révolutionnaire dont les conséquences, vertigineuses, continuent de peser sur le monde actuel…");
+    
+        
 
-
+    //Font
+    Font font = new Font("Arial", Font.BOLD, 12);
     //Couelurs :
     boolean DarkMode = false;
     //Light Mode
@@ -247,6 +260,10 @@ public class FrameBase extends JFrame{
 
     public Color getQuatreCouleur(){
         return QuatreCouleur;
+    }
+
+    public Font getFont(){
+        return font;
     }
 
     public void RefreshPage(){

@@ -17,6 +17,6 @@ public class MainMathis {
         //test.affichage((new Color(250, 250, 250)), (new Color(0, 19, 77)), (new Color(0, 0, 0)));
         FrameBase frame = new FrameBase();
         //TestEnfFrameBase.affichertestEnfFrameBase(frame);
-        Reservation_Seance.affichageReservation_Seance(frame);
+        Reservation_Seance.affichageReservation_Seance(frame, null, null);
     }
 }
