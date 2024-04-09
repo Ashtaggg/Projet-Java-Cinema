@@ -27,7 +27,12 @@ public class Connexion {
         }
 
         UtilisateursDAO_IMPL utilisateurDAO = new UtilisateursDAO_IMPL();
-        Utilisateur user = utilisateurDAO.recupererUtilisateurByEmail(mail);
+        int mailUtilise = 0;
+        Utilisateur user = null;
+        mailUtilise = utilisateurDAO.emailDejaUtilise(mail);
+        if(mailUtilise == 1){
+            user = utilisateurDAO.recupererUtilisateurByEmail(mail);
+        }
 
         /*System.out.println("idCompte : " + user.getIdCompte());
         System.out.println("admin : " + user.getAdmin());
@@ -45,16 +50,13 @@ public class Connexion {
         System.out.println("carteCCV : " + user.getCarteCCV());
         System.out.println("carteNom : " + user.getCarteNom());*/
 
-
         if(user == null){
             problemConnexionLabel.setVisible(true);
         }
-        if(!password.equals(user.getMotDePasse())){
-            System.out.println("LE MOT DE PASSE EST FAUX");
+        else if(!password.equals(user.getMotDePasse())){
             problemConnexionLabel.setVisible(true);
         }
         else{
-            System.out.println("Le mot de passe est bon !");
             problemConnexionLabel.setVisible(false);
             frame.userActuel = user;
             // Se redirigier vers la page du compte

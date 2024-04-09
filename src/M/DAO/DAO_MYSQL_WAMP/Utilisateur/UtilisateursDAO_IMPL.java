@@ -74,6 +74,34 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
         return null;
     }
 
+    
+    public int emailDejaUtilise(String email) {
+        int utilise = 0;
+
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("SELECT COUNT(*) FROM compte WHERE Mail = ?");
+            preparedStatement.setString(1, email);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                int count = result.getInt(1);
+                if(count > 0){
+                    utilise = 1;
+                }
+            }
+
+        } catch (SQLException error) {
+            System.out.println(error);
+        }
+
+        return utilise;
+    }
+
     public List<Utilisateur> recupererTousLesUtilisateurs() {
         // A faire
         return null;
