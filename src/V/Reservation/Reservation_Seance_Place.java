@@ -38,9 +38,17 @@ public class Reservation_Seance_Place {
     public static ArrayList<Integer> numplacesReservees = new ArrayList<Integer>();
     
     public static void affichageReservation_Seance_Place(FrameBase frame){
-        for (int i=0; i<frame.reservationActuelle.getNombrePlace(); i++){
-            places.add(i);
+        for (int i=0; i<frame.reservationActuelle.getNbTicketNormal(); i++){
+            places.add(1);
         }
+        for (int i=0; i<frame.reservationActuelle.getNbTicketJeune(); i++){
+            places.add(2);
+        }
+        for (int i=0; i<frame.reservationActuelle.getNbTicketAdo(); i++){
+            places.add(3);
+        }
+
+        
     }
     
 }
