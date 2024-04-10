@@ -126,7 +126,6 @@ public class Reservation_Seance {
         // Ajouter ResumeSeance avec GridBagLayout
         gbc.gridx = 1;
         gbc.gridy = 3;
-        //gbc.fill = GridBagConstraints.BOTH; // Remplir l'espace disponible
         gbc.ipadx = 1150; // Largeur spécifique
         gbc.ipady = 300; // Hauteur spécifique
         contentPanel.add(ResumeSeance, gbc);
