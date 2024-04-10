@@ -24,7 +24,7 @@ public class FilmsDAO_IMPL implements FilmsDAO{
             preparedStatement.setString(5, film.getDuree());
             preparedStatement.setString(6, film.getDescription());
             preparedStatement.setDouble(7, film.getNote());
-            preparedStatement.setInt(8, film.getQuatreDX());
+            preparedStatement.setBoolean(8, film.getQuatreDX());
             preparedStatement.setString(9, film.getRealisateur());
             preparedStatement.setString(10, film.getActeur());
             preparedStatement.setString(11, film.getSynopsis());
@@ -51,7 +51,7 @@ public class FilmsDAO_IMPL implements FilmsDAO{
             preparedStatement.setString(5, film.getDuree());
             preparedStatement.setString(6, film.getDescription());
             preparedStatement.setDouble(7, film.getNote());
-            preparedStatement.setInt(8, film.getQuatreDX());
+            preparedStatement.setBoolean(8, film.getQuatreDX());
             preparedStatement.setString(9, film.getRealisateur());
             preparedStatement.setString(10, film.getActeur());
             preparedStatement.setString(11, film.getSynopsis());
@@ -101,7 +101,7 @@ public class FilmsDAO_IMPL implements FilmsDAO{
                 String duree = result.getString("Duree");
                 String description = result.getString("Description");
                 double note = result.getDouble("Note");
-                int quatreDX = result.getInt("4DX");
+                Boolean quatreDX = result.getBoolean("4DX");
                 String realisateur = result.getString("Realisateur");
                 String acteur = result.getString("Acteur");
                 String synopsis = result.getString("Synopsis");

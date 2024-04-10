@@ -12,14 +12,14 @@ public class Film {
     private String duree;
     private String description;
     private double note;
-    private int quatreDX;
+    private boolean quatreDX;
     private String realisateur;
     private String acteur;
     private String synopsis;
 
     // Constructeur
     public Film(int idFilm, String nom, float prix, Date dateSortie, String photo, String duree, String description,
-                double note, int quatreDX, String realisateur, String acteur, String synopsis) {
+                double note, boolean quatreDX, String realisateur, String acteur, String synopsis) {
         this.idFilm = idFilm;
         this.nom = nom;
         this.prix = prix;
@@ -99,11 +99,11 @@ public class Film {
         this.note = note;
     }
 
-    public int getQuatreDX() {
+    public boolean getQuatreDX() {
         return quatreDX;
     }
 
-    public void setQuatreDX(int quatreDX) {
+    public void setQuatreDX(boolean quatreDX) {
         this.quatreDX = quatreDX;
     }
 

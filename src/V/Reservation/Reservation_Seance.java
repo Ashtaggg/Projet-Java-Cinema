@@ -106,7 +106,7 @@ public class Reservation_Seance {
         HeureFinSeance.setBounds(750, 90, 300, 50);
         ResumeSeance.add(HeureFinSeance);
         //4DX
-        if(frame.filmActuel.getQuatreDX()!=0){
+        if(frame.filmActuel.getQuatreDX()){
             ImageIcon QuatreDX = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/4DX.png");
             QuatreDX = new ImageIcon(QuatreDX.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
             JLabel QuatreDXLabel = new JLabel(QuatreDX);
@@ -435,7 +435,7 @@ public class Reservation_Seance {
         scrollPane.getVerticalScrollBar().setBlockIncrement(16);
         scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(20, 0));
         scrollPane.setBorder(null);
-        scrollPane.setBounds(0, 120, 1905, 921); // Ajustez la taille selon vos besoins
+        scrollPane.setBounds(0, 0, 1905, 921); // Ajustez la taille selon vos besoins
 
 
         frame.getPanelBase().add(scrollPane);

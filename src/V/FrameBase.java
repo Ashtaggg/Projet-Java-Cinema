@@ -7,6 +7,7 @@ import M.JAVA_MODEL.Global_CLASS.Film;
 import M.JAVA_MODEL.Global_CLASS.Reservation;
 import M.JAVA_MODEL.Global_CLASS.Seance;
 import M.JAVA_MODEL.Global_CLASS.Utilisateur;
+import M.JAVA_MODEL.Global_CLASS.Salle;
 
 //Importation des librairies
 import javax.swing.JFrame;
@@ -29,9 +30,10 @@ public class FrameBase extends JFrame{
     
     public Utilisateur userActuel = null;
     public Reservation reservationActuelle = new Reservation(0, 0, 0, 0, 0);
-    public Seance seanceActuelle = new Seance(1513, 654, 65, null, "11:20", 200);
+    public Seance seanceActuelle = new Seance(1, 654, 65, null, "11:20", 200);
+    public Salle salleActuelle = new Salle(654, 200, 2, false);
     public Film filmActuel = new Film(13, "Oppenheimer", 10.99f, Date.valueOf("2023-07-19"), "",
-                                    "03:01:00", "Biopic, Historique, Thriller", 3.8, 0,
+                                    "03:01:00", "Biopic, Historique, Thriller", 3.8, false,
                                     "Christopher Nolan", "Cillian Murphy, Emily Blunt, Matt Damon",
                                     "En 1942, convaincus que l’Allemagne nazie est en train de développer une arme nucléaire, les États-Unis initient, dans le plus grand secret, le \"Projet Manhattan\" destiné à mettre au point la première bombe atomique de l’histoire. Pour piloter ce dispositif, le gouvernement engage J. Robert Oppenheimer, brillant physicien, qui sera bientôt surnommé \"le père de la bombe atomique\". C’est dans le laboratoire ultra-secret de Los Alamos, au cœur du désert du Nouveau-Mexique, que le scientifique et son équipe mettent au point une arme révolutionnaire dont les conséquences, vertigineuses, continuent de peser sur le monde actuel…");
 
@@ -63,6 +65,7 @@ public class FrameBase extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1920, 1080);
+        this.setLayout(null);
         this.setVisible(true);
         PagePrecedente.add("accueil_films");
         if(DarkMode){
@@ -230,6 +233,7 @@ public class FrameBase extends JFrame{
         PanelBase = new JPanel();
         PanelBase.setBackground(MainCouleur);
         PanelBase.setBounds(0, 120, 1920, 960);
+        //PanelBase.setBackground(Color.YELLOW);
         PanelBase.setLayout(null);
         PanelBase.setVisible(true);
 
