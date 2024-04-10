@@ -7,6 +7,7 @@ import V.EspaceUtilisateur.PageInscription;
 import V.EspaceUtilisateur.PageCompte;
 import V.FrameBase;
 import V.Reservation.Reservation_Seance;
+import V.Reservation.Reservation_Seance_Place;
 
 // Importation des librairies
 
@@ -65,7 +66,7 @@ public class ChangementPageListeners{
             case "reservation_seance_place":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "reservation_seance";
-                Reservation_Seance.affichageReservation_Seance(frame);
+                Reservation_Seance_Place.affichageReservation_Seance_Place(frame);
                 System.out.println("Reservation Seance Placement");
                 break;
             default:

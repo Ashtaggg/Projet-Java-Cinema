@@ -43,6 +43,15 @@ public class Reservation_Seance_Place {
     public static int numPlacesValidees = 0;
     
     public static void affichageReservation_Seance_Place(FrameBase frame){
+
+        frame.PageActuelle = "reservation_seance_place";
+
+        //Remove
+        frame.getPanelBase().removeAll();
+        frame.getPanelBase().revalidate();
+        frame.getPanelBase().repaint();
+
+
         for (int i=0; i<frame.reservationActuelle.getNbTicketNormal(); i++){
             places.add(1);
         }
@@ -134,6 +143,7 @@ public class Reservation_Seance_Place {
    
         //List<Billet> billets = recupererBilletsBySeance(frame.seanceActuelle.getIdSeance());
         List<Billet> billets = new ArrayList<Billet>();
+        //test à supprimer
         billets.add(new Billet(1, 1, 10, "Normal"));
         billets.add(new Billet(2, 1, 20, "Jeune"));
         billets.add(new Billet(3, 1, 30, "Ado"));
@@ -162,8 +172,11 @@ public class Reservation_Seance_Place {
         ValiderReservation.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if(numPlacesValidees == 0){
-                    //Ajouter les billets dans la base de données
+                    //Préparer tout pour la création des billets qui se fera à la fin au moment de payer
                     System.out.println("Billets ajoutés (a faire mdr)");
+                    for(int j=0; j<numplacesReservees.size(); j++){
+                        System.out.println(numplacesReservees.get(j));
+                    }
                 }
             }
         });
@@ -171,8 +184,6 @@ public class Reservation_Seance_Place {
         //Ajout des composants dans le panel
         for(int i=0; i<frame.salleActuelle.getNombrePlace(); i++){
             JButton Place = new JButton();
-            //Place.setPreferredSize(new Dimension(50, 50));
-            //Place.setBackground(frame.getMainCouleur());
             Place.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
             //vérifier si la place est déjà réservée
             for(Billet billet : billets){
@@ -188,25 +199,56 @@ public class Reservation_Seance_Place {
             }
             Place.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                    Place.setBackground(frame.getQuatreCouleur());
-                    numplacesReservees.add(Integer.parseInt(Place.getText()));
-                    numPlacesValidees--;
-                    PlacesRestantesLabel.setText("Places restantes à réserver :  " + numPlacesValidees);
-                    if(numPlacesValidees == 0){
-                        ValiderReservation.setEnabled(true);
-                        PlacesRestantesLabel.setText("Toutes les places ont été réservées");
-                        PlacesRestantesLabel.setFont(new Font ("Arial", Font.BOLD, 17));
+                    if(Place.getBackground().equals(new Color(135, 169, 116))){
+                        if(numPlacesValidees > 0){
+                            Place.setBackground(frame.getQuatreCouleur());
+                            numplacesReservees.add(Integer.parseInt(Place.getText()));
+                            numPlacesValidees--;
+                            PlacesRestantesLabel.setText("Places restantes à réserver :  " + numPlacesValidees);
+                            if(numPlacesValidees == 0){
+                                ValiderReservation.setEnabled(true);
+                                PlacesRestantesLabel.setText("Toutes les places ont été réservées");
+                                PlacesRestantesLabel.setFont(new Font ("Arial", Font.BOLD, 17));
+                            }
+                        }
+                    }
+                    else{
+                        Place.setBackground(new Color(135, 169, 116));
+                        for(int i=0; i<numplacesReservees.size(); i++){
+                            if(numplacesReservees.get(i) == Integer.parseInt(Place.getText())){
+                                numplacesReservees.remove(i);
+                            }
+                        }
+                        numPlacesValidees++;
+                        PlacesRestantesLabel.setText("Places restantes à réserver :  " + numPlacesValidees);
+                        ValiderReservation.setEnabled(false);
+                        PlacesRestantesLabel.setFont(new Font ("Arial", Font.BOLD, 20));
+                    }
                     }
                 }
-            });
+            );
             Place.setText(Integer.toString(i+1));
             PlacesGrid.add(Place);
         }
+
+        //Bouton Annuler 
+        JButton Annuler = new JButton("Annuler");
+        Annuler.setFont(new Font ("Arial", Font.BOLD, 18));
+        Annuler.setForeground(frame.getSecondeCouleur());
+        Annuler.setBackground(new Color(197, 80, 82));
+        Annuler.setBounds(1630, 810, 120, 50);
+        Annuler.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                numplacesReservees.removeAll(numplacesReservees);
+                Reservation_Seance_Place.affichageReservation_Seance_Place(frame);
+            }
+        });
 
         //Ajout des composants dans le frame
         frame.getPanelBase().add(PlacesRestantes);
         frame.getPanelBase().add(ValiderReservation);
         frame.getPanelBase().add(ResumeSeance);
+        frame.getPanelBase().add(Annuler);
         frame.getPanelBase().add(PlacesGrid);
 
         frame.RefreshPage();
