@@ -54,6 +54,12 @@ public class ChangementPageListeners{
                 Reservation_Seance.affichageReservation_Seance(frame);
                 System.out.println("Reservation Seance");
                 break;
+            case "reservation_seance_place":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                frame.PageActuelle = "reservation_seance";
+                Reservation_Seance.affichageReservation_Seance(frame);
+                System.out.println("Reservation Seance Placement");
+                break;
             default:
                 System.out.println("Action non reconnue");
         }

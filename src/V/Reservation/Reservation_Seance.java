@@ -4,6 +4,7 @@ package V.Reservation;
 import V.FrameBase;
 import M.JAVA_MODEL.Global_CLASS.Film;
 import M.JAVA_MODEL.Global_CLASS.Seance;
+import C.Listeners.Page_ReservationSeance.ReservationSeanceListeners;
 
 // Importation des librairies
 import java.awt.BorderLayout;
@@ -13,9 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-
 import org.w3c.dom.Text;
-
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
@@ -27,10 +26,17 @@ import java.util.random.RandomGenerator.ArbitrarilyJumpableGenerator;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 
 
 public class Reservation_Seance {
+
+    public static int nbTicketNormal = 0;
+    public static int nbTicketJeune = 0;
+    public static int nbTicketAdo = 0;
 
     public static void affichageReservation_Seance(FrameBase frame) {
 
@@ -99,12 +105,14 @@ public class Reservation_Seance {
         HeureFinSeance.setForeground(frame.getSecondeCouleur());
         HeureFinSeance.setBounds(750, 90, 300, 50);
         ResumeSeance.add(HeureFinSeance);
-        //VOST ou VF
-        JLabel Version = new JLabel("Version"); //A remplir on l'a pas mdr
-        Version.setFont(new Font ("Arial", Font.PLAIN, 23));
-        Version.setForeground(frame.getSecondeCouleur());
-        Version.setBounds(750, 140, 300, 50);
-        ResumeSeance.add(Version);
+        //4DX
+        if(frame.filmActuel.getQuatreDX()!=0){
+            ImageIcon QuatreDX = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/4DX.png");
+            QuatreDX = new ImageIcon(QuatreDX.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+            JLabel QuatreDXLabel = new JLabel(QuatreDX);
+            QuatreDXLabel.setBounds(750, 140, 40, 40);
+            ResumeSeance.add(QuatreDXLabel);
+        }
         //Logo handicapé
         ImageIcon Handicape = null;
         if(frame.DarkMode){Handicape = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Disabled_Blanc.png");}
@@ -227,7 +235,7 @@ public class Reservation_Seance {
         PanelNormal.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
         PanelNormal.setBounds(750, 180, 250, 50);
         //Label pour le nombre de ticket normal
-        JLabel NombreNormal = new JLabel("Nombre de ticket normal");
+        JLabel NombreNormal = new JLabel("       0");
         NombreNormal.setFont(new Font ("Arial", Font.PLAIN, 23));
         NombreNormal.setForeground(frame.getSecondeCouleur());
         NombreNormal.setBounds(75, 0, 100, 50);
@@ -257,7 +265,7 @@ public class Reservation_Seance {
         PanelJeune.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
         PanelJeune.setBounds(750, 350, 250, 50);
         //Label pour le nombre de ticket normal
-        JLabel NombreJeune = new JLabel("Nombre de ticket Jeune");
+        JLabel NombreJeune = new JLabel("       0");
         NombreJeune.setFont(new Font ("Arial", Font.PLAIN, 23));
         NombreJeune.setForeground(frame.getSecondeCouleur());
         NombreJeune.setBounds(75, 0, 100, 50);
@@ -287,7 +295,7 @@ public class Reservation_Seance {
         PanelAdo.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
         PanelAdo.setBounds(750, 520, 250, 50);
         //Label pour le nombre de ticket Ado
-        JLabel NombreAdo = new JLabel("Nombre de ticket Ado");
+        JLabel NombreAdo = new JLabel("       0");
         NombreAdo.setFont(new Font ("Arial", Font.PLAIN, 23));
         NombreAdo.setForeground(frame.getSecondeCouleur());
         NombreAdo.setBounds(75, 0, 100, 50);
@@ -316,10 +324,100 @@ public class Reservation_Seance {
         Valider.setFont(new Font ("Arial", Font.PLAIN, 23));
         Valider.setForeground(frame.getSecondeCouleur());
         Valider.setEnabled(false);
-        Valider.setBackground(frame.getCinqCouleur());
+        Valider.setBackground(frame.getQuatreCouleur());
         Valider.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
         Valider.setBounds(450, 700, 250, 50);
         PanelTarifs.add(Valider);
+
+        AjoutNormal.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(nbTicketNormal<10)
+                {
+                    nbTicketNormal++;
+                    // Mettez à jour le label affichant le nombre de places sélectionnées
+                    NombreNormal.setText("       " + Integer.toString(nbTicketNormal));
+                    // Vérifiez si au moins une place a été sélectionnée pour activer le bouton de validation
+                    Valider.setEnabled(nbTicketNormal > 0 || nbTicketJeune > 0 || nbTicketAdo > 0);
+                }
+            }
+        });
+        AjoutJeune.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(nbTicketJeune<10)
+                {
+                    nbTicketJeune++;
+                    // Mettez à jour le label affichant le nombre de places sélectionnées
+                    NombreJeune.setText("       " + Integer.toString(nbTicketJeune));
+                    // Vérifiez si au moins une place a été sélectionnée pour activer le bouton de validation
+                    Valider.setEnabled(nbTicketNormal > 0 || nbTicketJeune > 0 || nbTicketAdo > 0);
+                }
+            }
+        });
+        AjoutAdo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(nbTicketAdo<10)
+                {
+                    nbTicketAdo++;
+                    // Mettez à jour le label affichant le nombre de places sélectionnées
+                    NombreAdo.setText("       " + Integer.toString(nbTicketAdo));
+                    // Vérifiez si au moins une place a été sélectionnée pour activer le bouton de validation
+                    Valider.setEnabled(nbTicketNormal > 0 || nbTicketJeune > 0 || nbTicketAdo > 0);
+                }
+            }
+        });
+        RetraitNormal.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (nbTicketNormal > 0) {
+                    nbTicketNormal--;
+                    // Mettez à jour le label affichant le nombre de places sélectionnées
+                    NombreNormal.setText("       " + Integer.toString(nbTicketNormal));
+                    // Vérifiez si au moins une place a été sélectionnée pour activer le bouton de validation
+                    Valider.setEnabled(nbTicketNormal > 0 || nbTicketJeune > 0 || nbTicketAdo > 0);
+                }
+            }
+        });
+        RetraitJeune.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (nbTicketJeune > 0) {
+                    nbTicketJeune--;
+                    // Mettez à jour le label affichant le nombre de places sélectionnées
+                    NombreJeune.setText("       " + Integer.toString(nbTicketJeune));
+                    // Vérifiez si au moins une place a été sélectionnée pour activer le bouton de validation
+                    Valider.setEnabled(nbTicketNormal > 0 || nbTicketJeune > 0 || nbTicketAdo > 0);
+                }
+            }
+        });
+        RetraitAdo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (nbTicketAdo > 0) {
+                    nbTicketAdo--;
+                    // Mettez à jour le label affichant le nombre de places sélectionnées
+                    NombreAdo.setText("       " + Integer.toString(nbTicketAdo));
+                    // Vérifiez si au moins une place a été sélectionnée pour activer le bouton de validation
+                    Valider.setEnabled(nbTicketNormal > 0 || nbTicketJeune > 0 || nbTicketAdo > 0);
+                }
+            }
+        });
+
+        // Action Listeners pour le bouton de promotion
+        AjoutPromoButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Vérifiez si le code promo est valide
+                if (CodePromoTXT.getText().equals("PROMO")) {
+                    // Appliquer une réduction de 50% sur le prix total
+                    PrixNormal.setText("7.75€");
+                    PrixJeune.setText("4.95€");
+                    PrixSenior.setText("3.75€");
+                }
+            }
+        });
+
+        // Action Listeners pour le bouton de validation
+        Valider.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ReservationSeanceListeners.ValiderReservation(frame, nbTicketNormal, nbTicketJeune, nbTicketAdo, 1);
+            }
+        });
 
         // Ajouter Tarifs avec GridBagLayout
         gbc.gridx = 1;

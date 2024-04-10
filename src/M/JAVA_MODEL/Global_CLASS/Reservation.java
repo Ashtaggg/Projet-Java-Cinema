@@ -7,7 +7,11 @@ public class Reservation {
     private int idCompte;
     private int idSeance;
     private int nombrePlace;
-    private int prixTotal;
+    private int nbTicketNormal;
+    private int nbTicketJeune;
+    private int nbTicketAdo;
+    private double Promo;
+    private double prixTotal;
 
     // Constructeurs
     Reservation() {
@@ -55,11 +59,43 @@ public class Reservation {
         this.nombrePlace = nombrePlace;
     }
 
-    public int getPrixTotal() {
+    public int getNbTicketNormal() {
+        return nbTicketNormal;
+    }
+
+    public void setNbTicketNormal(int nbTicketNormal) {
+        this.nbTicketNormal = nbTicketNormal;
+    }
+
+    public int getNbTicketJeune() {
+        return nbTicketJeune;
+    }
+
+    public void setNbTicketJeune(int nbTicketJeune) {
+        this.nbTicketJeune = nbTicketJeune;
+    }
+
+    public int getNbTicketAdo() {
+        return nbTicketAdo;
+    }
+
+    public void setNbTicketAdo(int nbTicketAdo) {
+        this.nbTicketAdo = nbTicketAdo;
+    }
+
+    public double getPromo() {
+        return Promo;
+    }
+
+    public void setPromo(double promo) {
+        Promo = promo;
+    }
+
+    public double getPrixTotal() {
         return prixTotal;
     }
 
-    public void setPrixTotal(int prixTotal) {
+    public void setPrixTotal(double prixTotal) {
         this.prixTotal = prixTotal;
     }
 }

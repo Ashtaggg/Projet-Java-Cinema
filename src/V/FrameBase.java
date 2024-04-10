@@ -28,7 +28,7 @@ public class FrameBase extends JFrame{
     public ArrayList<String> PagePrecedente = new ArrayList<>();
     
     public Utilisateur userActuel = null;
-    public Reservation reservationActuelle = null;
+    public Reservation reservationActuelle = new Reservation(0, 0, 0, 0, 0);
     public Seance seanceActuelle = new Seance(1513, 654, 65, null, "11:20", 200);
     public Film filmActuel = new Film(13, "Oppenheimer", 10.99f, Date.valueOf("2023-07-19"), "",
                                     "03:01:00", "Biopic, Historique, Thriller", 3.8, 0,

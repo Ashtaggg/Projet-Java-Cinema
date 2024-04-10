@@ -22,7 +22,7 @@ public class ReservationsDAO_IMPL implements ReservationsDAO {
             preparedStatement.setInt(1, reservation.getIdCompte());
             preparedStatement.setInt(2, reservation.getIdSeance());
             preparedStatement.setInt(3, reservation.getNombrePlace());
-            preparedStatement.setInt(4, reservation.getPrixTotal());
+            preparedStatement.setDouble(4, reservation.getPrixTotal());
 
             preparedStatement.executeUpdate();
         } catch (SQLException error) {
@@ -43,7 +43,7 @@ public class ReservationsDAO_IMPL implements ReservationsDAO {
             preparedStatement.setInt(1, reservation.getIdCompte());
             preparedStatement.setInt(2, reservation.getIdSeance());
             preparedStatement.setInt(3, reservation.getNombrePlace());
-            preparedStatement.setInt(4, reservation.getPrixTotal());
+            preparedStatement.setDouble(4, reservation.getPrixTotal());
             preparedStatement.setInt(5, reservation.getIdReservation());
 
             preparedStatement.executeUpdate();
