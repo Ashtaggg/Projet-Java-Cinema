@@ -144,7 +144,7 @@ public class Reservation_Seance_Place {
         PlacesRestantes.setBackground(frame.getMainCouleur());
         PlacesRestantes.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
         PlacesRestantes.setLayout(null);
-        PlacesRestantes.setBounds(800, 800, 330, 50);
+        PlacesRestantes.setBounds(820, 810, 330, 50);
         //Label Places restantes
         JLabel PlacesRestantesLabel = new JLabel("Places restantes à réserver :  " + numPlacesValidees);
         PlacesRestantesLabel.setFont(new Font ("Arial", Font.BOLD, 20));
@@ -158,7 +158,7 @@ public class Reservation_Seance_Place {
         ValiderReservation.setForeground(frame.getSecondeCouleur());
         ValiderReservation.setBackground(frame.getQuatreCouleur());
         ValiderReservation.setEnabled(false);
-        ValiderReservation.setBounds(1180, 800, 250, 50);
+        ValiderReservation.setBounds(1200, 810, 250, 50);
         ValiderReservation.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if(numPlacesValidees == 0){
