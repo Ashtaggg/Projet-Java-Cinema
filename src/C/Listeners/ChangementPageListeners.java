@@ -20,10 +20,18 @@ public class ChangementPageListeners{
         // Effectuer une action en fonction du nom du bouton
         switch (boutonName) {
             case "compte":
-                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
-                frame.PageActuelle = "compte";
-                PageCompte.affichagePageCompte(frame);
-                System.out.println("Compte");
+                if(frame.userActuel != null){
+                    frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                    frame.PageActuelle = "compte";
+                    PageCompte.affichagePageCompte(frame);
+                    System.out.println("Compte");
+                }
+                else if(frame.userActuel == null){
+                    frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                    frame.PageActuelle = "connexion";
+                    PageConnexion.affichagePageConnexion(frame);
+                    System.out.println("Connexion");
+                }
                 break;
             case "panier":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
