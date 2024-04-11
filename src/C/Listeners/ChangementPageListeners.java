@@ -9,6 +9,7 @@ import V.FrameBase;
 import V.Reservation.Reservation_Seance;
 import V.Reservation.Reservation_Seance_Place;
 import V.Reservation.Recap_Reservation;
+import V.Panier.Panier;
 
 // Importation des librairies
 
@@ -34,11 +35,6 @@ public class ChangementPageListeners{
                     PageConnexion.affichagePageConnexion(frame);
                     System.out.println("Connexion");
                 }
-                break;
-            case "panier":
-                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
-                frame.PageActuelle = "panier";
-                System.out.println("Panier");
                 break;
             case "accueil_films":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
@@ -73,8 +69,14 @@ public class ChangementPageListeners{
             case "recap_reservation":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "recap_reservation";
-                //Reservation_Seance_Place.affichageReservation_Seance_Place(frame);
+                Recap_Reservation.afficherRecapreservation(frame);
                 System.out.println("Recap Reservation");
+                break;
+            case "panier":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                frame.PageActuelle = "panier";
+                Panier.affichagePanier(frame);
+                System.out.println("Panier");
                 break;
             default:
                 System.out.println("Action non reconnue");

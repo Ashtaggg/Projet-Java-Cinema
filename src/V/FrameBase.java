@@ -14,6 +14,9 @@ import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
+
 import java.awt.Image;
 import java.awt.List;
 import java.util.ArrayList;
@@ -26,17 +29,14 @@ public class FrameBase extends JFrame{
     //Variables
     private JPanel PanelBase;
     public String PageActuelle = "accueil_films";
-    public ArrayList<String> PagePrecedente = new ArrayList<>();
-    
-    public Utilisateur userActuel = null;
-    public Reservation reservationActuelle = new Reservation(0, 0, 0, 0, 0);
-    public Seance seanceActuelle = new Seance(1, 654, 65, null, "11:20", 200);
-    public Salle salleActuelle = new Salle(654, 352, 2, false);
-    public Film filmActuel = new Film(13, "Oppenheimer", 10.99f, Date.valueOf("2023-07-19"), "",
-                                    "03:01:00", "Biopic, Historique, Thriller", 3.8, false,
-                                    "Christopher Nolan", "Cillian Murphy, Emily Blunt, Matt Damon",
-                                    "En 1942, convaincus que l’Allemagne nazie est en train de développer une arme nucléaire, les États-Unis initient, dans le plus grand secret, le \"Projet Manhattan\" destiné à mettre au point la première bombe atomique de l’histoire. Pour piloter ce dispositif, le gouvernement engage J. Robert Oppenheimer, brillant physicien, qui sera bientôt surnommé \"le père de la bombe atomique\". C’est dans le laboratoire ultra-secret de Los Alamos, au cœur du désert du Nouveau-Mexique, que le scientifique et son équipe mettent au point une arme révolutionnaire dont les conséquences, vertigineuses, continuent de peser sur le monde actuel…");
 
+    public Utilisateur userActuel = null;
+    public ArrayList<String> PagePrecedente = new ArrayList<>();
+    public ArrayList<Film> filmActuel = new ArrayList<>();
+    public ArrayList<Seance> seanceActuelle = new ArrayList<>();
+    public ArrayList<Salle> salleActuelle = new ArrayList<>();
+    public ArrayList<Reservation> reservationActuelle = new ArrayList<>();
+    
     //Font
     Font font = new Font("Arial", Font.BOLD, 12);
     //Couelurs :
@@ -75,6 +75,15 @@ public class FrameBase extends JFrame{
             QuatreCouleur = QuatreCouleur_Dark;
         }
         this.getContentPane().setBackground(MainCouleur);
+
+        reservationActuelle.add(new Reservation(0, 0, 4, 2, 0));
+        seanceActuelle.add(new Seance(1, 654, 65, null, "11:20", 200));
+        salleActuelle.add(new Salle (654, 352, 2, false));
+        filmActuel.add(new Film (13, "Oppenheimer", 10.99f, Date.valueOf("2023-07-19"), "",
+                                    "03:01:00", "Biopic, Historique, Thriller", 3.8, false,
+                                    "Christopher Nolan", "Cillian Murphy, Emily Blunt, Matt Damon",
+                                    "En 1942, convaincus que l’Allemagne nazie est en train de développer une arme nucléaire, les États-Unis initient, dans le plus grand secret, le \"Projet Manhattan\" destiné à mettre au point la première bombe atomique de l’histoire. Pour piloter ce dispositif, le gouvernement engage J. Robert Oppenheimer, brillant physicien, qui sera bientôt surnommé \"le père de la bombe atomique\". C’est dans le laboratoire ultra-secret de Los Alamos, au cœur du désert du Nouveau-Mexique, que le scientifique et son équipe mettent au point une arme révolutionnaire dont les conséquences, vertigineuses, continuent de peser sur le monde actuel…"));
+
 
         //Class de Listener pour les boutons
         ChangementPageListeners changementPageListeners = new ChangementPageListeners();

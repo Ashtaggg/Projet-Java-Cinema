@@ -4,7 +4,8 @@ package V.Reservation;
 import V.FrameBase;
 import M.JAVA_MODEL.Global_CLASS.Film;
 import M.JAVA_MODEL.Global_CLASS.Billet;
-import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO; 
+import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO;
+import C.Listeners.ChangementPageListeners;
 
 //Imports Librairies
 // Importation des librairies
@@ -38,7 +39,7 @@ import java.util.List;
 
 
 public class Reservation_Seance_Place {
-    public static ArrayList<Integer> places = new ArrayList<Integer>();
+
     public static ArrayList<Integer> numplacesReservees = new ArrayList<Integer>();
     public static int numPlacesValidees = 0;
     
@@ -51,17 +52,8 @@ public class Reservation_Seance_Place {
         frame.getPanelBase().revalidate();
         frame.getPanelBase().repaint();
 
-
-        for (int i=0; i<frame.reservationActuelle.getNbTicketNormal(); i++){
-            places.add(1);
-        }
-        for (int i=0; i<frame.reservationActuelle.getNbTicketJeune(); i++){
-            places.add(2);
-        }
-        for (int i=0; i<frame.reservationActuelle.getNbTicketAdo(); i++){
-            places.add(3);
-        }
-        numPlacesValidees = frame.reservationActuelle.getNombrePlace();
+        int sizeLR = frame.reservationActuelle.size();
+        numPlacesValidees = frame.reservationActuelle.get(sizeLR-1).getNombrePlace();
 
         //Résumé Film Reservé
         JPanel ResumeSeance = new JPanel();
@@ -70,7 +62,7 @@ public class Reservation_Seance_Place {
         ResumeSeance.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
         ResumeSeance.setBounds(80, 60, 300, 800);
         //Labels de Résumé
-        JLabel TitreFilm = new JLabel(frame.filmActuel.getNom());
+        JLabel TitreFilm = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getNom());
         TitreFilm.setFont(new Font ("Arial", Font.BOLD, 37));
         TitreFilm.setForeground(frame.getSecondeCouleur());
         TitreFilm.setBounds(20, 350, 250, 30);
@@ -91,7 +83,7 @@ public class Reservation_Seance_Place {
         NomCinema.setBounds(20, 390, 250, 50);
         ResumeSeance.add(NomCinema);
         //Salle de projection
-        JLabel Salle = new JLabel("Salle " + frame.seanceActuelle.getIdSalle());
+        JLabel Salle = new JLabel("Salle " + frame.seanceActuelle.get(frame.filmActuel.size()-1).getIdSalle());
         Salle.setFont(new Font ("Arial", Font.PLAIN, 23));
         Salle.setForeground(frame.getSecondeCouleur());
         Salle.setBounds(20, 430, 250, 50);
@@ -103,19 +95,19 @@ public class Reservation_Seance_Place {
         Separation.setBounds(20, 510, 250, 4);
         ResumeSeance.add(Separation);
         //Heure de la séance
-        JLabel HeureSeance = new JLabel(frame.seanceActuelle.getHeure());
+        JLabel HeureSeance = new JLabel(frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getHeure());
         HeureSeance.setFont(new Font ("Arial", Font.BOLD, 37));
         HeureSeance.setForeground(frame.getQuatreCouleur());
         HeureSeance.setBounds(20, 550, 400, 50);
         ResumeSeance.add(HeureSeance);
         //Heure de fin de la séance
-        JLabel HeureFinSeance = new JLabel(frame.filmActuel.getDuree());
+        JLabel HeureFinSeance = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getDuree());
         HeureFinSeance.setFont(new Font ("Arial", Font.PLAIN, 23));
         HeureFinSeance.setForeground(frame.getSecondeCouleur());
         HeureFinSeance.setBounds(20, 590, 300, 50);
         ResumeSeance.add(HeureFinSeance);
         //4DX
-        if(frame.filmActuel.getQuatreDX()){
+        if(frame.filmActuel.get(frame.filmActuel.size()-1).getQuatreDX()){
             ImageIcon QuatreDX = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/4DX.png");
             QuatreDX = new ImageIcon(QuatreDX.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
             JLabel QuatreDXLabel = new JLabel(QuatreDX);
@@ -143,7 +135,7 @@ public class Reservation_Seance_Place {
         JPanel PlacesGrid = new JPanel();
         PlacesGrid.setBackground(frame.getMainCouleur());
         PlacesGrid.setBorder(null);
-        int size = (int) Math.sqrt(frame.salleActuelle.getNombrePlace());
+        int size = (int) Math.sqrt(frame.salleActuelle.get(frame.salleActuelle.size()-1).getNombrePlace());
         PlacesGrid.setLayout(new GridLayout( size, size , 3, 3));
         PlacesGrid.setBounds(6, 2, 1190, 660);
 
@@ -187,17 +179,17 @@ public class Reservation_Seance_Place {
         ValiderReservation.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if(numPlacesValidees == 0){
-                    //Préparer tout pour la création des billets qui se fera à la fin au moment de payer
-                    System.out.println("Billets ajoutés (a faire mdr)");
                     for(int j=0; j<numplacesReservees.size(); j++){
                         System.out.println(numplacesReservees.get(j));
                     }
+                    ChangementPageListeners changementPageListeners = new ChangementPageListeners();
+                    changementPageListeners.ChangementPage("recap_reservation", frame);
                 }
             }
         });
 
         //Ajout des composants dans le panel
-        for(int i=0; i<frame.salleActuelle.getNombrePlace(); i++){
+        for(int i=0; i<frame.salleActuelle.get(frame.salleActuelle.size()-1).getNombrePlace(); i++){
             JButton Place = new JButton();
             Place.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
 
@@ -210,7 +202,7 @@ public class Reservation_Seance_Place {
                     // Si la place est réservée, changer la couleur en rouge
                     Place.setBackground(new Color(197, 80, 82));
                     Place.setEnabled(false);
-                    System.out.println("Place réservée");
+                    System.out.println("Place "+ (i+1) +" déjà réservée");
                     break; // Sortir de la boucle car la place est déjà réservée
                 }
             }

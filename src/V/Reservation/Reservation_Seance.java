@@ -5,6 +5,7 @@ import V.FrameBase;
 import M.JAVA_MODEL.Global_CLASS.Film;
 import M.JAVA_MODEL.Global_CLASS.Seance;
 import C.Listeners.Page_ReservationSeance.ReservationSeanceListeners;
+import M.JAVA_MODEL.RoundBorder.RoundBorder;
 
 // Importation des librairies
 import java.awt.BorderLayout;
@@ -38,6 +39,8 @@ public class Reservation_Seance {
     public static int nbTicketJeune = 0;
     public static int nbTicketAdo = 0;
 
+    public static int sizePage = 20;
+
     public static void affichageReservation_Seance(FrameBase frame) {
 
         frame.PageActuelle = "reservation_seance";
@@ -55,7 +58,7 @@ public class Reservation_Seance {
         gbc.gridy = 0;
         gbc.ipady = 0; // Hauteur spécifique
         gbc.insets = new Insets(5, 5, 5, 5); // Espacement entre les composants
-        for (int i = 1; i <= 30; i++) {
+        for (int i = 1; i <= sizePage; i++) {
             JLabel label = new JLabel(" ");
             contentPanel.add(label, gbc);
             gbc.gridy++; // Passer à la prochaine ligne
@@ -65,9 +68,9 @@ public class Reservation_Seance {
         JPanel ResumeSeance = new JPanel();
         ResumeSeance.setBackground(frame.getMainCouleur());
         ResumeSeance.setLayout(null);
-        ResumeSeance.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        ResumeSeance.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
         //Labels de Résumé
-        JLabel TitreFilm = new JLabel(frame.filmActuel.getNom());
+        JLabel TitreFilm = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getNom());
         TitreFilm.setFont(new Font ("Arial", Font.BOLD, 37));
         TitreFilm.setForeground(frame.getSecondeCouleur());
         TitreFilm.setBounds(350, 30, 300, 50);
@@ -88,25 +91,25 @@ public class Reservation_Seance {
         NomCinema.setBounds(350, 90, 300, 50);
         ResumeSeance.add(NomCinema);
         //Salle de projection
-        JLabel Salle = new JLabel("Salle " + frame.seanceActuelle.getIdSalle());
+        JLabel Salle = new JLabel("Salle " + frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getIdSalle());
         Salle.setFont(new Font ("Arial", Font.PLAIN, 23));
         Salle.setForeground(frame.getSecondeCouleur());
         Salle.setBounds(350, 140, 300, 50);
         ResumeSeance.add(Salle);
         //Heure de la séance
-        JLabel HeureSeance = new JLabel(frame.seanceActuelle.getHeure());
+        JLabel HeureSeance = new JLabel(frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getHeure());
         HeureSeance.setFont(new Font ("Arial", Font.BOLD, 37));
         HeureSeance.setForeground(frame.getQuatreCouleur());
         HeureSeance.setBounds(750, 30, 400, 50);
         ResumeSeance.add(HeureSeance);
         //Heure de fin de la séance
-        JLabel HeureFinSeance = new JLabel(frame.filmActuel.getDuree());
+        JLabel HeureFinSeance = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getDuree());
         HeureFinSeance.setFont(new Font ("Arial", Font.PLAIN, 23));
         HeureFinSeance.setForeground(frame.getSecondeCouleur());
         HeureFinSeance.setBounds(750, 90, 300, 50);
         ResumeSeance.add(HeureFinSeance);
         //4DX
-        if(frame.filmActuel.getQuatreDX()){
+        if(frame.filmActuel.get(frame.filmActuel.size()-1).getQuatreDX()){
             ImageIcon QuatreDX = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/4DX.png");
             QuatreDX = new ImageIcon(QuatreDX.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
             JLabel QuatreDXLabel = new JLabel(QuatreDX);
@@ -425,6 +428,116 @@ public class Reservation_Seance {
         gbc.ipadx = 1150; // Largeur spécifique
         gbc.ipady = 800; // Hauteur spécifique
         contentPanel.add(PanelTarifs, gbc);
+
+        //Footer avec nos conditions de ventes, cooerdonnées et mentions légales + Map
+
+        // Ajouter un footer
+        JPanel footer = new JPanel();
+        footer.setBackground(frame.getSecondeCouleur());
+        footer.setLayout(null);
+        footer.setBorder(BorderFactory.createLineBorder(frame.getMainCouleur(), 2));
+        //Conditions de vente
+        JLabel ConditionsVente = new JLabel("Conditions de vente");
+        ConditionsVente.setFont(new Font ("Arial", Font.PLAIN, 23));
+        ConditionsVente.setForeground(frame.getMainCouleur());
+        ConditionsVente.setBounds(50, 10, 250, 50);
+        footer.add(ConditionsVente);
+        //Texte des conditions de vente pour l'instant invisible
+        JLabel TexteConditionsVente = new JLabel("<html>Politique d'Annulation et de Remboursement :<br>" +
+        "Les billets achetés ne sont ni échangeables ni remboursables, sauf en cas d'annulation d'une séance par le cinéma.<br>" +
+        "Les remboursements pour les annulations de séances seront traités conformément à la politique de remboursement en vigueur du cinéma.<br><br>" +
+        "Disponibilité des Places :<br>" +
+        "La disponibilité des places est limitée et n'est pas garantie jusqu'à ce que la réservation soit confirmée et payée.<br><br>" +
+        "Responsabilité :<br>" +
+        "Nous ne sommes pas responsables des pertes, dommages, coûts ou dépenses résultant de l'utilisation de notre application ou de l'achat de billets de cinéma via celle-ci.<br><br>" +
+        "Conditions d'Utilisation :<br>" +
+        "L'utilisation de cette application est soumise à nos Conditions Générales d'Utilisation, consultables sur notre site web.<br><br>" +
+        "Sécurité des Transactions :<br>" +
+        "Nous prenons des mesures de sécurité pour protéger les informations de paiement de nos utilisateurs, mais nous ne pouvons garantir la sécurité absolue des transactions en ligne.<br><br>" +
+        "Modification des Conditions de Vente :<br>" +
+        "Nous nous réservons le droit de modifier les présentes conditions de vente à tout moment sans préavis. Les modifications seront effectives dès leur publication sur l'application.<br><br>" +
+        "Droits d'Auteur :<br>" +
+        "Tous les contenus présents sur l'application, y compris les images, les logos et les textes, sont protégés par des droits d'auteur et ne peuvent être utilisés sans autorisation.<br><br>" +
+        "Loi Applicable :<br>" +
+        "Les présentes conditions de vente sont régies par les lois en vigueur dans votre juridiction.<br><br>" +
+        "Contact :<br>" +
+        "Pour toute question ou réclamation concernant les billets de cinéma réservés via notre application, veuillez nous contacter à l'adresse électronique ou au numéro de téléphone fourni sur l'application.</html>");
+
+
+        TexteConditionsVente.setFont(new Font ("Arial", Font.PLAIN, 23));
+        TexteConditionsVente.setForeground(frame.getMainCouleur());
+        TexteConditionsVente.setBounds(50, 250, 1750, 800);
+        if(sizePage!=20){footer.add(TexteConditionsVente);}
+        //Bouton pour afficher les conditions de vente
+        JButton ConditionsVenteButton = new JButton("Voir");
+        ConditionsVenteButton.setFont(new Font ("Arial", Font.PLAIN, 23));
+        ConditionsVenteButton.setForeground(frame.getMainCouleur());
+        ConditionsVenteButton.setBackground(frame.getTroisCouleur());
+        ConditionsVenteButton.setBorder(BorderFactory.createLineBorder(frame.getMainCouleur(), 2));
+        ConditionsVenteButton.setBounds(85, 80, 100, 50);
+        footer.add(ConditionsVenteButton);
+        //Action Listeners pour le bouton des conditions de vente
+        ConditionsVenteButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(sizePage==20){
+                    //Réduire la page pour afficher les coordonnées et mentions légales
+                    sizePage = 21;
+                    //Rafraichir la page
+                    affichageReservation_Seance(frame);
+                }
+                else{
+                    //Etendre la page pour afficher les conditions de vente
+                    sizePage = 20;
+                    //Rafraichir la page
+                    affichageReservation_Seance(frame);
+                }
+            }
+        });
+
+        //Coordonnées
+        JLabel Coordonnees = new JLabel("Coordonnées");
+        Coordonnees.setFont(new Font ("Arial", Font.PLAIN, 23));
+        Coordonnees.setForeground(frame.getMainCouleur());
+        Coordonnees.setBounds(500, 10, 250, 50);
+        footer.add(Coordonnees);
+        //Texte des coordonnées
+        JLabel TexteCoordonnees = new JLabel("<html>Adresse : 145 Quai de Grenelle, Paris<br>" +
+        "Téléphone : 01 02 03 04 05<br>" +
+        "Email : ECECiné@gmail.com</html>");
+        TexteCoordonnees.setFont(new Font ("Arial", Font.PLAIN, 20));
+        TexteCoordonnees.setForeground(frame.getMainCouleur());
+        TexteCoordonnees.setBounds(500, 80, 500, 100);
+        footer.add(TexteCoordonnees);
+        //Mentions légales
+        JLabel MentionsLegales = new JLabel("Mentions légales");
+        MentionsLegales.setFont(new Font ("Arial", Font.PLAIN, 23));
+        MentionsLegales.setForeground(frame.getMainCouleur());
+        MentionsLegales.setBounds(950, 10, 250, 50);
+        footer.add(MentionsLegales);
+        //Texte des mentions légales
+        JLabel TexteMentionsLegales = new JLabel("<html>Ce site a été créé dans le cadre d'un projet scolaire de l'ECE Paris.<br>" +
+        "Il n'a pas vocation à être commercialisé et ne génère aucun revenu.<br>" +
+        "Les images et logos utilisés sont la propriété de leurs auteurs respectifs.<br>" +
+        "Pour toute réclamation, veuillez nous contacter à l'adresse électronique fournie.</html>");
+        TexteMentionsLegales.setFont(new Font ("Arial", Font.PLAIN, 20));
+        TexteMentionsLegales.setForeground(frame.getMainCouleur());
+        TexteMentionsLegales.setBounds(950, 80, 500, 100);
+        footer.add(TexteMentionsLegales);
+        //Map
+        ImageIcon Map = new ImageIcon("images/Images_Projet_V/Map/Map.png");
+        Map = new ImageIcon(Map.getImage().getScaledInstance(300, 180, Image.SCALE_DEFAULT));
+        JLabel MapLabel = new JLabel(Map);
+        MapLabel.setBounds(1470, 10, 300, 180);
+        footer.add(MapLabel);
+
+        // Ajouter footer avec GridBagLayout
+        gbc.gridx = 1;
+        gbc.gridy = 19; // Aller à la ligne suivante
+        gbc.ipadx = 1845; // Largeur spécifique
+        if(sizePage==20){gbc.ipady = 200;} // Hauteur spécifique
+        else{gbc.ipady = 1150;} // Hauteur spécifique
+        contentPanel.add(footer, gbc);
+        
 
         // Créer un JScrollPane et y ajouter le contentPanel
         JScrollPane scrollPane = new JScrollPane(contentPanel);
