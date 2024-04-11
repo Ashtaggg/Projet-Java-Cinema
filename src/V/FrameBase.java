@@ -31,7 +31,7 @@ public class FrameBase extends JFrame{
     public Utilisateur userActuel = null;
     public Reservation reservationActuelle = new Reservation(0, 0, 0, 0, 0);
     public Seance seanceActuelle = new Seance(1, 654, 65, null, "11:20", 200);
-    public Salle salleActuelle = new Salle(654, 200, 2, false);
+    public Salle salleActuelle = new Salle(654, 352, 2, false);
     public Film filmActuel = new Film(13, "Oppenheimer", 10.99f, Date.valueOf("2023-07-19"), "",
                                     "03:01:00", "Biopic, Historique, Thriller", 3.8, false,
                                     "Christopher Nolan", "Cillian Murphy, Emily Blunt, Matt Damon",

@@ -1,5 +1,8 @@
 package M.JAVA_MODEL.Global_CLASS;
 
+
+import java.util.ArrayList;
+import java.util.List;
 //Imports
 
 public class Reservation {
@@ -10,14 +13,11 @@ public class Reservation {
     private int nbTicketNormal;
     private int nbTicketJeune;
     private int nbTicketAdo;
+    private List<Integer> numPlaces = new ArrayList<Integer>();
     private double Promo;
     private double prixTotal;
 
     // Constructeurs
-    Reservation() {
-        
-    }
-
     public Reservation(int idReservation, int idCompte, int idSeance, int nombrePlace, int prixTotal) {
         this.idReservation = idReservation;
         this.idCompte = idCompte;
@@ -81,6 +81,14 @@ public class Reservation {
 
     public void setNbTicketAdo(int nbTicketAdo) {
         this.nbTicketAdo = nbTicketAdo;
+    }
+
+    public List<Integer> getNumPlaces() {
+        return numPlaces;
+    }
+
+    public void setNumPlaces(List<Integer> numPlaces) {
+        this.numPlaces = numPlaces;
     }
 
     public double getPromo() {

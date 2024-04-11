@@ -61,8 +61,7 @@ public class Reservation_Seance_Place {
         for (int i=0; i<frame.reservationActuelle.getNbTicketAdo(); i++){
             places.add(3);
         }
-        //numPlacesValidees = frame.reservationActuelle.getNombrePlace();
-        numPlacesValidees = 3;
+        numPlacesValidees = frame.reservationActuelle.getNombrePlace();
 
         //Résumé Film Reservé
         JPanel ResumeSeance = new JPanel();
@@ -132,12 +131,21 @@ public class Reservation_Seance_Place {
         HandicapeLabel.setBounds(120, 720, 50, 50);
         ResumeSeance.add(HandicapeLabel);
 
+        //Pannel de schéma Salle
+        JPanel SchemaSalle = new JPanel();
+        SchemaSalle.setBackground(frame.getMainCouleur());
+        SchemaSalle.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
+        SchemaSalle.setLayout(null);
+        SchemaSalle.setBounds(550, 60, 1204, 734);
+
+
         //Pannel PLaces Grid avec toutes les places
         JPanel PlacesGrid = new JPanel();
         PlacesGrid.setBackground(frame.getMainCouleur());
-        PlacesGrid.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
-        PlacesGrid.setLayout(new GridLayout(20, 20, 1, 1));
-        PlacesGrid.setBounds(550, 60, 1200, 730);
+        PlacesGrid.setBorder(null);
+        int size = (int) Math.sqrt(frame.salleActuelle.getNombrePlace());
+        PlacesGrid.setLayout(new GridLayout( size, size , 3, 3));
+        PlacesGrid.setBounds(6, 2, 1190, 660);
 
         //Récupérer les places de cette salle à cette séance avec billets
    
@@ -148,7 +156,14 @@ public class Reservation_Seance_Place {
         billets.add(new Billet(2, 1, 20, "Jeune"));
         billets.add(new Billet(3, 1, 30, "Ado"));
 
+        //Panels dessin Ecran 
+        JPanel Ecran = new JPanel();
+        Ecran.setBackground(Color.DARK_GRAY);
+        Ecran.setBorder(BorderFactory.createLineBorder((Color.DARK_GRAY), 2));
+        Ecran.setLayout(null);
+        Ecran.setBounds(200, 710, 800, 12);
 
+        
         //Panel affichage des places qui restent à réserver
         JPanel PlacesRestantes = new JPanel();
         PlacesRestantes.setBackground(frame.getMainCouleur());
@@ -185,17 +200,19 @@ public class Reservation_Seance_Place {
         for(int i=0; i<frame.salleActuelle.getNombrePlace(); i++){
             JButton Place = new JButton();
             Place.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
-            //vérifier si la place est déjà réservée
-            for(Billet billet : billets){
-                //System.out.println(billet.getNumeroPlace());
-                if(billet.getNumeroPlace() == i+1){
+
+            // Par défaut, la couleur est verte
+            Place.setBackground(new Color(135, 169, 116));
+
+            // Vérifier si la place est déjà réservée
+            for (Billet billet : billets) {
+                if (billet.getNumeroPlace() == i + 1) {
+                    // Si la place est réservée, changer la couleur en rouge
                     Place.setBackground(new Color(197, 80, 82));
                     Place.setEnabled(false);
                     System.out.println("Place réservée");
+                    break; // Sortir de la boucle car la place est déjà réservée
                 }
-                else{
-                    Place.setBackground(new Color(135, 169, 116));
-                    }
             }
             Place.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
@@ -228,7 +245,7 @@ public class Reservation_Seance_Place {
                 }
             );
             Place.setText(Integer.toString(i+1));
-            PlacesGrid.add(Place);
+        PlacesGrid.add(Place);
         }
 
         //Bouton Annuler 
@@ -245,11 +262,13 @@ public class Reservation_Seance_Place {
         });
 
         //Ajout des composants dans le frame
+        SchemaSalle.add(PlacesGrid);
+        SchemaSalle.add(Ecran);
         frame.getPanelBase().add(PlacesRestantes);
         frame.getPanelBase().add(ValiderReservation);
         frame.getPanelBase().add(ResumeSeance);
         frame.getPanelBase().add(Annuler);
-        frame.getPanelBase().add(PlacesGrid);
+        frame.getPanelBase().add(SchemaSalle);
 
         frame.RefreshPage();
 
