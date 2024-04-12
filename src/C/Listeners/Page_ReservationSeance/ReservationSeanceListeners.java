@@ -21,7 +21,6 @@ public class ReservationSeanceListeners {
         System.out.println("Nombre de ticket jeune : " + frame.reservationActuelle.get(sizeLR-1).getNbTicketJeune());
         System.out.println("Nombre de ticket ado : " + frame.reservationActuelle.get(sizeLR-1).getNbTicketAdo());
         System.out.println("Prix total : " + frame.reservationActuelle.get(sizeLR-1).getPrixTotal());
-        ChangementPageListeners changementPageListeners = new ChangementPageListeners();
-        changementPageListeners.ChangementPage("reservation_seance_place", frame);
+        ChangementPageListeners.ChangementPage("reservation_seance_place", frame);
     }
 }

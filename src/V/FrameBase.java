@@ -11,6 +11,8 @@ import M.JAVA_MODEL.Global_CLASS.Salle;
 
 //Importation des librairies
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -77,6 +79,9 @@ public class FrameBase extends JFrame{
         this.getContentPane().setBackground(MainCouleur);
 
         reservationActuelle.add(new Reservation(0, 0, 4, 2, 0));
+        reservationActuelle.add(new Reservation(2, 0, 5, 3, 0));
+        reservationActuelle.add(new Reservation(3, 0, 1, 2, 0));
+        reservationActuelle.add(new Reservation(4, 0, 2, 2, 0));
         seanceActuelle.add(new Seance(1, 654, 65, null, "11:20", 200));
         salleActuelle.add(new Salle (654, 352, 2, false));
         filmActuel.add(new Film (13, "Oppenheimer", 10.99f, Date.valueOf("2023-07-19"), "",
@@ -234,6 +239,19 @@ public class FrameBase extends JFrame{
         BoutonPanier.addActionListener(e -> {
             changementPageListeners.ChangementPage(BoutonPanier.getName(), this);
         });
+
+        //image qui ira au dessus du panier pour indiquer le nombre d'éléments dans le panier
+        ImageIcon IconePanierNombre = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/number-"+String.valueOf(reservationActuelle.size())+".png");
+        ImageIcon IconePanierNombreResize = new ImageIcon(IconePanierNombre.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        JLabel BoutonPanierNombre = new JLabel();
+        BoutonPanierNombre.setIcon(IconePanierNombreResize);
+        BoutonPanierNombre.setOpaque(true);
+        BoutonPanierNombre.setFocusable(false);
+        BoutonPanierNombre.setBorder(null);
+        BoutonPanierNombre.setBackground(SecondeCouleur_Light);
+       // BoutonPanierNombre.setEnabled(false);
+        BoutonPanierNombre.setBounds(0, 0, 20, 20);
+        BoutonPanier.add(BoutonPanierNombre, Integer.valueOf(1));           
 
         BandeauSup.add(BoutonPanier);
         BoutonPanier.setBounds(1460, 20, 120, 80);

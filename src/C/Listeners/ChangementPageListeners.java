@@ -17,9 +17,7 @@ import V.Panier.Panier;
 
 public class ChangementPageListeners{
 
-    public void ChangementPage(String boutonName, FrameBase frame) {
-
-
+    public static void ChangementPage(String boutonName, FrameBase frame) {
         // Effectuer une action en fonction du nom du bouton
         switch (boutonName) {
             case "compte":
@@ -77,6 +75,12 @@ public class ChangementPageListeners{
                 frame.PageActuelle = "panier";
                 Panier.affichagePanier(frame);
                 System.out.println("Panier");
+                break;
+            case "payer":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                frame.PageActuelle = "payer";
+                Panier.affichagePanier(frame);
+                System.out.println("Payment");
                 break;
             default:
                 System.out.println("Action non reconnue");

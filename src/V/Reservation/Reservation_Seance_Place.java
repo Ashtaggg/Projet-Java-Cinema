@@ -182,8 +182,7 @@ public class Reservation_Seance_Place {
                     for(int j=0; j<numplacesReservees.size(); j++){
                         System.out.println(numplacesReservees.get(j));
                     }
-                    ChangementPageListeners changementPageListeners = new ChangementPageListeners();
-                    changementPageListeners.ChangementPage("recap_reservation", frame);
+                    ChangementPageListeners.ChangementPage("recap_reservation", frame);
                 }
             }
         });
