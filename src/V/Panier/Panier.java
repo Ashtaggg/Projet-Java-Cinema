@@ -73,6 +73,8 @@ public class Panier {
 
         //Boucle pour afficher reservation actuelles dans le panier
         for (int i = 0; i < frame.reservationActuelle.size(); i++) {
+            System.out.println("Taille de la liste de reservation : " + frame.reservationActuelle.size());
+            System.out.println("Reservation n°" + i);
             //Panel pour chaque reservation
             JPanel panelReservation = new JPanel();
             panelReservation.setLayout(null);
@@ -189,9 +191,11 @@ public class Panier {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     int index = Integer.parseInt(SupprimerBillet.getName());
+                    System.out.println("Suppression du billet n°" + index);
                     frame.reservationActuelle.remove(index);
-                    frame.filmActuel.remove(index);
-                    frame.seanceActuelle.remove(index);
+                    //Ne pas Oublier d'enlever les commentaires quand Antho aura fait sa partie 
+                    //frame.filmActuel.remove(index);
+                    //frame.seanceActuelle.remove(index);
                     affichagePanier(frame);
                 }
             });

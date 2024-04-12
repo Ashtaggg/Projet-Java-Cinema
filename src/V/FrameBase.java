@@ -31,6 +31,8 @@ public class FrameBase extends JFrame{
     //Variables
     private JPanel PanelBase;
     public String PageActuelle = "accueil_films";
+    // Déclarez BoutonPanierNombre comme une variable de classe
+    private JLabel BoutonPanierNombre;
 
     public Utilisateur userActuel = null;
     public ArrayList<String> PagePrecedente = new ArrayList<>();
@@ -78,6 +80,7 @@ public class FrameBase extends JFrame{
         }
         this.getContentPane().setBackground(MainCouleur);
 
+        //Initialisation des variables à enlever avec la partie de Anhto
         reservationActuelle.add(new Reservation(0, 0, 4, 2, 0));
         reservationActuelle.add(new Reservation(2, 0, 5, 3, 0));
         reservationActuelle.add(new Reservation(3, 0, 1, 2, 0));
@@ -243,7 +246,7 @@ public class FrameBase extends JFrame{
         //image qui ira au dessus du panier pour indiquer le nombre d'éléments dans le panier
         ImageIcon IconePanierNombre = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/number-"+String.valueOf(reservationActuelle.size())+".png");
         ImageIcon IconePanierNombreResize = new ImageIcon(IconePanierNombre.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
-        JLabel BoutonPanierNombre = new JLabel();
+        BoutonPanierNombre = new JLabel();
         BoutonPanierNombre.setIcon(IconePanierNombreResize);
         BoutonPanierNombre.setOpaque(true);
         BoutonPanierNombre.setFocusable(false);
@@ -303,7 +306,13 @@ public class FrameBase extends JFrame{
         this.getPanelBase().revalidate();
         this.getPanelBase().repaint();
         this.getPanelBase().setVisible(true);
-
+    
+        // Mettre à jour l'icône du BoutonPanierNombre avec le nombre actuel d'éléments dans le panier
+        int nombreElementsPanier = reservationActuelle.size();
+        ImageIcon iconPanierNombre = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/number-" + nombreElementsPanier + ".png");
+        ImageIcon iconPanierNombreResize = new ImageIcon(iconPanierNombre.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        BoutonPanierNombre.setIcon(iconPanierNombreResize);
+    
         this.setVisible(true);
         this.revalidate();
         this.repaint();
