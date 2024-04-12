@@ -15,6 +15,7 @@ public class PageInscription {
         frame.getPanelBase().removeAll();
         frame.RefreshPage();
 
+
         JPanel inscription = new JPanel();
         inscription.setBounds(585, 290, 750, 800);
         inscription.setBackground(frame.getMainCouleur());
@@ -130,4 +131,12 @@ public class PageInscription {
 
         frame.RefreshPage();
     }
+
+
+
+    /*public void paint(Graphics g){
+        Graphics2D g2D = (Graphics2D) g;
+
+        g2D.drawLine(0, 0, 500, 500);
+    }*/
 }

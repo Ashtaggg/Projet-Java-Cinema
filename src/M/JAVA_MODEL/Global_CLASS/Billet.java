@@ -8,7 +8,7 @@ public class Billet {
     private String typeBillet;
 
     // Constructeur
-    public Billet(int idBillet, int idReservation, int numeroPlace, String typeBillet) {
+    public Billet(int idBillet, int idReservation, int idSeance, int numeroPlace, String typeBillet) {
         this.idBillet = idBillet;
         this.idReservation = idReservation;
         this.idSeance = idSeance;

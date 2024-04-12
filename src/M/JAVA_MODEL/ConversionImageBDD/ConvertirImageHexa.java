@@ -39,7 +39,7 @@ public class ConvertirImageHexa {
 
 
 
-    public static void HexTiImage(FrameBase frame, String imageHex, int x, int y, int width, int height){// --------------- Convertir Hexa en Image et l'afficher ------------------
+    public static BufferedImage HexToImage(FrameBase frame, String imageHex, int x, int y, int width, int height){// --------------- Convertir Hexa en Image et l'afficher ------------------
         if (!imageHex.isEmpty()) {
             byte[] bytes = new byte[imageHex.length() / 2];
             for (int i = 0; i < imageHex.length(); i += 2) {
@@ -55,13 +55,18 @@ public class ConvertirImageHexa {
                 e.printStackTrace();
             }
 
-            JLabel label = new JLabel(new ImageIcon(image));
+            // Pour afficher cette image : 
+
+            /*JLabel label = new JLabel(new ImageIcon(image));
 
             label.setBounds(x, y, width, height);
 
             frame.getPanelBase().setVisible(true);
             frame.getPanelBase().add(label);
-            frame.RefreshPage();
+            frame.RefreshPage();*/
+
+            return image;
         }
+        return null;
     }
 }
