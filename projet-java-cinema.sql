@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 12 avr. 2024 à 12:45
+-- Généré le : ven. 12 avr. 2024 à 16:37
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -32,9 +32,26 @@ CREATE TABLE IF NOT EXISTS `billet` (
   `ID_Billet` int(11) NOT NULL AUTO_INCREMENT,
   `ID_Reservation` int(11) NOT NULL,
   `NumeroPlace` int(11) NOT NULL,
-  `TypeBillet` varchar(255) NOT NULL COMMENT 'Normal, Sénior, Enfant',
+  `TypeBillet` varchar(255) NOT NULL COMMENT 'Adulte, Etudiant, Enfant',
+  `Prix` float NOT NULL,
   PRIMARY KEY (`ID_Billet`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `billet`
+--
+
+INSERT INTO `billet` (`ID_Billet`, `ID_Reservation`, `NumeroPlace`, `TypeBillet`, `Prix`) VALUES
+(1, 1, 21, 'Adulte', 10.99),
+(2, 1, 22, 'Adulte', 10.99),
+(3, 2, 23, 'Etudiant', 8.79),
+(4, 2, 24, 'Etudiant', 8.79),
+(5, 2, 25, 'Enfant', 6.59),
+(6, 2, 26, 'Enfant', 6.59),
+(7, 3, 27, 'Adulte', 24.99),
+(8, 3, 28, 'Etudiant', 19.99),
+(9, 3, 29, 'Enfant', 14.99),
+(10, 4, 30, 'Adulte', 10.99);
 
 -- --------------------------------------------------------
 
@@ -83,7 +100,7 @@ DROP TABLE IF EXISTS `film`;
 CREATE TABLE IF NOT EXISTS `film` (
   `ID_Film` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` text NOT NULL,
-  `Prix` float NOT NULL,
+  `Prix` float NOT NULL COMMENT 'Billet adulte : 10.99\r\nBillet adulte 4DX : 24.99 \r\nBillet étudiant : -20%\r\nBillet enfant : -40%',
   `DateSortie` date NOT NULL,
   `Photo` mediumtext NOT NULL,
   `Duree` time NOT NULL,
@@ -183,9 +200,19 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `ID_Compte` int(11) NOT NULL,
   `ID_Seance` int(11) NOT NULL,
   `NombrePlace` int(11) NOT NULL,
-  `PrixTotal` int(11) NOT NULL,
+  `PrixTotal` float NOT NULL,
   PRIMARY KEY (`ID_Reservation`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `reservation`
+--
+
+INSERT INTO `reservation` (`ID_Reservation`, `ID_Compte`, `ID_Seance`, `NombrePlace`, `PrixTotal`) VALUES
+(1, 1, 330, 2, 21.98),
+(2, 2, 413, 4, 30.77),
+(3, 3, 365, 3, 59.98),
+(4, 4, 350, 1, 10.99);
 
 -- --------------------------------------------------------
 
