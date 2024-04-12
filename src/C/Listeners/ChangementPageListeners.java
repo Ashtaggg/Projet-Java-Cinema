@@ -10,6 +10,10 @@ import V.Reservation.Reservation_Seance;
 import V.Reservation.Reservation_Seance_Place;
 import V.Reservation.Recap_Reservation;
 import V.Panier.Panier;
+import V.Paiement.Paiement;
+import V.Accueil.Accueil_News;
+import V.Accueil.Accueil_Films;
+import V.Accueil.Accueil_Cinema;
 
 // Importation des librairies
 
@@ -40,8 +44,22 @@ public class ChangementPageListeners{
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "accueil_films";
                 frame.RefreshPage();
-                TestEnfFrameBase.affichertestEnfFrameBase(frame);
-                System.out.println("Accueil");
+                Accueil_Films.affichageAccueil_Films(frame);
+                System.out.println("Accueil Films");
+                break;
+            case "accueil_news":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                frame.PageActuelle = "accueil_news";
+                frame.RefreshPage();
+                Accueil_News.affichageAccueil_News(frame);
+                System.out.println("Accueil News ");
+                break;
+            case "accueil_cinema":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                frame.PageActuelle = "accueil_cinema";
+                frame.RefreshPage();
+                Accueil_Cinema.affichageAccueil_Cinema(frame);
+                System.out.println("Accueil Cinema");
                 break;
             case "connexion":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
@@ -89,7 +107,7 @@ public class ChangementPageListeners{
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "payer";
                 frame.RefreshPage();
-                Panier.affichagePanier(frame);
+                Paiement.afficherPaiement(frame);
                 System.out.println("Payment");
                 break;
             default:
