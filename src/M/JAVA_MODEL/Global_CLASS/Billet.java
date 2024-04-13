@@ -15,6 +15,14 @@ public class Billet {
         this.numeroPlace = numeroPlace;
         this.typeBillet = typeBillet;
     }
+    // Constructeur
+    public Billet(int idBillet, int idReservation, int numeroPlace, String typeBillet) {
+        this.idBillet = idBillet;
+        this.idReservation = idReservation;
+        this.numeroPlace = numeroPlace;
+        this.typeBillet = typeBillet;
+    }
+
 
     // Getters et Setters
     public int getIdBillet() {

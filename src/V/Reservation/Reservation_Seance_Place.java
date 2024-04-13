@@ -143,7 +143,7 @@ public class Reservation_Seance_Place {
    
         //List<Billet> billets = recupererBilletsBySeance(frame.seanceActuelle.getIdSeance());
         List<Billet> billets = new ArrayList<Billet>();
-        //test à supprimer
+        //Ajout de billets fictifs pour tester
         billets.add(new Billet(1, 1, 10, "Normal"));
         billets.add(new Billet(2, 1, 20, "Jeune"));
         billets.add(new Billet(3, 1, 30, "Ado"));

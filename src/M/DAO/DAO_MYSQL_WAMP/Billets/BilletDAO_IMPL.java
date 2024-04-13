@@ -3,6 +3,9 @@ package M.DAO.DAO_MYSQL_WAMP.Billets;
 //Imports Fichiers
 import M.JAVA_MODEL.Global_CLASS.Billet;
 import M.DAO.DAO_MYSQL_WAMP.DAOFactory;
+import M.DAO.DAO_MYSQL_WAMP.Reservations.ReservationsDAO;
+import M.DAO.DAO_MYSQL_WAMP.Reservations.ReservationsDAO_IMPL;
+import M.JAVA_MODEL.Global_CLASS.Reservation;
 
 //Imports Java
 import java.util.List;
@@ -149,13 +152,21 @@ public class BilletDAO_IMPL implements BilletDAO{
 
         try {
             connexion = DAOFactory.getConnection();
-            preparedStatement = connexion.prepareStatement("SELECT * FROM billet WHERE ID_Seance = ?;");
-            preparedStatement.setInt(1, IDSeance);
-
+            //D'abord récupérer tout les ID Reservation
+            preparedStatement = connexion.prepareStatement("SELECT ID_Reservation FROM seance ;");
             resultat = preparedStatement.executeQuery();
-
+            List<Integer> IDReservations = null;
             while (resultat.next()) {
-                billets.add(new Billet(resultat.getInt("ID_Billet"), resultat.getInt("ID_Reservation"), resultat.getInt("NumeroPlace"), resultat.getString("TypeBillet")));
+                IDReservations.add(resultat.getInt("ID_Reservation"));
+            }
+            //Ensuite récupérer tout les réservations présentes dans la table séance
+            List<Reservation> reservations = null;
+            for (int IDReservation : IDReservations) {
+                ReservationsDAO reservationsDAO = new ReservationsDAO_IMPL();
+                reservations.add(reservationsDAO.recupererReservationByID(IDReservation));
+            }
+            for (Reservation reservation : reservations) {
+                billets.addAll(recupererBilletsByReservation(reservation.getIdReservation()));
             }
 
         } catch (SQLException e) {
