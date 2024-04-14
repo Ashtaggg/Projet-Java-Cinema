@@ -142,4 +142,23 @@ public class SallesDAO_IMPL implements SallesDAO {
         return salles;
     }
 
+    //Afficher une Salle
+    public void afficherSalle(Salle salle) {
+        System.out.println("\n--> Salle:");
+        System.out.println("ID_Salle: " + salle.getIdSalle());
+        System.out.println("Nombre de places: " + salle.getNombrePlace());
+        System.out.println("Etage: " + salle.getEtage());
+        System.out.println("4DX: " + (salle.getQuatreDX() ? "Oui" : "Non") + "\n");
+    }
+
+    //Afficher toutes les Salles
+    public void afficherToutesLesSalles(List<Salle> salles) {
+
+        for (Salle salle : salles) {
+            afficherSalle(salle);
+        }
+    }
+
+
+
 }

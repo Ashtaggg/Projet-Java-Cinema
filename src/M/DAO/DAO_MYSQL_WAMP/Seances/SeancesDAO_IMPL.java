@@ -219,5 +219,21 @@ public class SeancesDAO_IMPL implements SeancesDAO {
 
         return seances;
     }
+
+    public void afficherSeance(Seance seance) {
+        System.out.println("\n--> Seance: ");
+        System.out.println("ID Seance: " + seance.getIdSeance());
+        System.out.println("ID Film: " + seance.getIdFilm());
+        System.out.println("ID Salle: " + seance.getIdSalle());
+        System.out.println("Date: " + seance.getDate());
+        System.out.println("Heure: " + seance.getHeure());
+        System.out.println("Place Disponible: " + seance.getPlaceDisponible()+ "\n");
+    }
+
+    public void afficherToutesLesSeances(List<Seance> seances) {
+        for (Seance seance : seances) {
+            afficherSeance(seance);
+        }
+    }
 }
 

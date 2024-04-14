@@ -7,6 +7,7 @@ import M.DAO.DAO_MYSQL_WAMP.Reservations.ReservationsDAO;
 import M.DAO.DAO_MYSQL_WAMP.Reservations.ReservationsDAO_IMPL;
 import M.JAVA_MODEL.Global_CLASS.Reservation;
 
+import java.util.ArrayList;
 //Imports Java
 import java.util.List;
 import java.sql.*;
@@ -106,7 +107,7 @@ public class BilletDAO_IMPL implements BilletDAO{
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultat = null;
-        List<Billet> billets = null;
+        List<Billet> billets = new ArrayList<>();
 
         try {
             connexion = DAOFactory.getConnection();
@@ -126,7 +127,7 @@ public class BilletDAO_IMPL implements BilletDAO{
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultat = null;
-        List<Billet> billets = null;
+        List<Billet> billets = new ArrayList<>();
 
         try {
             connexion = DAOFactory.getConnection();
@@ -148,19 +149,19 @@ public class BilletDAO_IMPL implements BilletDAO{
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultat = null;
-        List<Billet> billets = null;
+        List<Billet> billets = new ArrayList<>();
 
         try {
             connexion = DAOFactory.getConnection();
             //D'abord récupérer tout les ID Reservation
-            preparedStatement = connexion.prepareStatement("SELECT ID_Reservation FROM seance ;");
+            preparedStatement = connexion.prepareStatement("SELECT ID_Reservation FROM billet ;");
             resultat = preparedStatement.executeQuery();
-            List<Integer> IDReservations = null;
+            ArrayList<Integer> IDReservations = new ArrayList<>();
             while (resultat.next()) {
                 IDReservations.add(resultat.getInt("ID_Reservation"));
             }
             //Ensuite récupérer tout les réservations présentes dans la table séance
-            List<Reservation> reservations = null;
+            List<Reservation> reservations = new ArrayList<>();
             for (int IDReservation : IDReservations) {
                 ReservationsDAO reservationsDAO = new ReservationsDAO_IMPL();
                 reservations.add(reservationsDAO.recupererReservationByID(IDReservation));
@@ -174,6 +175,18 @@ public class BilletDAO_IMPL implements BilletDAO{
         return billets;
     }
 
-    
+    public void afficherBillet(Billet billet) {
+        System.out.println("\n--> Billet : ");
+        System.out.println("ID_Billet : " + billet.getIdBillet());
+        System.out.println("ID_Reservation : " + billet.getIdReservation());
+        System.out.println("NumeroPlace : " + billet.getNumeroPlace());
+        System.out.println("TypeBillet : " + billet.getTypeBillet() + "\n");
+    }
+
+    public void afficherTousLesBillets(List<Billet> billets) {
+        for (Billet billet : billets) {
+            afficherBillet(billet);
+        }
+    }
 
 }

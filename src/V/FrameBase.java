@@ -8,6 +8,20 @@ import M.JAVA_MODEL.Global_CLASS.Reservation;
 import M.JAVA_MODEL.Global_CLASS.Seance;
 import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import M.JAVA_MODEL.Global_CLASS.Salle;
+//DAO
+import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO;
+import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
+import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO;
+import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO_IMPL;
+import M.DAO.DAO_MYSQL_WAMP.Reservations.ReservationsDAO;
+import M.DAO.DAO_MYSQL_WAMP.Reservations.ReservationsDAO_IMPL;
+import M.DAO.DAO_MYSQL_WAMP.Seances.SeancesDAO;
+import M.DAO.DAO_MYSQL_WAMP.Seances.SeancesDAO_IMPL;
+import M.DAO.DAO_MYSQL_WAMP.Salles.SallesDAO;
+import M.DAO.DAO_MYSQL_WAMP.Salles.SallesDAO_IMPL;
+import M.DAO.DAO_MYSQL_WAMP.Utilisateur.UtilisateursDAO;
+import M.DAO.DAO_MYSQL_WAMP.Utilisateur.UtilisateursDAO_IMPL;
+
 
 //Importation des librairies
 import javax.swing.JFrame;
@@ -62,6 +76,15 @@ public class FrameBase extends JFrame{
     Color QuatreCouleur = QuatreCouleur_Light;
     Color CinqCouleur = new Color(244, 255, 1);
 
+    //DAO
+    public FilmsDAO filmsDAO = new FilmsDAO_IMPL();
+    public BilletDAO billetDAO = new BilletDAO_IMPL();
+    public ReservationsDAO reservationsDAO = new ReservationsDAO_IMPL();
+    public SeancesDAO seancesDAO = new SeancesDAO_IMPL();
+    public SallesDAO sallesDAO = new SallesDAO_IMPL();
+    public UtilisateursDAO utilisateursDAO = new UtilisateursDAO_IMPL();
+
+
     //Constructeur
     public FrameBase(){
         //Setting basique de la fenêtre
@@ -81,16 +104,14 @@ public class FrameBase extends JFrame{
         this.getContentPane().setBackground(MainCouleur);
 
         //Initialisation des variables à enlever avec la partie de Anhto
-        reservationActuelle.add(new Reservation(0, 0, 4, 2, 0));
-        reservationActuelle.add(new Reservation(2, 0, 5, 3, 0));
-        reservationActuelle.add(new Reservation(3, 0, 1, 2, 0));
-        reservationActuelle.add(new Reservation(4, 0, 2, 2, 0));
-        seanceActuelle.add(new Seance(1, 654, 65, null, "11:20", 200));
-        salleActuelle.add(new Salle (654, 352, 2, false));
-        filmActuel.add(new Film (13, "Oppenheimer", 10.99f, Date.valueOf("2023-07-19"), "",
-                                    "03:01:00", "Biopic, Historique, Thriller", 3.8, false,
-                                    "Christopher Nolan", "Cillian Murphy, Emily Blunt, Matt Damon",
-                                    "En 1942, convaincus que l’Allemagne nazie est en train de développer une arme nucléaire, les États-Unis initient, dans le plus grand secret, le \"Projet Manhattan\" destiné à mettre au point la première bombe atomique de l’histoire. Pour piloter ce dispositif, le gouvernement engage J. Robert Oppenheimer, brillant physicien, qui sera bientôt surnommé \"le père de la bombe atomique\". C’est dans le laboratoire ultra-secret de Los Alamos, au cœur du désert du Nouveau-Mexique, que le scientifique et son équipe mettent au point une arme révolutionnaire dont les conséquences, vertigineuses, continuent de peser sur le monde actuel…"));
+        reservationActuelle.add(new Reservation(0, 0, 365, 0, 0));
+        seanceActuelle.add(seancesDAO.recupererSeanceByID(626)); //Récupérer Séance 626
+        seancesDAO.afficherSeance(seanceActuelle.get(0));
+        seancesDAO.afficherSeance(seancesDAO.recupererSeanceByID(626));
+        salleActuelle.add(sallesDAO.recupererSalleByID(seanceActuelle.get(0).getIdSalle()));
+        sallesDAO.afficherSalle(salleActuelle.get(0));
+        filmActuel.add(filmsDAO.recupererFilmByID(seanceActuelle.get(0).getIdFilm()));
+        filmsDAO.afficherFilm(filmActuel.get(0));
 
 
         //Class de Listener pour les boutons

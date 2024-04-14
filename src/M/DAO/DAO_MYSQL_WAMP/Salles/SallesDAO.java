@@ -21,4 +21,8 @@ public interface SallesDAO {
     Salle recupererSalleByID(int ID);
     //Récupérer toutes les salles
     List<Salle> recupererToutesLesSalles();
+    //Affciher une salle
+    void afficherSalle(Salle salle);
+    //Afficher toutes les salles d'une liste
+    void afficherToutesLesSalles(List<Salle> salles);
 }

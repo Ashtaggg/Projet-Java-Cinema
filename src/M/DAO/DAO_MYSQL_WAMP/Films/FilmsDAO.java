@@ -13,8 +13,6 @@ public interface FilmsDAO {
     void ajouterFilm(Film film);
     //Modifier un film
     void modifierFilm(Film film);
-    //Modifier un film par son Id
-    void modifierFilmByID(int ID);
     //Supprimer un film
     void supprimerFilm(Film film);
     //Supprimer un film par son Id
@@ -29,5 +27,10 @@ public interface FilmsDAO {
     Film recupererFilmByRealisateur(String realisateur);
     //Récupérer tous les films
     List<Film> recupererTousLesFilms();
+    //Afficcher un film
+    void afficherFilm(Film film);
+    //Afficher tous les films d'une liste   
+    void afficherTousLesFilms(List<Film> films);
+
 
 }

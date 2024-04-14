@@ -132,4 +132,21 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
         // A faire
         return null;
     }
+
+    public void afficherUtilisateur(Utilisateur utilisateur) {
+        System.out.println("\n--> Utilisateur:");
+        System.out.println("ID_Compte: " + utilisateur.getIdCompte());
+        System.out.println("Admin: " + utilisateur.getAdmin());
+        System.out.println("Prenom: " + utilisateur.getPrenom());
+        System.out.println("Nom: " + utilisateur.getNom());
+        System.out.println("MotDePasse: " + utilisateur.getMotDePasse());
+        System.out.println("DateNaissance: " + utilisateur.getDateNaissance() + "\n");
+        //System.out.println("PhotoProfil: " + utilisateur.getPhotoProfil());
+    }
+
+    public void afficherTousLesUtilisateurs(List<Utilisateur> utilisateurs) {
+        for (Utilisateur utilisateur : utilisateurs) {
+            afficherUtilisateur(utilisateur);
+        }
+    }
 }

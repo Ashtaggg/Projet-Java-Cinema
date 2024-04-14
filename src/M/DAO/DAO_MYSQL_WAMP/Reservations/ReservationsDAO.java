@@ -26,4 +26,8 @@ public interface ReservationsDAO {
     Reservation recupererReservationByUtilisateur(int UtilisateurID);
     //Récupérer toutes les reservations
     List<Reservation> recupererToutesLesReservations();
+    //Affciher une reservation
+    void afficherReservation(Reservation reservation);
+    //Afficher toutes les reservations d'une liste
+    void afficherToutesLesReservations(List<Reservation> reservations);
 }

@@ -24,4 +24,8 @@ public interface BilletDAO{
     List<Billet> recupererBilletsByReservation(int IDReservation);
     //Récupérer tous les billets d'une seance
     List<Billet> recupererBilletsBySeance(int IDSeance);
+    //Affciher un billet
+    void afficherBillet(Billet billet);
+    //Afficher tous les billets d'une liste
+    void afficherTousLesBillets(List<Billet> billets);
 }

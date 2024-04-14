@@ -25,4 +25,8 @@ public interface UtilisateursDAO {
     Utilisateur recupererUtilisateurByEmail(String email);
     //Récupérer tous les utilisateurs
     List<Utilisateur> recupererTousLesUtilisateurs();
+    //Affciher un utilisateur
+    void afficherUtilisateur(Utilisateur utilisateur);
+    //Afficher tous les utilisateurs d'une liste
+    void afficherTousLesUtilisateurs(List<Utilisateur> utilisateurs);
 }

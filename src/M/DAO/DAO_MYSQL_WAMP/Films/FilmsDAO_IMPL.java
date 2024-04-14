@@ -64,20 +64,72 @@ public class FilmsDAO_IMPL implements FilmsDAO{
         }
     }
 
-    public void modifierFilmByID(int ID) {
-        // A faire
-    }
-
     public void supprimerFilm(Film film) {
-        // A faire
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("DELETE FROM film WHERE ID_Film = ?");
+            preparedStatement.setInt(1, film.getIdFilm());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException error) {
+            System.out.println(error);
+        }
     }
 
     public void supprimerFilmByID(int ID) {
-        // A faire
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("DELETE FROM film WHERE ID_Film = ?");
+            preparedStatement.setInt(1, ID);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException error) {
+            System.out.println(error);
+        }
     }
 
     public Film recupererFilmByID(int ID) {
-        // A faire
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("SELECT * FROM film WHERE ID_Film = ?");
+            preparedStatement.setInt(1, ID);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            if(result.next()) {
+                int idFilm = result.getInt("ID_Film");
+                String nom = result.getString("Nom");
+                float prix = result.getFloat("Prix");
+                Date dateSortie = result.getDate("DateSortie");
+                String photo = result.getString("Photo");
+                String duree = result.getString("Duree");
+                String description = result.getString("Description");
+                double note = result.getDouble("Note");
+                Boolean quatreDX = result.getBoolean("4DX");
+                String realisateur = result.getString("Realisateur");
+                String acteur = result.getString("Acteur");
+                String synopsis = result.getString("Synopsis");
+
+                Film film = new Film(idFilm, nom, prix, dateSortie, photo, duree, description, note, quatreDX, realisateur, acteur, synopsis);
+
+                return film;
+            }
+
+        } catch (SQLException error) {
+            System.out.println(error);
+        }
+
         return null;
     }
 
@@ -131,6 +183,28 @@ public class FilmsDAO_IMPL implements FilmsDAO{
     public List<Film> recupererTousLesFilms() {
         // A faire
         return null;
+    }
+
+    public void afficherFilm(Film film) {
+        System.out.println("\n--> Film: ");
+        System.out.println("ID_Film: " + film.getIdFilm());
+        System.out.println("Nom: " + film.getNom());
+        System.out.println("Prix: " + film.getPrix());
+        System.out.println("DateSortie: " + film.getDateSortie());
+        //System.out.println("Photo: " + film.getPhoto());
+        System.out.println("Duree: " + film.getDuree());
+        System.out.println("Description: " + film.getDescription());
+        System.out.println("Note: " + film.getNote());
+        System.out.println("4DX: " + film.getQuatreDX());
+        System.out.println("Realisateur: " + film.getRealisateur());
+        System.out.println("Acteur: " + film.getActeur());
+        System.out.println("Synopsis: " + film.getSynopsis() + "\n");
+    }
+
+    public void afficherTousLesFilms(List<Film> films) {
+        for (Film film : films) {
+            afficherFilm(film);
+        }
     }
 
 }
