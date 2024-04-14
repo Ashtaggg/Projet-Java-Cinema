@@ -14,6 +14,7 @@ import V.Paiement.Paiement;
 import V.Accueil.Accueil_News;
 import V.Accueil.Accueil_Films;
 import V.Accueil.Accueil_Cinema;
+import V.Admin.EspaceAdmin;
 
 // Importation des librairies
 
@@ -39,6 +40,13 @@ public class ChangementPageListeners{
                     PageConnexion.affichagePageConnexion(frame);
                     System.out.println("Connexion");
                 }
+                break;
+            case "admin":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                frame.PageActuelle = "admin";
+                frame.RefreshPage();
+                EspaceAdmin.affichageEspaceAdmin(frame);
+                System.out.println("Espace Admin");
                 break;
             case "accueil_films":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));

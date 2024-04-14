@@ -198,6 +198,29 @@ public class FrameBase extends JFrame{
         BandeauSup.add(BoutonDarkMode);
         BoutonDarkMode.setBounds(1830, 40, 40, 40);
 
+        //Bouton d'accès à l'administration en haut à droite
+        JButton BoutonAdmin = new JButton();
+        ImageIcon IconeAdmin = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/Admin_Blanc.png");
+        BoutonAdmin.setIcon(new ImageIcon(IconeAdmin.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+        BoutonAdmin.setText("Admin");
+        BoutonAdmin.setHorizontalTextPosition(JButton.CENTER);
+        BoutonAdmin.setVerticalTextPosition(JButton.BOTTOM);
+        BoutonAdmin.setFont(new Font("Arial", Font.BOLD, 12));
+        BoutonAdmin.setIconTextGap(13);
+        BoutonAdmin.setForeground(Color.WHITE);
+        BoutonAdmin.setOpaque(true);
+        BoutonAdmin.setFocusable(false);
+        BoutonAdmin.setBorderPainted(false);
+        BoutonAdmin.setBackground(SecondeCouleur_Light);
+        //Action du bouton
+        BoutonAdmin.setName("admin");
+        BoutonAdmin.addActionListener(e -> {
+            changementPageListeners.ChangementPage(BoutonAdmin.getName(), this);
+        });
+
+        BandeauSup.add(BoutonAdmin);
+        BoutonAdmin.setBounds(1700, 20, 120, 80);
+
         // Bouton de Compte Utilisateur en haut à droite
         JButton BoutonCompte = new JButton();
         ImageIcon IconeCompte = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/User_Blanc.png");
@@ -219,30 +242,8 @@ public class FrameBase extends JFrame{
         });
 
         BandeauSup.add(BoutonCompte);
-        BoutonCompte.setBounds(1700, 20, 120, 80);
+        BoutonCompte.setBounds(1580, 20, 120, 80);
 
-        //Bouton de recherche en haut à droite
-        JButton BoutonSearch = new JButton();
-        ImageIcon IconeSearch = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/Search_Blanc.png");
-        BoutonSearch.setIcon(new ImageIcon(IconeSearch.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
-        BoutonSearch.setText("Rechercher");
-        BoutonSearch.setHorizontalTextPosition(JButton.CENTER);
-        BoutonSearch.setVerticalTextPosition(JButton.BOTTOM);
-        BoutonSearch.setFont(new Font("Arial", Font.BOLD, 12));
-        BoutonSearch.setIconTextGap(13);
-        BoutonSearch.setForeground(Color.WHITE);
-        BoutonSearch.setOpaque(true);
-        BoutonSearch.setFocusable(false);
-        BoutonSearch.setBorderPainted(false);
-        BoutonSearch.setBackground(SecondeCouleur_Light);
-        //Action du bouton
-        BoutonSearch.setName("search_globale");
-        BoutonSearch.addActionListener(e -> {
-            rechercheListeners.actionPerformed(BoutonSearch.getName(), this);
-        });
-
-        BandeauSup.add(BoutonSearch);
-        BoutonSearch.setBounds(1580, 20, 120, 80);
 
         //Bouton de Panier en haut à droite
         JButton BoutonPanier = new JButton();
@@ -279,6 +280,29 @@ public class FrameBase extends JFrame{
 
         BandeauSup.add(BoutonPanier);
         BoutonPanier.setBounds(1460, 20, 120, 80);
+
+        //Bouton de recherche en haut à gauche à droite du Logo
+        JButton BoutonSearch = new JButton();
+        ImageIcon IconeSearch = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/Search_Blanc.png");
+        BoutonSearch.setIcon(new ImageIcon(IconeSearch.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
+        BoutonSearch.setText("Rechercher");
+        BoutonSearch.setHorizontalTextPosition(JButton.CENTER);
+        BoutonSearch.setVerticalTextPosition(JButton.BOTTOM);
+        BoutonSearch.setFont(new Font("Arial", Font.BOLD, 12));
+        BoutonSearch.setIconTextGap(13);
+        BoutonSearch.setForeground(Color.WHITE);
+        BoutonSearch.setOpaque(true);
+        BoutonSearch.setFocusable(false);
+        BoutonSearch.setBorderPainted(false);
+        BoutonSearch.setBackground(SecondeCouleur_Light);
+        //Action du bouton
+        BoutonSearch.setName("search_globale");
+        BoutonSearch.addActionListener(e -> {
+            rechercheListeners.actionPerformed(BoutonSearch.getName(), this);
+        });
+
+        BandeauSup.add(BoutonSearch);
+        BoutonSearch.setBounds(195, 20, 120, 80);
 
         //Panel pour le reste de la page à actualiser en focntion de la page
         PanelBase = new JPanel();

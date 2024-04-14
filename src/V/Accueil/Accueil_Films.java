@@ -41,6 +41,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Accueil_Films {
+
+    public static boolean sizePage = false;
+
     public static void affichageAccueil_Films(FrameBase frame){
         frame.PageActuelle = "accueil_cinema";
         frame.getPanelBase().removeAll();
@@ -48,7 +51,7 @@ public class Accueil_Films {
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new GridBagLayout()); // Utiliser GridBagLayout pour une disposition plus flexible
         contentPanel.setBackground(frame.getMainCouleur());
-        contentPanel.setBounds(0, 0, 500, 800);
+        contentPanel.setBounds(0, 0, 500, 5000);
 
         // Ajout de labels pour étirer notre zone de scroll
         GridBagConstraints gbc = new GridBagConstraints();
@@ -203,7 +206,7 @@ public class Accueil_Films {
         //Footer avec nos conditions de ventes, cooerdonnées et mentions légales + Map
 
         // Ajouter un footer
-        /*JPanel footer = new JPanel();
+        JPanel footer = new JPanel();
         footer.setBackground(frame.getSecondeCouleur());
         footer.setLayout(null);
         footer.setBorder(BorderFactory.createLineBorder(frame.getMainCouleur(), 2));
@@ -238,7 +241,7 @@ public class Accueil_Films {
         TexteConditionsVente.setFont(new Font ("Arial", Font.PLAIN, 23));
         TexteConditionsVente.setForeground(frame.getMainCouleur());
         TexteConditionsVente.setBounds(50, 250, 1750, 800);
-        if(sizePage!=20){footer.add(TexteConditionsVente);}
+        if(sizePage){footer.add(TexteConditionsVente);}
         //Bouton pour afficher les conditions de vente
         JButton ConditionsVenteButton = new JButton("Voir");
         ConditionsVenteButton.setFont(new Font ("Arial", Font.PLAIN, 23));
@@ -292,11 +295,11 @@ public class Accueil_Films {
 
         // Ajouter footer avec GridBagLayout
         gbc.gridx = 1;
-        gbc.gridy = 19; // Aller à la ligne suivante
+        gbc.gridy += 2; // Aller à la ligne suivante
         gbc.ipadx = 1845; // Largeur spécifique
-        if(sizePage==20){gbc.ipady = 200;} // Hauteur spécifique
-        else{gbc.ipady = 1150;} // Hauteur spécifique
-        contentPanel.add(footer, gbc);*/
+        if(sizePage){gbc.ipady = 1150;} // Hauteur spécifique
+        else{gbc.ipady = 00;} // Hauteur spécifique
+        contentPanel.add(footer, gbc);
 
 
         // Créer un JScrollPane et y ajouter le contentPanel
