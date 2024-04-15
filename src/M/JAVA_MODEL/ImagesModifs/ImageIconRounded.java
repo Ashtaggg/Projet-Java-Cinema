@@ -1,4 +1,4 @@
-package M.JAVA_MODEL.ConversionImageBDD;
+package M.JAVA_MODEL.ImagesModifs;
 
 import javax.swing.*;
 import java.awt.*;

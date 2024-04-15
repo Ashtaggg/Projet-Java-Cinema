@@ -5,10 +5,10 @@ import java.awt.*;
 import javax.swing.border.LineBorder;
 import java.awt.image.BufferedImage;
 
+import M.JAVA_MODEL.ImagesModifs.ChangerCouleurImage;
+import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
+import M.JAVA_MODEL.ImagesModifs.ImageIconRounded;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
-import M.JAVA_MODEL.ConversionImageBDD.ChangerCouleurImage;
-import M.JAVA_MODEL.ConversionImageBDD.ConvertirImageHexa;
-import M.JAVA_MODEL.ConversionImageBDD.ImageIconRounded;
 import V.FrameBase;
 
 public class PageCompte {
@@ -37,6 +37,12 @@ public class PageCompte {
             imageLabel.setBounds(275, 50, 200, 200);
             compte.add(imageLabel);
         }
+        JPanel photoProfil = new JPanel();
+        photoProfil.setLayout(null);
+        photoProfil.setBackground(frame.getMainCouleur());
+        photoProfil.setBounds(274, 49, 202, 202);
+        photoProfil.setBorder(new RoundBorder(frame.getSecondeCouleur(), 200, 1));
+        compte.add(photoProfil);
         
 
 

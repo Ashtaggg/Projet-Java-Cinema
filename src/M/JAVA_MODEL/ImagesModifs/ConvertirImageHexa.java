@@ -1,4 +1,4 @@
-package M.JAVA_MODEL.ConversionImageBDD;
+package M.JAVA_MODEL.ImagesModifs;
 
 import java.io.*;
 import java.io.IOException;
