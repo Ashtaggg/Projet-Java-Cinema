@@ -17,7 +17,7 @@ public class PageInscription {
 
 
         JPanel inscription = new JPanel();
-        inscription.setBounds(585, 290, 750, 800);
+        inscription.setBounds(585, 160, 750, 800);
         inscription.setBackground(frame.getMainCouleur());
         inscription.setLayout(null);
 

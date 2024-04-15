@@ -1,5 +1,6 @@
 package M.Utilisateur;
 
+import C.Listeners.ChangementPageListeners;
 import M.DAO.DAO_MYSQL_WAMP.Utilisateur.UtilisateursDAO_IMPL;
 import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import V.FrameBase;
@@ -60,7 +61,7 @@ public class Connexion {
         else{
             problemConnexionLabel.setVisible(false);
             frame.userActuel = user;
-            // Se redirigier vers la page du compte
+            ChangementPageListeners.ChangementPage("compte", frame);
         }
     }
 }

@@ -1,13 +1,10 @@
 package M.JAVA_MODEL.ConversionImageBDD;
 
-import javax.swing.*;
 import java.io.*;
 import java.io.IOException;
 import java.io.ByteArrayInputStream;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-
-import V.FrameBase;
 
 
 
@@ -39,7 +36,7 @@ public class ConvertirImageHexa {
 
 
 
-    public static BufferedImage HexToImage(FrameBase frame, String imageHex, int x, int y, int width, int height){// --------------- Convertir Hexa en Image et l'afficher ------------------
+    public static BufferedImage HexToImage(String imageHex){// --------------- Convertir Hexa en Image et l'afficher ------------------
         if (!imageHex.isEmpty()) {
             byte[] bytes = new byte[imageHex.length() / 2];
             for (int i = 0; i < imageHex.length(); i += 2) {
