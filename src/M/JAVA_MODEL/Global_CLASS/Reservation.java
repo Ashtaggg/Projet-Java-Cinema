@@ -18,7 +18,7 @@ public class Reservation {
     private double prixTotal;
 
     // Constructeurs
-    public Reservation(int idReservation, int idCompte, int idSeance, int nombrePlace, int prixTotal) {
+    public Reservation(int idReservation, int idCompte, int idSeance, int nombrePlace, double prixTotal) {
         this.idReservation = idReservation;
         this.idCompte = idCompte;
         this.idSeance = idSeance;

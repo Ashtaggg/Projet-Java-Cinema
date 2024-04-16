@@ -6,6 +6,7 @@ import M.DAO.DAO_MYSQL_WAMP.DAOFactory;
 import M.DAO.DAO_MYSQL_WAMP.Reservations.ReservationsDAO;
 import M.DAO.DAO_MYSQL_WAMP.Reservations.ReservationsDAO_IMPL;
 import M.JAVA_MODEL.Global_CLASS.Reservation;
+import V.FrameBase;
 
 import java.util.ArrayList;
 //Imports Java
@@ -95,7 +96,7 @@ public class BilletDAO_IMPL implements BilletDAO{
             resultat = preparedStatement.executeQuery();
 
             if (resultat.next()) {
-                billet = new Billet(resultat.getInt("ID_Billet"), resultat.getInt("ID_Reservation"), resultat.getInt("NumeroPlace"), resultat.getString("TypeBillet"));
+                billet = new Billet(resultat.getInt("ID_Billet"), resultat.getInt("ID_Reservation"), resultat.getInt("NumeroPlace"), resultat.getString("TypeBillet"), resultat.getDouble("Prix"));
             }
 
         } catch (SQLException e) {
@@ -115,7 +116,7 @@ public class BilletDAO_IMPL implements BilletDAO{
             resultat = preparedStatement.executeQuery();
 
             while (resultat.next()) {
-                billets.add(new Billet(resultat.getInt("ID_Billet"), resultat.getInt("ID_Reservation"), resultat.getInt("NumeroPlace"), resultat.getString("TypeBillet")));
+                billets.add(new Billet(resultat.getInt("ID_Billet"), resultat.getInt("ID_Reservation"), resultat.getInt("NumeroPlace"), resultat.getString("TypeBillet"), resultat.getDouble("Prix")));
             }
 
         } catch (SQLException e) {
@@ -137,7 +138,7 @@ public class BilletDAO_IMPL implements BilletDAO{
             resultat = preparedStatement.executeQuery();
 
             while (resultat.next()) {
-                billets.add(new Billet(resultat.getInt("ID_Billet"), resultat.getInt("ID_Reservation"), resultat.getInt("NumeroPlace"), resultat.getString("TypeBillet")));
+                billets.add(new Billet(resultat.getInt("ID_Billet"), resultat.getInt("ID_Reservation"), resultat.getInt("NumeroPlace"), resultat.getString("TypeBillet"), resultat.getDouble("Prix")));
             }
 
         } catch (SQLException e) {
@@ -189,4 +190,32 @@ public class BilletDAO_IMPL implements BilletDAO{
         }
     }
 
+
+    public List<Billet> recupererBilletsByID_Compte(FrameBase frame) {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultat = null;
+        List<Billet> billets = new ArrayList<>();
+
+
+        List<Reservation> reservation = frame.reservationsDAO.recupererReservationByUtilisateur(frame.userActuel.getIdCompte());
+
+        for (Reservation res : reservation) {
+            try {
+                connexion = DAOFactory.getConnection();
+                preparedStatement = connexion.prepareStatement("SELECT * FROM billet WHERE ID_Reservation = ?;");
+                preparedStatement.setInt(1, res.getIdReservation());
+        
+                resultat = preparedStatement.executeQuery();
+        
+                while (resultat.next()) {
+                    billets.add(new Billet(resultat.getInt("ID_Billet"), resultat.getInt("ID_Reservation"), resultat.getInt("NumeroPlace"), resultat.getString("TypeBillet"), resultat.getDouble("Prix")));
+                }
+        
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return billets;
+    }
 }

@@ -2,6 +2,7 @@ package M.DAO.DAO_MYSQL_WAMP.Billets;
 
 //Imports Fichiers
 import M.JAVA_MODEL.Global_CLASS.Billet;
+import V.FrameBase;
 
 //Imports Java
 import java.util.List;
@@ -28,4 +29,6 @@ public interface BilletDAO{
     void afficherBillet(Billet billet);
     //Afficher tous les billets d'une liste
     void afficherTousLesBillets(List<Billet> billets);
+    //ARécupérer tous les billets d'un utilisateur
+    public List<Billet> recupererBilletsByID_Compte(FrameBase frame);
 }
