@@ -10,10 +10,17 @@ import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
 import V.FrameBase;
 import M.JAVA_MODEL.Global_CLASS.Salle;
+import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO;
+import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
+
 
 //Importation des librairies
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import java.util.List;
+import java.sql.*;
+import java.util.ArrayList;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -23,7 +30,6 @@ import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
 
 import java.awt.Image;
-import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -140,9 +146,11 @@ public class Accueil_Films {
         gbc.gridy++;
         gbc.ipady = 80;
 
+        FilmsDAO_IMPL filmsDAO = new FilmsDAO_IMPL();
                 
-        for(int i=0; i<=10; i++){
-            // Créer un JPanel pour chaque film
+        List<Film> films = filmsDAO.recupererTousLesFilms(); // Méthode pour récupérer tous les films depuis la base de données
+
+        for (Film film : films) {
             JPanel panelFilm = new JPanel();
             panelFilm.setLayout(null);
             panelFilm.setBackground(frame.getMainCouleur());
@@ -152,57 +160,40 @@ public class Accueil_Films {
             gbc.gridy++;
             contentPanel.add(panelFilm, gbc);
 
-            // Créer un JLabel pour le titre du film
-            JLabel titreFilm = new JLabel("Titre du film");
-            titreFilm.setFont(new Font("Arial", Font.BOLD, 20));
-            titreFilm.setForeground(frame.getSecondeCouleur());
-            titreFilm.setBounds(20, 20, 500, 50);
-            panelFilm.add(titreFilm);
+            // Affichage des détails du film
+            JLabel titreLabel = new JLabel("Titre du film : " + film.getNom());
+            // Positionnement et style du titreLabel
+            titreLabel.setBounds(20, 20, 500, 30);
+            panelFilm.add(titreLabel);
 
-            // Créer un JLabel pour la date de sortie du film
-            JLabel dateSortie = new JLabel("Date de sortie : 01/01/2021");
-            dateSortie.setFont(new Font("Arial", Font.PLAIN, 15));
-            dateSortie.setForeground(frame.getSecondeCouleur());
-            dateSortie.setBounds(20, 70, 500, 50);
+            // Affichage des autres détails du film
+            JLabel dateSortie = new JLabel("Date de sortie : " + film.getDateSortie());
+            dateSortie.setBounds(20, 70, 500, 30);
             panelFilm.add(dateSortie);
 
-            // Créer un JLabel pour la durée du film
-            JLabel dureeFilm = new JLabel("Durée : 2h30");
-            dureeFilm.setFont(new Font("Arial", Font.PLAIN, 15));
-            dureeFilm.setForeground(frame.getSecondeCouleur());
-            dureeFilm.setBounds(20, 120, 500, 50);
+            JLabel dureeFilm = new JLabel("Durée : " + film.getDuree());
+            dureeFilm.setBounds(20, 120, 500, 30);
             panelFilm.add(dureeFilm);
 
-            // Créer un JLabel pour le réalisateur du film
-            JLabel realisateurFilm = new JLabel("Réalisateur : Quentin Tarantino");
-            realisateurFilm.setFont(new Font("Arial", Font.PLAIN, 15));
-            realisateurFilm.setForeground(frame.getSecondeCouleur());
-            realisateurFilm.setBounds(20, 170, 500, 50);
+            JLabel realisateurFilm = new JLabel("Réalisateur : " + film.getRealisateur());
+            realisateurFilm.setBounds(20, 170, 500, 30);
             panelFilm.add(realisateurFilm);
 
-            // Créer un JButton pour réserver le film
+            // Boutons pour réserver et voir les séances
             JButton boutonReserver = new JButton("Réserver");
             boutonReserver.setFont(new Font("Arial", Font.BOLD, 15));
-            boutonReserver.setBackground(frame.getCinqCouleur());
-            boutonReserver.setForeground(frame.getSecondeCouleur());
-            boutonReserver.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
             boutonReserver.setBounds(600, 65, 150, 50);
             panelFilm.add(boutonReserver);
 
-            // Créer un JButton pour voir les séances du film
             JButton boutonSeances = new JButton("Voir les séances");
             boutonSeances.setFont(new Font("Arial", Font.BOLD, 15));
-            boutonSeances.setBackground(frame.getCinqCouleur());
-            boutonSeances.setForeground(frame.getSecondeCouleur());
-            boutonSeances.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
             boutonSeances.setBounds(600, 185, 150, 50);
             panelFilm.add(boutonSeances);
+
             gbc.gridy++;
             gbc.ipady = 80;
             contentPanel.add(new JLabel(), gbc);
-
         }
-
         //Footer avec nos conditions de ventes, cooerdonnées et mentions légales + Map
 
         // Ajouter un footer

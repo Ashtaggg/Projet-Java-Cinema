@@ -6,6 +6,9 @@ import M.DAO.DAO_MYSQL_WAMP.DAOFactory;
 //Imports Java
 import java.util.List;
 import java.sql.*;
+import java.util.ArrayList;
+
+
 
 public class FilmsDAO_IMPL implements FilmsDAO{
 
@@ -181,8 +184,61 @@ public class FilmsDAO_IMPL implements FilmsDAO{
     }
 
     public List<Film> recupererTousLesFilms() {
-        // A faire
-        return null;
+        List<Film> films = new ArrayList<>();
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("SELECT * FROM film");
+            result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                int idFilm = result.getInt("ID_Film");
+                String nom = result.getString("Nom");
+                float prix = result.getFloat("Prix");
+                Date dateSortie = result.getDate("DateSortie");
+                String photo = result.getString("Photo");
+                String duree = result.getString("Duree");
+                String description = result.getString("Description");
+                double note = result.getDouble("Note");
+                Boolean quatreDX = result.getBoolean("4DX");
+                String realisateur = result.getString("Realisateur");
+                String acteur = result.getString("Acteur");
+                String synopsis = result.getString("Synopsis");
+
+                Film film = new Film(idFilm, nom, prix, dateSortie, photo, duree, description, note, quatreDX, realisateur, acteur, synopsis);
+                films.add(film);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer l'exception (par exemple, en lançant une nouvelle exception personnalisée ou en loggant l'erreur)
+        } finally {
+            // Fermer les ressources (ResultSet, PreparedStatement et Connection)
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connexion != null) {
+                try {
+                    connexion.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return films;
     }
 
     public void afficherFilm(Film film) {
