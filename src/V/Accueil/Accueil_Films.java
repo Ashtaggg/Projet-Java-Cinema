@@ -10,20 +10,31 @@ import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
 import V.FrameBase;
 import M.JAVA_MODEL.Global_CLASS.Salle;
+import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO;
+import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
+import M.Accueil.Films;
+
+
 
 //Importation des librairies
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import java.util.List;
+import java.sql.*;
+import java.util.ArrayList;
+
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
+import java.awt.image.BufferedImage;
+
 
 import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
 
 import java.awt.Image;
-import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -140,9 +151,13 @@ public class Accueil_Films {
         gbc.gridy++;
         gbc.ipady = 80;
 
-                
-        for(int i=0; i<=10; i++){
-            // Créer un JPanel pour chaque film
+
+        
+
+        FilmsDAO_IMPL filmsDAO = new FilmsDAO_IMPL();
+        List<Film> films = filmsDAO.recupererTousLesFilms(); // Méthode pour récupérer tous les films depuis la base de données
+        
+        for (Film film : films) {
             JPanel panelFilm = new JPanel();
             panelFilm.setLayout(null);
             panelFilm.setBackground(frame.getMainCouleur());
@@ -152,56 +167,64 @@ public class Accueil_Films {
             gbc.gridy++;
             contentPanel.add(panelFilm, gbc);
 
-            // Créer un JLabel pour le titre du film
-            JLabel titreFilm = new JLabel("Titre du film");
-            titreFilm.setFont(new Font("Arial", Font.BOLD, 20));
-            titreFilm.setForeground(frame.getSecondeCouleur());
-            titreFilm.setBounds(20, 20, 500, 50);
-            panelFilm.add(titreFilm);
+            BufferedImage image = ConvertirImageHexa.HexToImage(film.getPhoto());
+            Image image2 = image.getScaledInstance(155, 210, Image.SCALE_SMOOTH);
+            JLabel afficherLabel = new JLabel(new ImageIcon(image2));
+            afficherLabel.setBounds(20, 20, 155, 210);
+            panelFilm.add(afficherLabel);
+            // Affichage des détails du film
+            JLabel titreLabel = new JLabel("Titre du film : " + film.getNom());
+            titreLabel.setFont(new Font("Arial", Font.BOLD, 20));
+            titreLabel.setForeground(frame.getQuatreCouleur());
 
-            // Créer un JLabel pour la date de sortie du film
-            JLabel dateSortie = new JLabel("Date de sortie : 01/01/2021");
-            dateSortie.setFont(new Font("Arial", Font.PLAIN, 15));
+            // Positionnement et style du titreLabel
+            titreLabel.setBounds(200, 20, 500, 30);
+            panelFilm.add(titreLabel);
+        
+            JLabel dateSortie = new JLabel("Date de sortie : " + film.getDateSortie());
+            dateSortie.setFont(new Font("Arial", Font.BOLD, 15));
             dateSortie.setForeground(frame.getSecondeCouleur());
-            dateSortie.setBounds(20, 70, 500, 50);
+
+            dateSortie.setBounds(200, 70, 500, 30);
             panelFilm.add(dateSortie);
-
-            // Créer un JLabel pour la durée du film
-            JLabel dureeFilm = new JLabel("Durée : 2h30");
-            dureeFilm.setFont(new Font("Arial", Font.PLAIN, 15));
+        
+            JLabel dureeFilm = new JLabel("Durée : " + film.getDuree());
+            dureeFilm.setFont(new Font("Arial", Font.BOLD, 15));
             dureeFilm.setForeground(frame.getSecondeCouleur());
-            dureeFilm.setBounds(20, 120, 500, 50);
+
+
+            dureeFilm.setBounds(200, 120, 500, 30);
             panelFilm.add(dureeFilm);
-
-            // Créer un JLabel pour le réalisateur du film
-            JLabel realisateurFilm = new JLabel("Réalisateur : Quentin Tarantino");
-            realisateurFilm.setFont(new Font("Arial", Font.PLAIN, 15));
+        
+            JLabel realisateurFilm = new JLabel("Réalisateur : " + film.getRealisateur());
+            realisateurFilm.setFont(new Font("Arial", Font.BOLD, 15));
             realisateurFilm.setForeground(frame.getSecondeCouleur());
-            realisateurFilm.setBounds(20, 170, 500, 50);
-            panelFilm.add(realisateurFilm);
 
-            // Créer un JButton pour réserver le film
+
+            realisateurFilm.setBounds(200, 170, 500, 30);
+            panelFilm.add(realisateurFilm);
+        
+            // Boutons pour réserver et voir les séances
             JButton boutonReserver = new JButton("Réserver");
             boutonReserver.setFont(new Font("Arial", Font.BOLD, 15));
-            boutonReserver.setBackground(frame.getCinqCouleur());
+            boutonReserver.setBackground(frame.getMainCouleur());
             boutonReserver.setForeground(frame.getSecondeCouleur());
-            boutonReserver.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
-            boutonReserver.setBounds(600, 65, 150, 50);
-            panelFilm.add(boutonReserver);
 
-            // Créer un JButton pour voir les séances du film
+            boutonReserver.setBounds(600, 55, 150, 50);
+            panelFilm.add(boutonReserver);
+        
             JButton boutonSeances = new JButton("Voir les séances");
             boutonSeances.setFont(new Font("Arial", Font.BOLD, 15));
-            boutonSeances.setBackground(frame.getCinqCouleur());
+            boutonSeances.setBackground(frame.getMainCouleur());
             boutonSeances.setForeground(frame.getSecondeCouleur());
-            boutonSeances.setBorder(BorderFactory.createLineBorder(frame.getSecondeCouleur(), 2));
-            boutonSeances.setBounds(600, 185, 150, 50);
+            boutonSeances.setBounds(600, 145, 150, 50);
             panelFilm.add(boutonSeances);
+        
             gbc.gridy++;
             gbc.ipady = 80;
             contentPanel.add(new JLabel(), gbc);
-
         }
+        
 
         //Footer avec nos conditions de ventes, cooerdonnées et mentions légales + Map
 
