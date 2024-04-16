@@ -83,10 +83,12 @@ public class Paiement {
         panelSeparation.setBounds(480, 80, 1000, 2);
 
         JPanel carte = new JPanel();
-        carte.setBounds(120, 140, 800, 500);
+        carte.setLayout(null);
         carte.setBackground(frame.getMainCouleur());
+        carte.setOpaque(true);
         carte.setLayout(null);
         carte.setBorder(new RoundBorder(frame.getSecondeCouleur(), 40, 2));
+        carte.setBounds(120, 140, 800, 500);
 
         JLabel carteLabel = new JLabel("Carte de Crédit");
         carteLabel.setBounds(20, 28, 385, 28);
@@ -94,29 +96,38 @@ public class Paiement {
         carteLabel.setFont(font1);
         carte.add(carteLabel);
 
-        JLabel logo1Label = new JLabel(")");
-        logo1Label.setBounds(15, 100, 185, 30);
+        /*JLabel logo1Label = new JLabel(")");
+        logo1Label.setBounds(15, 120, 185, 40);
         logo1Label.setForeground(frame.getSecondeCouleur());
-        logo1Label.setFont(new Font("Arial", Font.BOLD, 15));
+        logo1Label.setFont(new Font("Arial", Font.BOLD, 20));
         carte.add(logo1Label);
 
         JLabel logo2Label = new JLabel(")");
-        logo2Label.setBounds(20, 100, 185, 30);
+        logo2Label.setBounds(20, 110, 185, 40);
         logo2Label.setForeground(frame.getSecondeCouleur());
-        logo2Label.setFont(new Font("Arial", Font.BOLD, 21));
+        logo2Label.setFont(new Font("Arial", Font.BOLD, 26));
         carte.add(logo2Label);
 
         JLabel logo3Label = new JLabel(")");
-        logo3Label.setBounds(25, 100, 185, 30);
+        logo3Label.setBounds(25, 110, 185, 40);
         logo3Label.setForeground(frame.getSecondeCouleur());
-        logo3Label.setFont(new Font("Arial", Font.BOLD, 27));
+        logo3Label.setFont(new Font("Arial", Font.BOLD, 32));
         carte.add(logo3Label);
 
         JLabel logo4Label = new JLabel(")");
-        logo4Label.setBounds(32, 92, 185, 45);
+        logo4Label.setBounds(32, 100, 185, 49);
         logo4Label.setForeground(frame.getSecondeCouleur());
-        logo4Label.setFont(new Font("Arial", Font.BOLD, 33));
-        carte.add(logo4Label);
+        logo4Label.setFont(new Font("Arial", Font.BOLD, 38));
+        carte.add(logo4Label);*/
+
+        //Logo Sans Contact
+        ImageIcon SansContact = null;
+        if(frame.DarkMode){SansContact = new ImageIcon("images/Images_Projet_V/Icon_Paiement/Sans_Contact_Blanc.png");}
+        else{SansContact = new ImageIcon("images/Images_Projet_V/Icon_Paiement/Sans_Contact_Dark.png");}
+        SansContact = new ImageIcon(SansContact.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        JLabel SansContactLabel = new JLabel(SansContact);
+        SansContactLabel.setBounds(60, 100, 60, 60);
+        carte.add(SansContactLabel);
 
         if(frame.userActuel!=null){
             String numeroCarte = frame.userActuel.getCarteNum();
@@ -217,22 +228,23 @@ public class Paiement {
             String numeroCarte = "Votre Numéro de Carte";
             
             JTextField carteNum = new JTextField(numeroCarte.toString());
-            carteNum.setBounds(35, 140, 200, 24);
+            carteNum.setBounds(55, 240, 500, 45);
+            carteNum.setBackground(frame.getMainCouleur());
             carteNum.setForeground(frame.getSecondeCouleur());
-            carteNum.setFont(font2);
+            carteNum.setFont(new Font("Arial", Font.BOLD, 38));
             carte.add(carteNum);
 
 
             JLabel carteDateLabel = new JLabel("EXPIRE");
-            carteDateLabel.setBounds(75, 165, 185, 24);
+            carteDateLabel.setBounds(75, 275, 185, 24);
             carteDateLabel.setForeground(frame.getSecondeCouleur());
-            carteDateLabel.setFont(new Font("Arial", Font.BOLD, 10));
+            carteDateLabel.setFont(new Font("Arial", Font.BOLD, 21));
             carte.add(carteDateLabel);
 
             JLabel carteDate2Label = new JLabel("A FIN");
-            carteDate2Label.setBounds(75, 183, 185, 24);
+            carteDate2Label.setBounds(75, 298, 185, 24);
             carteDate2Label.setForeground(frame.getSecondeCouleur());
-            carteDate2Label.setFont(new Font("Arial", Font.BOLD, 10));
+            carteDate2Label.setFont(new Font("Arial", Font.BOLD, 21));
             carte.add(carteDate2Label);
 
             /*JLabel carteDate = new JLabel(frame.userActuel.getCarteDate());
@@ -248,13 +260,13 @@ public class Paiement {
             dateEditor.setForeground(frame.getSecondeCouleur());
             dateEditor.setBackground(frame.getMainCouleur());
             date.setFont(font2);
-            carte.add(date);
+            //carte.add(date);
 
             JLabel carteCCVLabel = new JLabel("CCV");
             carteCCVLabel.setBounds(235, 179, 185, 24);
             carteCCVLabel.setForeground(frame.getSecondeCouleur());
             carteCCVLabel.setFont(new Font("Arial", Font.BOLD, 10));
-            carte.add(carteCCVLabel);
+            //carte.add(carteCCVLabel);
 
             /*JLabel carteCCV = new JLabel(Integer.toString(frame.userActuel.getCarteCCV()));
             carteCCV.setBounds(270, 139, 185, 24);
@@ -265,7 +277,7 @@ public class Paiement {
             carteCCV.setBounds(270, 179, 185, 24);
             carteCCV.setForeground(frame.getSecondeCouleur());
             carteCCV.setFont(font3);
-            carte.add(carteCCV);
+            //carte.add(carteCCV);
 
 
             /*JLabel carteNom = new JLabel(frame.userActuel.getCarteNom());
@@ -276,7 +288,7 @@ public class Paiement {
             JTextField carteNom = new JTextField("Nom");
             carteNom.setBounds(40, 205, 200, 24);
             carteNom.setForeground(frame.getSecondeCouleur());
-            carteNom.setFont(font2);
+            //carteNom.setFont(font2);
 
             ImageIcon LogoCB = new ImageIcon("images/Images_Projet_V/Icon_Carte_Credit/CB.png");
             LogoCB = ChangerCouleurImage.changer(frame, LogoCB);
@@ -298,20 +310,20 @@ public class Paiement {
             Image LogoCarteVisa2 = LogoCarteVisa.getImage().getScaledInstance(62, 35, Image.SCALE_SMOOTH);
             JLabel logoCarteVisa = new JLabel(new ImageIcon(LogoCarteVisa2));
             logoCarteVisa.setBounds(175, 275, 200, 200);
-            carte.add(logoCarteVisa);
+            //carte.add(logoCarteVisa);
 
             ImageIcon LogoCarteM = new ImageIcon("images/Images_Projet_V/Icon_Carte_Credit/Mastercard.png");
             Image LogoCarteM2 = LogoCarteM.getImage().getScaledInstance(62, 35, Image.SCALE_SMOOTH);
             JLabel logoCarteM = new JLabel(new ImageIcon(LogoCarteM2));
             logoCarteM.setBounds(237, 275, 200, 200);
-            carte.add(logoCarteM);
+            //carte.add(logoCarteM);
 
             ImageIcon LogoCarteAmex = new ImageIcon("images/Images_Projet_V/Icon_Carte_Credit/American-Express.png");
             LogoCarteAmex = ChangerCouleurImage.changer(frame, LogoCarteAmex);
             Image LogoCarteAmex2 = LogoCarteAmex.getImage().getScaledInstance(62, 35, Image.SCALE_SMOOTH);
             JLabel logoCarteAmex = new JLabel(new ImageIcon(LogoCarteAmex2));
             logoCarteAmex.setBounds(299, 275, 200, 200);
-            carte.add(logoCarteAmex);
+            //carte.add(logoCarteAmex);
 
         }
 
