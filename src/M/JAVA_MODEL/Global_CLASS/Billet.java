@@ -5,13 +5,15 @@ public class Billet {
     private int idReservation;
     private int numeroPlace;
     private String typeBillet;
+    private double prix;
 
     // Constructeur
-    public Billet(int idBillet, int idReservation, int numeroPlace, String typeBillet) {
+    public Billet(int idBillet, int idReservation, int numeroPlace, String typeBillet, double prix) {
         this.idBillet = idBillet;
         this.idReservation = idReservation;
         this.numeroPlace = numeroPlace;
         this.typeBillet = typeBillet;
+        this.prix = prix;
     }
 
 
@@ -47,6 +49,14 @@ public class Billet {
 
     public void setTypeBillet(String typeBillet) {
         this.typeBillet = typeBillet;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
     }
 }
 

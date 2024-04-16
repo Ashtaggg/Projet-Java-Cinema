@@ -23,7 +23,7 @@ public interface ReservationsDAO {
     //Récupérer une reservation avec son id de seance
     Reservation recupererReservationBySeance(int SeanceID);
     //Récupérer une reservation avec son id d'utilisateur
-    Reservation recupererReservationByUtilisateur(int UtilisateurID);
+    List<Reservation> recupererReservationByUtilisateur(int UtilisateurID);
     //Récupérer toutes les reservations
     List<Reservation> recupererToutesLesReservations();
     //Affciher une reservation

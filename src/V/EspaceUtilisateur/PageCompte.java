@@ -1,15 +1,28 @@
 package V.EspaceUtilisateur;
 
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.border.LineBorder;
-import java.awt.image.BufferedImage;
-
+import C.Listeners.PageCompte.DeconnexionListeners;
+import C.Listeners.PageCompte.RecuperationBilletsListeners;
+import C.Listeners.PageCompte.RecuperationReservationListeners;
+import C.Listeners.PageCompte.RecuperationSeanceListeners;
+import C.Listeners.PageCompte.RecuperationFilmListeners;
+import M.JAVA_MODEL.Global_CLASS.Billet;
+import M.JAVA_MODEL.Global_CLASS.Reservation;
+import M.JAVA_MODEL.Global_CLASS.Seance;
+import M.JAVA_MODEL.Global_CLASS.Film;
 import M.JAVA_MODEL.ImagesModifs.ChangerCouleurImage;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 import M.JAVA_MODEL.ImagesModifs.ImageIconRounded;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
 import V.FrameBase;
+
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.border.LineBorder;
+import java.awt.image.BufferedImage;
+import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 
 public class PageCompte {
     public static void affichagePageCompte(FrameBase frame){
@@ -28,7 +41,20 @@ public class PageCompte {
         compte.setBackground(frame.getMainCouleur());
         compte.setLayout(null);
         compte.setBorder(bordure);
-        
+
+        ImageIcon LogoDeconnexion = new ImageIcon("images/Images_Projet_V/Icon_Compte/Deconnexion.png");
+        LogoDeconnexion = ChangerCouleurImage.changer(frame, LogoDeconnexion);
+        JButton BoutonLogo_Deconnexion = new JButton();
+        BoutonLogo_Deconnexion.setIcon(new ImageIcon(LogoDeconnexion.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+        BoutonLogo_Deconnexion.setOpaque(true);
+        BoutonLogo_Deconnexion.setFocusable(false);
+        BoutonLogo_Deconnexion.setBorderPainted(false);
+        BoutonLogo_Deconnexion.setName("Deconnexion");
+        BoutonLogo_Deconnexion.addActionListener(e -> {
+            DeconnexionListeners.deconnexion(frame);
+        });
+        BoutonLogo_Deconnexion.setBounds(20, 20, 30, 30);
+        compte.add(BoutonLogo_Deconnexion);
 
         if(!frame.userActuel.getPhotoProfil().isEmpty()){
             BufferedImage image = ConvertirImageHexa.HexToImage(frame.userActuel.getPhotoProfil());
@@ -166,7 +192,7 @@ public class PageCompte {
         logo4Label.setFont(new Font("Arial", Font.BOLD, 30));
         carte.add(logo4Label);
 
-
+        
         String numeroCarte = frame.userActuel.getCarteNum();
         StringBuilder numeroCarte2 = new StringBuilder();
 
@@ -209,13 +235,14 @@ public class PageCompte {
         carteCCVLabel.setFont(new Font("Arial", Font.BOLD, 10));
         carte.add(carteCCVLabel);
 
-        JLabel carteCCV = new JLabel(Integer.toString(frame.userActuel.getCarteCCV()));
-        carteCCV.setBounds(270, 139, 185, 24);
-        carteCCV.setForeground(frame.getSecondeCouleur());
-        carteCCV.setFont(font3);
-        carte.add(carteCCV);
-
-
+        if(frame.userActuel.getCarteCCV() != -1){
+            JLabel carteCCV = new JLabel(Integer.toString(frame.userActuel.getCarteCCV()));
+            carteCCV.setBounds(270, 139, 185, 24);
+            carteCCV.setForeground(frame.getSecondeCouleur());
+            carteCCV.setFont(font3);
+            carte.add(carteCCV);
+        }
+        
         JLabel carteNom = new JLabel(frame.userActuel.getCarteNom());
         carteNom.setBounds(40, 165, 200, 24);
         carteNom.setForeground(frame.getSecondeCouleur());
@@ -236,32 +263,32 @@ public class PageCompte {
         logoFleche.setBounds(10, 130, 13, 42);
         carte.add(logoFleche);
 
-        if(frame.userActuel.getCarteNum().charAt(0) == '4'){
-            ImageIcon LogoCarte = new ImageIcon("images/Images_Projet_V/Icon_Carte_Credit/Visa.png");
-            LogoCarte = ChangerCouleurImage.changer(frame, LogoCarte);
-            Image LogoCarte2 = LogoCarte.getImage().getScaledInstance(62, 35, Image.SCALE_SMOOTH);
-            JLabel logoCarte = new JLabel(new ImageIcon(LogoCarte2));
-            logoCarte.setBounds(175, 75, 200, 200);
-            carte.add(logoCarte);
+        if(!frame.userActuel.getCarteNum().isEmpty()){
+            if(frame.userActuel.getCarteNum().charAt(0) == '4'){
+                ImageIcon LogoCarte = new ImageIcon("images/Images_Projet_V/Icon_Carte_Credit/Visa.png");
+                LogoCarte = ChangerCouleurImage.changer(frame, LogoCarte);
+                Image LogoCarte2 = LogoCarte.getImage().getScaledInstance(62, 35, Image.SCALE_SMOOTH);
+                JLabel logoCarte = new JLabel(new ImageIcon(LogoCarte2));
+                logoCarte.setBounds(175, 75, 200, 200);
+                carte.add(logoCarte);
+            }
+            else if(frame.userActuel.getCarteNum().charAt(0) == '5'){
+                ImageIcon LogoCarte = new ImageIcon("images/Images_Projet_V/Icon_Carte_Credit/Mastercard.png");
+                Image LogoCarte2 = LogoCarte.getImage().getScaledInstance(62, 35, Image.SCALE_SMOOTH);
+                JLabel logoCarte = new JLabel(new ImageIcon(LogoCarte2));
+                logoCarte.setBounds(175, 75, 200, 200);
+                carte.add(logoCarte);
+            }
+            else if(frame.userActuel.getCarteNum().charAt(0) == '3'){
+                ImageIcon LogoCarte = new ImageIcon("images/Images_Projet_V/Icon_Carte_Credit/American-Express.png");
+                LogoCarte = ChangerCouleurImage.changer(frame, LogoCarte);
+                Image LogoCarte2 = LogoCarte.getImage().getScaledInstance(62, 35, Image.SCALE_SMOOTH);
+                JLabel logoCarte = new JLabel(new ImageIcon(LogoCarte2));
+                logoCarte.setBounds(175, 75, 200, 200);
+                carte.add(logoCarte);
+            }
         }
-        else if(frame.userActuel.getCarteNum().charAt(0) == '5'){
-            ImageIcon LogoCarte = new ImageIcon("images/Images_Projet_V/Icon_Carte_Credit/Mastercard.png");
-            Image LogoCarte2 = LogoCarte.getImage().getScaledInstance(62, 35, Image.SCALE_SMOOTH);
-            JLabel logoCarte = new JLabel(new ImageIcon(LogoCarte2));
-            logoCarte.setBounds(175, 75, 200, 200);
-            carte.add(logoCarte);
-        }
-        else if(frame.userActuel.getCarteNum().charAt(0) == '3'){
-            ImageIcon LogoCarte = new ImageIcon("images/Images_Projet_V/Icon_Carte_Credit/American-Express.png");
-            LogoCarte = ChangerCouleurImage.changer(frame, LogoCarte);
-            Image LogoCarte2 = LogoCarte.getImage().getScaledInstance(62, 35, Image.SCALE_SMOOTH);
-            JLabel logoCarte = new JLabel(new ImageIcon(LogoCarte2));
-            logoCarte.setBounds(175, 75, 200, 200);
-            carte.add(logoCarte);
-        }
-
-
-
+        
 
 
 
@@ -294,46 +321,159 @@ public class PageCompte {
         gbc.ipady = 0; // Hauteur spécifique
         gbc.insets = new Insets(10, 5, 10, 5); // Espacement entre les composants
 
-        
-        for (int i = 0; i < 5; i++) {
-            JPanel panelBillets = new JPanel();
-            panelBillets.setLayout(null);
-            panelBillets.setBackground(frame.getMainCouleur());
-            panelBillets.setSize(950, 200);
-            panelBillets.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
-            panelBillets.setPreferredSize(new Dimension(950, 200));
+        List<Billet> billetsUser = RecuperationBilletsListeners.recupBillets(frame);
 
-            JLabel TitreFilm = new JLabel("Séance " + i);
-            TitreFilm.setFont(font1);
-            TitreFilm.setForeground(frame.getSecondeCouleur());
-            TitreFilm.setBounds(422, 30, 131, 50);
-            panelBillets.add(TitreFilm);
+        if(!billetsUser.isEmpty()){
+            Reservation reservation = null;
+            Seance seance = null;
+            Film film = null;
+
+            for (Billet billet : billetsUser) {
+                reservation = RecuperationReservationListeners.recupReservation(frame, billet.getIdReservation());
+                seance = RecuperationSeanceListeners.recupSeance(frame, reservation.getIdSeance());
+                film = RecuperationFilmListeners.recupFilm(frame, seance.getIdFilm());
+
+                JPanel panelBillets = new JPanel();
+                panelBillets.setLayout(null);
+                panelBillets.setBackground(frame.getMainCouleur());
+                panelBillets.setSize(950, 200);
+                panelBillets.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
+                panelBillets.setPreferredSize(new Dimension(950, 200));
 
 
-            //Ajout du panel de reservation au panel de scroll
-            scrollBillets.add(panelBillets, gbc);
 
-            gbc.gridy++;
+                BufferedImage image = ConvertirImageHexa.HexToImage(film.getPhoto());
+                Image image2 = image.getScaledInstance(132, 180, Image.SCALE_SMOOTH);
+                JLabel afficherLabel = new JLabel(new ImageIcon(image2));
+                afficherLabel.setBounds(30, 10, 132, 180);
+                panelBillets.add(afficherLabel);
+
+                JLabel TitreFilm = new JLabel(film.getNom());
+                TitreFilm.setFont(font1);
+                TitreFilm.setForeground(frame.getSecondeCouleur());
+                TitreFilm.setBounds(180, 10, 500, 30);
+                panelBillets.add(TitreFilm);
+
+                JLabel DescriptionFilm = new JLabel(film.getDescription());
+                DescriptionFilm.setFont(font3);
+                DescriptionFilm.setForeground(frame.getSecondeCouleur());
+                DescriptionFilm.setBounds(180, 40, 500, 30);
+                panelBillets.add(DescriptionFilm);
+
+                String dureeFilm = film.getDuree();
+                String[] parties = dureeFilm.split(":");
+                int heures = Integer.parseInt(parties[0]);
+                String minutes = parties[1];
+                String duree = String.format("%dh%s", heures, minutes);
+
+                JLabel DureeFilm = new JLabel(duree);
+                DureeFilm.setFont(font3);
+                DureeFilm.setForeground(frame.getSecondeCouleur());
+                DureeFilm.setBounds(180, 67, 500, 30);
+                panelBillets.add(DureeFilm);
+
+                if(film.getQuatreDX() == true){
+                    ImageIcon Logo4DX = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/4DX_2.png");
+                    Logo4DX = ChangerCouleurImage.changer(frame, Logo4DX);
+                    Image Logo4DX2 = Logo4DX.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+                    JLabel logo4DX = new JLabel(new ImageIcon(Logo4DX2));
+                    logo4DX.setBounds(880, 10, 30, 30);
+                    panelBillets.add(logo4DX);
+                }
+
+                JLabel PrixBillet = new JLabel(billet.getPrix() + " €");
+                PrixBillet.setFont(font2);
+                PrixBillet.setForeground(frame.getSecondeCouleur());
+                PrixBillet.setBounds(825, 165, 150, 30);
+                panelBillets.add(PrixBillet);
+
+                JLabel TypeBillet = new JLabel("Billet : " + billet.getTypeBillet());
+                TypeBillet.setFont(font3);
+                TypeBillet.setForeground(frame.getSecondeCouleur());
+                TypeBillet.setBounds(825, 140, 150, 30);
+                panelBillets.add(TypeBillet);
+
+                JLabel NumSalle = new JLabel("Salle " + seance.getIdSalle());
+                NumSalle.setFont(font2);
+                NumSalle.setForeground(frame.getSecondeCouleur());
+                NumSalle.setBounds(175, 160, 500, 30);
+                panelBillets.add(NumSalle);
+
+                ImageIcon LogoSiege = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Siege.png");
+                LogoSiege = ChangerCouleurImage.changer(frame, LogoSiege);
+                Image LogoSiege2 = LogoSiege.getImage().getScaledInstance(21, 27, Image.SCALE_SMOOTH);
+                JLabel logoSiege = new JLabel(new ImageIcon(LogoSiege2));
+                logoSiege.setBounds(270, 160, 21, 27);
+                panelBillets.add(logoSiege);
+
+                JLabel NumPlace = new JLabel(Integer.toString(billet.getNumeroPlace()));
+                NumPlace.setFont(font2);
+                NumPlace.setForeground(frame.getSecondeCouleur());
+                NumPlace.setBounds(300, 160, 500, 30);
+                panelBillets.add(NumPlace);
+
+                ImageIcon LogoDate = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Calendrier.png");
+                LogoDate = ChangerCouleurImage.changer(frame, LogoDate);
+                Image LogoDate2 = LogoDate.getImage().getScaledInstance(24, 27, Image.SCALE_SMOOTH);
+                JLabel logoDate = new JLabel(new ImageIcon(LogoDate2));
+                logoDate.setBounds(470, 130, 24, 27);
+                panelBillets.add(logoDate);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy", Locale.FRANCE);
+                String dateBillet = sdf.format(seance.getDate());
+
+                JLabel DateBillet = new JLabel(dateBillet);
+                DateBillet.setFont(font2);
+                DateBillet.setForeground(frame.getSecondeCouleur());
+                DateBillet.setBounds(500, 130, 500, 30);
+                panelBillets.add(DateBillet);
+
+                ImageIcon LogoHeure = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Horloge.png");
+                LogoHeure = ChangerCouleurImage.changer(frame, LogoHeure);
+                Image LogoHeure2 = LogoHeure.getImage().getScaledInstance(27, 27, Image.SCALE_SMOOTH);
+                JLabel logoHeure = new JLabel(new ImageIcon(LogoHeure2));
+                logoHeure.setBounds(470, 160, 27, 27);
+                panelBillets.add(logoHeure);
+
+                String Heure = seance.getHeure();
+                String[] parties2 = Heure.split(":");
+                String heure = parties2[0];
+                minutes = parties2[1];
+                String heureFilm = String.format("%sh%s", heure, minutes);
+
+                JLabel HeureBillet = new JLabel(heureFilm);
+                HeureBillet.setFont(font2);
+                HeureBillet.setForeground(frame.getSecondeCouleur());
+                HeureBillet.setBounds(500, 160, 500, 30);
+                panelBillets.add(HeureBillet);
+
+                scrollBillets.add(panelBillets, gbc);
+                gbc.gridy++;
+            }
+            // Créer un JScrollPane et y ajouter le contentPanel
+            JScrollPane scrollPane = new JScrollPane(scrollBillets);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+            scrollPane.setBackground(frame.getMainCouleur());
+            scrollPane.getVerticalScrollBar().setBackground(frame.getMainCouleur());
+            scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+            scrollPane.getVerticalScrollBar().setBlockIncrement(16);
+            scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15, 0));
+            scrollPane.setBorder(BorderFactory.createEmptyBorder());
+
+            scrollPane.setBounds(20, 125, 975, 694); // Ajustez la taille selon vos besoins
+
+            billets.add(scrollPane);
+        }
+        else{
+            JLabel videLabel = new JLabel("Aucune séance n'est réservée à ce jour.");
+            videLabel.setBounds(311, 400, 378, 30);
+            videLabel.setForeground(frame.getSecondeCouleur());
+            videLabel.setFont(font2);
+            billets.add(videLabel);
         }
         
-
-        // Créer un JScrollPane et y ajouter le contentPanel
-        JScrollPane scrollPane = new JScrollPane(scrollBillets);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setBackground(frame.getMainCouleur());
-        scrollPane.getVerticalScrollBar().setBackground(frame.getMainCouleur());
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.getVerticalScrollBar().setBlockIncrement(16);
-        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15, 0));
-        scrollPane.setBorder(BorderFactory.createEmptyBorder());
-
-        scrollPane.setBounds(20, 125, 975, 694); // Ajustez la taille selon vos besoins
-
-
-
-
-        billets.add(scrollPane);
+        
         frame.getPanelBase().setVisible(true);
         frame.getPanelBase().add(compte);
         frame.getPanelBase().add(billets);
