@@ -11,5 +11,6 @@ public class AccueilFilmsListeners {
         FilmsDAO_IMPL filmsDAO = new FilmsDAO_IMPL();
         Film film = filmsDAO.recupererFilmByTitre(titre);
         Accueil_Films.affichageAccueil_Films(frame);
+        
     }
 }

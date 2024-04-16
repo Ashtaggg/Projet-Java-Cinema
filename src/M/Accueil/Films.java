@@ -1,6 +1,5 @@
 package M.Accueil;
 
-import M.JAVA_MODEL.Global_CLASS.Film;
 import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
 import V.FrameBase;
 
@@ -11,6 +10,17 @@ import java.security.NoSuchAlgorithmException;
 
 public class Films {
 
-            
+    private String affiche; // Chemin de l'image de l'affiche du film
+
+    // Constructeur de la classe Film
+    public Films (String affiche) {
+        // Initialisation des autres attributs
+        this.affiche = affiche;
+    }
+
+    // Méthode pour récupérer le chemin de l'image de l'affiche du film
+    public String getAffiche() {
+        return affiche;
+    }     
     
 }
