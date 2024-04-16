@@ -319,20 +319,74 @@ public class Paiement {
         JPanel panelMail = new JPanel();
         panelMail.setLayout(null);
         panelMail.setBackground(frame.getMainCouleur());
-        panelMail.setBounds(2220, 140, 300, 200);
+        panelMail.setBounds(1220, 140, 350, 200);
 
         JCheckBox recevoirMail = new JCheckBox("Recevoir mon billet par mail");
-        recevoirMail.setBounds(10, 10, 200, 30);
+        recevoirMail.setBounds(10, 10, 300, 30);
         recevoirMail.setBackground(frame.getMainCouleur());
         recevoirMail.setForeground(frame.getSecondeCouleur());
-        recevoirMail.setFont(new Font("Arial", Font.PLAIN, 20));
+        recevoirMail.setBorder(null);
+        recevoirMail.setIconTextGap(23);
+        recevoirMail.setFont(new Font("Arial", Font.PLAIN, 24));
         panelMail.add(recevoirMail);
+
+        JLabel Email = new JLabel("Votre Email :");
+        Email.setBounds(10, 50, 300, 30);
+        Email.setForeground(frame.getSecondeCouleur());
+        Email.setFont(new Font("Arial", Font.PLAIN, 24));
+        panelMail.add(Email);
+
+        JTextField email = new JTextField("e-mail");
+        email.setBounds(10, 90, 300, 30);
+        email.setBackground(frame.getMainCouleur());
+        email.setForeground(frame.getSecondeCouleur());
+        email.setFont(new Font("Arial", Font.PLAIN, 24));
+        panelMail.add(email);
         
+        JPanel Conditions = new JPanel();
+        Conditions.setLayout(null);
+        Conditions.setBackground(frame.getMainCouleur());
+        Conditions.setBounds(1220, 350, 350, 200);
 
+        JCheckBox accepterConditions = new JCheckBox("J'accepte les conditions générales");
+        accepterConditions.setBounds(10, 10, 300, 30);
+        accepterConditions.setBackground(frame.getMainCouleur());
+        accepterConditions.setForeground(frame.getSecondeCouleur());
+        accepterConditions.setBorder(null);
+        accepterConditions.setIconTextGap(23);
+        accepterConditions.setFont(new Font("Arial", Font.PLAIN, 24));
+        Conditions.add(accepterConditions);
 
-        
-
-
+        JButton Payer = new JButton("Payer");
+        Payer.setBounds(1220, 600, 350, 50);
+        Payer.setBackground(frame.getSecondeCouleur());
+        Payer.setForeground(frame.getMainCouleur());
+        Payer.setFont(new Font("Arial", Font.BOLD, 24));
+        Payer.setBorder(new RoundBorder(frame.getSecondeCouleur(), 40, 2));
+        Payer.addActionListener(->{
+            if(accepterConditions.isSelected()){
+                if(recevoirMail.isSelected()){
+                    if(email.getText().contains("@") && email.getText().contains(".")){
+                        BilletDAO billetDAO = new BilletDAO();
+                        List<Billet> billets = billetDAO.findBilletByUser(frame.userActuel.getId());
+                        Billet billet = billets.get(billets.size()-1);
+                        billetDAO.updateBilletMail(billet.getId(), email.getText());
+                        JOptionPane.showMessageDialog(null, "Votre billet a été envoyé à l'adresse mail : " + email.getText());
+                        ChangementPageListeners.retourAccueil(frame);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Veuillez entrer une adresse mail valide");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Votre billet a été acheté");
+                    ChangementPageListeners.retourAccueil(frame);
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Veuillez accepter les conditions générales");
+            }
+        });
 
         //Ajouter les éléments au panel
         frame.getPanelBase().add(carte);
