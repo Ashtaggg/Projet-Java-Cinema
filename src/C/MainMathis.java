@@ -25,11 +25,11 @@ public class MainMathis {
         //test.affichage((new Color(250, 250, 250)), (new Color(0, 19, 77)), (new Color(0, 0, 0)));
         FrameBase frame = new FrameBase();
         //TestEnfFrameBase.affichertestEnfFrameBase(frame);
-        Reservation_Seance.affichageReservation_Seance(frame);
+        //Reservation_Seance.affichageReservation_Seance(frame);
         //Reservation_Seance_Place.affichageReservation_Seance_Place(frame);
         //Recap_Reservation.afficherRecapreservation(frame);
         //Panier.affichagePanier(frame);
-        //Paiement.afficherPaiement(frame);
+        Paiement.afficherPaiement(frame);
         //Accueil_News.affichageAccueil_News(frame);
         //Accueil_Films.affichageAccueil_Films(frame);
         //Accueil_Cinema.affichageAccueil_Cinema(frame);

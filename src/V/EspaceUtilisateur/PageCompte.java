@@ -132,7 +132,7 @@ public class PageCompte {
         carte.setBounds(215, 600, 320, 200);
         carte.setBackground(frame.getMainCouleur());
         carte.setLayout(null);
-        carte.setBorder(bordure);
+        carte.setBorder(new RoundBorder(frame.getSecondeCouleur(), 40, 2));
         compte.add(carte);
 
 
@@ -259,9 +259,6 @@ public class PageCompte {
             logoCarte.setBounds(175, 75, 200, 200);
             carte.add(logoCarte);
         }
-
-
-
 
 
 
