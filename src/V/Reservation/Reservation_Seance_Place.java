@@ -6,6 +6,7 @@ import M.JAVA_MODEL.Global_CLASS.Film;
 import M.JAVA_MODEL.Global_CLASS.Billet;
 import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO;
 import C.Listeners.ChangementPageListeners;
+import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 
 //Imports Librairies
 // Importation des librairies
@@ -36,6 +37,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.image.BufferedImage;
 
 
 public class Reservation_Seance_Place {
@@ -67,6 +69,14 @@ public class Reservation_Seance_Place {
         TitreFilm.setForeground(frame.getSecondeCouleur());
         TitreFilm.setBounds(20, 350, 250, 30);
         ResumeSeance.add(TitreFilm);
+        //Photo du film
+        BufferedImage image = ConvertirImageHexa.HexToImage(frame.filmActuel.get(frame.filmActuel.size()-1).getPhoto());
+        Image photoFilm = image.getScaledInstance(172, 234, Image.SCALE_SMOOTH);
+        ImageIcon Photo = new ImageIcon(photoFilm);
+        JLabel PhotoLabel = new JLabel(Photo);
+        PhotoLabel.setBounds(55, 70, 172, 234);
+        ResumeSeance.add(PhotoLabel);
+
         //Icon New
         ImageIcon New = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/New.png");
         New = new ImageIcon(New.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));

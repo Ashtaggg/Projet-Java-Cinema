@@ -7,6 +7,7 @@ import M.JAVA_MODEL.Global_CLASS.Billet;
 import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
 import C.Listeners.ChangementPageListeners;
+import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 
 //Imports Librairies
 // Importation des librairies
@@ -37,6 +38,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.image.BufferedImage;
 
 public class Recap_Reservation {
     public static void afficherRecapreservation(FrameBase frame){
@@ -58,11 +60,19 @@ public class Recap_Reservation {
         TitreFilm.setForeground(frame.getSecondeCouleur());
         TitreFilm.setBounds(550, 30, 300, 50);
         panelRecapReservation.add(TitreFilm);
+        //Photo du film
+        BufferedImage image = ConvertirImageHexa.HexToImage(frame.filmActuel.get(frame.filmActuel.size()-1).getPhoto());
+        Image photoFilm = image.getScaledInstance(344, 468, Image.SCALE_SMOOTH);
+        ImageIcon Photo = new ImageIcon(photoFilm);
+        JLabel PhotoLabel = new JLabel(Photo);
+        PhotoLabel.setBounds(60, 60, 344, 468);
+        panelRecapReservation.add(PhotoLabel);
+
         //Icon New
         ImageIcon New = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/New.png");
         New = new ImageIcon(New.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
         JLabel NewLabel = new JLabel(New);
-        NewLabel.setBounds(350, 20, 80, 80);
+        NewLabel.setBounds(390, 20, 80, 80);
         panelRecapReservation.add(NewLabel);
         /*if(frame.filmActuel.getDateSortie().equals(Date.valueOf("2021-07-14"))){//A corriger ca marche pas
             NewLabel.setVisible(true);

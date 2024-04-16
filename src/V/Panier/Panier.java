@@ -7,6 +7,7 @@ import M.JAVA_MODEL.Global_CLASS.Billet;
 import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
 import C.Listeners.ChangementPageListeners;
+import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 
 //Imports Librairies
 // Importation des librairies
@@ -41,6 +42,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.ComponentOrientation;
+import java.awt.image.BufferedImage;
 
 public class Panier {
 
@@ -89,11 +91,19 @@ public class Panier {
             TitreFilm.setForeground(frame.getSecondeCouleur());
             TitreFilm.setBounds(300, 30, 300, 50);
             panelReservation.add(TitreFilm);
+            //Photo du film
+            BufferedImage image = ConvertirImageHexa.HexToImage(frame.filmActuel.get(frame.filmActuel.size()-1).getPhoto());
+            Image photoFilm = image.getScaledInstance(120, 164, Image.SCALE_SMOOTH);
+            ImageIcon Photo = new ImageIcon(photoFilm);
+            JLabel PhotoLabel = new JLabel(Photo);
+            PhotoLabel.setBounds(60, 15, 120, 164);
+            panelReservation.add(PhotoLabel);
+
             //Icon New
             ImageIcon New = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/New.png");
-            New = new ImageIcon(New.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
+            New = new ImageIcon(New.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
             JLabel NewLabel = new JLabel(New);
-            NewLabel.setBounds(180, 20, 80, 80);
+            NewLabel.setBounds(190, 10, 60, 60);
             panelReservation.add(NewLabel);
             /*if(frame.filmActuel.getDateSortie().equals(Date.valueOf("2021-07-14"))){//A corriger ca marche pas
                 NewLabel.setVisible(true);
@@ -114,20 +124,20 @@ public class Panier {
             JLabel HeureSeance = new JLabel(frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getHeure());
             HeureSeance.setFont(new Font ("Arial", Font.BOLD, 37));
             HeureSeance.setForeground(frame.getQuatreCouleur());
-            HeureSeance.setBounds(600, 30, 400, 50);
+            HeureSeance.setBounds(500, 30, 400, 50);
             panelReservation.add(HeureSeance);
             //Heure de fin de la séance
             JLabel HeureFinSeance = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getDuree());
             HeureFinSeance.setFont(new Font ("Arial", Font.PLAIN, 23));
             HeureFinSeance.setForeground(frame.getSecondeCouleur());
-            HeureFinSeance.setBounds(600, 90, 300, 50);
+            HeureFinSeance.setBounds(500, 90, 300, 50);
             panelReservation.add(HeureFinSeance);
             //4DX
             if(frame.filmActuel.get(frame.filmActuel.size()-1).getQuatreDX()){
                 ImageIcon QuatreDX = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/4DX.png");
                 QuatreDX = new ImageIcon(QuatreDX.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
                 JLabel QuatreDXLabel = new JLabel(QuatreDX);
-                QuatreDXLabel.setBounds(600, 140, 40, 40);
+                QuatreDXLabel.setBounds(500, 140, 40, 40);
                 panelReservation.add(QuatreDXLabel);
             }
             //Logo handicapé
@@ -261,10 +271,10 @@ public class Panier {
                     if(choix == 1){
                         ChangementPageListeners.ChangementPage("connexion", frame);
                     }
-                    else{ChangementPageListeners.ChangementPage("recap_reservation", frame);}
+                    else{ChangementPageListeners.ChangementPage("payer", frame);}
                 }
                 else{
-                    ChangementPageListeners.ChangementPage("recap_reservation", frame);
+                    ChangementPageListeners.ChangementPage("payer", frame);
                 }
                 
             }

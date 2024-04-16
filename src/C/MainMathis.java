@@ -28,8 +28,8 @@ public class MainMathis {
         //Reservation_Seance.affichageReservation_Seance(frame);
         //Reservation_Seance_Place.affichageReservation_Seance_Place(frame);
         //Recap_Reservation.afficherRecapreservation(frame);
-        //Panier.affichagePanier(frame);
-        Paiement.afficherPaiement(frame);
+        Panier.affichagePanier(frame);
+        //Paiement.afficherPaiement(frame);
         //Accueil_News.affichageAccueil_News(frame);
         //Accueil_Films.affichageAccueil_Films(frame);
         //Accueil_Cinema.affichageAccueil_Cinema(frame);

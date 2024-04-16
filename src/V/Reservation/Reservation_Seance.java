@@ -6,6 +6,8 @@ import M.JAVA_MODEL.Global_CLASS.Film;
 import M.JAVA_MODEL.Global_CLASS.Seance;
 import C.Listeners.Page_ReservationSeance.ReservationSeanceListeners;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
+import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
+
 
 // Importation des librairies
 import java.awt.BorderLayout;
@@ -29,6 +31,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 
 
@@ -69,6 +72,14 @@ public class Reservation_Seance {
         ResumeSeance.setBackground(frame.getMainCouleur());
         ResumeSeance.setLayout(null);
         ResumeSeance.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
+        //Photo du film
+        BufferedImage image = ConvertirImageHexa.HexToImage(frame.filmActuel.get(frame.filmActuel.size()-1).getPhoto());
+        Image photoFilm = image.getScaledInstance(172, 234, Image.SCALE_SMOOTH);
+        ImageIcon Photo = new ImageIcon(photoFilm);
+        JLabel PhotoLabel = new JLabel(Photo);
+        PhotoLabel.setBounds(70, 30, 172, 234);
+        ResumeSeance.add(PhotoLabel);
+
         //Labels de Résumé
         JLabel TitreFilm = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getNom());
         TitreFilm.setFont(new Font ("Arial", Font.BOLD, 37));
