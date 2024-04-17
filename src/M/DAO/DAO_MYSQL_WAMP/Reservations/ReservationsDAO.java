@@ -30,4 +30,7 @@ public interface ReservationsDAO {
     void afficherReservation(Reservation reservation);
     //Afficher toutes les reservations d'une liste
     void afficherToutesLesReservations(List<Reservation> reservations);
+    //Récupérer la dernière reservation
+    Reservation recupererDerniereReservation();
+
 }

@@ -31,4 +31,6 @@ public interface BilletDAO{
     void afficherTousLesBillets(List<Billet> billets);
     //ARécupérer tous les billets d'un utilisateur
     public List<Billet> recupererBilletsByID_Compte(FrameBase frame);
+    //Créer des billets avec une List de billets
+    void creerBillets(List<Billet> billets);
 }

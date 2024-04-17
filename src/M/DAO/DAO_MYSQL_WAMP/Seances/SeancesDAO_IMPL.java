@@ -235,5 +235,50 @@ public class SeancesDAO_IMPL implements SeancesDAO {
             afficherSeance(seance);
         }
     }
+
+    public void reduirePlaces(int IDSeance, int nbPlaces) {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        //Récupérer les places dispo de la séance 
+        Seance seance = recupererSeanceByID(IDSeance);
+        int placesDispo = seance.getPlaceDisponible();
+        try {
+            connexion = DAOFactory.getConnection();
+            String query = "UPDATE seance SET PlaceDisponible=? WHERE ID_Seance=?";
+            preparedStatement = connexion.prepareStatement(query);
+            preparedStatement.setInt(1, placesDispo - nbPlaces);
+            preparedStatement.setInt(2, IDSeance);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException error) {
+            error.printStackTrace();
+        } finally {
+            DAOFactory.close(connexion);
+        }
+    }
+
+    public List<Seance> recupererSeancesByFilm(int IDFilm) {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultat = null;
+        List<Seance> seances = new ArrayList<>();
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("SELECT * FROM seance WHERE ID_Film = ?;");
+            preparedStatement.setInt(1, IDFilm);
+
+            resultat = preparedStatement.executeQuery();
+
+            while (resultat.next()) {
+                seances.add(new Seance(resultat.getInt("ID_Seance"), resultat.getInt("ID_Film"), resultat.getInt("ID_Salle"), resultat.getDate("Date"), resultat.getTime("Heure").toString(), resultat.getInt("PlaceDisponible")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seances;
+    }
 }
 

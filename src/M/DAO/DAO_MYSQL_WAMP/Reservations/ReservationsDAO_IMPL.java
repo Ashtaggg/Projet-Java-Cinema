@@ -220,5 +220,35 @@ public class ReservationsDAO_IMPL implements ReservationsDAO {
         }
     }
 
+    public Reservation recupererDerniereReservation() {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Reservation reservation = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            String query = "SELECT * FROM reservation ORDER BY ID_Reservation DESC LIMIT 1";
+            preparedStatement = connexion.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                reservation = new Reservation(
+                        resultSet.getInt("ID_Reservation"),
+                        resultSet.getInt("ID_Compte"),
+                        resultSet.getInt("ID_Seance"),
+                        resultSet.getInt("NombrePlace"),
+                        resultSet.getInt("PrixTotal")
+                );
+            }
+        } catch (SQLException error) {
+            error.printStackTrace();
+        } finally {
+            DAOFactory.close(connexion);
+        }
+
+        return reservation;
+    }
+
 }
 

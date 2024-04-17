@@ -48,12 +48,15 @@ public class FrameBase extends JFrame{
     // Déclarez BoutonPanierNombre comme une variable de classe
     private JLabel BoutonPanierNombre;
 
+     //Initialisation des variables à utiliser pour partie de Anhto  aussi hyper importantes de bien les mettre à jour tt le temps
     public Utilisateur userActuel = null;
     public ArrayList<String> PagePrecedente = new ArrayList<>();
     public ArrayList<Film> filmActuel = new ArrayList<>();
     public ArrayList<Seance> seanceActuelle = new ArrayList<>();
     public ArrayList<Salle> salleActuelle = new ArrayList<>();
     public ArrayList<Reservation> reservationActuelle = new ArrayList<>();
+    //Nombre de reservations dans le panier
+    public int nombreReservationsPanier = 0;
     
     //Font
     Font font = new Font("Arial", Font.BOLD, 12);
@@ -103,8 +106,8 @@ public class FrameBase extends JFrame{
         }
         this.getContentPane().setBackground(MainCouleur);
 
-        //Initialisation des variables à enlever avec la partie de Anhto
-        reservationActuelle.add(new Reservation(0, 0, 365, 0, 0));
+        //Initialisation des variables à enlever avec la partie de Anhto mais hyper importantes de bien les mettre à jour ensuite
+        reservationActuelle.add(new Reservation(0, 0, 626, 0, 0));
         seanceActuelle.add(seancesDAO.recupererSeanceByID(626)); //Récupérer Séance 626
         seancesDAO.afficherSeance(seanceActuelle.get(0));
         seancesDAO.afficherSeance(seancesDAO.recupererSeanceByID(626));
@@ -112,6 +115,7 @@ public class FrameBase extends JFrame{
         sallesDAO.afficherSalle(salleActuelle.get(0));
         filmActuel.add(filmsDAO.recupererFilmByID(seanceActuelle.get(0).getIdFilm()));
         filmsDAO.afficherFilm(filmActuel.get(0));
+        nombreReservationsPanier = 1;
 
 
         //Class de Listener pour les boutons

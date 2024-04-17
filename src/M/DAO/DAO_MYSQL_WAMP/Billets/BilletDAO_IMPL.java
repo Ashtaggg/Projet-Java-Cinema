@@ -218,4 +218,10 @@ public class BilletDAO_IMPL implements BilletDAO{
         }
         return billets;
     }
+
+    public void creerBillets(List<Billet> billets) {
+        for (Billet billet : billets) {
+            ajouterBillet(billet);
+        }
+    }
 }
