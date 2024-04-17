@@ -62,6 +62,12 @@ public class Paiement {
         frame.PageActuelle = "payer";
         frame.getPanelBase().removeAll();
 
+        if(frame.userActuel!=null){
+            for(int i = 0; i < frame.reservationActuelle.size(); i++){
+                frame.reservationActuelle.get(i).setIdCompte(frame.userActuel.getIdCompte());
+            }
+        }
+
         //Labels de Paiement
         JLabel TitrePaiement = new JLabel("Paiement");
         TitrePaiement.setFont(new Font("Arial", Font.BOLD, 37));
@@ -312,8 +318,9 @@ public class Paiement {
                             if(email.getText().contains("@") && email.getText().contains(".")){
                                 ValidPayer = PayerListener.Payer(frame);
                                 if (ValidPayer == 1){
-                                    JOptionPane.showMessageDialog(null, "Votre billet a été envoyé à l'adresse mail : " + email.getText());
-                                    ChangementPageListeners.ChangementPage("accueil", frame);
+                                    //JOptionPane.showMessageDialog(null, "Votre billet a été envoyé à l'adresse mail : " + email.getText());
+                                    //ChangementPageListeners.ChangementPage("accueil", frame);
+                                    ChangementPageListeners.ChangementPage("Merci", frame);
                                 }
                                 else{
                                     JOptionPane.showMessageDialog(null, "Erreur lors du paiement\nVeuillez réessayer plus tard");
@@ -326,8 +333,9 @@ public class Paiement {
                         else{
                             ValidPayer = PayerListener.Payer(frame);
                                 if (ValidPayer == 1){
-                                    JOptionPane.showMessageDialog(null, "Paiement effectué et billet disponible dans votre compte");
-                                    ChangementPageListeners.ChangementPage("accueil", frame);
+                                    //JOptionPane.showMessageDialog(null, "Paiement effectué et billet disponible dans votre compte");
+                                    //ChangementPageListeners.ChangementPage("accueil", frame);
+                                    ChangementPageListeners.ChangementPage("Merci", frame);
                                 }
                                 else{
                                     JOptionPane.showMessageDialog(null, "Erreur lors du paiement\nVeuillez réessayer plus tard");

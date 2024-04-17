@@ -29,4 +29,8 @@ public interface SeancesDAO {
     void afficherSeance(Seance seance);
     //Afficher toutes les seances d'une liste
     void afficherToutesLesSeances(List<Seance> seances);
+    //Récupérer toutes les seances d'un film
+    List<Seance> recupererSeancesByFilm(int IDFilm);
+    //Réduire nombre de places dispo d'une une seance
+    void reduirePlaces(int IDSeance, int nbPlaces);
 }

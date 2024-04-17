@@ -119,6 +119,13 @@ public class ChangementPageListeners{
                 Paiement.afficherPaiement(frame);
                 System.out.println("Payment");
                 break;
+            case "Merci":
+                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                frame.PageActuelle = "Merci";
+                frame.RefreshPage();
+                Paiement.afficherPaiement(frame);
+                System.out.println("Merci Payment");
+                break;
             default:
                 System.out.println("Action non reconnue");
         }

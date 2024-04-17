@@ -10,7 +10,6 @@ import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 
 //Imports Librairies
-// Importation des librairies
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -89,7 +88,7 @@ public class Panier {
             JLabel TitreFilm = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getNom());
             TitreFilm.setFont(new Font ("Arial", Font.BOLD, 37));
             TitreFilm.setForeground(frame.getSecondeCouleur());
-            TitreFilm.setBounds(300, 30, 300, 50);
+            TitreFilm.setBounds(300, 30, 500, 50);
             panelReservation.add(TitreFilm);
             //Photo du film
             BufferedImage image = ConvertirImageHexa.HexToImage(frame.filmActuel.get(frame.filmActuel.size()-1).getPhoto());
@@ -124,16 +123,16 @@ public class Panier {
             JLabel HeureSeance = new JLabel(frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getHeure());
             HeureSeance.setFont(new Font ("Arial", Font.BOLD, 37));
             HeureSeance.setForeground(frame.getQuatreCouleur());
-            HeureSeance.setBounds(500, 30, 400, 50);
+            HeureSeance.setBounds(500, 90, 400, 50);
             panelReservation.add(HeureSeance);
             //Heure de fin de la séance
             JLabel HeureFinSeance = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getDuree());
             HeureFinSeance.setFont(new Font ("Arial", Font.PLAIN, 23));
             HeureFinSeance.setForeground(frame.getSecondeCouleur());
-            HeureFinSeance.setBounds(500, 90, 300, 50);
+            HeureFinSeance.setBounds(500, 130, 300, 50);
             panelReservation.add(HeureFinSeance);
             //4DX
-            if(frame.filmActuel.get(frame.filmActuel.size()-1).getQuatreDX()){
+            /*if(frame.filmActuel.get(frame.filmActuel.size()-1).getQuatreDX()){
                 ImageIcon QuatreDX = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/4DX.png");
                 QuatreDX = new ImageIcon(QuatreDX.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
                 JLabel QuatreDXLabel = new JLabel(QuatreDX);
@@ -147,7 +146,7 @@ public class Panier {
             Handicape = new ImageIcon(Handicape.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
             JLabel HandicapeLabel = new JLabel(Handicape);
             HandicapeLabel.setBounds(600, 200, 50, 50);
-            panelReservation.add(HandicapeLabel);
+            panelReservation.add(HandicapeLabel);*/
 
             //Total à payer
             JLabel TotalPayer = new JLabel("Total Billet : " + frame.reservationActuelle.get(frame.reservationActuelle.size()-1).getPrixTotal() + "€");

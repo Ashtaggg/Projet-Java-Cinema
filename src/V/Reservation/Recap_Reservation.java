@@ -46,6 +46,11 @@ public class Recap_Reservation {
         frame.PageActuelle = "recap_reservation";
         frame.getPanelBase().removeAll();
 
+        System.out.println("Recap Reservation places résa :");
+        for (int i=0; frame.reservationActuelle.get(0).getNumPlaces().size() > i; i++){
+            System.out.println(frame.reservationActuelle.get(0).getNumPlaces().get(i));
+        }
+
         //Pannel Résumé de Reservation
         JPanel panelRecapReservation = new JPanel();
         panelRecapReservation.setLayout(null);
