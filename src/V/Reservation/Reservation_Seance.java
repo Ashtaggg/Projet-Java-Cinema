@@ -211,7 +211,7 @@ public class Reservation_Seance {
         TarifNormal.setBounds(110, 160, 250, 50);
         PanelTarifs.add(TarifNormal);
         //Prix du tarif normal
-        JLabel PrixNormal = new JLabel("15.50€");
+        JLabel PrixNormal = new JLabel("10.99€");
         PrixNormal.setFont(new Font ("Arial", Font.BOLD, 27));
         PrixNormal.setForeground(frame.getSecondeCouleur());
         PrixNormal.setBounds(110, 200, 250, 50);
@@ -223,7 +223,7 @@ public class Reservation_Seance {
         TarifJeune.setBounds(110, 330, 250, 50);
         PanelTarifs.add(TarifJeune);
         //Prix du tarif -26 ans
-        JLabel PrixJeune = new JLabel("9.90€");
+        JLabel PrixJeune = new JLabel("8.79€");
         PrixJeune.setFont(new Font ("Arial", Font.BOLD, 27));
         PrixJeune.setForeground(frame.getSecondeCouleur());
         PrixJeune.setBounds(110, 370, 250, 50);
@@ -235,7 +235,7 @@ public class Reservation_Seance {
         TarifSenior.setBounds(110, 500, 250, 50);
         PanelTarifs.add(TarifSenior);
         //Prix du tarif -14 ans
-        JLabel PrixSenior = new JLabel("7.50€");
+        JLabel PrixSenior = new JLabel("6.59€");
         PrixSenior.setFont(new Font ("Arial", Font.BOLD, 27));
         PrixSenior.setForeground(frame.getSecondeCouleur());
         PrixSenior.setBounds(110, 540, 250, 50);
@@ -417,10 +417,34 @@ public class Reservation_Seance {
             public void actionPerformed(ActionEvent e) {
                 // Vérifiez si le code promo est valide
                 if (CodePromoTXT.getText().equals("PROMO")) {
-                    // Appliquer une réduction de 50% sur le prix total
-                    PrixNormal.setText("7.75€");
-                    PrixJeune.setText("4.95€");
-                    PrixSenior.setText("3.75€");
+                    //Multiplier par O.5 le prix de chaque ticket
+                    PrixNormal.setText(String.valueOf(10.99 * 0.5) + "€");
+                    PrixJeune.setText(String.valueOf(8.79 * 0.5) + "€");
+                    PrixSenior.setText(String.valueOf(6.59 * 0.5) + "€");
+                }
+                else if (CodePromoTXT.getText().equals("PROMOAlexis")) {
+                    //Multiplier par 0.75 le prix de chaque ticket
+                    PrixNormal.setText(String.valueOf(10.99 * 0.75) + "€");
+                    PrixJeune.setText(String.valueOf(8.79 * 0.75) + "€");
+                    PrixSenior.setText(String.valueOf(6.59 * 0.75) + "€");
+                }
+                else if (CodePromoTXT.getText().equals("PROMOMathis")) {
+                    //Multiplier par 0.80 le prix de chaque ticket
+                    PrixNormal.setText(String.valueOf(10.99 * 0.80) + "€");
+                    PrixJeune.setText(String.valueOf(8.79 * 0.80) + "€");
+                    PrixSenior.setText(String.valueOf(6.59 * 0.80) + "€");
+                }
+                else if (CodePromoTXT.getText().equals("PROMOAntho")) {
+                    //Multiplier par 0.70 le prix de chaque ticket
+                    PrixNormal.setText(String.valueOf(10.99 * 0.70) + "€");
+                    PrixJeune.setText(String.valueOf(8.79 * 0.70) + "€");
+                    PrixSenior.setText(String.valueOf(6.59 * 0.70) + "€");
+                }
+                else {
+                    // Remettre les prix normaux
+                    PrixNormal.setText("10.99€");
+                    PrixJeune.setText("8.79€");
+                    PrixSenior.setText("6.59€");
                 }
             }
         });

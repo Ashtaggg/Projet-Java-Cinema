@@ -107,7 +107,7 @@ public class FrameBase extends JFrame{
         this.getContentPane().setBackground(MainCouleur);
 
         //Initialisation des variables à enlever avec la partie de Anhto mais hyper importantes de bien les mettre à jour ensuite
-        reservationActuelle.add(new Reservation(0, 0, 626, 0, 0));
+        reservationActuelle.add(new Reservation(0, -1, 626, 0, 0));
         seanceActuelle.add(seancesDAO.recupererSeanceByID(626)); //Récupérer Séance 626
         seancesDAO.afficherSeance(seanceActuelle.get(0));
         seancesDAO.afficherSeance(seancesDAO.recupererSeanceByID(626));

@@ -22,10 +22,11 @@ public class BilletDAO_IMPL implements BilletDAO{
 
         try {
             connexion = DAOFactory.getConnection();
-            preparedStatement = connexion.prepareStatement("INSERT INTO billet (ID_Reservation, NumeroPlace, TypeBillet) VALUES(?, ?, ?)");
+            preparedStatement = connexion.prepareStatement("INSERT INTO billet (ID_Reservation, NumeroPlace, TypeBillet, Prix) VALUES(?, ?, ?, ?)");
             preparedStatement.setInt(1, billet.getIdReservation());
             preparedStatement.setInt(2, billet.getNumeroPlace());
             preparedStatement.setString(3, billet.getTypeBillet());
+            preparedStatement.setDouble(4, billet.getPrix());
 
             preparedStatement.executeUpdate();
 

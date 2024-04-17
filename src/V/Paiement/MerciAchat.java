@@ -13,7 +13,7 @@ public class MerciAchat {
     
     public static void afficherMerciAchat(FrameBase frame)
     {
-        frame.PageActuelle = "payer";
+        frame.PageActuelle = "Merci";
         frame.getPanelBase().removeAll();
         
         // Création d'un JLabel pour afficher le message de remerciement

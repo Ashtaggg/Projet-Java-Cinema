@@ -51,10 +51,7 @@ public class PayerListener {
                 {
                     nbResaOK++;
                 }
-                throw new SQLException("erreur SQL");
 
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
