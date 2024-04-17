@@ -418,12 +418,13 @@ public class Reservation_Seance {
                 // Vérifiez si le code promo est valide
                 if (CodePromoTXT.getText().equals("PROMO")) {
                     //Multiplier par O.5 le prix de chaque ticket
+                    //String.format("%.2f", nombre)
                     PrixNormal.setText(String.valueOf(10.99 * 0.5) + "€");
                     PrixJeune.setText(String.valueOf(8.79 * 0.5) + "€");
                     PrixSenior.setText(String.valueOf(6.59 * 0.5) + "€");
                 }
                 else if (CodePromoTXT.getText().equals("PROMOAlexis")) {
-                    //Multiplier par 0.75 le prix de chaque ticket
+                    //Multiplier par 0.75 le prix de chaque ticket et arrondir à 2 chiffres après la virgule
                     PrixNormal.setText(String.valueOf(10.99 * 0.75) + "€");
                     PrixJeune.setText(String.valueOf(8.79 * 0.75) + "€");
                     PrixSenior.setText(String.valueOf(6.59 * 0.75) + "€");
