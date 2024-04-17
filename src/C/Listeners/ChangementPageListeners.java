@@ -2,6 +2,7 @@ package C.Listeners;
 
 // Importation des fichiers
 import V.TestEnfFrameBase;
+import V.EspaceUtilisateur.PageModifCompte;
 import V.EspaceUtilisateur.PageConnexion;
 import V.EspaceUtilisateur.PageInscription;
 import V.EspaceUtilisateur.PageCompte;

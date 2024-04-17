@@ -13,6 +13,7 @@ import M.JAVA_MODEL.ImagesModifs.ChangerCouleurImage;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 import M.JAVA_MODEL.ImagesModifs.ImageIconRounded;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
+import C.Listeners.PageCompte.PageModifCompteListeners;
 import V.FrameBase;
 
 import javax.swing.*;
@@ -55,6 +56,20 @@ public class PageCompte {
         });
         BoutonLogo_Deconnexion.setBounds(20, 20, 30, 30);
         compte.add(BoutonLogo_Deconnexion);
+
+        ImageIcon LogoPersonalisation = new ImageIcon("images/Images_Projet_V/Icon_Compte/Personalisation.png");
+        LogoPersonalisation = ChangerCouleurImage.changer(frame, LogoPersonalisation);
+        JButton BoutonLogo_Personalisation = new JButton();
+        BoutonLogo_Personalisation.setIcon(new ImageIcon(LogoPersonalisation.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+        BoutonLogo_Personalisation.setOpaque(true);
+        BoutonLogo_Personalisation.setFocusable(false);
+        BoutonLogo_Personalisation.setBorderPainted(false);
+        BoutonLogo_Personalisation.setName("Deconnexion");
+        BoutonLogo_Personalisation.addActionListener(e -> {
+            PageModifCompteListeners.boutonModifCompte(frame, compte);
+        });
+        BoutonLogo_Personalisation.setBounds(700, 20, 30, 30);
+        compte.add(BoutonLogo_Personalisation);
 
         if(!frame.userActuel.getPhotoProfil().isEmpty()){
             BufferedImage image = ConvertirImageHexa.HexToImage(frame.userActuel.getPhotoProfil());
@@ -244,7 +259,7 @@ public class PageCompte {
         }
         
         JLabel carteNom = new JLabel(frame.userActuel.getCarteNom());
-        carteNom.setBounds(40, 165, 200, 24);
+        carteNom.setBounds(35, 165, 200, 24);
         carteNom.setForeground(frame.getSecondeCouleur());
         carteNom.setFont(font2);
         carte.add(carteNom);
