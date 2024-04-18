@@ -9,6 +9,7 @@ import M.JAVA_MODEL.Global_CLASS.Seance;
 import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
 import V.FrameBase;
+import V.Panier.Panier;
 import M.JAVA_MODEL.Global_CLASS.Salle;
 import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO;
 import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
@@ -54,6 +55,11 @@ import java.awt.event.ActionListener;
 public class Accueil_Films {
 
     public static boolean sizePage = false;
+
+    private static Panier panier = new Panier();
+
+    private static List<Film> filmsAReserver = new ArrayList<>();
+
 
     public static void affichageAccueil_Films(FrameBase frame){
         frame.PageActuelle = "accueil_cinema";
@@ -209,12 +215,30 @@ public class Accueil_Films {
             boutonReserver.setFont(new Font("Arial", Font.BOLD, 15));
             boutonReserver.setBackground(frame.getMainCouleur());
             boutonReserver.setForeground(frame.getSecondeCouleur());
+            boutonReserver.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Créez une instance de FrameBase si nécessaire
+                    FrameBase frame = new FrameBase(); // Vous pouvez également récupérer une instance existante si vous en avez déjà une
+            
+                    filmsAReserver.add(film);
+
+                    for (Film film : filmsAReserver) {
+                        frame.filmActuel.add(film);
+                    }
+            
+                    // Appelez la méthode affichagePanier de la classe Panier en passant cette instance de FrameBase
+                    Panier.affichagePanier(frame);
+                }
+            });
 
             boutonReserver.setBounds(600, 55, 150, 50);
             panelFilm.add(boutonReserver);
+
+            
         
             JButton boutonSeances = new JButton("Voir les séances");
-            boutonSeances.setFont(new Font("Arial", Font.BOLD, 15));
+            boutonSeances.setFont(new Font("Arial", Font.BOLD, 14));
             boutonSeances.setBackground(frame.getMainCouleur());
             boutonSeances.setForeground(frame.getSecondeCouleur());
             boutonSeances.setBounds(600, 145, 150, 50);
