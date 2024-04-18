@@ -6,7 +6,7 @@ import java.util.Date;
 public class Film {
     private int idFilm;
     private String nom;
-    private float prix;
+    private double prix;
     private Date dateSortie;
     private String photo;
     private String duree;
@@ -18,7 +18,7 @@ public class Film {
     private String synopsis;
 
     // Constructeur
-    public Film(int idFilm, String nom, float prix, Date dateSortie, String photo, String duree, String description,
+    public Film(int idFilm, String nom, double prix, Date dateSortie, String photo, String duree, String description,
                 double note, boolean quatreDX, String realisateur, String acteur, String synopsis) {
         this.idFilm = idFilm;
         this.nom = nom;
@@ -51,11 +51,11 @@ public class Film {
         this.nom = nom;
     }
 
-    public float getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(float prix) {
+    public void setPrix(double prix) {
         this.prix = prix;
     }
 
