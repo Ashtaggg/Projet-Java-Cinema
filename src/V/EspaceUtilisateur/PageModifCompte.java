@@ -36,7 +36,6 @@ public class PageModifCompte {
         BoutonLogo_Retour.setBorderPainted(false);
         BoutonLogo_Retour.setName("Retour");
         BoutonLogo_Retour.addActionListener(e -> {
-            System.out.println("Retour...........");
             ChangementPageListeners.ChangementPage("compte", frame);
         });
         BoutonLogo_Retour.setBounds(20, 20, 30, 30);
@@ -350,6 +349,14 @@ public class PageModifCompte {
         carte.add(logoFleche);
 
 
+        JLabel problemValidationLabel = new JLabel("");
+        problemValidationLabel.setBounds(375, 270, 327, 24);
+        problemValidationLabel.setForeground(frame.getSecondeCouleur());
+        problemValidationLabel.setFont(font3);
+        problemValidationLabel.setVisible(false);
+        compte.add(problemValidationLabel);
+
+
 
         ImageIcon LogoValidation = new ImageIcon("images/Images_Projet_V/Icon_Compte/Validation.png");
         LogoValidation = ChangerCouleurImage.changer(frame, LogoValidation);
@@ -372,8 +379,8 @@ public class PageModifCompte {
             String CarteDate = carteDate.getText();
             String CarteCCV = carteCCV.getText();
             String CarteNom = carteNom.getText();
-            System.out.println("Validation................");
-            ValidationListeners.boutonValidation(frame, photo[0], Prenom, Nom, Mail, Tel, Date, Adresse, Mdp, Mdp2, CarteNum, CarteDate, CarteCCV, CarteNom);
+            System.out.println("Validation....................");
+            ValidationListeners.boutonValidation(frame, problemValidationLabel, photo[0], Prenom, Nom, Mail, Tel, Date, Adresse, Mdp, Mdp2, CarteNum, CarteDate, CarteCCV, CarteNom);
         });
         BoutonLogo_Validation.setBounds(700, 20, 30, 30);
         compte.add(BoutonLogo_Validation);

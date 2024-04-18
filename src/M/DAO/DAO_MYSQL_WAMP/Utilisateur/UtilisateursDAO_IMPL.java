@@ -40,7 +40,32 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
     }
 
     public void modifierUtilisateur(Utilisateur utilisateur) {
-        // A faire
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("UPDATE compte SET Prenom = ?, Nom = ?, MotDePasse = ?, DateNaissance = ?, PhotoProfil = ?, Mail = ?, Telephone = ?, Adresse = ?, CarteNum = ?, CarteDate = ?, CarteCCV = ?, CarteNom = ? WHERE ID_Compte = ?;");
+            preparedStatement.setString(1, utilisateur.getPrenom());
+            preparedStatement.setString(2, utilisateur.getNom());
+            preparedStatement.setString(3, utilisateur.getMotDePasse());
+            java.sql.Date dateSql = new java.sql.Date(utilisateur.getDateNaissance().getTime());
+            preparedStatement.setDate(4, dateSql);
+            preparedStatement.setString(5, utilisateur.getPhotoProfil());
+            preparedStatement.setString(6, utilisateur.getMail());
+            preparedStatement.setString(7, utilisateur.getTelephone());
+            preparedStatement.setString(8, utilisateur.getAdresse());
+            preparedStatement.setString(9, utilisateur.getCarteNum());
+            preparedStatement.setString(10, utilisateur.getCarteDate());
+            preparedStatement.setInt(11, utilisateur.getCarteCCV());
+            preparedStatement.setString(12, utilisateur.getCarteNom());
+            preparedStatement.setInt(13, utilisateur.getIdCompte());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException error) {
+            System.out.println(error);
+        }
     }
 
     public void modifierUtilisateurByID(int ID) {
