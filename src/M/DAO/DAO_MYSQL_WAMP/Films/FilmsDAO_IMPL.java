@@ -113,7 +113,7 @@ public class FilmsDAO_IMPL implements FilmsDAO{
             if(result.next()) {
                 int idFilm = result.getInt("ID_Film");
                 String nom = result.getString("Nom");
-                float prix = result.getFloat("Prix");
+                double prix = result.getDouble("Prix");
                 Date dateSortie = result.getDate("DateSortie");
                 String photo = result.getString("Photo");
                 String duree = result.getString("Duree");
@@ -150,7 +150,7 @@ public class FilmsDAO_IMPL implements FilmsDAO{
             if(result.next()) {
                 int idFilm = result.getInt("ID_Film");
                 String nom = result.getString("Nom");
-                float prix = result.getFloat("Prix");
+                double prix = result.getDouble("Prix");
                 Date dateSortie = result.getDate("DateSortie");
                 String photo = result.getString("Photo");
                 String duree = result.getString("Duree");
@@ -197,7 +197,7 @@ public class FilmsDAO_IMPL implements FilmsDAO{
             while (result.next()) {
                 int idFilm = result.getInt("ID_Film");
                 String nom = result.getString("Nom");
-                float prix = result.getFloat("Prix");
+                double prix = result.getDouble("Prix");
                 Date dateSortie = result.getDate("DateSortie");
                 String photo = result.getString("Photo");
                 String duree = result.getString("Duree");

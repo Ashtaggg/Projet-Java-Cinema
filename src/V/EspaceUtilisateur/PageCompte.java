@@ -5,6 +5,7 @@ import C.Listeners.PageCompte.RecuperationBilletsListeners;
 import C.Listeners.PageCompte.RecuperationReservationListeners;
 import C.Listeners.PageCompte.RecuperationSeanceListeners;
 import C.Listeners.PageCompte.RecuperationFilmListeners;
+import C.Listeners.PageCompte.PageModifCompteListeners;
 import M.JAVA_MODEL.Global_CLASS.Billet;
 import M.JAVA_MODEL.Global_CLASS.Reservation;
 import M.JAVA_MODEL.Global_CLASS.Seance;
@@ -13,7 +14,6 @@ import M.JAVA_MODEL.ImagesModifs.ChangerCouleurImage;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 import M.JAVA_MODEL.ImagesModifs.ImageIconRounded;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
-import C.Listeners.PageCompte.PageModifCompteListeners;
 import V.FrameBase;
 
 import javax.swing.*;
