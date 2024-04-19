@@ -45,7 +45,7 @@ public class PageModifCompte {
         String[] photo = {frame.userActuel.getPhotoProfil()};
 
         if(!frame.userActuel.getPhotoProfil().isEmpty()){
-            BufferedImage image = ConvertirImageHexa.HexToImage(frame.userActuel.getPhotoProfil());
+            BufferedImage image = ConvertirImageHexa.HexToImage(photo[0]);
             Image image2 = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
             JButton BoutonChoixImage = new JButton();
             BoutonChoixImage.setIcon(new ImageIconRounded(image2));
@@ -64,6 +64,11 @@ public class PageModifCompte {
                 if(reponse == JFileChooser.APPROVE_OPTION){
                     String path = new String(filechooser.getSelectedFile().getAbsolutePath());
                     photo[0] = ConvertirImageHexa.ImageToHex(path);
+                    BufferedImage newImage = ConvertirImageHexa.HexToImage(photo[0]);
+                    Image newImageScaled = newImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                    ImageIcon newIcon = new ImageIconRounded(newImageScaled);
+                    BoutonChoixImage.setIcon(newIcon);
+                    BoutonChoixImage.repaint();
                 }
                 frame.RefreshPage();
             });
@@ -90,6 +95,11 @@ public class PageModifCompte {
                 if(reponse == JFileChooser.APPROVE_OPTION){
                     String path = new String(filechooser.getSelectedFile().getAbsolutePath());
                     photo[0] = ConvertirImageHexa.ImageToHex(path);
+                    BufferedImage newImage = ConvertirImageHexa.HexToImage(photo[0]);
+                    Image newImageScaled = newImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                    ImageIcon newIcon = new ImageIconRounded(newImageScaled);
+                    BoutonChoixImage.setIcon(newIcon);
+                    BoutonChoixImage.repaint();
                 }
                 frame.RefreshPage();
                 
@@ -379,7 +389,6 @@ public class PageModifCompte {
             String CarteDate = carteDate.getText();
             String CarteCCV = carteCCV.getText();
             String CarteNom = carteNom.getText();
-            System.out.println("Validation....................");
             ValidationListeners.boutonValidation(frame, problemValidationLabel, photo[0], Prenom, Nom, Mail, Tel, Date, Adresse, Mdp, Mdp2, CarteNum, CarteDate, CarteCCV, CarteNom);
         });
         BoutonLogo_Validation.setBounds(700, 20, 30, 30);

@@ -51,7 +51,6 @@ public class EspaceAdmin {
 
 
         boutonAjouterFilm.addActionListener(e -> {
-            System.out.println("boutonAjouterFilm");
             affichageEspaceAdmin1(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonAjouterSeance, boutonSuppModifSeance);
         });
         boutonAjouterFilm.setBounds(140, 40, 177, 20);
@@ -63,7 +62,6 @@ public class EspaceAdmin {
 
         
         boutonSuppModifFilm.addActionListener(e -> {
-            System.out.println("boutonSuppModifFilm");
             affichageEspaceAdmin2(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonAjouterSeance, boutonSuppModifSeance);
         });
         boutonSuppModifFilm.setBounds(524, 40, 302, 20);
@@ -75,7 +73,6 @@ public class EspaceAdmin {
 
 
         boutonAjouterSeance.addActionListener(e -> {
-            System.out.println("boutonAjouterSeance");
             affichageEspaceAdmin3(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonAjouterSeance, boutonSuppModifSeance);
         });
         boutonAjouterSeance.setBounds(1016, 40, 218, 20);
@@ -87,7 +84,6 @@ public class EspaceAdmin {
 
 
         boutonSuppModifSeance.addActionListener(e -> {
-            System.out.println("boutonSuppModifSeance");
             affichageEspaceAdmin4(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonAjouterSeance, boutonSuppModifSeance);
         });
         boutonSuppModifSeance.setBounds(1403, 40, 343, 20);

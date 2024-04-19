@@ -21,6 +21,7 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
             preparedStatement.setString(3, utilisateur.getNom());
             preparedStatement.setString(4, utilisateur.getMotDePasse());
             java.sql.Date dateSql = new java.sql.Date(utilisateur.getDateNaissance().getTime());
+            utilisateur.setDateNaissance(dateSql);
             preparedStatement.setDate(5, dateSql);
             preparedStatement.setString(6, utilisateur.getPhotoProfil());
             preparedStatement.setString(7, utilisateur.getMail());
@@ -50,6 +51,7 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
             preparedStatement.setString(2, utilisateur.getNom());
             preparedStatement.setString(3, utilisateur.getMotDePasse());
             java.sql.Date dateSql = new java.sql.Date(utilisateur.getDateNaissance().getTime());
+            utilisateur.setDateNaissance(dateSql);
             preparedStatement.setDate(4, dateSql);
             preparedStatement.setString(5, utilisateur.getPhotoProfil());
             preparedStatement.setString(6, utilisateur.getMail());
