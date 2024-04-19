@@ -41,7 +41,7 @@ import java.awt.event.ActionListener;
 
 public class Accueil_News {
     public static void affichageAccueil_News(FrameBase frame){
-        frame.PageActuelle = "accueil_cinema";
+        frame.PageActuelle = "accueil_news";
         frame.getPanelBase().removeAll();
         // Créer un nouveau JPanel pour contenir tous les composants
         JPanel contentPanel = new JPanel();

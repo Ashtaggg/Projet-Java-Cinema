@@ -62,7 +62,7 @@ public class Accueil_Films {
 
 
     public static void affichageAccueil_Films(FrameBase frame){
-        frame.PageActuelle = "accueil_cinema";
+        frame.PageActuelle = "accueil_films";
         frame.getPanelBase().removeAll();
         // Créer un nouveau JPanel pour contenir tous les composants
         JPanel contentPanel = new JPanel();
@@ -255,6 +255,9 @@ public class Accueil_Films {
         // Ajouter un footer
         JPanel footer = new JPanel();
         footer.setBackground(frame.getSecondeCouleur());
+        footer.setVisible(true);
+        footer.setOpaque(true);
+        footer.setPreferredSize(new Dimension(1886, 200));
         footer.setLayout(null);
         footer.setBorder(BorderFactory.createLineBorder(frame.getMainCouleur(), 2));
         //Conditions de vente
@@ -301,6 +304,10 @@ public class Accueil_Films {
         ConditionsVenteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Afficher ou cacher les conditions de vente
+                if(TexteConditionsVente.isVisible()){TexteConditionsVente.setVisible(false);}
+                else{TexteConditionsVente.setVisible(true);}
+                sizePage = !sizePage;
+                ChangementPageListeners.ChangementPage("accueil_films", frame);
             }
         });
 
@@ -341,11 +348,10 @@ public class Accueil_Films {
         footer.add(MapLabel);
 
         // Ajouter footer avec GridBagLayout
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy += 2; // Aller à la ligne suivante
-        gbc.ipadx = 1845; // Largeur spécifique
+        gbc.ipady = 200;
         if(sizePage){gbc.ipady = 1150;} // Hauteur spécifique
-        else{gbc.ipady = 00;} // Hauteur spécifique
         contentPanel.add(footer, gbc);
 
 

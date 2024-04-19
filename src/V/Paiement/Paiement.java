@@ -320,6 +320,7 @@ public class Paiement {
                                 if (ValidPayer == 1){
                                     //JOptionPane.showMessageDialog(null, "Votre billet a été envoyé à l'adresse mail : " + email.getText());
                                     //ChangementPageListeners.ChangementPage("accueil", frame);
+                                    frame.RefreshPanier();
                                     ChangementPageListeners.ChangementPage("Merci", frame);
                                 }
                                 else{
@@ -335,6 +336,7 @@ public class Paiement {
                                 if (ValidPayer == 1){
                                     //JOptionPane.showMessageDialog(null, "Paiement effectué et billet disponible dans votre compte");
                                     //ChangementPageListeners.ChangementPage("accueil", frame);
+                                    frame.RefreshPanier();
                                     ChangementPageListeners.ChangementPage("Merci", frame);
                                 }
                                 else{
