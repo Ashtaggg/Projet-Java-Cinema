@@ -10,9 +10,14 @@ import C.Listeners.PageAdmin.SupprimerUtilisateurListeners;
 import C.Listeners.PageAdmin.ModifierUtilisateurListeners;
 import C.Listeners.PageAdmin.RecuperationUtilisateurListeners;
 import C.Listeners.PageAdmin.RecuperationUtilisateursListeners;
+import C.Listeners.PageAdmin.RecuperationSeancesByIDFilmListeners;
+import C.Listeners.PageAdmin.RecuperationReservationsByIDSeance;
+import C.Listeners.PageAdmin.CompterBilletsByIDReservation;
 import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.Global_CLASS.Film;
 import M.JAVA_MODEL.Global_CLASS.Utilisateur;
+import M.JAVA_MODEL.Global_CLASS.Reservation;
+import M.JAVA_MODEL.Global_CLASS.Seance;
 import M.JAVA_MODEL.ImagesModifs.ChangerCouleurImage;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
@@ -34,6 +39,15 @@ import java.awt.event.*;
 import java.util.Hashtable;
 import java.util.List;
 import java.text.ParseException;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.NumberAxis;
 
 
 
@@ -47,7 +61,6 @@ public class EspaceAdmin {
         
         Font font1 = new Font("Arial", Font.BOLD, 60);
         Font font2 = new Font("Arial", Font.BOLD, 20);
-        //Font font3 = new Font("Arial", Font.BOLD, 15);
 
         LineBorder bordure = new LineBorder(frame.getSecondeCouleur(), 1);
 
@@ -562,7 +575,6 @@ public class EspaceAdmin {
         admin.removeAll();
         frame.RefreshPage();
         
-        //Font font1 = new Font("Arial", Font.BOLD, 30);
         Font font2 = new Font("Arial", Font.BOLD, 20);
         Font font3 = new Font("Arial", Font.BOLD, 15);
 
@@ -1028,14 +1040,71 @@ public class EspaceAdmin {
         frame.RefreshPage();
         
         Font font1 = new Font("Arial", Font.BOLD, 30);
-        Font font2 = new Font("Arial", Font.BOLD, 20);
-        Font font3 = new Font("Arial", Font.BOLD, 15);
         
         boutonAjouterFilm.setForeground(frame.getTroisCouleur());
         boutonSuppModifFilm.setForeground(frame.getTroisCouleur());
         boutonSuppModifCompte.setForeground(frame.getTroisCouleur());
         boutonAfficherStat.setForeground(frame.getSecondeCouleur());
 
+        JLabel Label = new JLabel("Nombre de billets vendu par Films");
+        Label.setFont(font1);
+        Label.setForeground(frame.getSecondeCouleur());
+        Label.setBounds(657, 40, 486, 30);
+        admin.add(Label);
+
+
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        List<Film> films = RecuperationFilmsListeners.recupFilms(frame);
+
+        for (Film film : films) {
+            int nombreBillet = 0;
+            List<Seance> seances = RecuperationSeancesByIDFilmListeners.recupSeances(frame, film.getIdFilm());
+            for (Seance seance : seances) {
+                List<Reservation> reservations = RecuperationReservationsByIDSeance.recupReservations(frame, seance.getIdSeance());
+                for (Reservation reservation : reservations) {
+                    nombreBillet = nombreBillet + CompterBilletsByIDReservation.compterBillets(frame, reservation.getIdReservation());
+                }
+            }
+            dataset.addValue(nombreBillet, "Films", film.getNom());
+        }
+
+
+        JFreeChart chart = ChartFactory.createBarChart(
+                "",        // Titre du graphique
+                "",            // Titre de l'axe des abscisses
+                "",          // Titre de l'axe des ordonnées
+                dataset,              // Données
+                PlotOrientation.HORIZONTAL, // Orientation du graphique
+                false,                 // Afficher la légende
+                true,                 // Activer les tooltips
+                false                 // Activer les URLs
+        );
+
+        chart.setBackgroundPaint(frame.getMainCouleur());
+
+        CategoryPlot plot = chart.getCategoryPlot();
+        plot.setBackgroundPaint(frame.getMainCouleur());
+        
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        renderer.setSeriesPaint(0, frame.getSecondeCouleur());
+
+        CategoryAxis abscisse = plot.getDomainAxis();
+        abscisse.setTickLabelPaint(frame.getSecondeCouleur());
+        
+        NumberAxis ordonnee = (NumberAxis) plot.getRangeAxis();
+        ordonnee.setTickLabelPaint(frame.getSecondeCouleur());
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(1500, 650));
+
+        chartPanel.setBounds(150, 100, 1500, 650);
+        admin.add(chartPanel);
+
+
+
+        frame.RefreshPage();
     }
     
 }

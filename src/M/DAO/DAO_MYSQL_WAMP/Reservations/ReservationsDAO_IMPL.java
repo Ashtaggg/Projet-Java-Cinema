@@ -152,6 +152,38 @@ public class ReservationsDAO_IMPL implements ReservationsDAO {
         return reservations;
     }
 
+    public List<Reservation> recupererToutesLesReservationsByIDSeance(int ID) {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Reservation> reservations = new ArrayList<>();
+
+        try {
+            connexion = DAOFactory.getConnection();
+            String query = "SELECT * FROM reservation WHERE ID_Seance = ?";
+            preparedStatement = connexion.prepareStatement(query);
+            preparedStatement.setInt(1, ID);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Reservation reservation = new Reservation(
+                        resultSet.getInt("ID_Reservation"),
+                        resultSet.getInt("ID_Compte"),
+                        resultSet.getInt("ID_Seance"),
+                        resultSet.getInt("NombrePlace"),
+                        resultSet.getInt("PrixTotal")
+                );
+                reservations.add(reservation);
+            }
+        } catch (SQLException error) {
+            error.printStackTrace();
+        } finally {
+            DAOFactory.close(connexion);
+        }
+
+        return reservations;
+    }
+
     public Reservation recupererReservationBySeance(int SeanceID) {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;

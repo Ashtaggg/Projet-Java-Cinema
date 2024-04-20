@@ -21,6 +21,8 @@ public interface BilletDAO{
     Billet recupererBilletByID(int ID);
     //Récupérer tous les billets
     List<Billet> recupererTousLesBillets();
+    //Compter le nombre de billet pour une réservation
+    int compterTousLesBilletsByIDReservation(int ID);
     //Récupérer tous les billets d'une réservation
     List<Billet> recupererBilletsByReservation(int IDReservation);
     //Récupérer tous les billets d'une seance

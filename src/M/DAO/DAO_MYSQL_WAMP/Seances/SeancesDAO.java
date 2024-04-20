@@ -25,6 +25,8 @@ public interface SeancesDAO {
     Seance recupererSeanceBySalle(int SalleID);
     //Récupérer toutes les seances
     List<Seance> recupererToutesLesSeances();
+    //Récupérer toutes les seances à partir d'un ID Film
+    List<Seance> recupererToutesLesSeancesByIDFilm(int ID);
     //Affciher une seance
     void afficherSeance(Seance seance);
     //Afficher toutes les seances d'une liste

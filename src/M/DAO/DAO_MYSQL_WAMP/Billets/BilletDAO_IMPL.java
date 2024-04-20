@@ -125,6 +125,29 @@ public class BilletDAO_IMPL implements BilletDAO{
         return billets;
     }
 
+    public int compterTousLesBilletsByIDReservation(int ID) {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultat = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("SELECT COUNT(*) FROM billet WHERE ID_Reservation = ?");
+            preparedStatement.setInt(1, ID);
+
+            resultat = preparedStatement.executeQuery();
+
+            if (resultat.next()) {
+                int count = resultat.getInt(1);
+                return count;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public List<Billet> recupererBilletsByReservation(int IDReservation) {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
