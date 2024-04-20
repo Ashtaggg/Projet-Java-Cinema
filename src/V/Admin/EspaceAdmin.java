@@ -4,13 +4,19 @@ package V.Admin;
 import C.Listeners.PageAdmin.AjouterFilmListeners;
 import C.Listeners.PageAdmin.SupprimerFilmListeners;
 import C.Listeners.PageAdmin.ModifierFilmListeners;
-import C.Listeners.PageAdmin.RecuperationFilmsListeners;
 import C.Listeners.PageCompte.RecuperationFilmListeners;
+import C.Listeners.PageAdmin.RecuperationFilmsListeners;
+import C.Listeners.PageAdmin.SupprimerUtilisateurListeners;
+import C.Listeners.PageAdmin.ModifierUtilisateurListeners;
+import C.Listeners.PageAdmin.RecuperationUtilisateurListeners;
+import C.Listeners.PageAdmin.RecuperationUtilisateursListeners;
 import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.Global_CLASS.Film;
+import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import M.JAVA_MODEL.ImagesModifs.ChangerCouleurImage;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
+import M.JAVA_MODEL.ImagesModifs.ImageIconRounded;
 import V.FrameBase;
 
 //Imports Java
@@ -556,7 +562,7 @@ public class EspaceAdmin {
         admin.removeAll();
         frame.RefreshPage();
         
-        Font font1 = new Font("Arial", Font.BOLD, 30);
+        //Font font1 = new Font("Arial", Font.BOLD, 30);
         Font font2 = new Font("Arial", Font.BOLD, 20);
         Font font3 = new Font("Arial", Font.BOLD, 15);
 
@@ -870,6 +876,150 @@ public class EspaceAdmin {
         boutonSuppModifFilm.setForeground(frame.getTroisCouleur());
         boutonSuppModifCompte.setForeground(frame.getSecondeCouleur());
         boutonAfficherStat.setForeground(frame.getTroisCouleur());
+
+
+
+
+        JPanel scrollBillets = new JPanel();
+        scrollBillets.setBounds(150, 150, 1500, 5000);
+        scrollBillets.setBackground(frame.getMainCouleur());
+        scrollBillets.setBorder(BorderFactory.createEmptyBorder());
+        scrollBillets.setLayout(new GridBagLayout()); // Utiliser GridBagLayout pour une disposition plus flexible
+
+        // Ajout de labels pour étirer notre zone de scroll
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.ipady = 0; // Hauteur spécifique
+        gbc.insets = new Insets(10, 5, 10, 5); // Espacement entre les composants
+
+        List<Utilisateur> utilisateurs = RecuperationUtilisateursListeners.recupUsers(frame);
+
+        for (Utilisateur utilisateur : utilisateurs) {
+
+            JPanel panelUtilisateurs = new JPanel();
+            panelUtilisateurs.setLayout(null);
+            panelUtilisateurs.setBackground(frame.getMainCouleur());
+            panelUtilisateurs.setSize(1700, 125);
+            panelUtilisateurs.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
+            panelUtilisateurs.setPreferredSize(new Dimension(1700, 125));
+
+
+            if(!utilisateur.getPhotoProfil().isEmpty()){
+                BufferedImage image = ConvertirImageHexa.HexToImage(utilisateur.getPhotoProfil());
+                Image image2 = image.getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+                JLabel imageLabel = new JLabel(new ImageIconRounded(image2));
+                imageLabel.setBounds(50, 10, 70, 70);
+                panelUtilisateurs.add(imageLabel);
+            }
+            JPanel photoProfil = new JPanel();
+            photoProfil.setLayout(null);
+            photoProfil.setBackground(frame.getMainCouleur());
+            photoProfil.setBounds(49, 9, 72, 72);
+            photoProfil.setBorder(new RoundBorder(frame.getSecondeCouleur(), 200, 1));
+            panelUtilisateurs.add(photoProfil);
+
+
+            JLabel PrenomUtilisateur = new JLabel(utilisateur.getPrenom());
+            PrenomUtilisateur.setFont(font1);
+            PrenomUtilisateur.setForeground(frame.getSecondeCouleur());
+            PrenomUtilisateur.setBounds(180, 10, 800, 30);
+            panelUtilisateurs.add(PrenomUtilisateur);
+
+            JLabel NomUtilisateur = new JLabel(utilisateur.getNom());
+            NomUtilisateur.setFont(font1);
+            NomUtilisateur.setForeground(frame.getSecondeCouleur());
+            NomUtilisateur.setBounds(190 + PrenomUtilisateur.getPreferredSize().width, 10, 800, 30);
+            panelUtilisateurs.add(NomUtilisateur);
+
+            JLabel MailUtilisateur = new JLabel(utilisateur.getMail());
+            MailUtilisateur.setFont(font3);
+            MailUtilisateur.setForeground(frame.getSecondeCouleur());
+            MailUtilisateur.setBounds(180, 50, 800, 20);
+            panelUtilisateurs.add(MailUtilisateur);
+
+            
+
+
+            if(utilisateur.getAdmin() == 0){
+                JButton boutonMettreAdmin = new JButton("Mettre Admin");
+                boutonMettreAdmin.addActionListener(e -> {
+                    int index = utilisateur.getIdCompte();
+                    Utilisateur utilisateurSelec = RecuperationUtilisateurListeners.recupUtilisateur(frame, index);
+                    utilisateurSelec.setAdmin(1);
+                    ModifierUtilisateurListeners.modifUtilisateur(frame, utilisateurSelec);
+                    ChangementPageListeners.ChangementPage("admin", frame);
+                });
+                boutonMettreAdmin.setBounds(1100, 40, 170, 40);
+                boutonMettreAdmin.setForeground(frame.getSecondeCouleur());
+                boutonMettreAdmin.setBackground(frame.getMainCouleur());
+                boutonMettreAdmin.setFont(font2);
+                panelUtilisateurs.add(boutonMettreAdmin);
+            }
+            else if(utilisateur.getAdmin() == 1){
+                JButton boutonMettreAdmin = new JButton("Enlever Admin");
+                boutonMettreAdmin.addActionListener(e -> {
+                    int index = utilisateur.getIdCompte();
+                    Utilisateur utilisateurSelec = RecuperationUtilisateurListeners.recupUtilisateur(frame, index);
+                    utilisateurSelec.setAdmin(0);
+                    ModifierUtilisateurListeners.modifUtilisateur(frame, utilisateurSelec);
+                    ChangementPageListeners.ChangementPage("admin", frame);
+                });
+                boutonMettreAdmin.setBounds(1100, 40, 170, 40);
+                boutonMettreAdmin.setForeground(frame.getSecondeCouleur());
+                boutonMettreAdmin.setBackground(frame.getMainCouleur());
+                boutonMettreAdmin.setFont(font2);
+                panelUtilisateurs.add(boutonMettreAdmin);
+            }
+            
+
+
+            JButton boutonSupprimer = new JButton("Supprimer");
+            boutonSupprimer.addActionListener(e -> {
+                int index = utilisateur.getIdCompte();
+                Utilisateur utilisateurSelec = RecuperationUtilisateurListeners.recupUtilisateur(frame, index);
+                SupprimerUtilisateurListeners.supprUtilisateur(frame, utilisateurSelec);
+                ChangementPageListeners.ChangementPage("admin", frame);
+            });
+            LineBorder bordureNormale = new LineBorder(frame.getSecondeCouleur(), 1);
+            LineBorder bordureSurvol = new LineBorder(Color.RED, 1);
+            boutonSupprimer.setBorder(bordureNormale);
+            boutonSupprimer.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    boutonSupprimer.setBorder(bordureSurvol);
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    boutonSupprimer.setBorder(bordureNormale);
+                }
+            });
+            boutonSupprimer.setBounds(1400, 40, 170, 40);
+            boutonSupprimer.setForeground(Color.RED);
+            boutonSupprimer.setBackground(frame.getMainCouleur());
+            boutonSupprimer.setFont(font2);
+            panelUtilisateurs.add(boutonSupprimer);
+
+
+
+            scrollBillets.add(panelUtilisateurs, gbc);
+            gbc.gridy++;
+        }
+        // Créer un JScrollPane et y ajouter le contentPanel
+        JScrollPane scrollPane = new JScrollPane(scrollBillets);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setBackground(frame.getMainCouleur());
+        scrollPane.getVerticalScrollBar().setBackground(frame.getMainCouleur());
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.getVerticalScrollBar().setBlockIncrement(16);
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15, 0));
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+
+        scrollPane.setBounds(50, 1, 1720, 768); // Ajustez la taille selon vos besoins
+
+        admin.add(scrollPane);
+
+        frame.RefreshPage();
 
     }
 
