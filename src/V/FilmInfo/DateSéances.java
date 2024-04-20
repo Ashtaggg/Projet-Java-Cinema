@@ -74,7 +74,7 @@ public class DateSéances {
         frame.getPanelBase().add(date);
 
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy", Locale.FRANCE);
         Calendar cal2 = Calendar.getInstance();
         cal2.setTime(date.getDate());
         cal2.add(Calendar.DAY_OF_MONTH, 1);
@@ -84,10 +84,9 @@ public class DateSéances {
         cal2.add(Calendar.DAY_OF_MONTH, 1);
         Date[] DatePlus3 = {cal2.getTime()};
 
-
-        JButton boutonDatePlus1 = new JButton(dateFormat.format(DatePlus1[0]));
-        JButton boutonDatePlus2 = new JButton(dateFormat.format(DatePlus2[0]));
-        JButton boutonDatePlus3 = new JButton(dateFormat.format(DatePlus3[0]));
+        JButton boutonDatePlus1 = new JButton(sdf.format(DatePlus1[0]));
+        JButton boutonDatePlus2 = new JButton(sdf.format(DatePlus2[0]));
+        JButton boutonDatePlus3 = new JButton(sdf.format(DatePlus3[0]));
 
         date.getDateEditor().addPropertyChangeListener(e -> {
             cal2.setTime(date.getDate());
@@ -97,9 +96,9 @@ public class DateSéances {
             DatePlus2[0] = cal2.getTime();
             cal2.add(Calendar.DAY_OF_MONTH, 1);
             DatePlus3[0] = cal2.getTime();
-            boutonDatePlus1.setText(dateFormat.format(DatePlus1[0]));
-            boutonDatePlus2.setText(dateFormat.format(DatePlus2[0]));
-            boutonDatePlus3.setText(dateFormat.format(DatePlus3[0]));
+            boutonDatePlus1.setText(sdf.format(DatePlus1[0]));
+            boutonDatePlus2.setText(sdf.format(DatePlus2[0]));
+            boutonDatePlus3.setText(sdf.format(DatePlus3[0]));
             affichageDateSeances2(frame, dateSceance, date.getDate());
         });
 
@@ -107,9 +106,9 @@ public class DateSéances {
         boutonDatePlus1.addActionListener(e -> {
             date.setDate(DatePlus1[0]);
             cal2.add(Calendar.DAY_OF_MONTH, 1);
-            boutonDatePlus1.setText(dateFormat.format(DatePlus1[0]));
-            boutonDatePlus2.setText(dateFormat.format(DatePlus2[0]));
-            boutonDatePlus3.setText(dateFormat.format(DatePlus3[0]));
+            boutonDatePlus1.setText(sdf.format(DatePlus1[0]));
+            boutonDatePlus2.setText(sdf.format(DatePlus2[0]));
+            boutonDatePlus3.setText(sdf.format(DatePlus3[0]));
         });
         boutonDatePlus1.setBounds(575, 30, 300, 40);
         boutonDatePlus1.setForeground(frame.getSecondeCouleur());
@@ -121,9 +120,9 @@ public class DateSéances {
             date.setDate(DatePlus2[0]);
             cal2.add(Calendar.DAY_OF_MONTH, 1);
             cal2.add(Calendar.DAY_OF_MONTH, 1);
-            boutonDatePlus1.setText(dateFormat.format(DatePlus1[0]));
-            boutonDatePlus2.setText(dateFormat.format(DatePlus2[0]));
-            boutonDatePlus3.setText(dateFormat.format(DatePlus3[0]));
+            boutonDatePlus1.setText(sdf.format(DatePlus1[0]));
+            boutonDatePlus2.setText(sdf.format(DatePlus2[0]));
+            boutonDatePlus3.setText(sdf.format(DatePlus3[0]));
         });
         boutonDatePlus2.setBounds(1025, 30, 300, 40);
         boutonDatePlus2.setForeground(frame.getSecondeCouleur());
@@ -136,9 +135,9 @@ public class DateSéances {
             cal2.add(Calendar.DAY_OF_MONTH, 1);
             cal2.add(Calendar.DAY_OF_MONTH, 1);
             cal2.add(Calendar.DAY_OF_MONTH, 1);
-            boutonDatePlus1.setText(dateFormat.format(DatePlus1[0]));
-            boutonDatePlus2.setText(dateFormat.format(DatePlus2[0]));
-            boutonDatePlus3.setText(dateFormat.format(DatePlus3[0]));
+            boutonDatePlus1.setText(sdf.format(DatePlus1[0]));
+            boutonDatePlus2.setText(sdf.format(DatePlus2[0]));
+            boutonDatePlus3.setText(sdf.format(DatePlus3[0]));
         });
         boutonDatePlus3.setBounds(1475, 30, 300, 40);
         boutonDatePlus3.setForeground(frame.getSecondeCouleur());
@@ -291,16 +290,16 @@ public class DateSéances {
             
             
 
-            JButton boutonMettreAdmin = new JButton("Réserver cette séance");
-            boutonMettreAdmin.addActionListener(e -> {
+            JButton boutonChoisir = new JButton("Réserver cette séance");
+            boutonChoisir.addActionListener(e -> {
                 frame.seanceActuelle.add(seance);
                 Reservation_Seance.affichageReservation_Seance(frame);
             });
-            boutonMettreAdmin.setBounds(1300, 80, 250, 40);
-            boutonMettreAdmin.setForeground(frame.getSecondeCouleur());
-            boutonMettreAdmin.setBackground(frame.getMainCouleur());
-            boutonMettreAdmin.setFont(font2);
-            panelFilms.add(boutonMettreAdmin);
+            boutonChoisir.setBounds(1300, 80, 250, 40);
+            boutonChoisir.setForeground(frame.getSecondeCouleur());
+            boutonChoisir.setBackground(frame.getMainCouleur());
+            boutonChoisir.setFont(font2);
+            panelFilms.add(boutonChoisir);
 
 
 
