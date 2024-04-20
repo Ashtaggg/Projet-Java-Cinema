@@ -1,5 +1,6 @@
 package V.Accueil;
 
+
 //Importation des fichiers
 import C.Listeners.ChangementPageListeners;
 import C.Listeners.RechercheListeners;
@@ -14,6 +15,9 @@ import M.JAVA_MODEL.Global_CLASS.Salle;
 import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO;
 import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
 import M.Accueil.Films;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import V.FilmInfo.FilmInfo;
 
 
 
@@ -57,6 +61,8 @@ public class Accueil_Films {
     public static boolean sizePage = false;
 
     private static Panier panier = new Panier();
+
+    private static Film filmSelectionne;
 
     private static List<Film> filmsAReserver = new ArrayList<>();
 
@@ -241,7 +247,23 @@ public class Accueil_Films {
             boutonSeances.setForeground(frame.getSecondeCouleur());
             boutonSeances.setBounds(600, 145, 150, 50);
             panelFilm.add(boutonSeances);
-        
+
+            // ActionListener pour le bouton "Voir les séances"
+            boutonSeances.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Récupérer le film sélectionné
+                    Film filmSelectionne = films.get(4); // Remplacez indexDuFilm par l'index du film sélectionné dans votre liste de films
+                    
+                    // Passer les informations du film sélectionné à la page "FilmInfo"
+                    FilmInfo.afficherFilmInfo(frame, filmSelectionne);
+                    
+                    // Naviguer vers la page "FilmInfo"
+                    ChangementPageListeners.ChangementPage("FilmInfo", frame);
+                }
+            });
+
+                    
             gbc.gridy++;
             gbc.ipady = 80;
             contentPanel.add(new JLabel(), gbc);
