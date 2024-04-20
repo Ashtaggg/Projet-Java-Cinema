@@ -18,6 +18,7 @@ import M.Accueil.Films;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import V.FilmInfo.FilmInfo;
+import V.FilmInfo.DateSéances;
 
 
 
@@ -232,7 +233,8 @@ public class Accueil_Films {
                     }
             
                     // Appelez la méthode affichagePanier de la classe Panier en passant cette instance de FrameBase
-                    Panier.affichagePanier(frame);
+                    DateSéances.affichageDateSeances(frame);
+                    //Panier.affichagePanier(frame);
                 }
             });
 

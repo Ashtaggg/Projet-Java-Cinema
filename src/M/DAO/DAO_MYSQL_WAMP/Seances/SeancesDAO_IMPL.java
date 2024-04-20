@@ -229,7 +229,7 @@ public class SeancesDAO_IMPL implements SeancesDAO {
 
         try {
             connexion = DAOFactory.getConnection();
-            String query = "SELECT * FROM seance";
+            String query = "SELECT * FROM seance ORDER BY ID_Seance ASC;";
             preparedStatement = connexion.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 
