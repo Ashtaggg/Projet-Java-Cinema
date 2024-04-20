@@ -1,5 +1,6 @@
 package M.Utilisateur;
 
+import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import M.DAO.DAO_MYSQL_WAMP.Utilisateur.UtilisateursDAO_IMPL;
 import V.FrameBase;
@@ -71,6 +72,8 @@ public class Inscription {
             UtilisateursDAO_IMPL utilisateurDAO = new UtilisateursDAO_IMPL();
             Utilisateur user = new Utilisateur(-1, 0, prenom, nom, mdp, date, "", mail, tel, adresse, -1, "", "", -1, "");
             utilisateurDAO.ajouterUtilisateur(user);
+            frame.userActuel = user;
+            ChangementPageListeners.ChangementPage("compte", frame);
         }
     }
 }

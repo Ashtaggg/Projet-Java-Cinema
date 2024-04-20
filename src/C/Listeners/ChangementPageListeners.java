@@ -16,6 +16,7 @@ import V.Accueil.Accueil_News;
 import V.Accueil.Accueil_Films;
 import V.Accueil.Accueil_Cinema;
 import V.Admin.EspaceAdmin;
+import V.Paiement.MerciAchat;
 
 // Importation des librairies
 
@@ -123,7 +124,7 @@ public class ChangementPageListeners{
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "Merci";
                 frame.RefreshPage();
-                Paiement.afficherPaiement(frame);
+                MerciAchat.afficherMerciAchat(frame);
                 System.out.println("Merci Payment");
                 break;
             default:

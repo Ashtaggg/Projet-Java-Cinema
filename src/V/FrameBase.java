@@ -366,4 +366,13 @@ public class FrameBase extends JFrame{
         this.revalidate();
         this.repaint();
     }
+
+    public void RefreshPanier(){
+        // Mettre à zéro le nombre d'éléments dans le panier et le trucs actuels
+        reservationActuelle.clear();
+        seanceActuelle.clear();
+        salleActuelle.clear();
+        filmActuel.clear();
+        nombreReservationsPanier = 0;
+    }
 }

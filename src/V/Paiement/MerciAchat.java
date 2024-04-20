@@ -21,7 +21,7 @@ public class MerciAchat {
         messageMerci.setFont(new Font("Arial", Font.BOLD, 40));
         messageMerci.setForeground(frame.getSecondeCouleur());
         messageMerci.setHorizontalAlignment(SwingConstants.CENTER);
-        messageMerci.setBounds(400, 200, 800, 100);
+        messageMerci.setBounds(250, 340, 800, 100);
 
         // Ajout du message au panel principal
         frame.getPanelBase().add(messageMerci);
@@ -31,15 +31,25 @@ public class MerciAchat {
         retourAccueil.setFont(new Font("Arial", Font.BOLD, 24));
         retourAccueil.setForeground(frame.getMainCouleur());
         retourAccueil.setBackground(frame.getSecondeCouleur());
-        retourAccueil.setBounds(600, 400, 400, 60);
+        retourAccueil.setBounds(430, 490, 400, 60);
         retourAccueil.addActionListener(e -> {
             // Appel à la méthode pour afficher la page d'accueil
             // (remplacer "accueil" par le nom de la méthode pour afficher la page d'accueil)
             ChangementPageListeners.ChangementPage("accueil_films", frame);
         });
 
+
         // Ajout du bouton au panel principal
         frame.getPanelBase().add(retourAccueil);
+
+        //Photo de remerciement
+        ImageIcon MerciRobot = null;
+        if(frame.DarkMode){MerciRobot = new ImageIcon("images/Images_Projet_V/Merci/Robot_Merci_Blanc.png");}
+        else{MerciRobot = new ImageIcon("images/Images_Projet_V/Merci/Robot_Merci_Dark.png");}
+        MerciRobot = new ImageIcon(MerciRobot.getImage().getScaledInstance(512, 512, Image.SCALE_DEFAULT));
+        JLabel MerciRobotLabel = new JLabel(MerciRobot);
+        MerciRobotLabel.setBounds(1100, 160, 512, 512);
+        frame.getPanelBase().add(MerciRobotLabel);
 
         //Refresh
         frame.RefreshPage();
