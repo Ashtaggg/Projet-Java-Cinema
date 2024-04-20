@@ -218,9 +218,7 @@ public class Accueil_Films {
             boutonReserver.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Créez une instance de FrameBase si nécessaire
-                    FrameBase frame = new FrameBase(); // Vous pouvez également récupérer une instance existante si vous en avez déjà une
-            
+                                
                     filmsAReserver.add(film);
 
                     for (Film film : filmsAReserver) {

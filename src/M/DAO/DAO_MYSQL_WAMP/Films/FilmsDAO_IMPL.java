@@ -3,8 +3,10 @@ package M.DAO.DAO_MYSQL_WAMP.Films;
 //Imports Fichiers
 import M.JAVA_MODEL.Global_CLASS.Film;
 import M.DAO.DAO_MYSQL_WAMP.DAOFactory;
+import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
 //Imports Java
 import java.util.List;
+import java.awt.image.BufferedImage;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -171,6 +173,38 @@ public class FilmsDAO_IMPL implements FilmsDAO{
         }
 
         return null;
+    }
+
+
+    public BufferedImage recupererImageAvatarLaVoieDeLEau() {
+        // Déclarez une variable pour stocker l'image récupérée
+        BufferedImage image = null;
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+    
+        // Déclarez la requête SQL pour récupérer l'image d'Avatar la voie de l'eau
+        String sql = "SELECT photo FROM films WHERE titre = 'Avatar la voie de l\'eau'";
+    
+        // Établissez une connexion à la base de données
+        try {
+             connexion = DAOFactory.getConnection();;
+             PreparedStatement statement = connexion.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery();
+    
+            // Vérifiez si un enregistrement a été trouvé
+            if (resultSet.next()) {
+                // Récupérez l'image à partir du résultat de la requête
+                String photoBase64 = resultSet.getString("photo");
+                // Convertissez l'image en BufferedImage
+                image = ConvertirImageHexa.HexToImage(photoBase64);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérez les exceptions SQL ici
+        }
+    
+        // Renvoyez l'image récupérée
+        return image;
     }
 
     public Film recupererFilmByDate(String dateS) {
