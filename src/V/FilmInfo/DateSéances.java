@@ -3,6 +3,7 @@ package V.FilmInfo;
 //Importation des fichiers
 import C.Listeners.ChangementPageListeners;
 import C.Listeners.PageAdmin.RecuperationSeancesByIDFilmListeners;
+import C.Listeners.PageAdmin.RecuperationSeancesByIDFilmAndDateListeners;
 import C.Listeners.RechercheListeners;
 import M.JAVA_MODEL.Global_CLASS.Film;
 import M.JAVA_MODEL.Global_CLASS.Reservation;
@@ -30,9 +31,13 @@ import javax.swing.JLabel;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.*;
+import java.util.Calendar;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import com.toedter.calendar.JDateChooser;
+import java.util.Date;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -48,7 +53,6 @@ import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import java.awt.Font;
-import java.sql.Date;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
@@ -65,39 +69,13 @@ import javax.swing.border.LineBorder;
 
 
 public class DateSéances {
-    
-    public static boolean sizePage = false;
-
-    private static Panier panier = new Panier();
-
-    private static Film filmSelectionne;
-
-    private static List<Film> filmsAReserver = new ArrayList<>();
-
-
     public static void affichageDateSeances(FrameBase frame){
-        /*frame.PageActuelle = "date_seance";
-        frame.getPanelBase().removeAll();
-        // Créer un nouveau JPanel pour contenir tous les composants
-        JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridBagLayout()); // Utiliser GridBagLayout pour une disposition plus flexible
-        contentPanel.setBackground(frame.getMainCouleur());
-        contentPanel.setBounds(0, 0, 500, 5000);
-
-        // Ajout de labels pour étirer notre zone de scroll
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.ipady = 0; // Hauteur spécifique*/
-
-
         frame.PageActuelle = "date_seance";
         frame.getPanelBase().removeAll();
         frame.RefreshPage();
 
-        Font font1 = new Font("Arial", Font.BOLD, 30);
+
         Font font2 = new Font("Arial", Font.BOLD, 20);
-        Font font3 = new Font("Arial", Font.BOLD, 15);
 
         LineBorder bordure = new LineBorder(frame.getSecondeCouleur(), 1);
 
@@ -108,8 +86,121 @@ public class DateSéances {
         dateSceance.setLayout(null);
         dateSceance.setBorder(bordure);
 
+        
 
 
+
+        Calendar cal = Calendar.getInstance();
+        JDateChooser date = new JDateChooser();
+        date.setBounds(125, 30, 300, 40);
+        date.setDateFormatString("yyyy-MM-dd");
+        JTextField dateEditor = ((JTextField) date.getDateEditor());
+        dateEditor.setForeground(frame.getSecondeCouleur());
+        dateEditor.setBackground(frame.getMainCouleur());
+        date.setDate(cal.getTime());
+        date.setFont(font2);
+        frame.getPanelBase().add(date);
+
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(date.getDate());
+        cal2.add(Calendar.DAY_OF_MONTH, 1);
+        Date[] DatePlus1 = {cal2.getTime()};
+        cal2.add(Calendar.DAY_OF_MONTH, 1);
+        Date[] DatePlus2 = {cal2.getTime()};
+        cal2.add(Calendar.DAY_OF_MONTH, 1);
+        Date[] DatePlus3 = {cal2.getTime()};
+
+
+        JButton boutonDatePlus1 = new JButton(dateFormat.format(DatePlus1[0]));
+        JButton boutonDatePlus2 = new JButton(dateFormat.format(DatePlus2[0]));
+        JButton boutonDatePlus3 = new JButton(dateFormat.format(DatePlus3[0]));
+
+        date.getDateEditor().addPropertyChangeListener(e -> {
+            cal2.setTime(date.getDate());
+            cal2.add(Calendar.DAY_OF_MONTH, 1);
+            DatePlus1[0] = cal2.getTime();
+            cal2.add(Calendar.DAY_OF_MONTH, 1);
+            DatePlus2[0] = cal2.getTime();
+            cal2.add(Calendar.DAY_OF_MONTH, 1);
+            DatePlus3[0] = cal2.getTime();
+            boutonDatePlus1.setText(dateFormat.format(DatePlus1[0]));
+            boutonDatePlus2.setText(dateFormat.format(DatePlus2[0]));
+            boutonDatePlus3.setText(dateFormat.format(DatePlus3[0]));
+            affichageDateSeances2(frame, dateSceance, date.getDate());
+        });
+
+
+        boutonDatePlus1.addActionListener(e -> {
+            date.setDate(DatePlus1[0]);
+            cal2.add(Calendar.DAY_OF_MONTH, 1);
+            DatePlus1[0] = DatePlus2[0];
+            DatePlus2[0] = DatePlus3[0];
+            DatePlus3[0] = cal2.getTime();
+            boutonDatePlus1.setText(dateFormat.format(DatePlus1[0]));
+            boutonDatePlus2.setText(dateFormat.format(DatePlus2[0]));
+            boutonDatePlus3.setText(dateFormat.format(DatePlus3[0]));
+        });
+        boutonDatePlus1.setBounds(575, 30, 300, 40);
+        boutonDatePlus1.setForeground(frame.getTroisCouleur());
+        boutonDatePlus1.setBackground(frame.getMainCouleur());
+        boutonDatePlus1.setFont(font2);
+        frame.getPanelBase().add(boutonDatePlus1);
+
+        boutonDatePlus2.addActionListener(e -> {
+            date.setDate(DatePlus2[0]);
+            cal2.add(Calendar.DAY_OF_MONTH, 1);
+            DatePlus1[0] = DatePlus3[0];
+            DatePlus2[0] = cal2.getTime();
+            cal2.add(Calendar.DAY_OF_MONTH, 1);
+            DatePlus3[0] = cal2.getTime();
+            boutonDatePlus1.setText(dateFormat.format(DatePlus1[0]));
+            boutonDatePlus2.setText(dateFormat.format(DatePlus2[0]));
+            boutonDatePlus3.setText(dateFormat.format(DatePlus3[0]));
+        });
+        boutonDatePlus2.setBounds(1025, 30, 300, 40);
+        boutonDatePlus2.setForeground(frame.getTroisCouleur());
+        boutonDatePlus2.setBackground(frame.getMainCouleur());
+        boutonDatePlus2.setFont(font2);
+        frame.getPanelBase().add(boutonDatePlus2);
+
+        boutonDatePlus3.addActionListener(e -> {
+            date.setDate(DatePlus3[0]);
+            cal2.add(Calendar.DAY_OF_MONTH, 1);
+            DatePlus1[0] = cal2.getTime();
+            cal2.add(Calendar.DAY_OF_MONTH, 1);
+            DatePlus2[0] = cal2.getTime();
+            cal2.add(Calendar.DAY_OF_MONTH, 1);
+            DatePlus3[0] = cal2.getTime();
+            boutonDatePlus1.setText(dateFormat.format(DatePlus1[0]));
+            boutonDatePlus2.setText(dateFormat.format(DatePlus2[0]));
+            boutonDatePlus3.setText(dateFormat.format(DatePlus3[0]));
+        });
+        boutonDatePlus3.setBounds(1475, 30, 300, 40);
+        boutonDatePlus3.setForeground(frame.getTroisCouleur());
+        boutonDatePlus3.setBackground(frame.getMainCouleur());
+        boutonDatePlus3.setFont(font2);
+        frame.getPanelBase().add(boutonDatePlus3);
+
+
+        affichageDateSeances2(frame, dateSceance, date.getDate());
+
+        frame.getPanelBase().add(dateSceance);
+        frame.RefreshPage();
+    }
+
+    public static void affichageDateSeances2(FrameBase frame, JPanel dateSceance, Date dateSelec){
+        frame.PageActuelle = "date_seance";
+
+        dateSceance.removeAll();
+
+
+        Font font1 = new Font("Arial", Font.BOLD, 30);
+        Font font2 = new Font("Arial", Font.BOLD, 20);
+        Font font3 = new Font("Arial", Font.BOLD, 15);
+
+        LineBorder bordure = new LineBorder(frame.getSecondeCouleur(), 1);
 
         JPanel scrollBillets = new JPanel();
         scrollBillets.setBounds(150, 150, 1500, 5000);
@@ -124,7 +215,15 @@ public class DateSéances {
         gbc.ipady = 0; // Hauteur spécifique
         gbc.insets = new Insets(10, 5, 10, 5); // Espacement entre les composants
 
-        List<Seance> seances = RecuperationSeancesByIDFilmListeners.recupSeances(frame, frame.filmActuel.get(frame.filmActuel.size()-1).getIdFilm());
+        List<Seance> seances = RecuperationSeancesByIDFilmAndDateListeners.recupSeances(frame, frame.filmActuel.get(frame.filmActuel.size()-1).getIdFilm(), dateSelec);
+
+        if(seances.isEmpty()){
+            JLabel Label = new JLabel("Aucune séance prévu à ce jour");
+            Label.setBounds(679, 365, 442, 40);
+            Label.setForeground(frame.getSecondeCouleur());
+            Label.setFont(font1);
+            dateSceance.add(Label);
+        }
 
         for (Seance seance : seances){
 
@@ -171,7 +270,7 @@ public class DateSéances {
                 Logo4DX = ChangerCouleurImage.changer(frame, Logo4DX);
                 Image Logo4DX2 = Logo4DX.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
                 JLabel logo4DX = new JLabel(new ImageIcon(Logo4DX2));
-                logo4DX.setBounds(880, 10, 30, 30);
+                logo4DX.setBounds(215 + TitreFilm.getPreferredSize().width, 9, 30, 30);
                 panelFilms.add(logo4DX);
             }
 
@@ -262,7 +361,6 @@ public class DateSéances {
 
         dateSceance.add(scrollPane);
 
-        frame.getPanelBase().add(dateSceance);
         frame.RefreshPage();
     }
 }

@@ -4,6 +4,7 @@ package M.DAO.DAO_MYSQL_WAMP.Seances;
 import M.JAVA_MODEL.Global_CLASS.Seance;
 //Imports Java
 import java.util.List;
+import java.util.Date;
 
 //Interface SeancesDAO pour définir les méthodes pour les Seances
 public interface SeancesDAO {
@@ -27,6 +28,8 @@ public interface SeancesDAO {
     List<Seance> recupererToutesLesSeances();
     //Récupérer toutes les seances à partir d'un ID Film
     List<Seance> recupererToutesLesSeancesByIDFilm(int ID);
+
+    List<Seance> recupererToutesLesSeancesByIDFilmAndDate(int ID, Date date);
     //Affciher une seance
     void afficherSeance(Seance seance);
     //Afficher toutes les seances d'une liste

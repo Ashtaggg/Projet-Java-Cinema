@@ -234,7 +234,6 @@ public class Accueil_Films {
             
                     // Appelez la méthode affichagePanier de la classe Panier en passant cette instance de FrameBase
                     DateSéances.affichageDateSeances(frame);
-                    //Panier.affichagePanier(frame);
                 }
             });
 

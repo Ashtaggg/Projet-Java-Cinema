@@ -8,6 +8,8 @@ import M.JAVA_MODEL.Global_CLASS.Seance;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
+
 
 public class SeancesDAO_IMPL implements SeancesDAO {
 
@@ -196,9 +198,44 @@ public class SeancesDAO_IMPL implements SeancesDAO {
 
         try {
             connexion = DAOFactory.getConnection();
-            String query = "SELECT * FROM seance WHERE ID_Film = ?";
+            String query = "SELECT * FROM seance WHERE ID_Film = ? ORDER BY Date ASC, Heure ASC";
             preparedStatement = connexion.prepareStatement(query);
             preparedStatement.setInt(1, ID);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Seance seance = new Seance(
+                        resultSet.getInt("ID_Seance"),
+                        resultSet.getInt("ID_Film"),
+                        resultSet.getInt("ID_Salle"),
+                        resultSet.getDate("Date"),
+                        resultSet.getTime("Heure").toString(),
+                        resultSet.getInt("PlaceDisponible")
+                );
+                seances.add(seance);
+            }
+        } catch (SQLException error) {
+            error.printStackTrace();
+        } finally {
+            DAOFactory.close(connexion);
+        }
+
+        return seances;
+    }
+
+    public List<Seance> recupererToutesLesSeancesByIDFilmAndDate(int ID, Date date) {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Seance> seances = new ArrayList<>();
+
+        try {
+            connexion = DAOFactory.getConnection();
+            String query = "SELECT * FROM seance WHERE ID_Film = ? AND Date = ? ORDER BY Date ASC, Heure ASC";
+            preparedStatement = connexion.prepareStatement(query);
+            preparedStatement.setInt(1, ID);
+            java.sql.Date dateSql = new java.sql.Date(date.getTime());
+            preparedStatement.setDate(2, dateSql);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -229,7 +266,7 @@ public class SeancesDAO_IMPL implements SeancesDAO {
 
         try {
             connexion = DAOFactory.getConnection();
-            String query = "SELECT * FROM seance ORDER BY ID_Seance ASC;";
+            String query = "SELECT * FROM seance;";
             preparedStatement = connexion.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 
