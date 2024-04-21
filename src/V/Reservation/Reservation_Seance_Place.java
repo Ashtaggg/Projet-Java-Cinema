@@ -41,6 +41,7 @@ public class Reservation_Seance_Place {
 
         int sizeLR = frame.reservationActuelle.size();
         numPlacesValidees = frame.reservationActuelle.get(sizeLR-1).getNombrePlace();
+        numplacesReservees.removeAll(numplacesReservees);
 
         //Résumé Film Reservé
         JPanel ResumeSeance = new JPanel();

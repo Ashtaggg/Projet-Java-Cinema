@@ -143,6 +143,11 @@ public class Accueil_News {
         avatar2Description.setForeground(frame.getSecondeCouleur());
         panelNews1.add(avatar2Description);
 
+        gbc.gridy++;
+
+        contentPanel.add(new JLabel(), gbc);
+
+        gbc.gridy++;
 
         // News 2: Service de stands
         JPanel panelNews2 = new JPanel();
@@ -162,6 +167,12 @@ public class Accueil_News {
         eceServiceDescription.setFont(new Font("Arial", Font.BOLD, 14));
         eceServiceDescription.setForeground(frame.getSecondeCouleur());
         panelNews2.add(eceServiceDescription, BorderLayout.CENTER);
+
+        gbc.gridy++;
+
+        contentPanel.add(new JLabel(), gbc);
+
+        gbc.gridy++;
 
         // News 3: Mois à 3 euros
         JPanel panelNews3 = new JPanel();

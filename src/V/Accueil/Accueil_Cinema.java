@@ -129,8 +129,11 @@ public class Accueil_Cinema {
         //FilmsDAO_IMPL filmsDAO = new FilmsDAO_IMPL();
         //List<Film> films = filmsDAO.recupererTousLesFilms(); // Méthode pour récupérer tous les films depuis la base de données
 
+        //Pannels pour les informations pratiques
+        JPanel panelInfoP = new JPanel();
 
-        // News 1: Avatar 2
+
+        //Pannel Histoire
         JPanel panelNews1 = new JPanel();
         panelNews1.setLayout(new FlowLayout());
         panelNews1.setBackground(frame.getMainCouleur());
