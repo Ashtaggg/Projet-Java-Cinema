@@ -258,6 +258,41 @@ public class SeancesDAO_IMPL implements SeancesDAO {
         return seances;
     }
 
+    public List<Seance> recupererToutesLesSeancesByIDSalleAndDate(int ID, Date date) {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Seance> seances = new ArrayList<>();
+
+        try {
+            connexion = DAOFactory.getConnection();
+            String query = "SELECT * FROM seance WHERE ID_Salle = ? AND Date = ? ORDER BY Heure ASC";
+            preparedStatement = connexion.prepareStatement(query);
+            preparedStatement.setInt(1, ID);
+            java.sql.Date dateSql = new java.sql.Date(date.getTime());
+            preparedStatement.setDate(2, dateSql);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Seance seance = new Seance(
+                        resultSet.getInt("ID_Seance"),
+                        resultSet.getInt("ID_Film"),
+                        resultSet.getInt("ID_Salle"),
+                        resultSet.getDate("Date"),
+                        resultSet.getTime("Heure").toString(),
+                        resultSet.getInt("PlaceDisponible")
+                );
+                seances.add(seance);
+            }
+        } catch (SQLException error) {
+            error.printStackTrace();
+        } finally {
+            DAOFactory.close(connexion);
+        }
+
+        return seances;
+    }
+
     public List<Seance> recupererToutesLesSeances() {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;

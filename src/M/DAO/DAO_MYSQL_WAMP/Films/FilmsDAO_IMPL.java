@@ -38,6 +38,8 @@ public class FilmsDAO_IMPL implements FilmsDAO{
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
         }
     }
 
@@ -66,6 +68,8 @@ public class FilmsDAO_IMPL implements FilmsDAO{
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
         }
     }
 
@@ -82,6 +86,8 @@ public class FilmsDAO_IMPL implements FilmsDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
     }
 
@@ -98,6 +104,8 @@ public class FilmsDAO_IMPL implements FilmsDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
     }
 
@@ -133,6 +141,8 @@ public class FilmsDAO_IMPL implements FilmsDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
 
         return null;
@@ -170,6 +180,8 @@ public class FilmsDAO_IMPL implements FilmsDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
 
         return null;
@@ -201,6 +213,8 @@ public class FilmsDAO_IMPL implements FilmsDAO{
         } catch (SQLException e) {
             e.printStackTrace();
             // Gérez les exceptions SQL ici
+        }finally {
+            DAOFactory.close(connexion);
         }
     
         // Renvoyez l'image récupérée
