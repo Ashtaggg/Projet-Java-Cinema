@@ -2,9 +2,6 @@ package V.Reservation;
 
 //Imports Fichiers
 import V.FrameBase;
-import M.JAVA_MODEL.Global_CLASS.Film;
-import M.JAVA_MODEL.Global_CLASS.Billet;
-import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
 import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
@@ -12,33 +9,16 @@ import M.JAVA_MODEL.Global_CLASS.Reservation;
 
 //Imports Librairies
 // Importation des librairies
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import org.w3c.dom.Text;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
-
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.sql.Date;
-import java.util.random.RandomGenerator.ArbitrarilyJumpableGenerator;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.image.BufferedImage;
 
 public class Recap_Reservation {
@@ -170,8 +150,8 @@ public class Recap_Reservation {
             public void actionPerformed(ActionEvent e){
                 frame.nombreReservationsPanier++;
                 frame.reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
-                ChangementPageListeners changementPageListeners = new ChangementPageListeners();
-                changementPageListeners.ChangementPage("panier", frame);
+                //ChangementPageListeners changementPageListeners = new ChangementPageListeners();
+                ChangementPageListeners.ChangementPage("panier", frame);
             }
         });
 
@@ -187,8 +167,8 @@ public class Recap_Reservation {
             public void actionPerformed(ActionEvent e){
                 frame.nombreReservationsPanier++;
                 frame.reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
-                ChangementPageListeners changementPageListeners = new ChangementPageListeners();
-                changementPageListeners.ChangementPage("accueil_films", frame);
+                //ChangementPageListeners changementPageListeners = new ChangementPageListeners();
+                ChangementPageListeners.ChangementPage("accueil_films", frame);
             }
         });
 

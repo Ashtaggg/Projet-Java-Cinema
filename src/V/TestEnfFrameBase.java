@@ -3,18 +3,10 @@ package V;
 //Importation des fichiers
 
 //Importation des librairies
-import javax.swing.JFrame;
 import java.awt.Color;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
 import javax.swing.JScrollBar;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
 import javax.swing.JButton;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 import java.awt.Dimension;
 
 

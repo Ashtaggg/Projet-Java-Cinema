@@ -82,7 +82,7 @@ public class EspaceAdmin {
 
         JButton boutonAjouterFilm = new JButton("Ajouter un Film");
         JButton boutonSuppModifFilm = new JButton("Supprimer / Modifier un Film");
-        JButton boutonAjouterSeance = new JButton("Ajouter une Seance");
+        JButton boutonAjouterSeance = new JButton("Calendrier des Seances");
         JButton boutonSuppModifCompte = new JButton("Supprimer / Modifier un Compte");
         JButton boutonAfficherStat = new JButton("Afficher Statistiques");
 
@@ -114,7 +114,7 @@ public class EspaceAdmin {
         boutonAjouterSeance.addActionListener(e -> {
             affichageEspaceAdmin5(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat, boutonAjouterSeance);
         });
-        boutonAjouterSeance.setBounds(808, 40, 184, 20);
+        boutonAjouterSeance.setBounds(789, 40, 223, 20);
         boutonAjouterSeance.setForeground(frame.getTroisCouleur());
         boutonAjouterSeance.setBackground(frame.getMainCouleur());
         boutonAjouterSeance.setBorder(null);
@@ -1438,12 +1438,6 @@ public class EspaceAdmin {
                     TitreLabel.setForeground(frame.getMainCouleur());
                     TitreLabel.setBounds(0, 10, 200, 10);
                     seanceFilm.add(TitreLabel);
-
-                    JLabel Titre2Label = new JLabel(seance.getIdSeance() + "");
-                    Titre2Label.setFont(font4);
-                    Titre2Label.setForeground(frame.getMainCouleur());
-                    Titre2Label.setBounds(0, 35, 200, 10);
-                    seanceFilm.add(Titre2Label);
                 }
             }
         }
@@ -1482,12 +1476,6 @@ public class EspaceAdmin {
                     TitreLabel.setForeground(frame.getMainCouleur());
                     TitreLabel.setBounds(0, 10, 200, 10);
                     seanceFilm.add(TitreLabel);
-
-                    JLabel Titre2Label = new JLabel(seance.getIdSeance() + "");
-                    Titre2Label.setFont(font4);
-                    Titre2Label.setForeground(frame.getMainCouleur());
-                    Titre2Label.setBounds(0, 35, 200, 10);
-                    seanceFilm.add(Titre2Label);
                 }
             }
         }

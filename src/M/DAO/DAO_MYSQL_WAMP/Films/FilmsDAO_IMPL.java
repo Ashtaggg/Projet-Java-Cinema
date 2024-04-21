@@ -192,7 +192,7 @@ public class FilmsDAO_IMPL implements FilmsDAO{
         // Déclarez une variable pour stocker l'image récupérée
         BufferedImage image = null;
         Connection connexion = null;
-        PreparedStatement preparedStatement = null;
+        //PreparedStatement preparedStatement = null;
     
         // Déclarez la requête SQL pour récupérer l'image d'Avatar la voie de l'eau
         String sql = "SELECT photo FROM films WHERE titre = 'Avatar la voie de l\'eau'";

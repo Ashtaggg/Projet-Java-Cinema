@@ -10,7 +10,6 @@ import V.FrameBase;
 import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import V.FilmInfo.FilmInfo;
 import V.FilmInfo.DateSéances;
 
 
@@ -19,7 +18,6 @@ import V.FilmInfo.DateSéances;
 import javax.swing.JLabel;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -44,7 +42,7 @@ public class Accueil_Films {
 
     //private static Film filmSelectionne;
 
-    private static List<Film> filmsAReserver = new ArrayList<>();
+    //private static List<Film> filmsAReserver = new ArrayList<>();
 
 
     public static void affichageAccueil_Films(FrameBase frame){

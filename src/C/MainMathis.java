@@ -1,20 +1,18 @@
 package C;
 
-import V.testAffichageMathis;
+/*import V.testAffichageMathis;
 import V.TestEnfFrameBase;
 import V.Reservation.Reservation_Seance;
 import V.Reservation.Reservation_Seance_Place;
 import V.Reservation.Recap_Reservation;
 import V.Panier.Panier;
 import V.Paiement.Paiement;
-import V.Accueil.Accueil_News;
+import V.Accueil.Accueil_News;*/
 import V.Accueil.Accueil_Films;
-import V.Accueil.Accueil_Cinema;
-import V.Paiement.MerciAchat;
+/*import V.Accueil.Accueil_Cinema;
+import V.Paiement.MerciAchat;*/
 
 import V.FrameBase;
-
-import java.awt.Color;
 
 public class MainMathis {
 

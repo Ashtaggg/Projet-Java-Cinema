@@ -31,14 +31,11 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import java.awt.Image;
-import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import java.awt.Font;
-import java.sql.Date;
 
 public class FrameBase extends JFrame{
 
@@ -124,7 +121,7 @@ public class FrameBase extends JFrame{
 
 
         //Class de Listener pour les boutons
-        ChangementPageListeners changementPageListeners = new ChangementPageListeners();
+        //ChangementPageListeners changementPageListeners = new ChangementPageListeners();
         RechercheListeners rechercheListeners = new RechercheListeners();
 
         //Changer Logo de la Page
@@ -149,7 +146,7 @@ public class FrameBase extends JFrame{
         //Action du bouton
         BoutonLogo_Accueil.setName("accueil_films");
         BoutonLogo_Accueil.addActionListener(e -> {
-            changementPageListeners.ChangementPage(BoutonLogo_Accueil.getName(), this);
+            ChangementPageListeners.ChangementPage(BoutonLogo_Accueil.getName(), this);
         });
 
         BandeauSup.add(BoutonLogo_Accueil);
@@ -166,7 +163,7 @@ public class FrameBase extends JFrame{
         //Action du bouton
         BoutonRetour.addActionListener(e -> {
             String Pagetampon = PagePrecedente.get(PagePrecedente.size() - 1);
-            changementPageListeners.ChangementPage(Pagetampon, this);
+            ChangementPageListeners.ChangementPage(Pagetampon, this);
         });
 
         BandeauSup.add(BoutonRetour);
@@ -201,13 +198,16 @@ public class FrameBase extends JFrame{
                 DarkMode = true;
             }
             this.RefreshPage();
-            changementPageListeners.ChangementPage(PageActuelle, this);
+            ChangementPageListeners.ChangementPage(PageActuelle, this);
         });
 
         BandeauSup.add(BoutonDarkMode);
         BoutonDarkMode.setBounds(1830, 40, 40, 40);
 
         //Bouton d'accès à l'administration en haut à droite
+        
+        //Condition pour afficher le bouton admin si user actuel est admin
+        //if(userActuel != null && userActuel.getAdmin() == 1){
         JButton BoutonAdmin = new JButton();
         ImageIcon IconeAdmin = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/Admin_Blanc.png");
         BoutonAdmin.setIcon(new ImageIcon(IconeAdmin.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
@@ -224,11 +224,11 @@ public class FrameBase extends JFrame{
         //Action du bouton
         BoutonAdmin.setName("admin");
         BoutonAdmin.addActionListener(e -> {
-            changementPageListeners.ChangementPage(BoutonAdmin.getName(), this);
+            ChangementPageListeners.ChangementPage(BoutonAdmin.getName(), this);
         });
-        //Condition pour afficher le bouton admin si user actuel est admin
-        if(userActuel != null && userActuel.getAdmin() == 1){BandeauSup.add(BoutonAdmin);}
         BoutonAdmin.setBounds(1700, 20, 120, 80);
+        BandeauSup.add(BoutonAdmin);
+        //}
 
         // Bouton de Compte Utilisateur en haut à droite
         JButton BoutonCompte = new JButton();
@@ -247,7 +247,7 @@ public class FrameBase extends JFrame{
         //Action du bouton
         BoutonCompte.setName("compte");
         BoutonCompte.addActionListener(e -> {
-            changementPageListeners.ChangementPage(BoutonCompte.getName(), this);
+            ChangementPageListeners.ChangementPage(BoutonCompte.getName(), this);
         });
 
         BandeauSup.add(BoutonCompte);
@@ -271,7 +271,7 @@ public class FrameBase extends JFrame{
         //Action du bouton
         BoutonPanier.setName("panier");
         BoutonPanier.addActionListener(e -> {
-            changementPageListeners.ChangementPage(BoutonPanier.getName(), this);
+            ChangementPageListeners.ChangementPage(BoutonPanier.getName(), this);
         });
 
         //image qui ira au dessus du panier pour indiquer le nombre d'éléments dans le panier

@@ -2,7 +2,7 @@ package C.Listeners.Panier;
 
 //Imports Fichiers
 import V.FrameBase;
-import V.Panier.Panier;
+//import V.Panier.Panier;
 import C.Listeners.ChangementPageListeners;
 
 //Imports Librairies

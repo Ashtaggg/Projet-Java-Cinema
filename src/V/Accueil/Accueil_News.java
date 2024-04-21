@@ -1,14 +1,14 @@
 package V.Accueil;
 
 import V.FrameBase;
-import V.Panier.Panier;
+//import V.Panier.Panier;
 import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
-import M.JAVA_MODEL.Global_CLASS.Film;
+/*import M.JAVA_MODEL.Global_CLASS.Film;
 import java.util.List;
 import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
-import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImage;*/
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 
 public class Accueil_News {
 
-    private static Panier panier = new Panier();
+    //private static Panier panier = new Panier();
 
     public static boolean sizePage = false;
 
@@ -117,8 +117,8 @@ public class Accueil_News {
         gbc.gridy++;
         gbc.ipady = 80;
 
-        FilmsDAO_IMPL filmsDAO = new FilmsDAO_IMPL();
-        List<Film> films = filmsDAO.recupererTousLesFilms(); // Méthode pour récupérer tous les films depuis la base de données
+        //FilmsDAO_IMPL filmsDAO = new FilmsDAO_IMPL();
+        //List<Film> films = filmsDAO.recupererTousLesFilms(); // Méthode pour récupérer tous les films depuis la base de données
 
 
         // News 1: Avatar 2
@@ -131,7 +131,7 @@ public class Accueil_News {
         gbc.gridy++;
         contentPanel.add(panelNews1, gbc);
 
-        JLabel avatar2Label = new JLabel();
+        //JLabel avatar2Label = new JLabel();
         ImageIcon avatar2Image = new ImageIcon("images\\images bdd\\Avatar la voie de l'eau.jpg");
         Image image = avatar2Image.getImage().getScaledInstance(155, 210, Image.SCALE_AREA_AVERAGING);
         avatar2Image = new ImageIcon(image);

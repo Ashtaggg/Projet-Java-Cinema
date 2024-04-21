@@ -1,8 +1,8 @@
 package C.Listeners;
 
 // Importation des fichiers
-import V.TestEnfFrameBase;
-import V.EspaceUtilisateur.PageModifCompte;
+/*import V.TestEnfFrameBase;
+import V.EspaceUtilisateur.PageModifCompte;*/
 import V.EspaceUtilisateur.PageConnexion;
 import V.EspaceUtilisateur.PageInscription;
 import V.EspaceUtilisateur.PageCompte;
@@ -44,12 +44,17 @@ public class ChangementPageListeners{
                 }
                 break;
             case "admin":
-                frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
-                frame.PageActuelle = "admin";
-                frame.RefreshPage();
-                EspaceAdmin.affichageEspaceAdmin(frame);
-                System.out.println("Espace Admin");
-                break;
+                if(frame.userActuel != null && frame.userActuel.getAdmin() == 1){
+                    frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
+                    frame.PageActuelle = "admin";
+                    frame.RefreshPage();
+                    EspaceAdmin.affichageEspaceAdmin(frame);
+                    System.out.println("Espace Admin");
+                    break;
+                }
+                else{
+                    break;
+                }
             case "accueil_films":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "accueil_films";

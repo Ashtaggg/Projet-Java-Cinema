@@ -2,14 +2,8 @@ package V;
 
 import javax.swing.*;
 import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import C.MainMathis;
-import M.JAVA_MODEL.Global_CLASS.Film;
 
 public class testAffichageMathis {
     JFrame test;
