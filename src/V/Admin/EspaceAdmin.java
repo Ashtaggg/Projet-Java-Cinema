@@ -11,6 +11,7 @@ import C.Listeners.PageAdmin.ModifierUtilisateurListeners;
 import C.Listeners.PageAdmin.RecuperationUtilisateurListeners;
 import C.Listeners.PageAdmin.RecuperationUtilisateursListeners;
 import C.Listeners.PageAdmin.RecuperationSeancesByIDFilmListeners;
+import C.Listeners.PageAdmin.RecuperationSeancesByIDSalleAndDateListeners;
 import C.Listeners.PageAdmin.RecuperationReservationsByIDSeance;
 import C.Listeners.PageAdmin.CompterBilletsByIDReservation;
 import C.Listeners.ChangementPageListeners;
@@ -81,6 +82,7 @@ public class EspaceAdmin {
 
         JButton boutonAjouterFilm = new JButton("Ajouter un Film");
         JButton boutonSuppModifFilm = new JButton("Supprimer / Modifier un Film");
+        JButton boutonAjouterSeance = new JButton("Ajouter une Seance");
         JButton boutonSuppModifCompte = new JButton("Supprimer / Modifier un Compte");
         JButton boutonAfficherStat = new JButton("Afficher Statistiques");
 
@@ -89,7 +91,8 @@ public class EspaceAdmin {
         boutonAjouterFilm.addActionListener(e -> {
             affichageEspaceAdmin1(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat);
         });
-        boutonAjouterFilm.setBounds(140, 40, 177, 20);
+        //boutonAjouterFilm.setBounds(140, 40, 177, 20);
+        boutonAjouterFilm.setBounds(92, 40, 177, 20);
         boutonAjouterFilm.setForeground(frame.getTroisCouleur());
         boutonAjouterFilm.setBackground(frame.getMainCouleur());
         boutonAjouterFilm.setBorder(null);
@@ -100,18 +103,30 @@ public class EspaceAdmin {
         boutonSuppModifFilm.addActionListener(e -> {
             affichageEspaceAdmin2(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat);
         });
-        boutonSuppModifFilm.setBounds(524, 40, 302, 20);
+        //boutonSuppModifFilm.setBounds(524, 40, 302, 20);
+        boutonSuppModifFilm.setBounds(389, 40, 302, 20);
         boutonSuppModifFilm.setForeground(frame.getTroisCouleur());
         boutonSuppModifFilm.setBackground(frame.getMainCouleur());
         boutonSuppModifFilm.setBorder(null);
         boutonSuppModifFilm.setFont(font2);
         frame.getPanelBase().add(boutonSuppModifFilm);
 
+        boutonAjouterSeance.addActionListener(e -> {
+            affichageEspaceAdmin5(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat, boutonAjouterSeance);
+        });
+        boutonAjouterSeance.setBounds(808, 40, 184, 20);
+        boutonAjouterSeance.setForeground(frame.getTroisCouleur());
+        boutonAjouterSeance.setBackground(frame.getMainCouleur());
+        boutonAjouterSeance.setBorder(null);
+        boutonAjouterSeance.setFont(font2);
+        frame.getPanelBase().add(boutonAjouterSeance);
+
 
         boutonSuppModifCompte.addActionListener(e -> {
             affichageEspaceAdmin3(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat);
         });
-        boutonSuppModifCompte.setBounds(974, 40, 302, 20);
+        //boutonSuppModifCompte.setBounds(974, 40, 302, 20);
+        boutonSuppModifCompte.setBounds(1109, 40, 302, 20);
         boutonSuppModifCompte.setForeground(frame.getTroisCouleur());
         boutonSuppModifCompte.setBackground(frame.getMainCouleur());
         boutonSuppModifCompte.setBorder(null);
@@ -122,7 +137,8 @@ public class EspaceAdmin {
         boutonAfficherStat.addActionListener(e -> {
             affichageEspaceAdmin4(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat);
         });
-        boutonAfficherStat.setBounds(1479, 40, 192, 20);
+        //boutonAfficherStat.setBounds(1479, 40, 192, 20);
+        boutonAfficherStat.setBounds(1524, 40, 192, 20);
         boutonAfficherStat.setForeground(frame.getTroisCouleur());
         boutonAfficherStat.setBackground(frame.getMainCouleur());
         boutonAfficherStat.setBorder(null);
@@ -1104,6 +1120,389 @@ public class EspaceAdmin {
 
 
 
+        frame.RefreshPage();
+    }
+
+
+    public static void affichageEspaceAdmin5(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat, JButton boutonAjouterSeance){
+        admin.removeAll();
+        frame.RefreshPage();
+        
+        Font font1 = new Font("Arial", Font.BOLD, 30);
+        Font font2 = new Font("Arial", Font.BOLD, 20);
+        Font font3 = new Font("Arial", Font.BOLD, 15);
+        Font font4 = new Font("Arial", Font.BOLD, 10);
+        
+        
+        boutonAjouterFilm.setForeground(frame.getTroisCouleur());
+        boutonSuppModifFilm.setForeground(frame.getTroisCouleur());
+        boutonSuppModifCompte.setForeground(frame.getTroisCouleur());
+        boutonAfficherStat.setForeground(frame.getTroisCouleur());
+        boutonAjouterSeance.setForeground(frame.getSecondeCouleur());
+        
+
+        LineBorder bordure = new LineBorder(frame.getSecondeCouleur(), 1);
+
+        
+
+        Calendar cal = Calendar.getInstance();
+        JDateChooser date = new JDateChooser();
+        date.setBounds(450, 25, 300, 40);
+        date.setDateFormatString("yyyy-MM-dd");
+        JTextField dateEditor = ((JTextField) date.getDateEditor());
+        dateEditor.setForeground(frame.getSecondeCouleur());
+        dateEditor.setBackground(frame.getMainCouleur());
+        date.setDate(cal.getTime());
+        date.setFont(font2);
+        admin.add(date);
+
+        date.getDateEditor().addPropertyChangeListener(e -> {
+            affichageEspaceAdmin5_bis(frame, admin, date, date.getDate());
+        });
+
+        affichageEspaceAdmin5_bis(frame, admin, date, date.getDate());
+
+        frame.RefreshPage();
+    }
+
+
+    public static void affichageEspaceAdmin5_bis(FrameBase frame, JPanel admin, JDateChooser Date, Date date){
+        Component[] composants = admin.getComponents();
+        for (Component composant : composants) {
+            if (composant != Date) {
+                admin.remove(composant);
+            }
+        }
+        admin.revalidate();
+        admin.repaint();
+
+        Font font1 = new Font("Arial", Font.BOLD, 30);
+        Font font2 = new Font("Arial", Font.BOLD, 20);
+        Font font3 = new Font("Arial", Font.BOLD, 15);
+        Font font4 = new Font("Arial", Font.BOLD, 10);
+        
+
+        LineBorder bordure = new LineBorder(frame.getSecondeCouleur(), 1);
+        LineBorder bordure2 = new LineBorder(frame.getMainCouleur(), 1);
+
+        JPanel heure = new JPanel();
+        heure.setBounds(0, 100, 36, 670);
+        heure.setBackground(frame.getMainCouleur());
+        heure.setLayout(null);
+        heure.setBorder(bordure);
+        admin.add(heure);
+
+        JLabel heure1Label = new JLabel("08h30");
+        heure1Label.setFont(font4);
+        heure1Label.setForeground(frame.getSecondeCouleur());
+        heure1Label.setBounds(3, 3, 35, 10);
+        heure.add(heure1Label);
+
+        int j = 8;
+        for(int i = 0 ; i < 16 ; i++){
+            if(j + 1 < 10){
+                JLabel heureLabel = new JLabel("0" + (j + 1) + "h00");
+                heureLabel.setFont(font4);
+                heureLabel.setForeground(frame.getSecondeCouleur());
+                heureLabel.setBounds(3, 27 + i*42, 35, 10);
+                heure.add(heureLabel);
+            }
+            else if(j + 1 == 24){
+                JLabel heureLabel = new JLabel("00h00");
+                heureLabel.setFont(font4);
+                heureLabel.setForeground(frame.getSecondeCouleur());
+                heureLabel.setBounds(3, 27 + i*42, 35, 10);
+                heure.add(heureLabel);
+            }
+            else{
+                JLabel heureLabel = new JLabel((j + 1) + "h00");
+                heureLabel.setFont(font4);
+                heureLabel.setForeground(frame.getSecondeCouleur());
+                heureLabel.setBounds(3, 27 + i*42, 35, 10);
+                heure.add(heureLabel);
+            }
+            j++;
+        }
+
+
+
+
+
+
+        
+        JLabel salle10Label = new JLabel("10");
+        salle10Label.setFont(font3);
+        salle10Label.setForeground(frame.getSecondeCouleur());
+        salle10Label.setBounds(75, 80, 20, 15);
+        admin.add(salle10Label);
+        
+        JLabel salle11Label = new JLabel("11");
+        salle11Label.setFont(font3);
+        salle11Label.setForeground(frame.getSecondeCouleur());
+        salle11Label.setBounds(173, 80, 20, 15);
+        admin.add(salle11Label);
+
+        JLabel salle12Label = new JLabel("12");
+        salle12Label.setFont(font3);
+        salle12Label.setForeground(frame.getSecondeCouleur());
+        salle12Label.setBounds(271, 80, 20, 15);
+        admin.add(salle12Label);
+
+        JLabel salle13Label = new JLabel("13");
+        salle13Label.setFont(font3);
+        salle13Label.setForeground(frame.getSecondeCouleur());
+        salle13Label.setBounds(369, 80, 20, 15);
+        admin.add(salle13Label);
+
+        JLabel salle14Label = new JLabel("14");
+        salle14Label.setFont(font3);
+        salle14Label.setForeground(frame.getSecondeCouleur());
+        salle14Label.setBounds(467, 80, 20, 15);
+        admin.add(salle14Label);
+
+        JLabel salle15Label = new JLabel("15");
+        salle15Label.setFont(font3);
+        salle15Label.setForeground(frame.getSecondeCouleur());
+        salle15Label.setBounds(565, 80, 20, 15);
+        admin.add(salle15Label);
+
+        JLabel salle16Label = new JLabel("16");
+        salle16Label.setFont(font3);
+        salle16Label.setForeground(frame.getSecondeCouleur());
+        salle16Label.setBounds(663, 80, 20, 15);
+        admin.add(salle16Label);
+
+        JLabel salle17Label = new JLabel("17");
+        salle17Label.setFont(font3);
+        salle17Label.setForeground(frame.getSecondeCouleur());
+        salle17Label.setBounds(761, 80, 20, 15);
+        admin.add(salle17Label);
+
+        JLabel salle20Label = new JLabel("20");
+        salle20Label.setFont(font3);
+        salle20Label.setForeground(frame.getSecondeCouleur());
+        salle20Label.setBounds(859, 80, 20, 15);
+        admin.add(salle20Label);
+
+        JLabel salle21Label = new JLabel("21");
+        salle21Label.setFont(font3);
+        salle21Label.setForeground(frame.getSecondeCouleur());
+        salle21Label.setBounds(957, 80, 20, 15);
+        admin.add(salle21Label);
+
+        JLabel salle22Label = new JLabel("22");
+        salle22Label.setFont(font3);
+        salle22Label.setForeground(frame.getSecondeCouleur());
+        salle22Label.setBounds(1055, 80, 20, 15);
+        admin.add(salle22Label);
+
+        JLabel salle23Label = new JLabel("23");
+        salle23Label.setFont(font3);
+        salle23Label.setForeground(frame.getSecondeCouleur());
+        salle23Label.setBounds(1153, 80, 20, 15);
+        admin.add(salle23Label);
+
+        JLabel salle24Label = new JLabel("24");
+        salle24Label.setFont(font3);
+        salle24Label.setForeground(frame.getSecondeCouleur());
+        salle24Label.setBounds(1251, 80, 20, 15);
+        admin.add(salle24Label);
+
+        JLabel salle30Label = new JLabel("30");
+        salle30Label.setFont(font3);
+        salle30Label.setForeground(frame.getSecondeCouleur());
+        salle30Label.setBounds(1349, 80, 20, 15);
+        admin.add(salle30Label);
+
+        JLabel salle31Label = new JLabel("31");
+        salle31Label.setFont(font3);
+        salle31Label.setForeground(frame.getSecondeCouleur());
+        salle31Label.setBounds(1447, 80, 20, 15);
+        admin.add(salle31Label);
+
+        JLabel salle32Label = new JLabel("32");
+        salle32Label.setFont(font3);
+        salle32Label.setForeground(frame.getSecondeCouleur());
+        salle32Label.setBounds(1545, 80, 20, 15);
+        admin.add(salle32Label);
+
+        JLabel salle33Label = new JLabel("33");
+        salle33Label.setFont(font3);
+        salle33Label.setForeground(frame.getSecondeCouleur());
+        salle33Label.setBounds(1643, 80, 20, 15);
+        admin.add(salle33Label);
+
+        JLabel salle34Label = new JLabel("34");
+        salle34Label.setFont(font3);
+        salle34Label.setForeground(frame.getSecondeCouleur());
+        salle34Label.setBounds(1741, 80, 20, 15);
+        admin.add(salle34Label);
+
+
+
+
+
+        JPanel[] salles1 = new JPanel[8];
+        
+        for (int i = 0; i < 8; i++) {
+            salles1[i] = new JPanel();
+            salles1[i].setBounds(35 + i*98, 100, 99, 670);
+            salles1[i].setBackground(frame.getMainCouleur());
+            salles1[i].setLayout(null);
+            salles1[i].setBorder(bordure);
+            admin.add(salles1[i]);
+        }
+
+        JPanel[] salles2 = new JPanel[5];
+        
+        for (int i = 0; i < 5; i++) {
+            salles2[i] = new JPanel();
+            salles2[i].setBounds(819 + i*98, 100, 99, 670);
+            salles2[i].setBackground(frame.getMainCouleur());
+            salles2[i].setLayout(null);
+            salles2[i].setBorder(bordure);
+            admin.add(salles2[i]);
+        }
+
+        JPanel[] salles3 = new JPanel[5];
+        
+        for (int i = 0; i < 5; i++) {
+            salles3[i] = new JPanel();
+            salles3[i].setBounds(1309 + i*98, 100, 99, 670);
+            salles3[i].setBackground(frame.getMainCouleur());
+            salles3[i].setLayout(null);
+            salles3[i].setBorder(bordure);
+            admin.add(salles3[i]);
+        }
+
+        
+        for(int i = 0 ; i < 8 ; i++){
+            String k = String.valueOf(i);
+            k = "1" + k;
+            List<Seance> seances = RecuperationSeancesByIDSalleAndDateListeners.recupSeances(frame, Integer.parseInt(k), date);
+            if(!seances.isEmpty()){
+                for(Seance seance : seances){
+                    Film film = RecuperationFilmListeners.recupFilm(frame, seance.getIdFilm());
+    
+                    String[] parties = seance.getHeure().split(":");
+    
+                    int heuresDebut = Integer.parseInt(parties[0]);
+                    int minutesDebut = Integer.parseInt(parties[1]);
+
+                    heuresDebut = heuresDebut - 8;
+                    minutesDebut = minutesDebut - 30;
+
+
+                    String[] parties2 = film.getDuree().split(":");
+
+                    int heuresDuree = Integer.parseInt(parties2[0]);
+                    int minutesDuree = Integer.parseInt(parties2[1]);                
+                        
+
+                    JPanel seanceFilm = new JPanel();
+                    seanceFilm.setBounds(1, (heuresDebut*42) + (int)(minutesDebut*0.7), 98, (heuresDuree*42) + (int)(minutesDuree*0.7));
+                    seanceFilm.setBackground(frame.getSecondeCouleur());
+                    seanceFilm.setLayout(null);
+                    salles1[i].add(seanceFilm);
+                    
+                    JLabel TitreLabel = new JLabel(film.getNom());
+                    TitreLabel.setFont(font4);
+                    TitreLabel.setForeground(frame.getMainCouleur());
+                    TitreLabel.setBounds(0, 10, 200, 10);
+                    seanceFilm.add(TitreLabel);
+                }
+            }
+        }
+        for(int i = 0 ; i < 5 ; i++){
+            String k = String.valueOf(i);
+            k = "2" + k;
+            List<Seance> seances = RecuperationSeancesByIDSalleAndDateListeners.recupSeances(frame, Integer.parseInt(k), date);
+            if(!seances.isEmpty()){
+                for(Seance seance : seances){
+                    Film film = RecuperationFilmListeners.recupFilm(frame, seance.getIdFilm());
+    
+                    String[] parties = seance.getHeure().split(":");
+    
+                    int heuresDebut = Integer.parseInt(parties[0]);
+                    int minutesDebut = Integer.parseInt(parties[1]);
+
+                    heuresDebut = heuresDebut - 8;
+                    minutesDebut = minutesDebut - 30;
+
+
+                    String[] parties2 = film.getDuree().split(":");
+
+                    int heuresDuree = Integer.parseInt(parties2[0]);
+                    int minutesDuree = Integer.parseInt(parties2[1]);
+                    
+                        
+
+                    JPanel seanceFilm = new JPanel();
+                    seanceFilm.setBounds(1, (heuresDebut*42) + (int)(minutesDebut*0.7), 98, (heuresDuree*42) + (int)(minutesDuree*0.7));
+                    seanceFilm.setBackground(frame.getSecondeCouleur());
+                    seanceFilm.setLayout(null);
+                    salles2[i].add(seanceFilm);
+                    
+                    JLabel TitreLabel = new JLabel(film.getNom());
+                    TitreLabel.setFont(font4);
+                    TitreLabel.setForeground(frame.getMainCouleur());
+                    TitreLabel.setBounds(0, 10, 200, 10);
+                    seanceFilm.add(TitreLabel);
+
+                    JLabel Titre2Label = new JLabel(seance.getIdSeance() + "");
+                    Titre2Label.setFont(font4);
+                    Titre2Label.setForeground(frame.getMainCouleur());
+                    Titre2Label.setBounds(0, 35, 200, 10);
+                    seanceFilm.add(Titre2Label);
+                }
+            }
+        }
+        for(int i = 0 ; i < 5 ; i++){
+            String k = String.valueOf(i);
+            k = "3" + k;
+            List<Seance> seances = RecuperationSeancesByIDSalleAndDateListeners.recupSeances(frame, Integer.parseInt(k), date);
+            if(!seances.isEmpty()){
+                for(Seance seance : seances){
+                    Film film = RecuperationFilmListeners.recupFilm(frame, seance.getIdFilm());
+    
+                    String[] parties = seance.getHeure().split(":");
+    
+                    int heuresDebut = Integer.parseInt(parties[0]);
+                    int minutesDebut = Integer.parseInt(parties[1]);
+
+                    heuresDebut = heuresDebut - 8;
+                    minutesDebut = minutesDebut - 30;
+
+
+                    String[] parties2 = film.getDuree().split(":");
+
+                    int heuresDuree = Integer.parseInt(parties2[0]);
+                    int minutesDuree = Integer.parseInt(parties2[1]);
+                    
+                        
+
+                    JPanel seanceFilm = new JPanel();
+                    seanceFilm.setBounds(1, (heuresDebut*42) + (int)(minutesDebut*0.7), 98, (heuresDuree*42) + (int)(minutesDuree*0.7));
+                    seanceFilm.setBackground(frame.getSecondeCouleur());
+                    seanceFilm.setLayout(null);
+                    salles3[i].add(seanceFilm);
+                    
+                    JLabel TitreLabel = new JLabel(film.getNom());
+                    TitreLabel.setFont(font4);
+                    TitreLabel.setForeground(frame.getMainCouleur());
+                    TitreLabel.setBounds(0, 10, 200, 10);
+                    seanceFilm.add(TitreLabel);
+
+                    JLabel Titre2Label = new JLabel(seance.getIdSeance() + "");
+                    Titre2Label.setFont(font4);
+                    Titre2Label.setForeground(frame.getMainCouleur());
+                    Titre2Label.setBounds(0, 35, 200, 10);
+                    seanceFilm.add(Titre2Label);
+                }
+            }
+        }
+        
+        
         frame.RefreshPage();
     }
     
