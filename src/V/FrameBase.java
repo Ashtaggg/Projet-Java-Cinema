@@ -375,6 +375,7 @@ public class FrameBase extends JFrame{
     public void RefreshPanier(){
         // Mettre à zéro le nombre d'éléments dans le panier et le trucs actuels
         reservationActuelle.clear();
+        reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
         seanceActuelle.clear();
         salleActuelle.clear();
         filmActuel.clear();
