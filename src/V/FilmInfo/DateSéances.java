@@ -289,10 +289,10 @@ public class DateSéances {
             panelFilms.add(placeDispo);
             
             
-
             JButton boutonChoisir = new JButton("Réserver cette séance");
             boutonChoisir.addActionListener(e -> {
                 frame.seanceActuelle.add(seance);
+                frame.reservationActuelle.get(frame.reservationActuelle.size()-1).setIdSeance(seance.getIdSeance());
                 frame.salleActuelle.add(frame.sallesDAO.recupererSalleByID(frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getIdSalle()));
                 Reservation_Seance.affichageReservation_Seance(frame);
             });
