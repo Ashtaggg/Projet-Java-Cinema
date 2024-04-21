@@ -93,7 +93,7 @@ public class Reservation_Seance_Place {
         NomCinema.setBounds(20, 390, 250, 50);
         ResumeSeance.add(NomCinema);
         //Salle de projection
-        JLabel Salle = new JLabel("Salle " + frame.seanceActuelle.get(frame.filmActuel.size()-1).getIdSalle());
+        JLabel Salle = new JLabel("Salle " + frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getIdSalle());
         Salle.setFont(new Font ("Arial", Font.PLAIN, 23));
         Salle.setForeground(frame.getSecondeCouleur());
         Salle.setBounds(20, 430, 250, 50);

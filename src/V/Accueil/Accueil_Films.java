@@ -204,13 +204,8 @@ public class Accueil_Films {
             boutonReserver.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                                
-                    filmsAReserver.add(film);
 
-                    for (Film film : filmsAReserver) {
-                        frame.filmActuel.add(film);
-                    }
-            
+                    frame.filmActuel.add(film);
                     // Appelez la méthode affichagePanier de la classe Panier en passant cette instance de FrameBase
                     DateSéances.affichageDateSeances(frame);
                 }
@@ -233,13 +228,16 @@ public class Accueil_Films {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // Récupérer le film sélectionné
-                    Film filmSelectionne = films.get(4); // Remplacez indexDuFilm par l'index du film sélectionné dans votre liste de films
+                    /*Film filmSelectionne = films.get(4); // Remplacez indexDuFilm par l'index du film sélectionné dans votre liste de films
                     
                     // Passer les informations du film sélectionné à la page "FilmInfo"
                     FilmInfo.afficherFilmInfo(frame, filmSelectionne);
                     
                     // Naviguer vers la page "FilmInfo"
-                    ChangementPageListeners.ChangementPage("FilmInfo", frame);
+                    ChangementPageListeners.ChangementPage("FilmInfo", frame);*/
+                    frame.filmActuel.add(film);
+                    // Appelez la méthode affichagePanier de la classe Panier en passant cette instance de FrameBase
+                    DateSéances.affichageDateSeances(frame);
                 }
             });
 

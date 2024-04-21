@@ -293,6 +293,7 @@ public class DateSéances {
             JButton boutonChoisir = new JButton("Réserver cette séance");
             boutonChoisir.addActionListener(e -> {
                 frame.seanceActuelle.add(seance);
+                frame.salleActuelle.add(frame.sallesDAO.recupererSalleByID(frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getIdSalle()));
                 Reservation_Seance.affichageReservation_Seance(frame);
             });
             boutonChoisir.setBounds(1300, 80, 250, 40);

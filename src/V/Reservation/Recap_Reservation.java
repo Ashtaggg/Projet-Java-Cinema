@@ -8,6 +8,7 @@ import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
 import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
+import M.JAVA_MODEL.Global_CLASS.Reservation;
 
 //Imports Librairies
 // Importation des librairies
@@ -167,6 +168,8 @@ public class Recap_Reservation {
         //Action du bouton
         boutonAjouterPanier.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                frame.nombreReservationsPanier++;
+                frame.reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
                 ChangementPageListeners changementPageListeners = new ChangementPageListeners();
                 changementPageListeners.ChangementPage("panier", frame);
             }
@@ -182,6 +185,8 @@ public class Recap_Reservation {
         //Action du bouton
         boutonContinuerAchat.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                frame.nombreReservationsPanier++;
+                frame.reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
                 ChangementPageListeners changementPageListeners = new ChangementPageListeners();
                 changementPageListeners.ChangementPage("accueil_films", frame);
             }

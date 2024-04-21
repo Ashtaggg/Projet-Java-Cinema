@@ -87,6 +87,8 @@ public class FrameBase extends JFrame{
     public SallesDAO sallesDAO = new SallesDAO_IMPL();
     public UtilisateursDAO utilisateursDAO = new UtilisateursDAO_IMPL();
 
+    public boolean VarLacement = false;
+
 
     //Constructeur
     public FrameBase(){
@@ -107,15 +109,18 @@ public class FrameBase extends JFrame{
         this.getContentPane().setBackground(MainCouleur);
 
         //Initialisation des variables à enlever avec la partie de Anhto mais hyper importantes de bien les mettre à jour ensuite
-        reservationActuelle.add(new Reservation(0, -1, 626, 0, 0));
-        seanceActuelle.add(seancesDAO.recupererSeanceByID(626)); //Récupérer Séance 626
-        seancesDAO.afficherSeance(seanceActuelle.get(0));
-        seancesDAO.afficherSeance(seancesDAO.recupererSeanceByID(626));
-        salleActuelle.add(sallesDAO.recupererSalleByID(seanceActuelle.get(0).getIdSalle()));
-        sallesDAO.afficherSalle(salleActuelle.get(0));
-        filmActuel.add(filmsDAO.recupererFilmByID(seanceActuelle.get(0).getIdFilm()));
-        filmsDAO.afficherFilm(filmActuel.get(0));
-        nombreReservationsPanier = 1;
+        if(VarLacement == false){
+            reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
+            /*seanceActuelle.add(seancesDAO.recupererSeanceByID(626)); //Récupérer Séance 626
+            seancesDAO.afficherSeance(seanceActuelle.get(0));
+            seancesDAO.afficherSeance(seancesDAO.recupererSeanceByID(626));
+            salleActuelle.add(sallesDAO.recupererSalleByID(seanceActuelle.get(0).getIdSalle()));
+            sallesDAO.afficherSalle(salleActuelle.get(0));
+            filmActuel.add(filmsDAO.recupererFilmByID(seanceActuelle.get(0).getIdFilm()));
+            filmsDAO.afficherFilm(filmActuel.get(0));*/
+            nombreReservationsPanier = 0;
+            VarLacement = true;
+        }
 
 
         //Class de Listener pour les boutons
@@ -221,8 +226,8 @@ public class FrameBase extends JFrame{
         BoutonAdmin.addActionListener(e -> {
             changementPageListeners.ChangementPage(BoutonAdmin.getName(), this);
         });
-
-        BandeauSup.add(BoutonAdmin);
+        //Condition pour afficher le bouton admin si user actuel est admin
+        if(userActuel != null && userActuel.getAdmin() == 1){BandeauSup.add(BoutonAdmin);}
         BoutonAdmin.setBounds(1700, 20, 120, 80);
 
         // Bouton de Compte Utilisateur en haut à droite
@@ -270,7 +275,7 @@ public class FrameBase extends JFrame{
         });
 
         //image qui ira au dessus du panier pour indiquer le nombre d'éléments dans le panier
-        ImageIcon IconePanierNombre = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/number-"+String.valueOf(reservationActuelle.size())+".png");
+        ImageIcon IconePanierNombre = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/number-"+String.valueOf(nombreReservationsPanier)+".png");
         ImageIcon IconePanierNombreResize = new ImageIcon(IconePanierNombre.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
         BoutonPanierNombre = new JLabel();
         BoutonPanierNombre.setIcon(IconePanierNombreResize);
@@ -280,7 +285,7 @@ public class FrameBase extends JFrame{
         BoutonPanierNombre.setBackground(SecondeCouleur_Light);
        // BoutonPanierNombre.setEnabled(false);
         BoutonPanierNombre.setBounds(0, 0, 20, 20);
-        BoutonPanier.add(BoutonPanierNombre, Integer.valueOf(1));           
+        if(nombreReservationsPanier>=1){BoutonPanier.add(BoutonPanierNombre, Integer.valueOf(1));}         
 
         BandeauSup.add(BoutonPanier);
         BoutonPanier.setBounds(1460, 20, 120, 80);

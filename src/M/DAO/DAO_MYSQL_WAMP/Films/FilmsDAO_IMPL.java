@@ -281,7 +281,7 @@ public class FilmsDAO_IMPL implements FilmsDAO{
         System.out.println("Nom: " + film.getNom());
         System.out.println("Prix: " + film.getPrix());
         System.out.println("DateSortie: " + film.getDateSortie());
-        System.out.println("Photo: " + film.getPhoto());
+        //System.out.println("Photo: " + film.getPhoto());
         System.out.println("Duree: " + film.getDuree());
         System.out.println("Description: " + film.getDescription());
         System.out.println("Note: " + film.getNote());

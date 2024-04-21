@@ -41,6 +41,8 @@ public class Reservation_Seance {
     public static int nbTicketNormal = 0;
     public static int nbTicketJeune = 0;
     public static int nbTicketAdo = 0;
+    public static int NumResa = 1;
+    public static int NumResaPasse = 0;
 
     public static int sizePage = 20;
 
@@ -48,6 +50,14 @@ public class Reservation_Seance {
 
         frame.PageActuelle = "reservation_seance";
         frame.getPanelBase().removeAll();
+
+        if(NumResa!=frame.reservationActuelle.size() || NumResaPasse==frame.reservationActuelle.size()){
+            NumResaPasse = NumResa;
+            NumResa = frame.reservationActuelle.size();
+            nbTicketAdo = 0;
+            nbTicketJeune = 0;
+            nbTicketNormal = 0;
+        }
 
         // Créer un nouveau JPanel pour contenir tous les composants
         JPanel contentPanel = new JPanel();

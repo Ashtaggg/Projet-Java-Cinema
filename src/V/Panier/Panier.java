@@ -8,6 +8,7 @@ import M.DAO.DAO_MYSQL_WAMP.Billets.BilletDAO;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
 import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
+import M.JAVA_MODEL.Global_CLASS.Reservation;
 
 //Imports Librairies
 import java.awt.BorderLayout;
@@ -73,164 +74,186 @@ public class Panier {
         gbc.insets = new Insets(5, 5, 5, 5); // Espacement entre les composants
 
         //Boucle pour afficher reservation actuelles dans le panier
-        for (int i = 0; i < frame.reservationActuelle.size(); i++) {
-            System.out.println("Taille de la liste de reservation : " + frame.reservationActuelle.size());
-            System.out.println("Reservation n°" + i);
-            //Panel pour chaque reservation
-            JPanel panelReservation = new JPanel();
-            panelReservation.setLayout(null);
-            panelReservation.setBackground(frame.getMainCouleur());
-            panelReservation.setSize(1000, 200);
-            panelReservation.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
-            panelReservation.setPreferredSize(new Dimension(1150, 200));
-
-            //Labels de Résumé
-            JLabel TitreFilm = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getNom());
-            TitreFilm.setFont(new Font ("Arial", Font.BOLD, 37));
-            TitreFilm.setForeground(frame.getSecondeCouleur());
-            TitreFilm.setBounds(300, 30, 500, 50);
-            panelReservation.add(TitreFilm);
-            //Photo du film
-            BufferedImage image = ConvertirImageHexa.HexToImage(frame.filmActuel.get(frame.filmActuel.size()-1).getPhoto());
-            Image photoFilm = image.getScaledInstance(120, 164, Image.SCALE_SMOOTH);
-            ImageIcon Photo = new ImageIcon(photoFilm);
-            JLabel PhotoLabel = new JLabel(Photo);
-            PhotoLabel.setBounds(60, 15, 120, 164);
-            panelReservation.add(PhotoLabel);
-
-            //Icon New
-            ImageIcon New = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/New.png");
-            New = new ImageIcon(New.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
-            JLabel NewLabel = new JLabel(New);
-            NewLabel.setBounds(190, 10, 60, 60);
-            panelReservation.add(NewLabel);
-            /*if(frame.filmActuel.getDateSortie().equals(Date.valueOf("2021-07-14"))){//A corriger ca marche pas
-                NewLabel.setVisible(true);
-            }else{NewLabel.setVisible(false);}*/
-            //Nom de notre cinnéma
-            JLabel NomCinema = new JLabel("ECE Ciné");
-            NomCinema.setFont(new Font ("Arial", Font.PLAIN, 23));
-            NomCinema.setForeground(frame.getSecondeCouleur());
-            NomCinema.setBounds(300, 90, 300, 50);
-            panelReservation.add(NomCinema);
-            //Salle de projection
-            JLabel Salle = new JLabel("Salle " + frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getIdSalle());
-            Salle.setFont(new Font ("Arial", Font.PLAIN, 23));
-            Salle.setForeground(frame.getSecondeCouleur());
-            Salle.setBounds(300, 140, 300, 50);
-            panelReservation.add(Salle);
-            //Heure de la séance
-            JLabel HeureSeance = new JLabel(frame.seanceActuelle.get(frame.seanceActuelle.size()-1).getHeure());
-            HeureSeance.setFont(new Font ("Arial", Font.BOLD, 37));
-            HeureSeance.setForeground(frame.getQuatreCouleur());
-            HeureSeance.setBounds(500, 90, 400, 50);
-            panelReservation.add(HeureSeance);
-            //Heure de fin de la séance
-            JLabel HeureFinSeance = new JLabel(frame.filmActuel.get(frame.filmActuel.size()-1).getDuree());
-            HeureFinSeance.setFont(new Font ("Arial", Font.PLAIN, 23));
-            HeureFinSeance.setForeground(frame.getSecondeCouleur());
-            HeureFinSeance.setBounds(500, 130, 300, 50);
-            panelReservation.add(HeureFinSeance);
-            //4DX
-            /*if(frame.filmActuel.get(frame.filmActuel.size()-1).getQuatreDX()){
-                ImageIcon QuatreDX = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/4DX.png");
-                QuatreDX = new ImageIcon(QuatreDX.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
-                JLabel QuatreDXLabel = new JLabel(QuatreDX);
-                QuatreDXLabel.setBounds(500, 140, 40, 40);
-                panelReservation.add(QuatreDXLabel);
-            }
-            //Logo handicapé
-            ImageIcon Handicape = null;
-            if(frame.DarkMode){Handicape = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Disabled_Blanc.png");}
-            else{Handicape = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Disabled_Dark.png");}
-            Handicape = new ImageIcon(Handicape.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
-            JLabel HandicapeLabel = new JLabel(Handicape);
-            HandicapeLabel.setBounds(600, 200, 50, 50);
-            panelReservation.add(HandicapeLabel);*/
-
-            //Total à payer
-            JLabel TotalPayer = new JLabel("Total Billet : " + frame.reservationActuelle.get(frame.reservationActuelle.size()-1).getPrixTotal() + "€");
-            TotalPayer.setFont(new Font ("Arial", Font.BOLD, 37));
-            TotalPayer.setForeground(frame.getSecondeCouleur());
-            TotalPayer.setBounds(750, 30, 600, 50);
-            panelReservation.add(TotalPayer);
-
-
-            
-            //Billets Normaux
-            JLabel BilletsNormaux = new JLabel("Billets Normaux : " + frame.reservationActuelle.get(frame.reservationActuelle.size()-1).getNbTicketNormal());
-            BilletsNormaux.setFont(new Font ("Arial", Font.PLAIN, 23));
-            BilletsNormaux.setForeground(frame.getSecondeCouleur());
-            BilletsNormaux.setBounds(750, 90, 300, 30);
-            panelReservation.add(BilletsNormaux);
-            //Billets Jeunes
-            JLabel BilletsJeunes = new JLabel("Billets Jeunes : " + frame.reservationActuelle.get(frame.reservationActuelle.size()-1).getNbTicketJeune());
-            BilletsJeunes.setFont(new Font ("Arial", Font.PLAIN, 23));
-            BilletsJeunes.setForeground(frame.getSecondeCouleur());
-            BilletsJeunes.setBounds(750, 120, 300, 30);
-            panelReservation.add(BilletsJeunes);
-            //Billets Ados
-            JLabel BilletsAdos = new JLabel("Billets Ados : " + frame.reservationActuelle.get(frame.reservationActuelle.size()-1).getNbTicketAdo());
-            BilletsAdos.setFont(new Font ("Arial", Font.PLAIN, 23));
-            BilletsAdos.setForeground(frame.getSecondeCouleur());
-            BilletsAdos.setBounds(750, 150, 300, 30);
-            panelReservation.add(BilletsAdos);
-
-            JButton SupprimerBillet = new JButton(" ");
-            SupprimerBillet.setFont(new Font("Arial", Font.PLAIN, 15));
-            SupprimerBillet.setForeground(frame.getMainCouleur());
-            SupprimerBillet.setBackground(frame.getMainCouleur());
-            SupprimerBillet.setBorder(null);
-            SupprimerBillet.setBounds(1060, 150, 50, 30);
-            SupprimerBillet.setName(String.valueOf(i));
-            //Icon Trash
-            ImageIcon Trash = null;
-            if(frame.DarkMode){Trash = new ImageIcon("images/Images_Projet_V/Icon_Panier/Trash_Blanc.png");}
-            else{Trash = new ImageIcon("images/Images_Projet_V/Icon_Panier/Trash_Dark.png");}
-            SupprimerBillet.setIcon(new ImageIcon(Trash.getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT)));
-            SupprimerBillet.setHorizontalTextPosition(JButton.RIGHT);
-            SupprimerBillet.setVerticalTextPosition(JButton.CENTER);
-            SupprimerBillet.setIconTextGap(13);
-
-            gbc.gridy++;
-            panelReservation.add(SupprimerBillet);
-
-            //ActionListener pour supprimer un billet du panier en fonction de son index
-            SupprimerBillet.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int index = Integer.parseInt(SupprimerBillet.getName());
-                    System.out.println("Suppression du billet n°" + index);
-                    frame.reservationActuelle.remove(index);
-                    //Ne pas Oublier d'enlever les commentaires quand Antho aura fait sa partie 
-                    //frame.filmActuel.remove(index);
-                    //frame.seanceActuelle.remove(index);
-                    affichagePanier(frame);
-                }
-            });
-
-            //Ajout du panel de reservation au panel de scroll
-            scrollPanier.add(panelReservation, gbc);
-
-            gbc.gridy++;
+        if (/*frame.reservationActuelle.size() == 0 || frame.filmActuel.size() == 0 || frame.seanceActuelle.size() == 0 ||*/ frame.nombreReservationsPanier == 0){
+            System.out.println("Aucune réservation dans le panier");
+            JLabel AucuneReservation = new JLabel("Aucune réservation dans votre panier");
+            AucuneReservation.setFont(new Font("Arial", Font.BOLD, 37));
+            AucuneReservation.setForeground(frame.getSecondeCouleur());
+            AucuneReservation.setBounds(350, 400, 800, 50);
+            frame.getPanelBase().add(AucuneReservation);
         }
+        else{
+            System.out.println("Affichage des réservations dans le panier");
+            for (int i = 0; i < frame.nombreReservationsPanier; i++) {
+                System.out.println("Taille de la liste de reservation : " + frame.reservationActuelle.size());
+                System.out.println("Reservation n°" + i);
+                frame.reservationsDAO.afficherReservation(frame.reservationActuelle.get(i));
+                frame.filmsDAO.afficherFilm(frame.filmActuel.get(i));
+                frame.seancesDAO.afficherSeance(frame.seanceActuelle.get(i));
+                frame.sallesDAO.afficherSalle(frame.salleActuelle.get(i));
 
-        // Créer un JScrollPane et y ajouter le contentPanel
-        JScrollPane scrollPane = new JScrollPane(scrollPanier);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setBackground(frame.getMainCouleur());
-        scrollPane.getVerticalScrollBar().setBackground(frame.getMainCouleur());
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.getVerticalScrollBar().setBlockIncrement(16);
-        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15, 0));
-        scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        //placer la scroll bar à gauche
+                //Panel pour chaque reservation
+                JPanel panelReservation = new JPanel();
+                panelReservation.setLayout(null);
+                panelReservation.setBackground(frame.getMainCouleur());
+                panelReservation.setSize(1000, 200);
+                panelReservation.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
+                panelReservation.setPreferredSize(new Dimension(1150, 200));
+    
+                //Labels de Résumé
+                JLabel TitreFilm = new JLabel(frame.filmActuel.get(i).getNom());
+                TitreFilm.setFont(new Font ("Arial", Font.BOLD, 37));
+                TitreFilm.setForeground(frame.getSecondeCouleur());
+                TitreFilm.setBounds(300, 30, 500, 50);
+                panelReservation.add(TitreFilm);
+                //Photo du film
+                BufferedImage image = ConvertirImageHexa.HexToImage(frame.filmActuel.get(i).getPhoto());
+                Image photoFilm = image.getScaledInstance(120, 164, Image.SCALE_SMOOTH);
+                ImageIcon Photo = new ImageIcon(photoFilm);
+                JLabel PhotoLabel = new JLabel(Photo);
+                PhotoLabel.setBounds(60, 15, 120, 164);
+                panelReservation.add(PhotoLabel);
+    
+                //Icon New
+                ImageIcon New = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/New.png");
+                New = new ImageIcon(New.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+                JLabel NewLabel = new JLabel(New);
+                NewLabel.setBounds(190, 10, 60, 60);
+                panelReservation.add(NewLabel);
+                /*if(frame.filmActuel.getDateSortie().equals(Date.valueOf("2021-07-14"))){//A corriger ca marche pas
+                    NewLabel.setVisible(true);
+                }else{NewLabel.setVisible(false);}*/
+                //Nom de notre cinnéma
+                JLabel NomCinema = new JLabel("ECE Ciné");
+                NomCinema.setFont(new Font ("Arial", Font.PLAIN, 23));
+                NomCinema.setForeground(frame.getSecondeCouleur());
+                NomCinema.setBounds(300, 90, 300, 50);
+                panelReservation.add(NomCinema);
+                //Salle de projection
+                JLabel Salle = new JLabel("Salle " + frame.seanceActuelle.get(i).getIdSalle());
+                Salle.setFont(new Font ("Arial", Font.PLAIN, 23));
+                Salle.setForeground(frame.getSecondeCouleur());
+                Salle.setBounds(300, 140, 300, 50);
+                panelReservation.add(Salle);
+                //Heure de la séance
+                JLabel HeureSeance = new JLabel(frame.seanceActuelle.get(i).getHeure());
+                HeureSeance.setFont(new Font ("Arial", Font.BOLD, 37));
+                HeureSeance.setForeground(frame.getQuatreCouleur());
+                HeureSeance.setBounds(500, 90, 400, 50);
+                panelReservation.add(HeureSeance);
+                //Heure de fin de la séance
+                JLabel HeureFinSeance = new JLabel(frame.filmActuel.get(i).getDuree());
+                HeureFinSeance.setFont(new Font ("Arial", Font.PLAIN, 23));
+                HeureFinSeance.setForeground(frame.getSecondeCouleur());
+                HeureFinSeance.setBounds(500, 130, 300, 50);
+                panelReservation.add(HeureFinSeance);
+                //4DX
+                /*if(frame.filmActuel.get(i).getQuatreDX()){
+                    ImageIcon QuatreDX = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/4DX.png");
+                    QuatreDX = new ImageIcon(QuatreDX.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+                    JLabel QuatreDXLabel = new JLabel(QuatreDX);
+                    QuatreDXLabel.setBounds(500, 140, 40, 40);
+                    panelReservation.add(QuatreDXLabel);
+                }
+                //Logo handicapé
+                ImageIcon Handicape = null;
+                if(frame.DarkMode){Handicape = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Disabled_Blanc.png");}
+                else{Handicape = new ImageIcon("images/Images_Projet_V/Icon_ReservationSeance/Disabled_Dark.png");}
+                Handicape = new ImageIcon(Handicape.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+                JLabel HandicapeLabel = new JLabel(Handicape);
+                HandicapeLabel.setBounds(600, 200, 50, 50);
+                panelReservation.add(HandicapeLabel);*/
+    
+                //Total à payer
+                JLabel TotalPayer = new JLabel("Total Billet : " + frame.reservationActuelle.get(i).getPrixTotal() + "€");
+                TotalPayer.setFont(new Font ("Arial", Font.BOLD, 37));
+                TotalPayer.setForeground(frame.getSecondeCouleur());
+                TotalPayer.setBounds(750, 30, 600, 50);
+                panelReservation.add(TotalPayer);
+    
+    
+                
+                //Billets Normaux
+                JLabel BilletsNormaux = new JLabel("Billets Normaux : " + frame.reservationActuelle.get(i).getNbTicketNormal());
+                BilletsNormaux.setFont(new Font ("Arial", Font.PLAIN, 23));
+                BilletsNormaux.setForeground(frame.getSecondeCouleur());
+                BilletsNormaux.setBounds(750, 90, 300, 30);
+                panelReservation.add(BilletsNormaux);
+                //Billets Jeunes
+                JLabel BilletsJeunes = new JLabel("Billets Jeunes : " + frame.reservationActuelle.get(i).getNbTicketJeune());
+                BilletsJeunes.setFont(new Font ("Arial", Font.PLAIN, 23));
+                BilletsJeunes.setForeground(frame.getSecondeCouleur());
+                BilletsJeunes.setBounds(750, 120, 300, 30);
+                panelReservation.add(BilletsJeunes);
+                //Billets Ados
+                JLabel BilletsAdos = new JLabel("Billets Ados : " + frame.reservationActuelle.get(i).getNbTicketAdo());
+                BilletsAdos.setFont(new Font ("Arial", Font.PLAIN, 23));
+                BilletsAdos.setForeground(frame.getSecondeCouleur());
+                BilletsAdos.setBounds(750, 150, 300, 30);
+                panelReservation.add(BilletsAdos);
+    
+                JButton SupprimerBillet = new JButton(" ");
+                SupprimerBillet.setFont(new Font("Arial", Font.PLAIN, 15));
+                SupprimerBillet.setForeground(frame.getMainCouleur());
+                SupprimerBillet.setBackground(frame.getMainCouleur());
+                SupprimerBillet.setBorder(null);
+                SupprimerBillet.setBounds(1060, 150, 50, 30);
+                SupprimerBillet.setName(String.valueOf(i));
+                //Icon Trash
+                ImageIcon Trash = null;
+                if(frame.DarkMode){Trash = new ImageIcon("images/Images_Projet_V/Icon_Panier/Trash_Blanc.png");}
+                else{Trash = new ImageIcon("images/Images_Projet_V/Icon_Panier/Trash_Dark.png");}
+                SupprimerBillet.setIcon(new ImageIcon(Trash.getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT)));
+                SupprimerBillet.setHorizontalTextPosition(JButton.RIGHT);
+                SupprimerBillet.setVerticalTextPosition(JButton.CENTER);
+                SupprimerBillet.setIconTextGap(13);
+    
+                gbc.gridy++;
+                panelReservation.add(SupprimerBillet);
+    
+                //ActionListener pour supprimer un billet du panier en fonction de son index
+                SupprimerBillet.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int index = Integer.parseInt(SupprimerBillet.getName());
+                        System.out.println("Suppression du billet n°" + index);
+                        frame.reservationActuelle.remove(index);
+                        frame.filmActuel.remove(index);
+                        frame.seanceActuelle.remove(index);
+                        frame.salleActuelle.remove(index);
+                        frame.nombreReservationsPanier--;
+                        //Ne pas Oublier d'enlever les commentaires quand Antho aura fait sa partie 
+                        //frame.filmActuel.remove(index);
+                        //frame.seanceActuelle.remove(index);
+                        affichagePanier(frame);
+                    }
+                });
+    
+                //Ajout du panel de reservation au panel de scroll
+                scrollPanier.add(panelReservation, gbc);
+    
+                gbc.gridy++;
+            }
+    
+            // Créer un JScrollPane et y ajouter le contentPanel
+            JScrollPane scrollPane = new JScrollPane(scrollPanier);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+            scrollPane.setBackground(frame.getMainCouleur());
+            scrollPane.getVerticalScrollBar().setBackground(frame.getMainCouleur());
+            scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+            scrollPane.getVerticalScrollBar().setBlockIncrement(16);
+            scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(15, 0));
+            scrollPane.setBorder(BorderFactory.createEmptyBorder());
+            //placer la scroll bar à gauche
+            
+            // Placer la scrollBar à gauche
+            scrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+            scrollPane.setBounds(90, 100, 1205, 600); // Ajustez la taille selon vos besoins
+
+            frame.getPanelBase().add(scrollPane);
+        }
         
-        // Placer la scrollBar à gauche
-        scrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        scrollPane.setBounds(90, 100, 1205, 600); // Ajustez la taille selon vos besoins
-
         //Pannel Total Pannier
         JPanel panelTotalPanier = new JPanel();
         panelTotalPanier.setLayout(null);
@@ -297,8 +320,11 @@ public class Panier {
         boutonVider.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.reservationActuelle.clear();
+                frame.reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
                 frame.filmActuel.clear();
                 frame.seanceActuelle.clear();
+                frame.salleActuelle.clear();
+                frame.nombreReservationsPanier = 0;
                 affichagePanier(frame);
             }
         });
@@ -434,7 +460,6 @@ public class Panier {
 
         //Ajouter éléments au panel
         frame.getPanelBase().add(TitrePanier);
-        frame.getPanelBase().add(scrollPane);
         frame.getPanelBase().add(panelTotalPanier);
         frame.getPanelBase().add(panelConnexion);
         frame.getPanelBase().add(boutonContinuer);
