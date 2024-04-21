@@ -150,6 +150,7 @@ public class Recap_Reservation {
             public void actionPerformed(ActionEvent e){
                 frame.nombreReservationsPanier++;
                 frame.reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
+                frame.RefreshPage();
                 //ChangementPageListeners changementPageListeners = new ChangementPageListeners();
                 ChangementPageListeners.ChangementPage("panier", frame);
             }
@@ -167,6 +168,7 @@ public class Recap_Reservation {
             public void actionPerformed(ActionEvent e){
                 frame.nombreReservationsPanier++;
                 frame.reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
+                frame.RefreshPage();
                 //ChangementPageListeners changementPageListeners = new ChangementPageListeners();
                 ChangementPageListeners.ChangementPage("accueil_films", frame);
             }

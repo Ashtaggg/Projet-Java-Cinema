@@ -8,14 +8,14 @@ import C.Listeners.ChangementPageListeners;
 
 
 public class ReservationSeanceListeners {
-    public static void ValiderReservation(FrameBase frame, int nbTicketNormal, int nbTicketJeune, int nbTicketAdo, int CodePromo){
+    public static void ValiderReservation(FrameBase frame, int nbTicketNormal, int nbTicketJeune, int nbTicketAdo, double CodePromo){
         int sizeLR = frame.reservationActuelle.size();
         frame.reservationActuelle.get(sizeLR-1).setNbTicketNormal(nbTicketNormal);
         frame.reservationActuelle.get(sizeLR-1).setNbTicketJeune(nbTicketJeune);
         frame.reservationActuelle.get(sizeLR-1).setNbTicketAdo(nbTicketAdo);
         frame.reservationActuelle.get(sizeLR-1).setNombrePlace(nbTicketNormal + nbTicketJeune + nbTicketAdo);
         frame.reservationActuelle.get(sizeLR-1).setPromo(CodePromo);
-        frame.reservationActuelle.get(sizeLR-1).setPrixTotal(nbTicketNormal * (15.50*CodePromo) + nbTicketJeune * (9.90*CodePromo) + nbTicketAdo * (6.50*CodePromo));
+        frame.reservationActuelle.get(sizeLR-1).setPrixTotal(nbTicketNormal * (10.99*CodePromo) + nbTicketJeune * (8.79*CodePromo) + nbTicketAdo * (6.59*CodePromo));
         System.out.println("Taille de la liste de reservation : " + sizeLR);
         System.out.println("Nombre de ticket normal : " + frame.reservationActuelle.get(sizeLR-1).getNbTicketNormal());
         System.out.println("Nombre de ticket jeune : " + frame.reservationActuelle.get(sizeLR-1).getNbTicketJeune());

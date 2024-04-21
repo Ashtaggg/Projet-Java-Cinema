@@ -35,6 +35,7 @@ public class Reservation_Seance {
     public static int nbTicketAdo = 0;
     public static int NumResa = 1;
     public static int NumResaPasse = 0;
+    public static double CodePromo = 1;
 
     public static int sizePage = 20;
 
@@ -43,13 +44,19 @@ public class Reservation_Seance {
         frame.PageActuelle = "reservation_seance";
         frame.getPanelBase().removeAll();
 
-        if(NumResa!=frame.reservationActuelle.size() || NumResaPasse==frame.reservationActuelle.size()){
+        /*if(NumResa!=frame.reservationActuelle.size() || NumResaPasse==frame.reservationActuelle.size()){
             NumResaPasse = NumResa;
             NumResa = frame.reservationActuelle.size();
             nbTicketAdo = 0;
             nbTicketJeune = 0;
             nbTicketNormal = 0;
-        }
+        }*/
+        NumResaPasse = NumResa;
+        NumResa = frame.reservationActuelle.size();
+        nbTicketAdo = 0;
+        nbTicketJeune = 0;
+        nbTicketNormal = 0;
+        CodePromo = 1;
 
         // Créer un nouveau JPanel pour contenir tous les composants
         JPanel contentPanel = new JPanel();
@@ -424,30 +431,35 @@ public class Reservation_Seance {
                     PrixNormal.setText(String.valueOf(10.99 * 0.5) + "€");
                     PrixJeune.setText(String.valueOf(8.79 * 0.5) + "€");
                     PrixSenior.setText(String.valueOf(6.59 * 0.5) + "€");
+                    CodePromo = 0.50;
                 }
                 else if (CodePromoTXT.getText().equals("PROMOAlexis")) {
                     //Multiplier par 0.75 le prix de chaque ticket et arrondir à 2 chiffres après la virgule
                     PrixNormal.setText(String.valueOf(10.99 * 0.75) + "€");
                     PrixJeune.setText(String.valueOf(8.79 * 0.75) + "€");
                     PrixSenior.setText(String.valueOf(6.59 * 0.75) + "€");
+                    CodePromo = 0.75;
                 }
                 else if (CodePromoTXT.getText().equals("PROMOMathis")) {
                     //Multiplier par 0.80 le prix de chaque ticket
                     PrixNormal.setText(String.valueOf(10.99 * 0.80) + "€");
                     PrixJeune.setText(String.valueOf(8.79 * 0.80) + "€");
                     PrixSenior.setText(String.valueOf(6.59 * 0.80) + "€");
+                    CodePromo = 0.80;
                 }
                 else if (CodePromoTXT.getText().equals("PROMOAntho")) {
                     //Multiplier par 0.70 le prix de chaque ticket
                     PrixNormal.setText(String.valueOf(10.99 * 0.70) + "€");
                     PrixJeune.setText(String.valueOf(8.79 * 0.70) + "€");
                     PrixSenior.setText(String.valueOf(6.59 * 0.70) + "€");
+                    CodePromo = 0.70;
                 }
                 else {
                     // Remettre les prix normaux
                     PrixNormal.setText("10.99€");
                     PrixJeune.setText("8.79€");
                     PrixSenior.setText("6.59€");
+                    CodePromo = 1;
                 }
             }
         });
@@ -455,7 +467,7 @@ public class Reservation_Seance {
         // Action Listeners pour le bouton de validation
         Valider.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ReservationSeanceListeners.ValiderReservation(frame, nbTicketNormal, nbTicketJeune, nbTicketAdo, 1);
+                ReservationSeanceListeners.ValiderReservation(frame, nbTicketNormal, nbTicketJeune, nbTicketAdo, CodePromo);
             }
         });
 

@@ -22,6 +22,7 @@ public class PayerListener {
         //On a aussi besoin de la seance et de toutes ses informations
         for (int i =0; i<frame.nombreReservationsPanier; i++)
         {
+            nbBilletcréé = 0;
             try {
                 frame.reservationsDAO.ajouterReservation(frame.reservationActuelle.get(i));
                 Reservation reservationAct = frame.reservationsDAO.recupererDerniereReservation();
@@ -49,6 +50,7 @@ public class PayerListener {
                 }
                 if(nbBilletcréé == frame.reservationActuelle.get(i).getNombrePlace())
                 {
+                    System.out.println("Billets créés ok");
                     nbResaOK++;
                 }
 
