@@ -1128,10 +1128,7 @@ public class EspaceAdmin {
         admin.removeAll();
         frame.RefreshPage();
         
-        Font font1 = new Font("Arial", Font.BOLD, 30);
         Font font2 = new Font("Arial", Font.BOLD, 20);
-        Font font3 = new Font("Arial", Font.BOLD, 15);
-        Font font4 = new Font("Arial", Font.BOLD, 10);
         
         
         boutonAjouterFilm.setForeground(frame.getTroisCouleur());
@@ -1139,11 +1136,7 @@ public class EspaceAdmin {
         boutonSuppModifCompte.setForeground(frame.getTroisCouleur());
         boutonAfficherStat.setForeground(frame.getTroisCouleur());
         boutonAjouterSeance.setForeground(frame.getSecondeCouleur());
-        
-
-        LineBorder bordure = new LineBorder(frame.getSecondeCouleur(), 1);
-
-        
+            
 
         Calendar cal = Calendar.getInstance();
         JDateChooser date = new JDateChooser();
@@ -1175,15 +1168,12 @@ public class EspaceAdmin {
         }
         admin.revalidate();
         admin.repaint();
-
-        Font font1 = new Font("Arial", Font.BOLD, 30);
-        Font font2 = new Font("Arial", Font.BOLD, 20);
+        
         Font font3 = new Font("Arial", Font.BOLD, 15);
         Font font4 = new Font("Arial", Font.BOLD, 10);
         
 
         LineBorder bordure = new LineBorder(frame.getSecondeCouleur(), 1);
-        LineBorder bordure2 = new LineBorder(frame.getMainCouleur(), 1);
 
         JPanel heure = new JPanel();
         heure.setBounds(0, 100, 36, 670);
