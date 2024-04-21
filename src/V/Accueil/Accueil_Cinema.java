@@ -54,6 +54,9 @@ import java.awt.event.ActionListener;
 
 public class Accueil_Cinema {
 
+    public static boolean sizePage = false;
+
+
     public static void affichageAccueil_Cinema(FrameBase frame){
         frame.PageActuelle = "accueil_cinema";
         frame.getPanelBase().removeAll();
@@ -61,7 +64,7 @@ public class Accueil_Cinema {
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new GridBagLayout()); // Utiliser GridBagLayout pour une disposition plus flexible
         contentPanel.setBackground(frame.getMainCouleur());
-        contentPanel.setBounds(0, 0, 500, 800);
+        contentPanel.setBounds(0, 0, 500, 5000);
 
         // Ajout de labels pour étirer notre zone de scroll
         GridBagConstraints gbc = new GridBagConstraints();
@@ -85,7 +88,7 @@ public class Accueil_Cinema {
         boutonFilms.setForeground(frame.getSecondeCouleur());
         boutonFilms.setBorder(null);
         boutonFilms.setFocusPainted(false);
-        ImageIcon IconFilm;
+        ImageIcon IconFilm = new ImageIcon("images/Images_Projet_V/Icon_Accueil/Film_Selected.png");
         if(frame.DarkMode){IconFilm = new ImageIcon("images/Images_Projet_V/Icon_Accueil/Film_Blanc.png");}
         else{IconFilm = new ImageIcon("images/Images_Projet_V/Icon_Accueil/Film_Dark.png");}
         IconFilm = new ImageIcon(IconFilm.getImage().getScaledInstance(36, 36, Image.SCALE_DEFAULT));
@@ -107,8 +110,7 @@ public class Accueil_Cinema {
         boutonNews.setForeground(frame.getSecondeCouleur());
         boutonNews.setBorder(null);
         boutonNews.setFocusPainted(false);
-        ImageIcon IconNews;
-        if(frame.DarkMode){IconNews = new ImageIcon("images/Images_Projet_V/Icon_Accueil/News_Blanc.png");}
+        ImageIcon IconNews = new ImageIcon("images/Images_Projet_V/Icon_Accueil/News_Selected.png");        if(frame.DarkMode){IconNews = new ImageIcon("images/Images_Projet_V/Icon_Accueil/News_Blanc.png");}
         else{IconNews = new ImageIcon("images/Images_Projet_V/Icon_Accueil/News_Dark.png");}
         IconNews = new ImageIcon(IconNews.getImage().getScaledInstance(36, 36, Image.SCALE_DEFAULT));
         boutonNews.setIcon(IconNews);
@@ -156,61 +158,46 @@ public class Accueil_Cinema {
         JPanel panelNews1 = new JPanel();
         panelNews1.setLayout(new FlowLayout());
         panelNews1.setBackground(frame.getMainCouleur());
-        panelNews1.setPreferredSize(new Dimension(1200, 250));
+        panelNews1.setPreferredSize(new Dimension(1800, 1000));
         panelNews1.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
         panelNews1.setBounds(0, 0, 1020, 200);
         gbc.gridy++;
         contentPanel.add(panelNews1, gbc);
 
-        JLabel avatar2Label = new JLabel();
-        ImageIcon avatar2Image = new ImageIcon("images\\images bdd\\Avatar la voie de l'eau.jpg");
-        Image image = avatar2Image.getImage().getScaledInstance(155, 210, Image.SCALE_AREA_AVERAGING);
-        avatar2Image = new ImageIcon(image);
-        JLabel afficherLabel = new JLabel(avatar2Image);
-        panelNews1.add(afficherLabel);
+       // Redimensionnement de la première image
+        ImageIcon avatar2Image1 = new ImageIcon("images\\PhotosProfil\\Alexis.jpg");
+        Image image1 = avatar2Image1.getImage().getScaledInstance(368, 490, Image.SCALE_AREA_AVERAGING);
+        avatar2Image1 = new ImageIcon(image1);
+        JLabel afficherLabel1 = new JLabel(avatar2Image1);
+        panelNews1.add(afficherLabel1);
 
-        JLabel avatar2Description = new JLabel("<html>Voici le nouveau film en salle disponible dans tous vos cinémas ECE. Profitez-en le monde de James Cameron n'attend que vous !<br>Film également disponible en 4DX.</html>");
-        avatar2Description.setFont(new Font("Arial", Font.BOLD, 14));
+        // Redimensionnement de la deuxième image
+        ImageIcon avatar2Image2 = new ImageIcon("images\\PhotosProfil\\Anthony.jpg");
+        Image image2 = avatar2Image2.getImage().getScaledInstance(368, 490, Image.SCALE_AREA_AVERAGING);
+        avatar2Image2 = new ImageIcon(image2);
+        JLabel afficherLabel2 = new JLabel(avatar2Image2);
+        panelNews1.add(afficherLabel2);
+
+        // Redimensionnement de la troisième image
+        ImageIcon avatar2Image3 = new ImageIcon("images\\PhotosProfil\\Mathis.jpg");
+        Image image3 = avatar2Image3.getImage().getScaledInstance(368, 490, Image.SCALE_AREA_AVERAGING);
+        avatar2Image3 = new ImageIcon(image3);
+        JLabel afficherLabel3 = new JLabel(avatar2Image3);
+        panelNews1.add(afficherLabel3);
+
+        JLabel avatar2Description = new JLabel("<html><br><br><br>Nous sommes fiers de vous présenter ECE Cinéma !<br><br><br>" + 
+        "Une nouvelle expérience cinématographique née de la vision et de l'ingéniosité de trois jeunes innovateurs.<br><br><br>" + 
+        "Fondé en début 2024 par Alexis Raynal, Anthony Sabbagh et Mathis Gras, ECE Cinéma est le fruit de leurs échanges et réflexions sur la façon de révolutionner l'industrie cinématographique.<br><br>" + 
+        "Leur passion pour le cinéma et leur désir d'améliorer l'expérience du spectateur les ont amenés à créer un lieu où innovation et divertissement se rencontrent.<br><br><br>" + 
+        "Nous sommes impatients de vous accueillir dans nos cinémas, où nous espérons que vous découvrirez une nouvelle approche du cinéma futuriste.<br><br>"+
+        "Notre cinéma est composé de :<br><br>" +
+        "- Les 35 derniers films en vedette de tous genres.<br><br>" +
+        "- 18 salles de cinéma, dont certaines équipées de la technologie 4DX pour une expérience immersive inégalée.<br><br>" +
+        "- Plus de 2000 séances vous permettant de venir à n'importe quel moment de la journée pour profiter de nos installations.<br><br>" +
+        "Nous sommes impatients de vous accueillir dans nos cinémas et de vous faire vivre une expérience cinématographique exceptionnelle.</html>");
+        avatar2Description.setFont(new Font("Arial", Font.BOLD, 18));
         avatar2Description.setForeground(frame.getSecondeCouleur());
         panelNews1.add(avatar2Description);
-
-
-        // News 2: Service de stands
-        JPanel panelNews2 = new JPanel();
-        panelNews2.setLayout(new BorderLayout());
-        panelNews2.setBackground(frame.getMainCouleur());
-        panelNews2.setPreferredSize(new Dimension(1200, 200));
-        panelNews2.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
-        gbc.gridy++;
-        contentPanel.add(panelNews2, gbc);
-
-        JLabel eceLogoLabel = new JLabel();
-        ImageIcon eceLogoImage = new ImageIcon("images\\images_Projet_V\\Icon_ReservationSeance\\New.png"); // Mettez le chemin correct vers le logo ECE Cinéma
-        eceLogoLabel.setIcon(eceLogoImage);
-        panelNews2.add(eceLogoLabel, BorderLayout.WEST);
-
-        JLabel eceServiceDescription = new JLabel("Les news de la semaine : entre pop corn et bonbons, ECE Cinéma est fière de vous présenter un service de stands disponible dans tous vos cinémas ECE, notre personnel vous attends nombreux et nombreuses !");
-        eceServiceDescription.setFont(new Font("Arial", Font.BOLD, 14));
-        eceServiceDescription.setForeground(frame.getSecondeCouleur());
-        panelNews2.add(eceServiceDescription, BorderLayout.CENTER);
-
-        // News 3: Mois à 3 euros
-        JPanel panelNews3 = new JPanel();
-        panelNews3.setLayout(new BorderLayout());
-        panelNews3.setBackground(frame.getMainCouleur());
-        panelNews3.setPreferredSize(new Dimension(1200, 200));
-        panelNews3.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
-        gbc.gridy++;
-        contentPanel.add(panelNews3, gbc);
-
-        JLabel eceLogoLabel2 = new JLabel();
-        eceLogoLabel2.setIcon(eceLogoImage); // Réutilisez le même logo ECE Cinéma
-        panelNews3.add(eceLogoLabel2, BorderLayout.WEST);
-
-        JLabel mois3EurosDescription = new JLabel("<html>D'ici le mois de juillet afin de passer un été ensemble, ECE Cinéma vous offrira la possibilité de venir voir tous vos films à 3 euros seulement tout âge confondus.<br><br>Conditions générales : les films 4DX ne sont pas compris dans l'offre que vous visionnez</html>");
-        mois3EurosDescription.setFont(new Font("Arial", Font.BOLD, 14));
-        mois3EurosDescription.setForeground(frame.getSecondeCouleur());
-        panelNews3.add(mois3EurosDescription, BorderLayout.CENTER);
 
         gbc.gridy++;
         gbc.ipady = 80;
@@ -218,6 +205,109 @@ public class Accueil_Cinema {
         
 
 
+        //Footer avec nos conditions de ventes, cooerdonnées et mentions légales + Map
+
+        // Ajouter un footer
+        JPanel footer = new JPanel();
+        footer.setBackground(frame.getSecondeCouleur());
+        footer.setVisible(true);
+        footer.setOpaque(true);
+        footer.setPreferredSize(new Dimension(1886, 200));
+        footer.setLayout(null);
+        footer.setBorder(BorderFactory.createLineBorder(frame.getMainCouleur(), 2));
+        //Conditions de vente
+        JLabel ConditionsVente = new JLabel("Conditions de vente");
+        ConditionsVente.setFont(new Font ("Arial", Font.PLAIN, 23));
+        ConditionsVente.setForeground(frame.getMainCouleur());
+        ConditionsVente.setBounds(50, 10, 250, 50);
+        footer.add(ConditionsVente);
+        //Texte des conditions de vente pour l'instant invisible
+        JLabel TexteConditionsVente = new JLabel("<html>Politique d'Annulation et de Remboursement :<br>" +
+        "Les billets achetés ne sont ni échangeables ni remboursables, sauf en cas d'annulation d'une séance par le cinéma.<br>" +
+        "Les remboursements pour les annulations de séances seront traités conformément à la politique de remboursement en vigueur du cinéma.<br><br>" +
+        "Disponibilité des Places :<br>" +
+        "La disponibilité des places est limitée et n'est pas garantie jusqu'à ce que la réservation soit confirmée et payée.<br><br>" +
+        "Responsabilité :<br>" +
+        "Nous ne sommes pas responsables des pertes, dommages, coûts ou dépenses résultant de l'utilisation de notre application ou de l'achat de billets de cinéma via celle-ci.<br><br>" +
+        "Conditions d'Utilisation :<br>" +
+        "L'utilisation de cette application est soumise à nos Conditions Générales d'Utilisation, consultables sur notre site web.<br><br>" +
+        "Sécurité des Transactions :<br>" +
+        "Nous prenons des mesures de sécurité pour protéger les informations de paiement de nos utilisateurs, mais nous ne pouvons garantir la sécurité absolue des transactions en ligne.<br><br>" +
+        "Modification des Conditions de Vente :<br>" +
+        "Nous nous réservons le droit de modifier les présentes conditions de vente à tout moment sans préavis. Les modifications seront effectives dès leur publication sur l'application.<br><br>" +
+        "Droits d'Auteur :<br>" +
+        "Tous les contenus présents sur l'application, y compris les images, les logos et les textes, sont protégés par des droits d'auteur et ne peuvent être utilisés sans autorisation.<br><br>" +
+        "Loi Applicable :<br>" +
+        "Les présentes conditions de vente sont régies par les lois en vigueur dans votre juridiction.<br><br>" +
+        "Contact :<br>" +
+        "Pour toute question ou réclamation concernant les billets de cinéma réservés via notre application, veuillez nous contacter à l'adresse électronique ou au numéro de téléphone fourni sur l'application.</html>");
+
+
+        TexteConditionsVente.setFont(new Font ("Arial", Font.PLAIN, 23));
+        TexteConditionsVente.setForeground(frame.getMainCouleur());
+        TexteConditionsVente.setBounds(50, 250, 1750, 800);
+        if(sizePage){footer.add(TexteConditionsVente);}
+        //Bouton pour afficher les conditions de vente
+        JButton ConditionsVenteButton = new JButton("Voir");
+        ConditionsVenteButton.setFont(new Font ("Arial", Font.PLAIN, 23));
+        ConditionsVenteButton.setForeground(frame.getMainCouleur());
+        ConditionsVenteButton.setBackground(frame.getTroisCouleur());
+        ConditionsVenteButton.setBorder(BorderFactory.createLineBorder(frame.getMainCouleur(), 2));
+        ConditionsVenteButton.setBounds(85, 80, 100, 50);
+        footer.add(ConditionsVenteButton);
+        //Action Listeners pour le bouton des conditions de vente
+        ConditionsVenteButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //Afficher ou cacher les conditions de vente
+                if(TexteConditionsVente.isVisible()){TexteConditionsVente.setVisible(false);}
+                else{TexteConditionsVente.setVisible(true);}
+                sizePage = !sizePage;
+                ChangementPageListeners.ChangementPage("accueil_cinema", frame);
+            }
+        });
+
+        //Coordonnées
+        JLabel Coordonnees = new JLabel("Coordonnées");
+        Coordonnees.setFont(new Font ("Arial", Font.PLAIN, 23));
+        Coordonnees.setForeground(frame.getMainCouleur());
+        Coordonnees.setBounds(500, 10, 250, 50);
+        footer.add(Coordonnees);
+        //Texte des coordonnées
+        JLabel TexteCoordonnees = new JLabel("<html>Adresse : 145 Quai de Grenelle, Paris<br>" +
+        "Téléphone : 01 02 03 04 05<br>" +
+        "Email : ECECiné@gmail.com</html>");
+        TexteCoordonnees.setFont(new Font ("Arial", Font.PLAIN, 20));
+        TexteCoordonnees.setForeground(frame.getMainCouleur());
+        TexteCoordonnees.setBounds(500, 80, 500, 100);
+        footer.add(TexteCoordonnees);
+        //Mentions légales
+        JLabel MentionsLegales = new JLabel("Mentions légales");
+        MentionsLegales.setFont(new Font ("Arial", Font.PLAIN, 23));
+        MentionsLegales.setForeground(frame.getMainCouleur());
+        MentionsLegales.setBounds(950, 10, 250, 50);
+        footer.add(MentionsLegales);
+        //Texte des mentions légales
+        JLabel TexteMentionsLegales = new JLabel("<html>Ce site a été créé dans le cadre d'un projet scolaire de l'ECE Paris.<br>" +
+        "Il n'a pas vocation à être commercialisé et ne génère aucun revenu.<br>" +
+        "Les images et logos utilisés sont la propriété de leurs auteurs respectifs.<br>" +
+        "Pour toute réclamation, veuillez nous contacter à l'adresse électronique fournie.</html>");
+        TexteMentionsLegales.setFont(new Font ("Arial", Font.PLAIN, 20));
+        TexteMentionsLegales.setForeground(frame.getMainCouleur());
+        TexteMentionsLegales.setBounds(950, 80, 500, 100);
+        footer.add(TexteMentionsLegales);
+        //Map
+        ImageIcon Map = new ImageIcon("images/Images_Projet_V/Map/Map.png");
+        Map = new ImageIcon(Map.getImage().getScaledInstance(300, 180, Image.SCALE_DEFAULT));
+        JLabel MapLabel = new JLabel(Map);
+        MapLabel.setBounds(1470, 10, 300, 180);
+        footer.add(MapLabel);
+
+        // Ajouter footer avec GridBagLayout
+        gbc.gridx = 0;
+        gbc.gridy += 2; // Aller à la ligne suivante
+        gbc.ipady = 200;
+        if(sizePage){gbc.ipady = 1150;} // Hauteur spécifique
+        contentPanel.add(footer, gbc);
 
         // Créer un JScrollPane et y ajouter le contentPanel
         JScrollPane scrollPane = new JScrollPane(contentPanel);
