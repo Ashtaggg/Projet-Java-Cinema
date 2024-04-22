@@ -130,9 +130,16 @@ public class Accueil_News {
         JPanel PanelCar = new JPanel();
         PanelCar.setLayout(null);
         PanelCar.setBackground(frame.getMainCouleur());
-        PanelCar.setPreferredSize(new Dimension(1400, 350));
+        PanelCar.setPreferredSize(new Dimension(1400, 400));
         PanelCar.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
         PanelCar.setBounds(0, 0, 1400, 350);
+
+        //Titre Nos Dernières sorties
+        JLabel TitreCarroussel = new JLabel("Nos Dernières Sorties");
+        TitreCarroussel.setFont(new Font("Arial", Font.BOLD, 30));
+        TitreCarroussel.setForeground(frame.getSecondeCouleur());
+        TitreCarroussel.setBounds(510, 10, 400, 50);
+        PanelCar.add(TitreCarroussel);
 
         JButton BLeft = new JButton();
         BLeft.setBackground(frame.getMainCouleur());
@@ -140,7 +147,7 @@ public class Accueil_News {
         BLeft.setBorder(null);
         BLeft.setFocusPainted(false);
         BLeft.setText("<");
-        BLeft.setBounds(140, 175, 50, 50);
+        BLeft.setBounds(140, 255, 50, 50);
         BLeft.setFont(new Font("Arial", Font.BOLD, 40));
         BLeft.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -156,7 +163,7 @@ public class Accueil_News {
         BRight.setBorder(null);
         BRight.setFocusPainted(false);
         BRight.setText(">");
-        BRight.setBounds(1200, 175, 50, 50);
+        BRight.setBounds(1200, 255, 50, 50);
         BRight.setFont(new Font("Arial", Font.BOLD, 40));
         BRight.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -190,7 +197,7 @@ public class Accueil_News {
         PanelFilms.setBackground(frame.getMainCouleur());
         PanelFilms.setPreferredSize(new Dimension(250, 330));
         PanelFilms.setBorder(null);
-        PanelFilms.setBounds(555, 30, 250, 335);
+        PanelFilms.setBounds(555, 110, 250, 335);
 
 
         List<Film> films = new ArrayList<Film>();
@@ -208,15 +215,7 @@ public class Accueil_News {
         afficheLabel.setHorizontalAlignment(JLabel.CENTER);
         afficheLabel.setVerticalAlignment(JLabel.CENTER);
         afficheLabel.setIconTextGap(10);
-        /*boutonReserver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-                frame.filmActuel.add(film);
-                // Appelez la méthode affichagePanier de la classe Panier en passant cette instance de FrameBase
-                DateSéances.affichageDateSeances(frame);
-            }
-        });*/
         Film filmPassage = films.get(filmCarroussel);
         afficheLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -234,14 +233,14 @@ public class Accueil_News {
         ImageIcon rideauGauche = new ImageIcon("images/Images_Projet_V/Icon_News/blinds_gauche.png");
         rideauGauche = new ImageIcon(rideauGauche.getImage().getScaledInstance(150, 380, Image.SCALE_DEFAULT));
         JLabel rideauGaucheLabel = new JLabel(rideauGauche);
-        rideauGaucheLabel.setBounds(370, 10, 150, 380);
+        rideauGaucheLabel.setBounds(370, 90, 150, 380);
         PanelCar.add(rideauGaucheLabel);
 
         //Ajouter l'image du rideau droit à droite de l'affiche du film
         ImageIcon rideauDroit = new ImageIcon("images/Images_Projet_V/Icon_News/blinds_droite.png");
         rideauDroit = new ImageIcon(rideauDroit.getImage().getScaledInstance(150, 380, Image.SCALE_DEFAULT));
         JLabel rideauDroitLabel = new JLabel(rideauDroit);
-        rideauDroitLabel.setBounds(835, 10, 150, 380);
+        rideauDroitLabel.setBounds(835, 90, 150, 380);
         PanelCar.add(rideauDroitLabel);
 
         gbc.gridy++;
@@ -251,8 +250,6 @@ public class Accueil_News {
         gbc.gridy++;
 
         contentPanel.add(new JLabel(), gbc);
-
-
 
         // News 1: Avatar 2
         JPanel panelNews1 = new JPanel();
