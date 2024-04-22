@@ -4,21 +4,27 @@ import V.FrameBase;
 //import V.Panier.Panier;
 import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.RoundBorder.RoundBorder;
-/*import M.JAVA_MODEL.Global_CLASS.Film;
-import java.util.List;
-import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;
+import M.JAVA_MODEL.Global_CLASS.Film;
+import V.FilmInfo.DateSéances;
+/*import java.util.List;
+import M.DAO.DAO_MYSQL_WAMP.Films.FilmsDAO_IMPL;*/
 import M.JAVA_MODEL.ImagesModifs.ConvertirImageHexa;
-import java.awt.image.BufferedImage;*/
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.Buffer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Accueil_News {
 
     //private static Panier panier = new Panier();
 
     public static boolean sizePage = false;
+    public static int filmCarroussel = 0;
+    public static Timer timer;
 
 
     public static void affichageAccueil_News(FrameBase frame){
@@ -122,18 +128,130 @@ public class Accueil_News {
 
         //Panel pour le carroussel
 
-        /*JPanel PanelCar = new JPanel();
-        PanelCar.setLayout(new FlowLayout());
+        JPanel PanelCar = new JPanel();
+        PanelCar.setLayout(null);
         PanelCar.setBackground(frame.getMainCouleur());
-        PanelCar.setPreferredSize(new Dimension(1200, 250));
+        PanelCar.setPreferredSize(new Dimension(1400, 350));
         PanelCar.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
-        PanelCar.setBounds(0, 0, 1020, 200);
+        PanelCar.setBounds(0, 0, 1400, 350);
 
         JButton BLeft = new JButton();
+        BLeft.setBackground(frame.getMainCouleur());
+        BLeft.setForeground(frame.getSecondeCouleur());
+        BLeft.setBorder(null);
+        BLeft.setFocusPainted(false);
+        BLeft.setText("<");
+        BLeft.setBounds(140, 175, 50, 50);
+        BLeft.setFont(new Font("Arial", Font.BOLD, 40));
+        BLeft.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(filmCarroussel == 0){filmCarroussel = 9;}
+                else{filmCarroussel--;}
+                ChangementPageListeners.ChangementPage("accueil_news", frame);
+            }
+        });
 
+        JButton BRight = new JButton();
+        BRight.setBackground(frame.getMainCouleur());
+        BRight.setForeground(frame.getSecondeCouleur());
+        BRight.setBorder(null);
+        BRight.setFocusPainted(false);
+        BRight.setText(">");
+        BRight.setBounds(1200, 175, 50, 50);
+        BRight.setFont(new Font("Arial", Font.BOLD, 40));
+        BRight.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(filmCarroussel == 9){filmCarroussel = 0;}
+                else{filmCarroussel++;}
+                ChangementPageListeners.ChangementPage("accueil_news", frame);
+            }
+        });
+
+        PanelCar.add(BLeft);
+        PanelCar.add(BRight);
+
+        //Faire défiler automatiquement les films du carroussel toutes les 5 secondes
+        // Faire défiler automatiquement les films du carrousel toutes les 5 secondes
+        timer = new Timer(7000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(filmCarroussel == 9){
+                    filmCarroussel = 0;
+                } else {
+                    filmCarroussel++;
+                }
+                timer.stop();
+                ChangementPageListeners.ChangementPage("accueil_news", frame);
+            }
+        });
+        timer.start(); // N'oubliez pas de démarrer le timer
+
+        //Panel pour les films du carroussel
+        JPanel PanelFilms = new JPanel();
+        PanelFilms.setLayout(new FlowLayout());
+        PanelFilms.setBackground(frame.getMainCouleur());
+        PanelFilms.setPreferredSize(new Dimension(250, 330));
+        PanelFilms.setBorder(null);
+        PanelFilms.setBounds(555, 30, 250, 335);
+
+
+        List<Film> films = new ArrayList<Film>();
+        films = frame.filmsDAO.recupererFilmsRecents();
+
+        //Afficher l'affiche du film et son titre à l'index filmCarroussel
+        BufferedImage imageC = ConvertirImageHexa.HexToImage(films.get(filmCarroussel).getPhoto());
+        Image image2 = imageC.getScaledInstance(200, 300, Image.SCALE_SMOOTH);
+        JLabel afficheLabel = new JLabel(new ImageIcon(image2));
+        afficheLabel.setText(films.get(filmCarroussel).getNom());
+        afficheLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        afficheLabel.setForeground(frame.getSecondeCouleur());
+        afficheLabel.setHorizontalTextPosition(JLabel.CENTER);
+        afficheLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        afficheLabel.setHorizontalAlignment(JLabel.CENTER);
+        afficheLabel.setVerticalAlignment(JLabel.CENTER);
+        afficheLabel.setIconTextGap(10);
+        /*boutonReserver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                frame.filmActuel.add(film);
+                // Appelez la méthode affichagePanier de la classe Panier en passant cette instance de FrameBase
+                DateSéances.affichageDateSeances(frame);
+            }
+        });*/
+        Film filmPassage = films.get(filmCarroussel);
+        afficheLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                frame.filmActuel.add(filmPassage);
+                //ChangementPageListeners.ChangementPage("date_seance", frame);
+                DateSéances.affichageDateSeances(frame);
+            }
+        });
+
+        PanelFilms.add(afficheLabel);
+
+        PanelCar.add(PanelFilms);
+
+        //Ajouter l'image du rideau gauche à gauche de l'affiche du film
+        ImageIcon rideauGauche = new ImageIcon("images/Images_Projet_V/Icon_News/blinds_gauche.png");
+        rideauGauche = new ImageIcon(rideauGauche.getImage().getScaledInstance(150, 380, Image.SCALE_DEFAULT));
+        JLabel rideauGaucheLabel = new JLabel(rideauGauche);
+        rideauGaucheLabel.setBounds(370, 10, 150, 380);
+        PanelCar.add(rideauGaucheLabel);
+
+        //Ajouter l'image du rideau droit à droite de l'affiche du film
+        ImageIcon rideauDroit = new ImageIcon("images/Images_Projet_V/Icon_News/blinds_droite.png");
+        rideauDroit = new ImageIcon(rideauDroit.getImage().getScaledInstance(150, 380, Image.SCALE_DEFAULT));
+        JLabel rideauDroitLabel = new JLabel(rideauDroit);
+        rideauDroitLabel.setBounds(835, 10, 150, 380);
+        PanelCar.add(rideauDroitLabel);
 
         gbc.gridy++;
-        contentPanel.add(PanelCar, gbc);*/
+
+        contentPanel.add(PanelCar, gbc);
+
+        gbc.gridy++;
+
+        contentPanel.add(new JLabel(), gbc);
 
 
 

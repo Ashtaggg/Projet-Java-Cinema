@@ -289,6 +289,88 @@ public class FilmsDAO_IMPL implements FilmsDAO{
         return films;
     }
 
+    public List<Film> recupererFilmsRecents() {
+        List<Film> films = new ArrayList<>();
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("SELECT * FROM film ORDER BY DateSortie DESC LIMIT 10");
+            result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                int idFilm = result.getInt("ID_Film");
+                String nom = result.getString("Nom");
+                double prix = result.getDouble("Prix");
+                Date dateSortie = result.getDate("DateSortie");
+                String photo = result.getString("Photo");
+                String duree = result.getString("Duree");
+                String description = result.getString("Description");
+                double note = result.getDouble("Note");
+                Boolean quatreDX = result.getBoolean("4DX");
+                String realisateur = result.getString("Realisateur");
+                String acteur = result.getString("Acteur");
+                String synopsis = result.getString("Synopsis");
+
+                Film film = new Film(idFilm, nom, prix, dateSortie, photo, duree, description, note, quatreDX, realisateur, acteur, synopsis);
+                films.add(film);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer l'exception (par exemple, en lançant une nouvelle exception personnalisée ou en loggant l'erreur)
+        } finally {
+            // Fermer les ressources (ResultSet, PreparedStatement et Connection)
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connexion != null) {
+                try {
+                    connexion.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return films;
+    }
+
+    public int compterTousLesFilms() {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultat = null;
+
+        try {
+            connexion = DAOFactory.getConnection();
+            preparedStatement = connexion.prepareStatement("SELECT COUNT(*) FROM film");
+
+            resultat = preparedStatement.executeQuery();
+
+            if (resultat.next()) {
+                int count = resultat.getInt(1);
+                return count;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
+        }
+        return 0;
+    }
+
     public void afficherFilm(Film film) {
         System.out.println("\n--> Film: ");
         System.out.println("ID_Film: " + film.getIdFilm());

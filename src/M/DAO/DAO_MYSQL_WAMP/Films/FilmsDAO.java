@@ -27,6 +27,10 @@ public interface FilmsDAO {
     Film recupererFilmByRealisateur(String realisateur);
     //Récupérer tous les films
     List<Film> recupererTousLesFilms();
+    //Récupérer les 10 films les plus récents
+    List<Film> recupererFilmsRecents();
+    //Compter le nombre de film
+    int compterTousLesFilms();
     //Afficcher un film
     void afficherFilm(Film film);
     //Afficher tous les films d'une liste   

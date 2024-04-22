@@ -99,7 +99,7 @@ public class ChangementPageListeners{
                 break;
             case "reservation_seance_place":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
-                frame.PageActuelle = "reservation_seance";
+                frame.PageActuelle = "reservation_seance_place";
                 frame.RefreshPage();
                 Reservation_Seance_Place.affichageReservation_Seance_Place(frame);
                 System.out.println("Reservation Seance Placement");
