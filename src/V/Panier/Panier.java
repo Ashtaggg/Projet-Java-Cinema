@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.ComponentOrientation;
 import java.awt.image.BufferedImage;
+import java.util.Date;
 
 public class Panier {
 
@@ -103,10 +104,10 @@ public class Panier {
                 New = new ImageIcon(New.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
                 JLabel NewLabel = new JLabel(New);
                 NewLabel.setBounds(190, 10, 60, 60);
-                panelReservation.add(NewLabel);
-                /*if(frame.filmActuel.getDateSortie().equals(Date.valueOf("2021-07-14"))){//A corriger ca marche pas
-                    NewLabel.setVisible(true);
-                }else{NewLabel.setVisible(false);}*/
+                //Date après le aujourdhui - 100 jours
+                //Date dateActuelle = new Date(System.currentTimeMillis()-100*60*60*24*1000);
+                Date dateActuelle = new Date(System.currentTimeMillis() - (100L * 24L * 60L * 60L * 1000L));
+                if(frame.filmActuel.get(i).getDateSortie().after(dateActuelle)){panelReservation.add(NewLabel);}
                 //Nom de notre cinnéma
                 JLabel NomCinema = new JLabel("ECE Ciné");
                 NomCinema.setFont(new Font ("Arial", Font.PLAIN, 23));

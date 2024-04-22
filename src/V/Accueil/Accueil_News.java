@@ -221,6 +221,7 @@ public class Accueil_News {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 frame.filmActuel.add(filmPassage);
                 //ChangementPageListeners.ChangementPage("date_seance", frame);
+                timer.stop();
                 DateSéances.affichageDateSeances(frame);
             }
         });
