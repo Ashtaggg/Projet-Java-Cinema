@@ -233,6 +233,8 @@ public class ReservationsDAO_IMPL implements ReservationsDAO {
             }
         } catch (SQLException error) {
             error.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
         }
         return reservation;
     }

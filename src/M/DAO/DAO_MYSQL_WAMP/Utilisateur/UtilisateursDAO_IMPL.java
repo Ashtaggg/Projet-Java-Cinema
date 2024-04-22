@@ -38,6 +38,8 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
     }
 
@@ -69,6 +71,8 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
     }
 
@@ -89,6 +93,8 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
     }
 
@@ -131,6 +137,8 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
 
         return null;
@@ -171,6 +179,8 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
 
         return null;
@@ -199,6 +209,8 @@ public class UtilisateursDAO_IMPL implements UtilisateursDAO{
 
         } catch (SQLException error) {
             System.out.println(error);
+        }finally {
+            DAOFactory.close(connexion);
         }
 
         return utilise;

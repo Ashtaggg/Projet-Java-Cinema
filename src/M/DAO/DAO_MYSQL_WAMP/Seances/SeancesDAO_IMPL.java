@@ -382,6 +382,8 @@ public class SeancesDAO_IMPL implements SeancesDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
         }
         return seances;
     }

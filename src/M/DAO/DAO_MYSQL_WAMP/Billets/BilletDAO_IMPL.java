@@ -32,6 +32,8 @@ public class BilletDAO_IMPL implements BilletDAO{
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
         }
     }
 
@@ -50,7 +52,10 @@ public class BilletDAO_IMPL implements BilletDAO{
             preparedStatement.executeUpdate();
 
             } catch (SQLException e) {
-                e.printStackTrace();}
+                e.printStackTrace();
+            }finally {
+                DAOFactory.close(connexion);
+            }
     }
 
     public void supprimerBillet(Billet billet) {
@@ -65,7 +70,10 @@ public class BilletDAO_IMPL implements BilletDAO{
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
+        }
     }
 
     public void supprimerBilletByID(int ID) {
@@ -80,7 +88,10 @@ public class BilletDAO_IMPL implements BilletDAO{
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
+        }
     }
 
     public Billet recupererBilletByID(int ID) {
@@ -101,7 +112,10 @@ public class BilletDAO_IMPL implements BilletDAO{
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
+        }
         return billet;
     }
 
@@ -121,7 +135,10 @@ public class BilletDAO_IMPL implements BilletDAO{
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
+        }
         return billets;
     }
 
@@ -144,6 +161,8 @@ public class BilletDAO_IMPL implements BilletDAO{
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
         }
         return 0;
     }
@@ -166,7 +185,10 @@ public class BilletDAO_IMPL implements BilletDAO{
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();}
+            e.printStackTrace();
+        }finally {
+            DAOFactory.close(connexion);
+        }
         return billets;
     }
 
@@ -250,6 +272,8 @@ public class BilletDAO_IMPL implements BilletDAO{
         
             } catch (SQLException e) {
                 e.printStackTrace();
+            }finally {
+                DAOFactory.close(connexion);
             }
         }
         return billets;
