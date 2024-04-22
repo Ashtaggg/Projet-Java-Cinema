@@ -33,14 +33,14 @@ public class ChangementPageListeners{
                     frame.PageActuelle = "compte";
                     frame.RefreshPage();
                     PageCompte.affichagePageCompte(frame);
-                    System.out.println("Compte");
+                    //System.out.println("Compte");
                 }
                 else if(frame.userActuel == null){
                     frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                     frame.PageActuelle = "connexion";
                     frame.RefreshPage();
                     PageConnexion.affichagePageConnexion(frame);
-                    System.out.println("Connexion");
+                    //System.out.println("Connexion");
                 }
                 break;
             case "admin":
@@ -49,7 +49,7 @@ public class ChangementPageListeners{
                     frame.PageActuelle = "admin";
                     frame.RefreshPage();
                     EspaceAdmin.affichageEspaceAdmin(frame);
-                    System.out.println("Espace Admin");
+                    //System.out.println("Espace Admin");
                     break;
                 }
                 else{
@@ -60,77 +60,77 @@ public class ChangementPageListeners{
                 frame.PageActuelle = "accueil_films";
                 frame.RefreshPage();
                 Accueil_Films.affichageAccueil_Films(frame);
-                System.out.println("Accueil Films");
+                //System.out.println("Accueil Films");
                 break;
             case "accueil_news":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "accueil_news";
                 frame.RefreshPage();
                 Accueil_News.affichageAccueil_News(frame);
-                System.out.println("Accueil News ");
+                //System.out.println("Accueil News ");
                 break;
             case "accueil_cinema":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "accueil_cinema";
                 frame.RefreshPage();
                 Accueil_Cinema.affichageAccueil_Cinema(frame);
-                System.out.println("Accueil Cinema");
+                //System.out.println("Accueil Cinema");
                 break;
             case "connexion":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "connexion";
                 frame.RefreshPage();
                 PageConnexion.affichagePageConnexion(frame);
-                System.out.println("Connexion");
+                //System.out.println("Connexion");
                 break;
             case "inscription":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "inscription";
                 frame.RefreshPage();
                 PageInscription.affichagePageInscription(frame);
-                System.out.println("Inscription");
+                //ystem.out.println("Inscription");
                 break;
             case "reservation_seance":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "reservation_seance";
                 frame.RefreshPage();
                 Reservation_Seance.affichageReservation_Seance(frame);
-                System.out.println("Reservation Seance");
+                //System.out.println("Reservation Seance");
                 break;
             case "reservation_seance_place":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "reservation_seance_place";
                 frame.RefreshPage();
                 Reservation_Seance_Place.affichageReservation_Seance_Place(frame);
-                System.out.println("Reservation Seance Placement");
+                //System.out.println("Reservation Seance Placement");
                 break;
             case "recap_reservation":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "recap_reservation";
                 frame.RefreshPage();
                 Recap_Reservation.afficherRecapreservation(frame);
-                System.out.println("Recap Reservation");
+                //System.out.println("Recap Reservation");
                 break;
             case "panier":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "panier";
                 frame.RefreshPage();
                 Panier.affichagePanier(frame);
-                System.out.println("Panier");
+                //System.out.println("Panier");
                 break;
             case "payer":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "payer";
                 frame.RefreshPage();
                 Paiement.afficherPaiement(frame);
-                System.out.println("Payment");
+                //System.out.println("Payment");
                 break;
             case "Merci":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
                 frame.PageActuelle = "Merci";
                 frame.RefreshPage();
                 MerciAchat.afficherMerciAchat(frame);
-                System.out.println("Merci Payment");
+                //System.out.println("Merci Payment");
                 break;
             default:
                 System.out.println("Action non reconnue");

@@ -178,8 +178,8 @@ public class DateSéances {
         List<Seance> seances = RecuperationSeancesByIDFilmAndDateListeners.recupSeances(frame, frame.filmActuel.get(frame.filmActuel.size()-1).getIdFilm(), dateSelec);
 
         if(seances.isEmpty()){
-            JLabel Label = new JLabel("Aucune séance prévu à ce jour");
-            Label.setBounds(679, 365, 442, 40);
+            JLabel Label = new JLabel("Aucune séance prévue à ce jour");
+            Label.setBounds(675, 365, 459, 40);
             Label.setForeground(frame.getSecondeCouleur());
             Label.setFont(font1);
             dateSceance.add(Label);
@@ -276,8 +276,8 @@ public class DateSéances {
             panelFilms.add(HeureBillet);
 
 
-            JLabel placeDispoLabel = new JLabel("Nombre de places disponible : ");
-            placeDispoLabel.setBounds(950, 90, 500, 30);
+            JLabel placeDispoLabel = new JLabel("Nombre de places disponibles : ");
+            placeDispoLabel.setBounds(940, 90, 500, 30);
             placeDispoLabel.setForeground(frame.getSecondeCouleur());
             placeDispoLabel.setFont(font3);
             panelFilms.add(placeDispoLabel);

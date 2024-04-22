@@ -30,7 +30,6 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.text.html.StyleSheet.BoxPainter;
 
 import java.awt.Image;
 import java.util.ArrayList;
