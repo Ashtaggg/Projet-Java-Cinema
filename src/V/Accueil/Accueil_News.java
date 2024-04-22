@@ -120,6 +120,22 @@ public class Accueil_News {
         //FilmsDAO_IMPL filmsDAO = new FilmsDAO_IMPL();
         //List<Film> films = filmsDAO.recupererTousLesFilms(); // Méthode pour récupérer tous les films depuis la base de données
 
+        //Panel pour le carroussel
+
+        /*JPanel PanelCar = new JPanel();
+        PanelCar.setLayout(new FlowLayout());
+        PanelCar.setBackground(frame.getMainCouleur());
+        PanelCar.setPreferredSize(new Dimension(1200, 250));
+        PanelCar.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
+        PanelCar.setBounds(0, 0, 1020, 200);
+
+        JButton BLeft = new JButton();
+
+
+        gbc.gridy++;
+        contentPanel.add(PanelCar, gbc);*/
+
+
 
         // News 1: Avatar 2
         JPanel panelNews1 = new JPanel();
@@ -255,7 +271,7 @@ public class Accueil_News {
                 if(TexteConditionsVente.isVisible()){TexteConditionsVente.setVisible(false);}
                 else{TexteConditionsVente.setVisible(true);}
                 sizePage = !sizePage;
-                ChangementPageListeners.ChangementPage("accueil_films", frame);
+                ChangementPageListeners.ChangementPage("accueil_news", frame);
             }
         });
 
@@ -298,8 +314,8 @@ public class Accueil_News {
         // Ajouter footer avec GridBagLayout
         gbc.gridx = 0;
         gbc.gridy += 2; // Aller à la ligne suivante
-        gbc.ipady = 200;
-        if(sizePage){gbc.ipady = 1150;} // Hauteur spécifique
+        gbc.ipady = 0;
+        if(sizePage){gbc.ipady = 950;} // Hauteur spécifique
         contentPanel.add(footer, gbc);
 
         // Créer un JScrollPane et y ajouter le contentPanel

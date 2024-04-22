@@ -88,7 +88,7 @@ public class Panier {
                 JLabel TitreFilm = new JLabel(frame.filmActuel.get(i).getNom());
                 TitreFilm.setFont(new Font ("Arial", Font.BOLD, 37));
                 TitreFilm.setForeground(frame.getSecondeCouleur());
-                TitreFilm.setBounds(300, 30, 500, 50);
+                TitreFilm.setBounds(300, 30, 430, 50);
                 panelReservation.add(TitreFilm);
                 //Photo du film
                 BufferedImage image = ConvertirImageHexa.HexToImage(frame.filmActuel.get(i).getPhoto());

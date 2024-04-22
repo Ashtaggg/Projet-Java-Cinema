@@ -178,10 +178,10 @@ public class BilletDAO_IMPL implements BilletDAO{
 
         try {
             connexion = DAOFactory.getConnection();
-            //D'abord récupérer tout les ID Reservation
-            preparedStatement = connexion.prepareStatement("SELECT ID_Reservation FROM billet ;");
+            //D'abord récupérer tout les ID Reservation parmi les billets
+            /*preparedStatement = connexion.prepareStatement("SELECT DISTINCT ID_Reservation FROM billet ;");
             resultat = preparedStatement.executeQuery();
-            ArrayList<Integer> IDReservations = new ArrayList<>();
+            ArrayList<Integer> IDReservations = new ArrayList<>(); //List qui va récupérer ces ID reservation
             while (resultat.next()) {
                 IDReservations.add(resultat.getInt("ID_Reservation"));
             }
@@ -193,6 +193,17 @@ public class BilletDAO_IMPL implements BilletDAO{
             }
             for (Reservation reservation : reservations) {
                 billets.addAll(recupererBilletsByReservation(reservation.getIdReservation()));
+            }*/
+            List<Reservation> reservations = new ArrayList<>();
+            ReservationsDAO reservationsDAO = new ReservationsDAO_IMPL();
+            reservations = reservationsDAO.recupererToutesLesReservationsByIDSeance(IDSeance);
+            //On récupère ensuite les billets avec l'id corrspondant
+            for( Reservation reservation : reservations){
+                List<Billet> billetFOR = new ArrayList<>();
+                billetFOR = recupererBilletsByReservation(reservation.getIdReservation());
+                for(Billet billet : billetFOR){
+                    billets.add(billet);
+                }
             }
 
         } catch (SQLException e) {

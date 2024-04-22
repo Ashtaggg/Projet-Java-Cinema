@@ -30,7 +30,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
+import javax.swing.text.html.StyleSheet.BoxPainter;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -41,6 +41,8 @@ public class FrameBase extends JFrame{
 
     //Variables
     private JPanel PanelBase;
+    public JPanel BandeauSup;
+    public JButton BoutonPanier;
     public String PageActuelle = "accueil_films";
     // Déclarez BoutonPanierNombre comme une variable de classe
     private JLabel BoutonPanierNombre;
@@ -108,13 +110,6 @@ public class FrameBase extends JFrame{
         //Initialisation des variables à enlever avec la partie de Anhto mais hyper importantes de bien les mettre à jour ensuite
         if(VarLacement == false){
             reservationActuelle.add(new Reservation(0, -1, 0, 0, 0));
-            /*seanceActuelle.add(seancesDAO.recupererSeanceByID(626)); //Récupérer Séance 626
-            seancesDAO.afficherSeance(seanceActuelle.get(0));
-            seancesDAO.afficherSeance(seancesDAO.recupererSeanceByID(626));
-            salleActuelle.add(sallesDAO.recupererSalleByID(seanceActuelle.get(0).getIdSalle()));
-            sallesDAO.afficherSalle(salleActuelle.get(0));
-            filmActuel.add(filmsDAO.recupererFilmByID(seanceActuelle.get(0).getIdFilm()));
-            filmsDAO.afficherFilm(filmActuel.get(0));*/
             nombreReservationsPanier = 0;
             VarLacement = true;
         }
@@ -130,7 +125,7 @@ public class FrameBase extends JFrame{
 
 
         //Création du bandeau bleu en haut de la page
-        JPanel BandeauSup = new JPanel();
+        BandeauSup = new JPanel();
         BandeauSup.setLayout(null);
         BandeauSup.setBackground(SecondeCouleur_Light);
         BandeauSup.setBounds(0, 0, 1920, 120);
@@ -163,6 +158,13 @@ public class FrameBase extends JFrame{
         //Action du bouton
         BoutonRetour.addActionListener(e -> {
             String Pagetampon = PagePrecedente.get(PagePrecedente.size() - 1);
+            /*if(PageActuelle == "date_seance"){
+                filmActuel.remove(nombreReservationsPanier);
+            }
+            else if (PageActuelle == "reservation_seance"){
+                seanceActuelle.remove(nombreReservationsPanier);
+                salleActuelle.remove(nombreReservationsPanier);
+            }*/
             ChangementPageListeners.ChangementPage(Pagetampon, this);
         });
 
@@ -255,7 +257,7 @@ public class FrameBase extends JFrame{
 
 
         //Bouton de Panier en haut à droite
-        JButton BoutonPanier = new JButton();
+        BoutonPanier = new JButton();
         ImageIcon IconePanier = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/Panier_Blanc.png");
         BoutonPanier.setIcon(new ImageIcon(IconePanier.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
         BoutonPanier.setText("Panier");
@@ -285,7 +287,7 @@ public class FrameBase extends JFrame{
         BoutonPanierNombre.setBackground(SecondeCouleur_Light);
        // BoutonPanierNombre.setEnabled(false);
         BoutonPanierNombre.setBounds(0, 0, 20, 20);
-        if(nombreReservationsPanier>=1){BoutonPanier.add(BoutonPanierNombre, Integer.valueOf(1));}         
+        if(nombreReservationsPanier>=1){BoutonPanier.add(BoutonPanierNombre, Integer.valueOf(1));}      
 
         BandeauSup.add(BoutonPanier);
         BoutonPanier.setBounds(1460, 20, 120, 80);
@@ -356,16 +358,30 @@ public class FrameBase extends JFrame{
     }
 
     public void RefreshPage(){
+    
+        // Mettre à jour l'icône du BoutonPanierNombre avec le nombre actuel d'éléments dans le panier
+        ImageIcon iconPanierNombre = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/number-" + String.valueOf(nombreReservationsPanier) + ".png");
+        ImageIcon iconPanierNombreResize = new ImageIcon(iconPanierNombre.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
+        BoutonPanierNombre.setIcon(iconPanierNombreResize);
+        if(nombreReservationsPanier>=1){BoutonPanier.add(BoutonPanierNombre, Integer.valueOf(1));} 
+
         // Rafraîchir l'interface utilisateur
         this.getPanelBase().revalidate();
         this.getPanelBase().repaint();
         this.getPanelBase().setVisible(true);
-    
-        // Mettre à jour l'icône du BoutonPanierNombre avec le nombre actuel d'éléments dans le panier
-        int nombreElementsPanier = reservationActuelle.size();
-        ImageIcon iconPanierNombre = new ImageIcon("images/Images_Projet_V/Icon_FrameBase/number-" + nombreElementsPanier + ".png");
-        ImageIcon iconPanierNombreResize = new ImageIcon(iconPanierNombre.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT));
-        BoutonPanierNombre.setIcon(iconPanierNombreResize);
+
+        this.BandeauSup.revalidate();
+        this.BandeauSup.repaint();
+        this.BandeauSup.setVisible(true);
+
+        this.BoutonPanierNombre.revalidate();
+        this.BoutonPanierNombre.repaint();
+        this.BoutonPanierNombre.setVisible(true);
+
+        this.BoutonPanier.revalidate();
+        this.BoutonPanier.repaint();
+        this.BoutonPanier.setVisible(true);
+
     
         this.setVisible(true);
         this.revalidate();

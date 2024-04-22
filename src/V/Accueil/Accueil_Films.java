@@ -346,8 +346,8 @@ public class Accueil_Films {
         // Ajouter footer avec GridBagLayout
         gbc.gridx = 0;
         gbc.gridy += 2; // Aller à la ligne suivante
-        gbc.ipady = 200;
-        if(sizePage){gbc.ipady = 1150;} // Hauteur spécifique
+        gbc.ipady = 0;
+        if(sizePage){gbc.ipady = 950;} // Hauteur spécifique
         contentPanel.add(footer, gbc);
 
 

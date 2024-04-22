@@ -131,15 +131,47 @@ public class Accueil_Cinema {
 
         //Pannels pour les informations pratiques
         JPanel panelInfoP = new JPanel();
+        panelInfoP.setLayout(null);
+        panelInfoP.setBackground(frame.getMainCouleur());
+        panelInfoP.setPreferredSize(new Dimension(1800, 800));
+        panelInfoP.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
 
+        //Map
+        ImageIcon MapI = new ImageIcon("images/Images_Projet_V/Map/Map.png");
+        MapI = new ImageIcon(MapI.getImage().getScaledInstance(900, 540, Image.SCALE_DEFAULT));
+        JLabel MapLabelI = new JLabel(MapI);
+        MapLabelI.setBounds(820, 200, 900, 540);
+        panelInfoP.add(MapLabelI);
 
+        JLabel InfoCine = new JLabel("<html><br>Toutes nos Informations se trouvent à porté de clic !<br><br><br>" + 
+        "Notre Cinéma se situe au 145 Quai de Grenelle à Paris.<br><br>" + 
+        "Lévez les yeux et vous vérez cette dame de fer veillant sur nos projections.<br><br><br><br>" + 
+        "Nous vous accueillons toute la semaine selon les horraires suivant :<br><br>" + 
+        "Lundi : 10h30 - 22h30<br><br>"+
+        "Mardi : 10h30 - 22h30<br><br>" +
+        "Mercredi : 10h30 - 22h30<br><br>" +
+        "Jeudi : 10h30 - 01h30<br><br>" +
+        "Vendredi : 10h30 - 01h30<br><br>" +
+        "Samedi : 10h30 - 01h30<br><br>" +
+        "Dimanche : 10h30 - 22h30<br><br><br><br>" +
+        "Pour plus d'informations contactez nous : <br>"+
+        "Téléphone : 01 02 03 04 05<br>" +
+        "Email : ECECiné@gmail.com</html>");
+        InfoCine.setFont(new Font("Arial", Font.PLAIN, 18));
+        InfoCine.setForeground(frame.getSecondeCouleur());
+        InfoCine.setBounds(180, 50, 580, 800);
+        panelInfoP.add(InfoCine);
+
+        contentPanel.add(panelInfoP, gbc);
+        gbc.gridy++;
+        contentPanel.add(new JLabel(), gbc);
+        gbc.gridy++;
         //Pannel Histoire
         JPanel panelNews1 = new JPanel();
         panelNews1.setLayout(new FlowLayout());
         panelNews1.setBackground(frame.getMainCouleur());
         panelNews1.setPreferredSize(new Dimension(1800, 1000));
         panelNews1.setBorder(new RoundBorder(frame.getSecondeCouleur(), 60, 2));
-        panelNews1.setBounds(0, 0, 1020, 200);
         gbc.gridy++;
         contentPanel.add(panelNews1, gbc);
 
@@ -284,8 +316,8 @@ public class Accueil_Cinema {
         // Ajouter footer avec GridBagLayout
         gbc.gridx = 0;
         gbc.gridy += 2; // Aller à la ligne suivante
-        gbc.ipady = 200;
-        if(sizePage){gbc.ipady = 1150;} // Hauteur spécifique
+        gbc.ipady = 0;
+        if(sizePage){gbc.ipady = 950;} // Hauteur spécifique
         contentPanel.add(footer, gbc);
 
         // Créer un JScrollPane et y ajouter le contentPanel
