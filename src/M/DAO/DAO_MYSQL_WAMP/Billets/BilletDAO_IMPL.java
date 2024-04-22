@@ -171,13 +171,13 @@ public class BilletDAO_IMPL implements BilletDAO{
     }
 
     public List<Billet> recupererBilletsBySeance(int IDSeance) {
-        Connection connexion = null;
+        /*Connection connexion = null;
         PreparedStatement preparedStatement = null;
-        ResultSet resultat = null;
+        ResultSet resultat = null;*/
         List<Billet> billets = new ArrayList<>();
 
         try {
-            connexion = DAOFactory.getConnection();
+            //connexion = DAOFactory.getConnection();
             //D'abord récupérer tout les ID Reservation parmi les billets
             /*preparedStatement = connexion.prepareStatement("SELECT DISTINCT ID_Reservation FROM billet ;");
             resultat = preparedStatement.executeQuery();
@@ -206,8 +206,9 @@ public class BilletDAO_IMPL implements BilletDAO{
                 }
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return billets;
     }
 
