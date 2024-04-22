@@ -283,7 +283,7 @@ public class Paiement {
             int ValidPayer = 0;
             if(accepterConditions.isSelected()){
                 //Vérifier que les éléments de la CB sont valides
-                if(carteNum.getText().length() == 19 && date.getDate() != null && carteCCV.getText().length() == 3 && carteNom.getText().length() > 0){
+                if((carteNum.getText().length() == 19 || carteNum.getText().length() == 16) && date.getDate() != null && carteCCV.getText().length() == 3 && carteNom.getText().length() > 0){
                     //Vérifier que la date n'est pas dépassée
                     Date dateActuelle = new Date(System.currentTimeMillis());
                     if(date.getDate().after(dateActuelle)){
