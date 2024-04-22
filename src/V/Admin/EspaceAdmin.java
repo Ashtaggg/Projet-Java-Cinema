@@ -89,7 +89,7 @@ public class EspaceAdmin {
 
 
         boutonAjouterFilm.addActionListener(e -> {
-            affichageEspaceAdmin1(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat);
+            affichageEspaceAdmin1(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat, boutonAjouterSeance);
         });
         //boutonAjouterFilm.setBounds(140, 40, 177, 20);
         boutonAjouterFilm.setBounds(92, 40, 177, 20);
@@ -101,7 +101,7 @@ public class EspaceAdmin {
 
         
         boutonSuppModifFilm.addActionListener(e -> {
-            affichageEspaceAdmin2(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat);
+            affichageEspaceAdmin2(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat, boutonAjouterSeance);
         });
         //boutonSuppModifFilm.setBounds(524, 40, 302, 20);
         boutonSuppModifFilm.setBounds(389, 40, 302, 20);
@@ -123,7 +123,7 @@ public class EspaceAdmin {
 
 
         boutonSuppModifCompte.addActionListener(e -> {
-            affichageEspaceAdmin3(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat);
+            affichageEspaceAdmin3(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat, boutonAjouterSeance);
         });
         //boutonSuppModifCompte.setBounds(974, 40, 302, 20);
         boutonSuppModifCompte.setBounds(1109, 40, 302, 20);
@@ -135,7 +135,7 @@ public class EspaceAdmin {
 
 
         boutonAfficherStat.addActionListener(e -> {
-            affichageEspaceAdmin4(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat);
+            affichageEspaceAdmin4(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat, boutonAjouterSeance);
         });
         //boutonAfficherStat.setBounds(1479, 40, 192, 20);
         boutonAfficherStat.setBounds(1524, 40, 192, 20);
@@ -151,7 +151,7 @@ public class EspaceAdmin {
     }
 
     
-    public static void affichageEspaceAdmin1(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat){
+    public static void affichageEspaceAdmin1(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat, JButton boutonAjouterSeance){
         admin.removeAll();
         frame.RefreshPage();
         
@@ -162,6 +162,7 @@ public class EspaceAdmin {
         boutonSuppModifFilm.setForeground(frame.getTroisCouleur());
         boutonSuppModifCompte.setForeground(frame.getTroisCouleur());
         boutonAfficherStat.setForeground(frame.getTroisCouleur());
+        boutonAjouterSeance.setForeground(frame.getTroisCouleur());
 
 
         String[] photo = {ConvertirImageHexa.ImageToHex("images/Images_Projet_V/Icon_Compte/Personalisation_2.png")};
@@ -442,7 +443,7 @@ public class EspaceAdmin {
         frame.RefreshPage();
     }
 
-    public static void affichageEspaceAdmin2(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat){
+    public static void affichageEspaceAdmin2(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat, JButton boutonAjouterSeance){
         frame.PageActuelle = "admin";
         admin.removeAll();
         frame.RefreshPage();
@@ -455,6 +456,7 @@ public class EspaceAdmin {
         boutonSuppModifFilm.setForeground(frame.getSecondeCouleur());
         boutonSuppModifCompte.setForeground(frame.getTroisCouleur());
         boutonAfficherStat.setForeground(frame.getTroisCouleur());
+        boutonAjouterSeance.setForeground(frame.getTroisCouleur());
 
 
         JPanel scrollBillets = new JPanel();
@@ -894,7 +896,7 @@ public class EspaceAdmin {
         frame.RefreshPage();
     }
 
-    public static void affichageEspaceAdmin3(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat){
+    public static void affichageEspaceAdmin3(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat, JButton boutonAjouterSeance){
         frame.PageActuelle = "admin";
         admin.removeAll();
         frame.RefreshPage();
@@ -907,6 +909,7 @@ public class EspaceAdmin {
         boutonSuppModifFilm.setForeground(frame.getTroisCouleur());
         boutonSuppModifCompte.setForeground(frame.getSecondeCouleur());
         boutonAfficherStat.setForeground(frame.getTroisCouleur());
+        boutonAjouterSeance.setForeground(frame.getTroisCouleur());
 
 
 
@@ -1054,7 +1057,7 @@ public class EspaceAdmin {
 
     }
 
-    public static void affichageEspaceAdmin4(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat){
+    public static void affichageEspaceAdmin4(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat, JButton boutonAjouterSeance){
         frame.PageActuelle = "admin";
         admin.removeAll();
         frame.RefreshPage();
@@ -1065,6 +1068,7 @@ public class EspaceAdmin {
         boutonSuppModifFilm.setForeground(frame.getTroisCouleur());
         boutonSuppModifCompte.setForeground(frame.getTroisCouleur());
         boutonAfficherStat.setForeground(frame.getSecondeCouleur());
+        boutonAjouterSeance.setForeground(frame.getTroisCouleur());
 
         JLabel Label = new JLabel("Nombre de billets vendu par Films");
         Label.setFont(font1);
