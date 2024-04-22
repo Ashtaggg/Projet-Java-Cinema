@@ -443,6 +443,7 @@ public class EspaceAdmin {
     }
 
     public static void affichageEspaceAdmin2(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat){
+        frame.PageActuelle = "admin";
         admin.removeAll();
         frame.RefreshPage();
         
@@ -588,6 +589,7 @@ public class EspaceAdmin {
     }
 
     public static void affichageEspaceAdmin2_bis(FrameBase frame, JPanel admin, Film film){
+        frame.PageActuelle = "admin";
         admin.removeAll();
         frame.RefreshPage();
         
@@ -893,6 +895,7 @@ public class EspaceAdmin {
     }
 
     public static void affichageEspaceAdmin3(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat){
+        frame.PageActuelle = "admin";
         admin.removeAll();
         frame.RefreshPage();
         
@@ -1052,6 +1055,7 @@ public class EspaceAdmin {
     }
 
     public static void affichageEspaceAdmin4(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat){
+        frame.PageActuelle = "admin";
         admin.removeAll();
         frame.RefreshPage();
         
@@ -1125,6 +1129,7 @@ public class EspaceAdmin {
 
 
     public static void affichageEspaceAdmin5(FrameBase frame, JPanel admin, JButton boutonAjouterFilm, JButton boutonSuppModifFilm, JButton boutonSuppModifCompte, JButton boutonAfficherStat, JButton boutonAjouterSeance){
+        frame.PageActuelle = "admin";
         admin.removeAll();
         frame.RefreshPage();
         
@@ -1160,6 +1165,7 @@ public class EspaceAdmin {
 
 
     public static void affichageEspaceAdmin5_bis(FrameBase frame, JPanel admin, JDateChooser Date, Date date){
+        frame.PageActuelle = "admin";
         Component[] composants = admin.getComponents();
         for (Component composant : composants) {
             if (composant != Date) {
@@ -1394,11 +1400,12 @@ public class EspaceAdmin {
                     seanceFilm.setBackground(frame.getSecondeCouleur());
                     seanceFilm.setLayout(null);
                     salles1[i].add(seanceFilm);
-                    
-                    JLabel TitreLabel = new JLabel(film.getNom());
+                        
+                    JLabel TitreLabel = new JLabel("<html><body style='width: 75px;'>" + film.getNom() + "</body></html>");
+                    //JLabel TitreLabel = new JLabel(film.getNom());
                     TitreLabel.setFont(font4);
                     TitreLabel.setForeground(frame.getMainCouleur());
-                    TitreLabel.setBounds(0, 10, 200, 10);
+                    TitreLabel.setBounds(3, 7, 200, 35);
                     seanceFilm.add(TitreLabel);
                 }
             }
@@ -1433,10 +1440,11 @@ public class EspaceAdmin {
                     seanceFilm.setLayout(null);
                     salles2[i].add(seanceFilm);
                     
-                    JLabel TitreLabel = new JLabel(film.getNom());
+                    JLabel TitreLabel = new JLabel("<html><body style='width: 75px;'>" + film.getNom() + "</body></html>");
+                    //JLabel TitreLabel = new JLabel(film.getNom());
                     TitreLabel.setFont(font4);
                     TitreLabel.setForeground(frame.getMainCouleur());
-                    TitreLabel.setBounds(0, 10, 200, 10);
+                    TitreLabel.setBounds(3, 7, 200, 35);
                     seanceFilm.add(TitreLabel);
                 }
             }
@@ -1471,10 +1479,11 @@ public class EspaceAdmin {
                     seanceFilm.setLayout(null);
                     salles3[i].add(seanceFilm);
                     
-                    JLabel TitreLabel = new JLabel(film.getNom());
+                    JLabel TitreLabel = new JLabel("<html><body style='width: 75px;'>" + film.getNom() + "</body></html>");
+                    //JLabel TitreLabel = new JLabel(film.getNom());
                     TitreLabel.setFont(font4);
                     TitreLabel.setForeground(frame.getMainCouleur());
-                    TitreLabel.setBounds(0, 10, 200, 10);
+                    TitreLabel.setBounds(3, 7, 200, 35);
                     seanceFilm.add(TitreLabel);
                 }
             }
