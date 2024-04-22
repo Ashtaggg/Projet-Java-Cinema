@@ -14,8 +14,10 @@ import C.Listeners.PageAdmin.RecuperationSeancesByIDFilmListeners;
 import C.Listeners.PageAdmin.RecuperationSeancesByIDSalleAndDateListeners;
 import C.Listeners.PageAdmin.RecuperationReservationsByIDSeance;
 import C.Listeners.PageAdmin.CompterBilletsByIDReservation;
+import C.Listeners.PageAdmin.CompterFilmListeners;
 import C.Listeners.ChangementPageListeners;
 import M.JAVA_MODEL.Global_CLASS.Film;
+import M.JAVA_MODEL.Global_CLASS.Salle;
 import M.JAVA_MODEL.Global_CLASS.Utilisateur;
 import M.JAVA_MODEL.Global_CLASS.Reservation;
 import M.JAVA_MODEL.Global_CLASS.Seance;
@@ -1138,6 +1140,7 @@ public class EspaceAdmin {
         frame.RefreshPage();
         
         Font font2 = new Font("Arial", Font.BOLD, 20);
+        Font font3 = new Font("Arial", Font.BOLD, 15);
         
         
         boutonAjouterFilm.setForeground(frame.getTroisCouleur());
@@ -1145,7 +1148,71 @@ public class EspaceAdmin {
         boutonSuppModifCompte.setForeground(frame.getTroisCouleur());
         boutonAfficherStat.setForeground(frame.getTroisCouleur());
         boutonAjouterSeance.setForeground(frame.getSecondeCouleur());
+
+
+
+        JLabel titreLabel = new JLabel("Film");
+        titreLabel.setBounds(50, 10, 185, 15);
+        titreLabel.setForeground(frame.getSecondeCouleur());
+        titreLabel.setFont(font3);
+        admin.add(titreLabel);
+
+        List<Film> films = RecuperationFilmsListeners.recupFilms(frame);
+
+        String[] titres = new String[CompterFilmListeners.compterFilms(frame)];
+        int i = 0;
+
+        for(Film film : films){
+            titres[i] = film.getNom();
+            i++;
+        }
+
+        JComboBox<String> comboBox = new JComboBox<>(titres);
+        comboBox.setBounds(50, 25, 300, 40);
+        comboBox.setFont(font2);
+        admin.add(comboBox);
+
+
+        JLabel salleLabel = new JLabel("Salle");
+        salleLabel.setBounds(850, 10, 185, 15);
+        salleLabel.setForeground(frame.getSecondeCouleur());
+        salleLabel.setFont(font3);
+        admin.add(salleLabel);
+
+        Integer[] salles = {10, 11, 12, 13, 14, 15, 16, 17, 20, 21, 22, 23, 24, 30, 31, 32, 33, 34};
+
+        JComboBox<Integer> comboBox2 = new JComboBox<>(salles);
+        comboBox2.setBounds(850, 25, 300, 40);
+        comboBox2.setFont(font2);
+        admin.add(comboBox2);
+
+
+        JLabel dureeLabel = new JLabel("Heure");
+        dureeLabel.setBounds(1250, 10, 300, 15);
+        dureeLabel.setForeground(frame.getSecondeCouleur());
+        dureeLabel.setFont(font3);
+        admin.add(dureeLabel);
+
+        SpinnerDateModel model = new SpinnerDateModel();
+        model.setCalendarField(Calendar.MINUTE);
+        model.setValue(new Date(0));
+        JSpinner duree = new JSpinner(model);
+        SimpleDateFormat format = new SimpleDateFormat("HH 'h' mm");
+        JSpinner.DateEditor editor = new JSpinner.DateEditor(duree, format.toPattern());
+        duree.setEditor(editor);
+        JFormattedTextField textField = editor.getTextField();
+        textField.setBackground(frame.getMainCouleur());
+        textField.setFont(font2);
+        textField.setForeground(frame.getSecondeCouleur());
+        duree.setBounds(1250, 25, 185, 40);
+        admin.add(duree);
             
+        JLabel dateLabel = new JLabel("Date");
+        dateLabel.setBounds(450, 10, 300, 15);
+        dateLabel.setForeground(frame.getSecondeCouleur());
+        dateLabel.setFont(font3);
+        admin.add(dateLabel);
+
 
         Calendar cal = Calendar.getInstance();
         JDateChooser date = new JDateChooser();
@@ -1158,21 +1225,52 @@ public class EspaceAdmin {
         date.setFont(font2);
         admin.add(date);
 
-        date.getDateEditor().addPropertyChangeListener(e -> {
-            affichageEspaceAdmin5_bis(frame, admin, date, date.getDate());
+        JButton boutonConnect = new JButton("Ok");
+        boutonConnect.setBounds(1450, 25, 75, 40);
+        boutonConnect.setForeground(frame.getSecondeCouleur());
+        boutonConnect.setBackground(frame.getMainCouleur());
+        boutonConnect.setFont(font2);
+        admin.add(boutonConnect);
+
+        JButton boutonValider = new JButton("Valider");
+        boutonValider.addActionListener(e -> {
+            Film film = frame.filmsDAO.recupererFilmByTitre((String) comboBox.getSelectedItem());
+            Salle salle = frame.sallesDAO.recupererSalleByID((Integer) comboBox2.getSelectedItem());
+            SpinnerDateModel Model = (SpinnerDateModel) duree.getModel();
+            Date DureeTemp = (Date) Model.getValue();
+            SimpleDateFormat DureeFormat = new SimpleDateFormat("HH:mm:ss");
+            String Duree = DureeFormat.format(DureeTemp);
+
+            Seance seance = new Seance(0, film.getIdFilm(), salle.getIdSalle(), date.getDate(), Duree, salle.getNombrePlace());
+            frame.seancesDAO.ajouterSeance(seance);
+            //ChangementPageListeners.ChangementPage("admin", frame);
+            affichageEspaceAdmin5(frame, admin, boutonAjouterFilm, boutonSuppModifFilm, boutonSuppModifCompte, boutonAfficherStat, boutonAjouterSeance);
+        });
+        boutonValider.setBounds(1550, 25, 200, 40);
+        boutonValider.setForeground(frame.getSecondeCouleur());
+        boutonValider.setBackground(frame.getMainCouleur());
+        boutonValider.setFont(font2);
+        admin.add(boutonValider);
+
+        boutonConnect.addActionListener(e -> {
+            affichageEspaceAdmin5_bis(frame, admin, date, dateLabel, date.getDate(), titreLabel, comboBox, salleLabel, comboBox2, dureeLabel, duree, boutonConnect, boutonValider);
         });
 
-        affichageEspaceAdmin5_bis(frame, admin, date, date.getDate());
+        date.getDateEditor().addPropertyChangeListener(e -> {
+            affichageEspaceAdmin5_bis(frame, admin, date, dateLabel, date.getDate(), titreLabel, comboBox, salleLabel, comboBox2, dureeLabel, duree, boutonConnect, boutonValider);
+        });
+
+        affichageEspaceAdmin5_bis(frame, admin, date, dateLabel, date.getDate(), titreLabel, comboBox, salleLabel, comboBox2, dureeLabel, duree, boutonConnect, boutonValider);
 
         frame.RefreshPage();
     }
 
 
-    public static void affichageEspaceAdmin5_bis(FrameBase frame, JPanel admin, JDateChooser Date, Date date){
+    public static void affichageEspaceAdmin5_bis(FrameBase frame, JPanel admin, JDateChooser Date, JLabel dateLabel, Date date, JLabel titreLabel, JComboBox<String> comboBox, JLabel salleLabel, JComboBox<Integer> comboBox2, JLabel dureeLabel, JSpinner duree, JButton boutonConnect, JButton boutonValider){
         frame.PageActuelle = "admin";
         Component[] composants = admin.getComponents();
         for (Component composant : composants) {
-            if (composant != Date) {
+            if (composant != dateLabel && composant != Date && composant != titreLabel && composant != comboBox && composant != salleLabel && composant != comboBox2 && composant != dureeLabel && composant != duree && composant != boutonConnect && composant != boutonValider) {
                 admin.remove(composant);
             }
         }
@@ -1491,6 +1589,67 @@ public class EspaceAdmin {
                     seanceFilm.add(TitreLabel);
                 }
             }
+        }
+
+        Integer selectedValue = (Integer) comboBox2.getSelectedItem();
+        int unite = selectedValue % 10;
+
+        Date dateValue = (Date) duree.getValue();
+        SimpleDateFormat format = new SimpleDateFormat("HH 'h' mm");
+        String stringValue = format.format(dateValue);
+        String[] parties = stringValue.split(" h ");
+
+        Film film = frame.filmsDAO.recupererFilmByTitre((String) comboBox.getSelectedItem());
+
+        int heuresDebut = Integer.parseInt(parties[0]);
+        int minutesDebut = Integer.parseInt(parties[1]);
+
+        heuresDebut = heuresDebut - 8;
+        minutesDebut = minutesDebut - 30;
+
+        String[] parties2 = film.getDuree().split(":");
+
+        int heuresDuree = Integer.parseInt(parties2[0]);
+        int minutesDuree = Integer.parseInt(parties2[1]);
+
+        if(selectedValue < 20 ){
+            JPanel seanceFilm = new JPanel();
+            seanceFilm.setBounds(1, (heuresDebut*42) + (int)(minutesDebut*0.7), 98, (heuresDuree*42) + (int)(minutesDuree*0.7));
+            seanceFilm.setBackground(Color.GREEN);
+            seanceFilm.setLayout(null);
+            salles1[unite].add(seanceFilm);
+
+            JLabel TitreLabel = new JLabel("<html><body style='width: 75px;'>" + film.getNom() + "</body></html>");
+            TitreLabel.setFont(font4);
+            TitreLabel.setForeground(frame.getMainCouleur());
+            TitreLabel.setBounds(3, 7, 200, 35);
+            seanceFilm.add(TitreLabel);
+        }
+        else if(selectedValue < 30 && selectedValue > 19){
+            JPanel seanceFilm = new JPanel();
+            seanceFilm.setBounds(1, (heuresDebut*42) + (int)(minutesDebut*0.7), 98, (heuresDuree*42) + (int)(minutesDuree*0.7));
+            seanceFilm.setBackground(Color.GREEN);
+            seanceFilm.setLayout(null);
+            salles2[unite].add(seanceFilm);
+
+            JLabel TitreLabel = new JLabel("<html><body style='width: 75px;'>" + film.getNom() + "</body></html>");
+            TitreLabel.setFont(font4);
+            TitreLabel.setForeground(frame.getMainCouleur());
+            TitreLabel.setBounds(3, 7, 200, 35);
+            seanceFilm.add(TitreLabel);
+        }
+        else if(selectedValue > 29){
+            JPanel seanceFilm = new JPanel();
+            seanceFilm.setBounds(1, (heuresDebut*42) + (int)(minutesDebut*0.7), 98, (heuresDuree*42) + (int)(minutesDuree*0.7));
+            seanceFilm.setBackground(Color.GREEN);
+            seanceFilm.setLayout(null);
+            salles3[unite].add(seanceFilm);
+
+            JLabel TitreLabel = new JLabel("<html><body style='width: 75px;'>" + film.getNom() + "</body></html>");
+            TitreLabel.setFont(font4);
+            TitreLabel.setForeground(frame.getMainCouleur());
+            TitreLabel.setBounds(3, 7, 200, 35);
+            seanceFilm.add(TitreLabel);
         }
         
         
