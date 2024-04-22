@@ -40,7 +40,7 @@ public class ChangementPageListeners{
                     frame.PageActuelle = "connexion";
                     frame.RefreshPage();
                     PageConnexion.affichagePageConnexion(frame);
-                    System.out.println("Connexion");
+                    //System.out.println("Connexion");
                 }
                 break;
             case "admin":
@@ -102,7 +102,7 @@ public class ChangementPageListeners{
                 frame.PageActuelle = "reservation_seance";
                 frame.RefreshPage();
                 Reservation_Seance_Place.affichageReservation_Seance_Place(frame);
-                System.out.println("Reservation Seance Placement");
+                //System.out.println("Reservation Seance Placement");
                 break;
             case "recap_reservation":
                 frame.PagePrecedente.add(String.valueOf(frame.PageActuelle));
