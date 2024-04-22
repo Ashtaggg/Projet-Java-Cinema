@@ -69,6 +69,7 @@ public class Accueil_News {
         //ActionListener
         boutonFilms.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                timer.stop();
                 ChangementPageListeners.ChangementPage("accueil_films", frame);
             }
         });
@@ -106,6 +107,7 @@ public class Accueil_News {
         //ActionListener
         boutonCinema.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                timer.stop();
                 ChangementPageListeners.ChangementPage("accueil_cinema", frame);
             }
         });
